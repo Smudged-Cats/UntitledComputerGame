@@ -7,13 +7,23 @@
 [node name="Player" parent="." unique_id=356004813 instance=ExtResource("1_wcbw0")]
 z_index = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1299002255]
+[node name="Map" type="StaticBody2D" parent="." unique_id=1299002255]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=601755542]
-position = Vector2(-259, -270)
+[node name="FloorTile" type="Polygon2D" parent="Map" unique_id=652794335]
+color = Color(0.5006621, 0.500662, 0.500662, 1)
+polygon = PackedVector2Array(150, 0, 0, -100, -150, 0, 0, 100)
+uv = PackedVector2Array(-10, -94.40001)
+
+[node name="LeftWallTile" type="Polygon2D" parent="Map" unique_id=272381768]
+color = Color(0.27387273, 0.27387273, 0.27387273, 1)
+polygon = PackedVector2Array(0, -300, 0, -100, -150, 0, -150, -200)
+uv = PackedVector2Array(-10, -94.40001)
+
+[node name="RightWallTile" type="Polygon2D" parent="Map" unique_id=1685977972]
+color = Color(0.21230498, 0.2123048, 0.21230483, 1)
+polygon = PackedVector2Array(0, -300, 0, -100, 150, 0, 150, -200)
+uv = PackedVector2Array(-10, -94.40001)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map" unique_id=1006941598]
 build_mode = 1
-polygon = PackedVector2Array(1066, 908, 969, 895, 806, 918, 552, 931, 324, 911, 154, 926, -91, 903, -238, 892, -378, 934, -559, 929, -683, 907, -739, 862, -743, 763, -713, 591, -711, 406, -746, 243, -681, 98, -700, -95, -686, -242, -649, -366, -597, -437, -431, -455, -233, -440, -31, -481, 184, -456, 442, -426, 703, -465, 993, -472, 1109, -398, 1213, -393, 1162, -205, 1188, -82, 1303, 36, 1248, 162, 1160, 295, 1167, 449, 1220, 612, 1163, 833)
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=1351058843]
-polygon = PackedVector2Array(951, -658, 852, -670, 731, -744, 430, -734, 193, -697, -291, -755, -489, -711, -684, -727, -858, -709, -906, -642, -943, -521, -957, -378, -937, -176, -1005, -23, -969, 115, -969, 306, -996, 483, -1001, 579, -946, 629, -812, 659, -633, 662, -491, 623, -110, 657, 65, 639, 294, 660, 560, 650, 710, 623, 809, 643, 903, 565, 960, 340, 905, 186, 900, 24, 990, -105, 1048, -238, 930, -349, 903, -475)
-uv = PackedVector2Array(951, -658, 852, -670, 731, -744, 430, -734, 193, -697, -291, -755, -489, -711, -684, -727, -858, -709, -906, -642, -943, -521, -957, -378, -937, -176, -1005, -23, -969, 115, -969, 306, -996, 483, -1001, 579, -946, 629, -812, 659, -633, 662, -491, 623, -110, 657, 65, 639, 294, 660, 560, 650, 710, 623, 809, 643, 903, 565, 960, 340, 905, 186, 900, 24, 990, -105, 1048, -238, 930, -349, 903, -475)
+polygon = PackedVector2Array(150, 0, 0, -100, -150, 0, 0, 100)
