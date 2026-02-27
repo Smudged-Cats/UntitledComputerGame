@@ -1,4 +1,5 @@
 extends Node2D
+class_name Player
 
 const CAMERA_CHASE_SPEED: float = 3.0
 
@@ -16,12 +17,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var move_dir: Vector2 = get_move_dir()
 	move_character(move_dir)
-	
 	update_camera_position(delta)
 
 
 func update_camera_position(delta: float) -> void:
-	if _camera == null:
+	if !is_instance_valid(_camera):
 		return
 	
 	_camera.global_position = _camera.global_position.lerp(
@@ -31,11 +31,12 @@ func update_camera_position(delta: float) -> void:
 
 
 func move_character(dir: Vector2) -> void:
-	if _character == null:
-		return
-	
+	if !is_instance_valid(_character): return
 	_character.set_move_dir(dir)
 
 
 func get_move_dir() -> Vector2:
-	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down") * Vector2(1, 0.5)
+
+func get_character() -> Character:
+	return _character

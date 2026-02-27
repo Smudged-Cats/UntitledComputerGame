@@ -8,3 +8,9 @@ z_index = 2
 script = ExtResource("1_4gyqm")
 
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("1_7k104")]
+Speed = 100.0
+
+[node name="CheckForThreats" type="Timer" parent="." unique_id=293847738]
+autostart = true
+
+[connection signal="timeout" from="CheckForThreats" to="." method="_on_check_for_threats_timeout"]
