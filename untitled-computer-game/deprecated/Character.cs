@@ -3,9 +3,9 @@ using System;
 
 public partial class Character : CharacterBody2D
 {
-	public const float SPEED = 300.0f;
-	public const float ACCELERATION = 50.0f;
-	public const float DECELLERATION = 50.0f;
+	public const float SPEED = 150.0f;
+	public const float ACCELERATION = 25.0f;
+	public const float DECELLERATION = 25.0f;
 	public Vector2 moveDir = Vector2.Zero;
 
 	public override void _PhysicsProcess(double delta)
@@ -16,7 +16,7 @@ public partial class Character : CharacterBody2D
 		if (direction != Vector2.Zero)
 		{
 			velocity.X = Mathf.MoveToward(velocity.X, direction.X * SPEED, ACCELERATION);
-			velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * SPEED, ACCELERATION);
+			velocity.Y = Mathf.MoveToward(velocity.Y, direction.Y * SPEED * 0.5f, ACCELERATION);
 		}
 		else
 		{

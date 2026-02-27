@@ -1,29 +1,29 @@
-[gd_scene format=3 uid="uid://bgrymso8rttja"]
+[gd_scene format=4 uid="uid://bgrymso8rttja"]
 
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://player.tscn" id="1_wcbw0"]
+[ext_resource type="Texture2D" uid="uid://ibya4nbpbdy1" path="res://art/tiles/iso_debug_floor_tile.png" id="2_mvlbn"]
+[ext_resource type="PackedScene" uid="uid://divyvrrxdq0n5" path="res://enemy.tscn" id="3_jet0j"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jet0j"]
+texture = ExtResource("2_mvlbn")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wcbw0"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_jet0j")
 
 [node name="Node2D" type="Node2D" unique_id=1754742581]
 
 [node name="Player" parent="." unique_id=356004813 instance=ExtResource("1_wcbw0")]
-z_index = 1
 
-[node name="Map" type="StaticBody2D" parent="." unique_id=1299002255]
+[node name="TileMap" type="Node2D" parent="." unique_id=698606567]
 
-[node name="FloorTile" type="Polygon2D" parent="Map" unique_id=652794335]
-color = Color(0.5006621, 0.500662, 0.500662, 1)
-polygon = PackedVector2Array(150, 0, 0, -100, -150, 0, 0, 100)
-uv = PackedVector2Array(-10, -94.40001)
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMap" unique_id=913962900]
+tile_map_data = PackedByteArray("AAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAD//wIAAAAAAAAAAAD//wEAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAEAAAAAAAAAAAACAAAAAAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD+////AAAAAAAAAAD+/wIAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAD+/wMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAAAAYAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAoAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAADAAcAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAABAAkAAAAAAAAAAAABAAgAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAAAAkAAAAAAAAAAAAFAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAADAAsAAAAAAAAAAAACAAsAAAAAAAAAAAABAAsAAAAAAAAAAAAAAAsAAAAAAAAAAAD//wsAAAAAAAAAAAD//wwAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAAAAAACAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAADAAwAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD+/wgAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/woAAAAAAAAAAAD+/wsAAAAAAAAAAAD+/wwAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_wcbw0")
 
-[node name="LeftWallTile" type="Polygon2D" parent="Map" unique_id=272381768]
-color = Color(0.27387273, 0.27387273, 0.27387273, 1)
-polygon = PackedVector2Array(0, -300, 0, -100, -150, 0, -150, -200)
-uv = PackedVector2Array(-10, -94.40001)
-
-[node name="RightWallTile" type="Polygon2D" parent="Map" unique_id=1685977972]
-color = Color(0.21230498, 0.2123048, 0.21230483, 1)
-polygon = PackedVector2Array(0, -300, 0, -100, 150, 0, 150, -200)
-uv = PackedVector2Array(-10, -94.40001)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map" unique_id=1006941598]
-build_mode = 1
-polygon = PackedVector2Array(150, 0, 0, -100, -150, 0, 0, 100)
+[node name="Enemy" parent="." unique_id=1307567229 instance=ExtResource("3_jet0j")]
+position = Vector2(-256, 126)

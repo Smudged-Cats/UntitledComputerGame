@@ -1,0 +1,41 @@
+extends Node2D
+
+const CAMERA_CHASE_SPEED: float = 3.0
+
+var _character: Character
+var _camera: Camera2D
+
+func _ready() -> void:
+	_camera = get_node("Camera2D")
+	_character = get_node("Character")
+	
+	_camera.global_position = _character.global_position
+	print("Started player")
+
+
+func _physics_process(delta: float) -> void:
+	var move_dir: Vector2 = get_move_dir()
+	move_character(move_dir)
+	
+	update_camera_position(delta)
+
+
+func update_camera_position(delta: float) -> void:
+	if _camera == null:
+		return
+	
+	_camera.global_position = _camera.global_position.lerp(
+		_character.global_position,
+		CAMERA_CHASE_SPEED * delta
+	)
+
+
+func move_character(dir: Vector2) -> void:
+	if _character == null:
+		return
+	
+	_character.set_move_dir(dir)
+
+
+func get_move_dir() -> Vector2:
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
