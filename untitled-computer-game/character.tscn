@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cm3acvrmy1qwn" path="res://Character.gd" id="1_pjt0s"]
 [ext_resource type="Texture2D" uid="uid://ciwe34vyil83v" path="res://icon.svg" id="2_pjt0s"]
-[ext_resource type="PackedScene" uid="uid://bbga07rbbcttf" path="res://3dCharacterTest.tscn" id="3_wa5vi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vu45j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pjt0s"]
 
 [node name="Character" type="CharacterBody2D" unique_id=452893723]
 collision_layer = 2
@@ -18,8 +19,25 @@ shape = SubResource("CircleShape2D_vu45j")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_pjt0s")
 
-[node name="SubViewportContainer" parent="." unique_id=1957835413 instance=ExtResource("3_wa5vi")]
-offset_left = -63.0
-offset_top = -60.0
-offset_right = 65.0
-offset_bottom = 68.0
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=444936709]
+offset_left = -64.0
+offset_top = -72.0
+offset_right = 64.0
+offset_bottom = 56.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1156777846]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1134545361]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 4, 7)
+projection = 1
+size = 2.715
+
+[node name="ModelRoot" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=863311457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3841858e-07, 4.7683716e-07)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/ModelRoot" unique_id=1904911085]
+mesh = SubResource("BoxMesh_pjt0s")
