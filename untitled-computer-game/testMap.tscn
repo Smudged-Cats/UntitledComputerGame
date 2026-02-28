@@ -35,13 +35,14 @@ tile_set = SubResource("TileSet_wcbw0")
 [node name="Entities" type="Node" parent="." unique_id=1952137907]
 
 [node name="Player" parent="Entities" unique_id=356004813 instance=ExtResource("1_wcbw0")]
-position = Vector2(159, 0)
 
 [node name="Enemy" parent="Entities" unique_id=1307567229 instance=ExtResource("3_jet0j")]
 position = Vector2(-289, 144)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1877481544]
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=284225478]
 position = Vector2(1, 0)
+build_mode = 1
 polygon = PackedVector2Array(0, -48, 159, 32, -63, 144, 31, 192, -192, 304, -448, 176, -224, 64, -128, 112, -64, 80, -159, 32)

@@ -47,6 +47,11 @@ move_down={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Map"
+2d_physics/layer_2="Character"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
