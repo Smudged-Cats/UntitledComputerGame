@@ -13,7 +13,6 @@ var Decelleration: float = 25.0
 
 var move_dir: Vector2 = Vector2.ZERO
 
-
 func _physics_process(delta: float) -> void:
 	var velocity: Vector2 = self.velocity
 	var direction: Vector2 = move_dir
@@ -28,6 +27,9 @@ func _physics_process(delta: float) -> void:
 	self.velocity = velocity
 	move_and_slide()
 
+func look_in_direction(dir: Vector2) -> void:
+	print(dir)
+	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").rotation.y = -global_position.direction_to(dir + self.global_position).angle()
 
 func set_move_dir(dir: Vector2) -> void:
 	self.move_dir = dir

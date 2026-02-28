@@ -17,8 +17,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var move_dir: Vector2 = get_move_dir()
 	move_character(move_dir)
+	face_to_mouse()
 	update_camera_position(delta)
 
+func face_to_mouse() -> void:
+	# get_global_mouse_position returns the mouse position relative to the player (not the character)
+	var worldMousePos = get_global_mouse_position() - self._character.global_position
+	_character.look_in_direction(worldMousePos)
 
 func update_camera_position(delta: float) -> void:
 	if !is_instance_valid(_camera):
