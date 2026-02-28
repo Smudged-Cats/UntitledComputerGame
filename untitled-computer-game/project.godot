@@ -13,7 +13,7 @@ config_version=5
 config/name="UntitledComputerGame"
 run/main_scene="uid://bgrymso8rttja"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://art/icon.svg"
 
 [display]
 

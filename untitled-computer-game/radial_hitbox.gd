@@ -1,6 +1,7 @@
 extends Area2D
 
 var attacker: Character
+var entitiesAffected
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 		# To prevent enemies from hitting their own kind
 		if body.characterName != attacker.characterName:
 			body.health = 0
+			attacker.health -= 1
 			
 
 func set_attacker(char: Character) -> void:

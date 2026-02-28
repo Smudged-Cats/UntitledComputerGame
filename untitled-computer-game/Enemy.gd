@@ -6,13 +6,14 @@ var entities: Node
 var _character: Character
 var currentTarget: Character
 
-
+# TODO: maybe add a signal for health, so that we don't have to check every frame if the character is dead
 
 func _ready() -> void:
 	_character = get_node("Character")
 	entities = get_parent()
 
 func _physics_process(delta: float) -> void:
+	if !is_instance_valid(_character): return
 	chase_enemy()
 
 func _process(delta: float) -> void:
@@ -23,12 +24,12 @@ func die() -> void:
 	queue_free()
 
 func chase_enemy() -> void:
-	if is_instance_valid(_character) and is_instance_valid(currentTarget):
+	if is_instance_valid(currentTarget):
 		var difference = self.currentTarget.global_position - _character.global_position
 		var threatDirection = (difference).normalized()
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
 		_character.set_move_dir(threatDirectionToIso)
-		_character.look_in_direction(threatDirectionToIso)
+		_character.look_in_direction(threatDirection)
 	else:
 		_character.set_move_dir(Vector2.ZERO)
 
@@ -38,5 +39,4 @@ func _on_check_for_threats_timeout() -> void:
 		if (entity is Player):
 			var entityCharacter: Character = entity.get_character()
 			if !is_instance_valid(entityCharacter) or entityCharacter.get_health() == 0: continue
-			print("ENEMY DETECTED")
 			self.currentTarget = entityCharacter

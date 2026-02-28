@@ -1,19 +1,19 @@
 [gd_scene format=4 uid="uid://bgrymso8rttja"]
 
-[ext_resource type="Script" uid="uid://bd6q56k024f3r" path="res://test_map.gd" id="1_hd237"]
-[ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://player.tscn" id="1_wcbw0"]
-[ext_resource type="Texture2D" uid="uid://ibya4nbpbdy1" path="res://art/tiles/iso_debug_floor_tile.png" id="2_mvlbn"]
-[ext_resource type="Texture2D" uid="uid://c1e32roiug8ke" path="res://art/tiles/iso_wall_right.png" id="2_rnrx8"]
-[ext_resource type="PackedScene" uid="uid://cu5by56j87akq" path="res://enemySpawner.tscn" id="5_hd237"]
+[ext_resource type="Script" uid="uid://bd6q56k024f3r" path="res://test_map.gd" id="1_il6hr"]
+[ext_resource type="Texture2D" uid="uid://ibya4nbpbdy1" path="res://art/tiles/iso_debug_floor_tile.png" id="2_x877k"]
+[ext_resource type="Texture2D" uid="uid://c1e32roiug8ke" path="res://art/tiles/iso_wall_right.png" id="3_og2gh"]
+[ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
+[ext_resource type="PackedScene" uid="uid://cu5by56j87akq" path="res://scenes/enemySpawner.tscn" id="5_3lkvx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jet0j"]
-texture = ExtResource("2_mvlbn")
+texture = ExtResource("2_x877k")
 texture_region_size = Vector2i(64, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hd237"]
-texture = ExtResource("2_rnrx8")
+texture = ExtResource("3_og2gh")
 texture_region_size = Vector2i(64, 32)
 
 [sub_resource type="TileSet" id="TileSet_wcbw0"]
@@ -26,7 +26,7 @@ sources/0 = SubResource("TileSetAtlasSource_jet0j")
 sources/1 = SubResource("TileSetAtlasSource_hd237")
 
 [node name="Node2D" type="Node2D" unique_id=1754742581]
-script = ExtResource("1_hd237")
+script = ExtResource("1_il6hr")
 
 [node name="TileMap" type="Node2D" parent="." unique_id=698606567]
 
@@ -36,7 +36,7 @@ tile_set = SubResource("TileSet_wcbw0")
 
 [node name="Entities" type="Node" parent="." unique_id=1952137907]
 
-[node name="Player" parent="Entities" unique_id=356004813 instance=ExtResource("1_wcbw0")]
+[node name="Player" parent="Entities" unique_id=356004813 instance=ExtResource("4_uqqtp")]
 z_index = 3
 position = Vector2(2, 22)
 
@@ -46,10 +46,10 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=284225478]
 position = Vector2(1, 0)
 build_mode = 1
-polygon = PackedVector2Array(0, -48, 159, 32, -63, 144, 31, 192, -192, 304, -448, 176, -224, 64, -128, 112, -64, 80, -159, 32)
+polygon = PackedVector2Array(-1, -48, 159, 32, -65, 144, 31, 192, -193, 304, -449, 176, -225, 64, -129, 112, -65, 80, -161, 32)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=550587918]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
 
-[node name="EnemySpawner" parent="." unique_id=685604780 instance=ExtResource("5_hd237")]
+[node name="EnemySpawner" parent="." unique_id=685604780 instance=ExtResource("5_3lkvx")]
 position = Vector2(-313, 141)

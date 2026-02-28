@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://divyvrrxdq0n5"]
+
+[ext_resource type="Script" uid="uid://dauahq6ec0hv3" path="res://Enemy.gd" id="1_gs5ed"]
+[ext_resource type="PackedScene" uid="uid://b3vf5xisid485" path="res://scenes/characters/red_character.tscn" id="2_o42er"]
+
+[node name="Enemy" type="Node2D" unique_id=1307567229]
+z_index = 2
+script = ExtResource("1_gs5ed")
+
+[node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_o42er")]
+speed = 200.0
+
+[node name="CheckForThreats" type="Timer" parent="." unique_id=293847738]
+autostart = true
+
+[connection signal="timeout" from="CheckForThreats" to="." method="_on_check_for_threats_timeout"]

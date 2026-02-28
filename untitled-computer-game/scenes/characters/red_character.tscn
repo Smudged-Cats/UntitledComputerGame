@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b3vf5xisid485"]
+
+[ext_resource type="PackedScene" uid="uid://bc5ctu3vl6o2m" path="res://scenes/characters/character.tscn" id="1_x1206"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pjt0s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glpr6"]
+albedo_color = Color(0.7596617, 0, 0.036890585, 1)
+
+[node name="Character" unique_id=452893723 instance=ExtResource("1_x1206")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/ModelRoot" parent_id_path=PackedInt32Array(863311457) index="0" unique_id=359826647]
+mesh = SubResource("BoxMesh_pjt0s")
+surface_material_override/0 = SubResource("StandardMaterial3D_glpr6")

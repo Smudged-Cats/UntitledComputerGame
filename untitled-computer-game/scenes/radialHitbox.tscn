@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cqgawp84gh5ll"]
 
-[ext_resource type="Script" uid="uid://daiv7nobsxh25" path="res://radial_hitbox.gd" id="1_5fuo3"]
+[ext_resource type="Script" uid="uid://daiv7nobsxh25" path="res://radial_hitbox.gd" id="1_qe23t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xicpv"]
 
 [node name="Area2D" type="Area2D" unique_id=1885677565]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_5fuo3")
+script = ExtResource("1_qe23t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1690455404]
 scale = Vector2(5, 3)
