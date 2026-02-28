@@ -1,6 +1,8 @@
 extends Node2D
 class_name Player
 
+@onready var hitboxScene = preload("res://radialHitbox.tscn")
+
 const CAMERA_CHASE_SPEED: float = 3.0
 
 var _character: Character
@@ -18,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	var move_dir: Vector2 = get_move_dir()
 	move_character(move_dir)
 	face_to_mouse()
+	listen_for_attack()
 	update_camera_position(delta)
 
 func face_to_mouse() -> void:
@@ -45,3 +48,14 @@ func get_move_dir() -> Vector2:
 
 func get_character() -> Character:
 	return _character
+	
+func listen_for_attack() -> void:
+	if Input.is_action_just_pressed("debug_spawn_hitbox"):
+		create_hitbox()
+	
+func create_hitbox() -> void:
+	var newHitbox = hitboxScene.instantiate();
+	newHitbox.set_attacker(_character)
+	newHitbox.global_position = self._character.position
+	add_child(newHitbox)
+	

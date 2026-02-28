@@ -6,12 +6,21 @@ var entities: Node
 var _character: Character
 var currentTarget: Character
 
+
+
 func _ready() -> void:
 	_character = get_node("Character")
 	entities = get_parent()
 
 func _physics_process(delta: float) -> void:
 	chase_enemy()
+
+func _process(delta: float) -> void:
+	if self._character.health <= 0:
+		die()
+
+func die() -> void:
+	queue_free()
 
 func chase_enemy() -> void:
 	if is_instance_valid(_character) and is_instance_valid(currentTarget):
