@@ -10,4 +10,4 @@ script = ExtResource("1_onrkg")
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("1_4flbx")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1017356890]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)

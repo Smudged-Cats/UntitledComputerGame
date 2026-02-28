@@ -6,10 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vu45j"]
 
 [node name="Character" type="CharacterBody2D" unique_id=452893723]
-collision_layer = 2
 script = ExtResource("1_pjt0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1903275256]
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_vu45j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1786432607]
