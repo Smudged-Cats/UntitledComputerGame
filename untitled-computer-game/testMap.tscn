@@ -40,10 +40,8 @@ position = Vector2(159, 0)
 [node name="Enemy" parent="Entities" unique_id=1307567229 instance=ExtResource("3_jet0j")]
 position = Vector2(-289, 144)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1872036373]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1877481544]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=284225478]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=284225478]
 position = Vector2(1, 0)
 polygon = PackedVector2Array(0, -48, 159, 32, -63, 144, 31, 192, -192, 304, -448, 176, -224, 64, -128, 112, -64, 80, -159, 32)
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
