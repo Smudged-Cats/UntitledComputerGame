@@ -19,6 +19,7 @@ func chase_enemy() -> void:
 		var threatDirection = (difference).normalized()
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
 		_character.set_move_dir(threatDirectionToIso)
+		_character.look_in_direction(threatDirectionToIso)
 	else:
 		_character.set_move_dir(Vector2.ZERO)
 

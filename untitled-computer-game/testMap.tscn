@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://player.tscn" id="1_wcbw0"]
 [ext_resource type="Texture2D" uid="uid://ibya4nbpbdy1" path="res://art/tiles/iso_debug_floor_tile.png" id="2_mvlbn"]
 [ext_resource type="Texture2D" uid="uid://c1e32roiug8ke" path="res://art/tiles/iso_wall_right.png" id="2_rnrx8"]
+[ext_resource type="PackedScene" uid="uid://divyvrrxdq0n5" path="res://enemy.tscn" id="3_jet0j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jet0j"]
 texture = ExtResource("2_mvlbn")
@@ -36,6 +37,9 @@ tile_set = SubResource("TileSet_wcbw0")
 [node name="Entities" type="Node" parent="." unique_id=1952137907]
 
 [node name="Player" parent="Entities" unique_id=356004813 instance=ExtResource("1_wcbw0")]
+
+[node name="Enemy" parent="Entities" unique_id=1307567229 instance=ExtResource("3_jet0j")]
+position = Vector2(-191, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1877481544]
 collision_mask = 3
