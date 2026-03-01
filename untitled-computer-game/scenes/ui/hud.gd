@@ -12,5 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_character_health_changed(newHealth: int) -> void:
-	print("NEW HEALTH: ", newHealth)
 	self.get_node("PlayerStatus").get_node("HealthBar").value = newHealth
+	
+func _on_character_stamina_changed(newStamina: int) -> void:
+	self.get_node("PlayerStatus").get_node("StaminaBar").value = newStamina

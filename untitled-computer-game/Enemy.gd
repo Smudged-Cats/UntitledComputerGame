@@ -1,6 +1,9 @@
 extends Node2D
 class_name Enemy
 
+@onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
+
+
 var entities: Node
 
 var _character: Character
@@ -28,10 +31,13 @@ func chase_enemy() -> void:
 		var difference = self.currentTarget.global_position - _character.global_position
 		var threatDirection = (difference).normalized()
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
+		if difference.length() <= 5:
+			create_hitbox()
 		_character.set_move_dir(threatDirectionToIso)
 		_character.look_in_direction(threatDirection)
 	else:
 		_character.set_move_dir(Vector2.ZERO)
+	
 
 # Check for enemies every x second(s)
 func _on_check_for_threats_timeout() -> void:
@@ -43,3 +49,12 @@ func _on_check_for_threats_timeout() -> void:
 
 func get_character() -> Character:
 	return _character
+
+func create_hitbox() -> void:
+	var newHitbox = hitboxScene.instantiate();
+	newHitbox.set_attacker(_character)
+	newHitbox.global_position = self._character.position
+	add_child(newHitbox)
+
+func registerHit() -> void:
+	self._character.velocity = Vector2.ZERO

@@ -2,18 +2,30 @@ extends CharacterBody2D
 class_name Character
 
 signal health_changed(newHealth: int)
+signal stamina_changed(newstamina: int)
+
 
 static var newCharacterId = 0
 var id = 0
 
 @export var characterName = "Unnamed Character"
 
+@export var maxHealth = 100
+@export var maxStamina = 100
+
 @export var health: int = 100:
 	set(value):
 		if health != value:
-			health = value
+			health = clamp(value, 0, maxHealth)
 			# Emit the signal with the new value as an argument
 			emit_signal("health_changed", health)
+
+@export var stamina: float = 100:
+	set(value):
+		if stamina != value:
+			stamina = clamp(value, 0, maxStamina)
+			# Emit the signal with the new value as an argument
+			emit_signal("stamina_changed", stamina)
 
 @export var speed: float = 300.0
 var acceleration: float = 25.0
@@ -32,6 +44,7 @@ func _ready() -> void:
 	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").global_position.x += self.id * 10
 
 func _physics_process(delta: float) -> void:
+	self.stamina += 10 * delta
 	var direction: Vector2 = move_dir
 
 	if direction != Vector2.ZERO:
@@ -56,11 +69,16 @@ func get_health() -> int:
 	
 func dashAttack() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
-	self.velocity.x = mouseDirection.x * 750
-	self.velocity.y = mouseDirection.y * 750
+	if self.stamina >= 20:
+		self.velocity.x = mouseDirection.x * 750
+		self.velocity.y = mouseDirection.y * 750
+		self.stamina -= 20
+		
+
+	
 	
 func takeDamage(sourcePosition: Vector2) -> void:
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
 	self.velocity.x = damageDirection.x * 750
 	self.velocity.y = damageDirection.y * 750
-		
+	

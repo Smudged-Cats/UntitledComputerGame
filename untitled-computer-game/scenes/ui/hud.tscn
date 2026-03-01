@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://4ispow26ftfa" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
 
 [sub_resource type="Gradient" id="Gradient_0mwgc"]
-offsets = PackedFloat32Array(0.1, 0.15566038)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
+offsets = PackedFloat32Array(0.1, 0.15566038, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0.9567397, 0.20641303, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hqnrr"]
 gradient = SubResource("Gradient_0mwgc")
@@ -12,6 +12,14 @@ width = 200
 height = 20
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_hqnrr"]
+colors = PackedColorArray(0.66988575, 0.79994047, 1.1551381e-06, 1, 8.711666e-06, 0.7522863, 0.20923516, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bo48s"]
+gradient = SubResource("Gradient_hqnrr")
+width = 200
+height = 20
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=560369571]
 script = ExtResource("1_0mwgc")
@@ -31,3 +39,12 @@ offset_bottom = 55.0
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_hqnrr")
 tint_progress = Color(1, 0, 0, 1)
+
+[node name="StaminaBar" type="TextureProgressBar" parent="PlayerStatus" unique_id=2059354218]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 73.0
+offset_right = 247.0
+offset_bottom = 94.0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_bo48s")

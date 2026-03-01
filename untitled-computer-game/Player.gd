@@ -17,10 +17,13 @@ func _ready() -> void:
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
+	if get_node("Character").health <= 0:
+		print("YOU LOSE!")
 	move_character()
 	face_to_mouse()
 	listen_for_attack()
 	update_camera_position(delta)
+	
 
 func face_to_mouse() -> void:
 	# get_global_mouse_position returns the mouse position relative to the player (not the character)
