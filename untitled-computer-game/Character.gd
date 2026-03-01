@@ -11,9 +11,6 @@ var id = 0
 @export var health: int = 100:
 	set(value):
 		if health != value:
-			var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
-			self.velocity.x = self.velocity.x + mouseDirection.x * 750
-			self.velocity.y = self.velocity.y + mouseDirection.y * 750
 			health = value
 			# Emit the signal with the new value as an argument
 			emit_signal("health_changed", health)
@@ -59,6 +56,11 @@ func get_health() -> int:
 	
 func dashAttack() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
-	self.velocity.x = self.velocity.x + mouseDirection.x * 500
-	self.velocity.y = self.velocity.y + mouseDirection.y * 500
+	self.velocity.x = mouseDirection.x * 750
+	self.velocity.y = mouseDirection.y * 750
 	
+func takeDamage(sourcePosition: Vector2) -> void:
+	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
+	self.velocity.x = damageDirection.x * 750
+	self.velocity.y = damageDirection.y * 750
+		

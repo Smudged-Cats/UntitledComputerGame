@@ -20,6 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 		# To prevent enemies from hitting their own kind
 		if body.characterName != attacker.characterName:
 			get_parent().registerHit()
+			body.takeDamage(self.attacker.global_position)
 			body.health -= 50
 			print("50 Damage Delivered")
 			
