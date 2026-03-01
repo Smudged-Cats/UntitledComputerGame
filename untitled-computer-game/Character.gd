@@ -11,10 +11,12 @@ var id = 0
 @export var health: int = 100:
 	set(value):
 		if health != value:
+			var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
+			self.velocity.x = self.velocity.x + mouseDirection.x * 750
+			self.velocity.y = self.velocity.y + mouseDirection.y * 750
 			health = value
 			# Emit the signal with the new value as an argument
 			emit_signal("health_changed", health)
-			print("Health changed to: ", health)
 
 @export var speed: float = 300.0
 var acceleration: float = 25.0
@@ -54,3 +56,9 @@ func set_move_dir(dir: Vector2) -> void:
 
 func get_health() -> int:
 	return self.health
+	
+func dashAttack() -> void:
+	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
+	self.velocity.x = self.velocity.x + mouseDirection.x * 500
+	self.velocity.y = self.velocity.y + mouseDirection.y * 500
+	
