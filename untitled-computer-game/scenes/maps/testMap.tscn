@@ -11,7 +11,6 @@ texture_region_size = Vector2i(128, 64)
 0:0/0 = 0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bmcly"]
-load_path = "res://.godot/imported/iso_wall_right.png-f6e132d53c681654367b9805836506b0.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hd237"]
 texture = SubResource("CompressedTexture2D_bmcly")

@@ -40,3 +40,6 @@ func _on_check_for_threats_timeout() -> void:
 			var entityCharacter: Character = entity.get_character()
 			if !is_instance_valid(entityCharacter) or entityCharacter.get_health() == 0: continue
 			self.currentTarget = entityCharacter
+
+func get_character() -> Character:
+	return _character

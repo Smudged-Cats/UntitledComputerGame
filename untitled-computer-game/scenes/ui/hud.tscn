@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://4ispow26ftfa" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
 
 [sub_resource type="Gradient" id="Gradient_0mwgc"]
-offsets = PackedFloat32Array(0.14622642, 0.31367925)
-colors = PackedColorArray(1, 0.7274662, 0.73907703, 1, 1, 0, 0.016666412, 1)
+offsets = PackedFloat32Array(0.1, 0.15566038)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hqnrr"]
 gradient = SubResource("Gradient_0mwgc")
@@ -30,3 +30,4 @@ offset_right = 247.0
 offset_bottom = 55.0
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_hqnrr")
+tint_progress = Color(1, 0, 0, 1)
