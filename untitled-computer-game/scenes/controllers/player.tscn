@@ -16,4 +16,4 @@ zoom = Vector2(2, 2)
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_hlsme")]
 characterName = "Player Character"
 
-[connection signal="health_changed" from="Character" to="Camera2D/HUD" method="_on_character_health_changed" binds= [0]]
+[connection signal="health_changed" from="Character" to="Camera2D/HUD" method="_on_character_health_changed"]

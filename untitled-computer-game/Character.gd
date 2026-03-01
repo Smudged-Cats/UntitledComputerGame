@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Character
 
-signal health_changed
+signal health_changed(newHealth: int)
 
 static var newCharacterId = 0
 var id = 0
