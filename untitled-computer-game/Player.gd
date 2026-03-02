@@ -61,8 +61,8 @@ func create_hitbox() -> void:
 	_character.dashAttack()
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(_character)
-	newHitbox.global_position = self._character.position
-	add_child(newHitbox)
+	#newHitbox.global_position = self._character.position
+	_character.add_child(newHitbox)
 	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
