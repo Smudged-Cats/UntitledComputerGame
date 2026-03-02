@@ -55,14 +55,21 @@ func get_character() -> Character:
 # These functions allow the player to spawn a damage hitbox on left mouse click
 func listen_for_attack() -> void:
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
-		create_hitbox()
+		if Input.is_action_pressed("dash"):
+			print("YIPPEEE")
+			create_hitbox()
+			dash()
+		else:
+			create_hitbox()
 
 func create_hitbox() -> void:
-	_character.dashAttack()
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(_character)
 	#newHitbox.global_position = self._character.position
 	_character.add_child(newHitbox)
+	
+func dash() -> void:
+	_character.dashAttack()
 	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
