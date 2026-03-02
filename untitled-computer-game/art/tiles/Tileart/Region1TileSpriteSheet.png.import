@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db7jvv2sqm0ae"
-path="res://.godot/imported/Region1TileArt1SpriteSheet.png-bf5014830373db6cb97f8d079843344d.ctex"
+uid="uid://ejh5yfjmi8hd"
+path="res://.godot/imported/Region1TileSpriteSheet.png-1cf017ed6c7d04146498039de50bd7a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/Tileart/Region1TileArt1SpriteSheet.png"
-dest_files=["res://.godot/imported/Region1TileArt1SpriteSheet.png-bf5014830373db6cb97f8d079843344d.ctex"]
+source_file="res://art/tiles/Tileart/Region1TileSpriteSheet.png"
+dest_files=["res://.godot/imported/Region1TileSpriteSheet.png-1cf017ed6c7d04146498039de50bd7a3.ctex"]
 
 [params]
 
