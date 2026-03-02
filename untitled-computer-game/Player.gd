@@ -66,10 +66,3 @@ func create_hitbox() -> void:
 	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
-	
-
-	
-	
-	
-
-	
