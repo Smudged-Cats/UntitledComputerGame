@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 	move_character()
 	face_to_mouse()
 	listen_for_attack()
+	listForAbility()
 	update_camera_position(delta)
 	
 
@@ -55,13 +56,16 @@ func get_character() -> Character:
 # These functions allow the player to spawn a damage hitbox on left mouse click
 func listen_for_attack() -> void:
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
-		if Input.is_action_pressed("dash"):
-			print("YIPPEEE")
-			create_hitbox()
-			dash()
-		else:
-			create_hitbox()
-
+		create_hitbox()
+			
+func listForAbility() -> void:
+	if Input.is_action_pressed("lunge_attack"):
+		if _character.dashWindup < 250:
+			_character.dashWindup += 25
+	if Input.is_action_just_released("lunge_attack"):
+		dash()
+		_character.dashWindup = 0
+		
 func create_hitbox() -> void:
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(_character)
