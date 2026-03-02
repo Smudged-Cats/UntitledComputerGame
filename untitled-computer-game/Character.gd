@@ -31,6 +31,8 @@ var id = 0
 var acceleration: float = 25.0
 var deceleration: float = 25.0
 
+var dashWindup: float = 0.0
+
 var move_dir: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
@@ -70,8 +72,8 @@ func get_health() -> int:
 func dashAttack() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if self.stamina >= 20:
-		self.velocity.x = mouseDirection.x * 750
-		self.velocity.y = mouseDirection.y * 750
+		self.velocity.x = mouseDirection.x * (500 + dashWindup)
+		self.velocity.y = mouseDirection.y * (500 + dashWindup)
 		self.stamina -= 20
 		
 
@@ -79,6 +81,6 @@ func dashAttack() -> void:
 	
 func takeDamage(sourcePosition: Vector2) -> void:
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
-	self.velocity.x = damageDirection.x * 750
-	self.velocity.y = damageDirection.y * 750
+	self.velocity.x = damageDirection.x * (500 + dashWindup)
+	self.velocity.y = damageDirection.y * (500 + dashWindup)
 	
