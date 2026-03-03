@@ -24,6 +24,10 @@ window/size/viewport_height=900
 
 project/assembly_name="UntitledComputerGame"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_left={

@@ -6,5 +6,5 @@
 [node name="Character" unique_id=452893723 instance=ExtResource("1_dv2ns")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/ModelRoot" parent_id_path=PackedInt32Array(863311457) index="0" unique_id=359826647]
-transform = Transform3D(0.056353353, 0, -0.09292226, 0, 0.097874165, 0, 0.09292226, 0, 0.056353353, 0, -0.73463047, 0)
+transform = Transform3D(0.04828818, 0, -0.07962343, 0, 0.083866626, 0, 0.07962343, 0, 0.04828818, 0, -0.43742228, 0)
 mesh = ExtResource("2_yuu1s")
