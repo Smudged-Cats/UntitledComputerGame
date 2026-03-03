@@ -59,7 +59,8 @@ func get_character() -> Character:
 # The following is a quick hack for our prototype. 
 # These functions allow the player to spawn a damage hitbox on left mouse click
 func listen_for_attack() -> void:
-	print(attackCooldown.time_left)
+	
+	#Using the attackCooldown example here
 	if Input.is_action_just_pressed("debug_spawn_hitbox") and attackCooldown.time_left == 0:
 		create_hitbox()
 		attackCooldown.start()
