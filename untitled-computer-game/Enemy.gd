@@ -3,13 +3,10 @@ class_name Enemy
 
 @onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
 
-
 var entities: Node
 
 var _character: Character
 var currentTarget: Character
-
-# TODO: maybe add a signal for health, so that we don't have to check every frame if the character is dead
 
 func _ready() -> void:
 	_character = get_node("Character")

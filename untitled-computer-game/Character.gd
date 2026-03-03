@@ -75,10 +75,8 @@ func dashAttack() -> void:
 		self.velocity.x = mouseDirection.x * (500 + dashWindup)
 		self.velocity.y = mouseDirection.y * (500 + dashWindup)
 		self.stamina -= 20
-		
 
-	
-	
+
 func takeDamage(sourcePosition: Vector2) -> void:
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
 	self.velocity.x = damageDirection.x * (500 + dashWindup)

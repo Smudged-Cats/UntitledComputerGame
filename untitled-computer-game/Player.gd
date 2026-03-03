@@ -69,7 +69,7 @@ func listForAbility() -> void:
 func create_hitbox() -> void:
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(_character)
-	#newHitbox.global_position = self._character.position
+	newHitbox.set_damage(50)
 	_character.add_child(newHitbox)
 	
 func dash() -> void:
