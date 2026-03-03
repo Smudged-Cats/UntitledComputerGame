@@ -82,3 +82,12 @@ func takeDamage(sourcePosition: Vector2) -> void:
 	self.velocity.x = damageDirection.x * (500 + dashWindup)
 	self.velocity.y = damageDirection.y * (500 + dashWindup)
 	
+#CreateCooldown is an easier way to create a timer that
+# acts like a cooldown between attacks
+func createCooldown(seconds:float) -> Timer:
+	var newTimer = Timer.new()
+	newTimer.wait_time = seconds
+	newTimer.stop()
+	newTimer.one_shot = true
+	add_child(newTimer)
+	return newTimer

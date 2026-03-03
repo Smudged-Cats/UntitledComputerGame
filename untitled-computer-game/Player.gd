@@ -8,12 +8,16 @@ const CAMERA_CHASE_SPEED: float = 3.0
 var _character: Character
 var _camera: Camera2D
 var _hud: Hud
+var attackCooldown: Timer
 
 func _ready() -> void:
 	_camera = get_node("Camera2D")
 	_character = get_node("Character")
-	
 	_camera.global_position = _character.global_position
+	
+	#Created a cooldown for attacks
+	attackCooldown = _character.createCooldown(0.3)
+	
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
@@ -55,9 +59,10 @@ func get_character() -> Character:
 # The following is a quick hack for our prototype. 
 # These functions allow the player to spawn a damage hitbox on left mouse click
 func listen_for_attack() -> void:
-	if Input.is_action_just_pressed("debug_spawn_hitbox"):
+	print(attackCooldown.time_left)
+	if Input.is_action_just_pressed("debug_spawn_hitbox") and attackCooldown.time_left == 0:
 		create_hitbox()
-			
+		attackCooldown.start()
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
 		if _character.dashWindup < 250:
