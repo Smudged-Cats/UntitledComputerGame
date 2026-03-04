@@ -1,22 +1,16 @@
 extends Node2D
 class_name Player
 
-@onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
-
 const CAMERA_CHASE_SPEED: float = 3.0
 
 var _character: Character
 var _camera: Camera2D
 var _hud: Hud
-var attackCooldown: Timer
 
 func _ready() -> void:
 	_camera = get_node("Camera2D")
 	_character = get_node("Character")
 	_camera.global_position = _character.global_position
-	
-	#Created a cooldown for attacks
-	attackCooldown = _character.createCooldown(0.3)
 	
 	print("Started player")
 
@@ -62,9 +56,8 @@ func get_character() -> Character:
 func listen_for_attack() -> void:
 	
 	#Using the attackCooldown example here
-	if Input.is_action_just_pressed("debug_spawn_hitbox") and attackCooldown.time_left == 0:
-		create_hitbox()
-		attackCooldown.start()
+	if Input.is_action_just_pressed("debug_spawn_hitbox"):
+		attack()
 
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
@@ -74,11 +67,8 @@ func listForAbility() -> void:
 		dash()
 		_character.dashWindup = 0
 		
-func create_hitbox() -> void:
-	var newHitbox = hitboxScene.instantiate();
-	newHitbox.set_attacker(_character)
-	newHitbox.set_damage(50)
-	_character.add_child(newHitbox)
+func attack() -> void:
+	_character.attack()
 	
 func dash() -> void:
 	_character.dash()

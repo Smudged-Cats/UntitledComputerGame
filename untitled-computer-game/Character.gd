@@ -1,9 +1,10 @@
 extends CharacterBody2D
 class_name Character
 
+@onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
+
 signal health_changed(newHealth: int)
 signal stamina_changed(newstamina: int)
-
 
 static var newCharacterId = 0
 var id = 0
@@ -32,14 +33,19 @@ var acceleration: float = 25.0
 var deceleration: float = 25.0
 
 var dashWindup: float = 0.0
-
 var move_dir: Vector2 = Vector2.ZERO
+
+#Created a cooldown for attacks
+var attackCooldown: Timer
 
 func _ready() -> void:
 	
 	# Assign the character a new id
 	self.id = newCharacterId
 	newCharacterId += 1
+	
+	#Created a cooldown for attacks
+	self.attackCooldown = createCooldown(0.3)
 	
 	# Set the position of the 3d model so that it doesn't interfere with other 3d models
 	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("Camera3D").global_position.x += self.id * 10
@@ -69,6 +75,14 @@ func set_move_dir(dir: Vector2) -> void:
 func get_health() -> int:
 	return self.health
 
+func attack() -> void:
+	if attackCooldown.time_left > 0: return
+	var newHitbox = hitboxScene.instantiate();
+	newHitbox.set_attacker(self)
+	newHitbox.set_damage(50)
+	add_child(newHitbox)
+	attackCooldown.start()
+
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if self.stamina >= 20:
@@ -91,3 +105,4 @@ func createCooldown(seconds:float) -> Timer:
 	newTimer.one_shot = true
 	add_child(newTimer)
 	return newTimer
+	
