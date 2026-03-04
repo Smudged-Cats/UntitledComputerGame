@@ -16,7 +16,7 @@ func _ready() -> void:
 	_camera.global_position = _character.global_position
 	
 	#Created a cooldown for attacks
-	attackCooldown = _character.createCooldown(2)
+	attackCooldown = _character.createCooldown(0.3)
 	
 	print("Started player")
 
