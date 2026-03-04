@@ -16,13 +16,14 @@ func _ready() -> void:
 	_camera.global_position = _character.global_position
 	
 	#Created a cooldown for attacks
-	attackCooldown = _character.createCooldown(0.3)
+	attackCooldown = _character.createCooldown(2)
 	
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
 	if get_node("Character").health <= 0:
 		print("YOU LOSE!")
+		
 	move_character()
 	face_to_mouse()
 	listen_for_attack()
@@ -64,6 +65,7 @@ func listen_for_attack() -> void:
 	if Input.is_action_just_pressed("debug_spawn_hitbox") and attackCooldown.time_left == 0:
 		create_hitbox()
 		attackCooldown.start()
+
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
 		if _character.dashWindup < 250:
@@ -79,7 +81,7 @@ func create_hitbox() -> void:
 	_character.add_child(newHitbox)
 	
 func dash() -> void:
-	_character.dashAttack()
+	_character.dash()
 	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO

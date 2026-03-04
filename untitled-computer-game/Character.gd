@@ -68,8 +68,8 @@ func set_move_dir(dir: Vector2) -> void:
 
 func get_health() -> int:
 	return self.health
-	
-func dashAttack() -> void:
+
+func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if self.stamina >= 20:
 		self.velocity.x = mouseDirection.x * (500 + dashWindup)
