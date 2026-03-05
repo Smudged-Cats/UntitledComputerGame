@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://ejh5yfjmi8hd" path="res://art/tiles/Tileart/Region1TileSpriteSheet.png" id="3_x877k"]
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/Tileart/Region1TileTop1.png" id="4_og2gh"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
-[ext_resource type="PackedScene" uid="uid://cu5by56j87akq" path="res://scenes/enemySpawner.tscn" id="5_3lkvx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x877k"]
 texture = ExtResource("2_il6hr")
@@ -84,6 +83,3 @@ polygon = PackedVector2Array(0, -48, 160, 32, -64, 144, 32, 192, -192, 304, -448
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1171605171]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
-
-[node name="EnemySpawner" parent="." unique_id=1235270770 instance=ExtResource("5_3lkvx")]
-position = Vector2(-573, 290)

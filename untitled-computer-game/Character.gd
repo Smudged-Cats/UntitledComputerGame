@@ -38,7 +38,12 @@ var move_dir: Vector2 = Vector2.ZERO
 #Created a cooldown for attacks
 var attackCooldown: Timer
 
+var animPlayer: AnimationPlayer
+
 func _ready() -> void:
+	
+	animPlayer = self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("BuggyBoi2").get_node("AnimationPlayer")
+	animPlayer.play("Armature|Idle")
 	
 	# Assign the character a new id
 	self.id = newCharacterId
@@ -64,6 +69,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+	if self.velocity.length() > 0:
+		if animPlayer.current_animation != "Armature|Move":
+			animPlayer.play("Armature|Move", -1, self.velocity.length()/10)
+	else:
+		animPlayer.play("Armature|Idle")
+	
 	self.z_index = self.global_position.y
 
 func look_in_direction(dir: Vector2) -> void:
@@ -86,8 +97,8 @@ func attack() -> void:
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if self.stamina >= 20:
-		self.velocity.x = mouseDirection.x * (500 + dashWindup)
-		self.velocity.y = mouseDirection.y * (500 + dashWindup)
+		self.velocity.x = mouseDirection.x * (250 + dashWindup)
+		self.velocity.y = mouseDirection.y * (250 + dashWindup)
 		self.stamina -= 20
 
 

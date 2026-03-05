@@ -61,7 +61,7 @@ func listen_for_attack() -> void:
 
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
-		if _character.dashWindup < 250:
+		if _character.dashWindup < 500:
 			_character.dashWindup += 25
 	if Input.is_action_just_released("lunge_attack"):
 		dash()
