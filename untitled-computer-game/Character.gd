@@ -64,10 +64,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("debug_spawn_hitbox"):
 		if meleeWindup < 1:
 			self.meleeWindup += delta * 2
-	else:
+	elif self.meleeWindup > 0:
+		attack()
 		self.meleeWindup = 0
 
-	animTree.set("parameters/BlendTree/Blend2 2/blend_amount", meleeWindup)
+	animTree.set("parameters/BlendTree/MeleeWindup/blend_amount", meleeWindup)
 
 	if direction != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, direction.x * speed, acceleration)
@@ -79,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	var blendAmount = self.velocity.length() / speed
-	animTree.set("parameters/BlendTree/Blend2/blend_amount", blendAmount)
+	animTree.set("parameters/BlendTree/IdleToWalk/blend_amount", blendAmount)
 	
 	
 	#if self.velocity.length() > 0:
@@ -101,6 +102,9 @@ func get_health() -> int:
 
 func attack() -> void:
 	if attackCooldown.time_left > 0: return
+	
+	animTree.set("parameters/BlendTree/Attack/blend_amount", 1)
+	
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(self)
 	newHitbox.set_damage(50)
