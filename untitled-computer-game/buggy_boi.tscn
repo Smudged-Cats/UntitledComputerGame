@@ -5,17 +5,25 @@
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ahsm"]
 animation = &"Armature|Move"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sf63q"]
+animation = &"Armature|Move"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3orl"]
 animation = &"Armature|Idle"
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_7jsno"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Head", "Armature/Skeleton3D:RightArm", "Armature/Skeleton3D:RightHand", "Armature/Skeleton3D:RightShoulder", "Armature/Skeleton3D:UpperTorso"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_sf63q"]
 filter_enabled = true
-filters = ["", "Armature/Skeleton3D:Bone", "Armature/Skeleton3D:Bone.001", "Armature/Skeleton3D:Bone.003", "Armature/Skeleton3D:Bone.004", "Armature/Skeleton3D:Bone.005", "Armature/Skeleton3D:Bone.006", "Armature/Skeleton3D:Bone.007", "Armature/Skeleton3D:Bone.010", "Armature/Skeleton3D:Bone.011", "Armature/Skeleton3D:Bone.012", "Armature/Skeleton3D:Bone.013", "Armature/Skeleton3D:Bone.014", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:Hips", "Armature/Skeleton3D:LeftFoot", "Armature/Skeleton3D:LeftLeg", "Armature/Skeleton3D:LowerTorso", "Armature/Skeleton3D:RightFoot", "Armature/Skeleton3D:RightLeg"]
+filters = ["", "Armature/Skeleton3D:Bone", "Armature/Skeleton3D:Bone.001", "Armature/Skeleton3D:Bone.003", "Armature/Skeleton3D:Bone.004", "Armature/Skeleton3D:Bone.005", "Armature/Skeleton3D:Bone.006", "Armature/Skeleton3D:Bone.007", "Armature/Skeleton3D:Bone.010", "Armature/Skeleton3D:Bone.011", "Armature/Skeleton3D:Bone.012", "Armature/Skeleton3D:Bone.013", "Armature/Skeleton3D:Bone.014", "Armature/Skeleton3D:Hips", "Armature/Skeleton3D:LeftFoot", "Armature/Skeleton3D:LeftLeg", "Armature/Skeleton3D:LowerTorso", "Armature/Skeleton3D:RightFoot", "Armature/Skeleton3D:RightLeg"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5ahsm"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7jsno"]
-graph_offset = Vector2(-1141.1958, -48.896698)
+graph_offset = Vector2(-747.07996, 78.49095)
+nodes/output/position = Vector2(460, 160)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_sf63q")
 nodes/Blend2/position = Vector2(-60, 100)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_t3orl")
@@ -24,7 +32,11 @@ nodes/Animation/position = Vector2(-380, 80)
 "nodes/Animation 2/position" = Vector2(-500, 360)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5ahsm")
 nodes/TimeScale/position = Vector2(-260, 280)
-node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"TimeScale", &"TimeScale", 0, &"Animation 2"]
+"nodes/Blend2 2/node" = SubResource("AnimationNodeBlend2_7jsno")
+"nodes/Blend2 2/position" = Vector2(240, 240)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_sf63q")
+"nodes/Animation 3/position" = Vector2(-20, 400)
+node_connections = [&"output", 0, &"Blend2 2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"TimeScale", &"TimeScale", 0, &"Animation 2", &"Blend2 2", 0, &"Blend2", &"Blend2 2", 1, &"Animation 3"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng0h1"]
 advance_mode = 2
@@ -38,46 +50,48 @@ graph_offset = Vector2(-480, 0)
 
 [node name="BuggyBoi2" unique_id=1606711044 instance=ExtResource("1_5ahsm")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(950842166) index="0" unique_id=1997296516]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(396724206) index="0" unique_id=1988340230]
+bones/0/position = Vector3(-1.8448126e-17, 0.0012965954, 0.00150142)
+bones/0/rotation = Quaternion(0.7089343, -0.091874525, -0.09022566, 0.6934195)
 bones/1/position = Vector3(8.066464e-17, 0.009904265, -3.3397768e-10)
-bones/1/rotation = Quaternion(0.04781653, -4.270917e-14, 1.140035e-08, 0.9988561)
+bones/1/rotation = Quaternion(0.033803694, 0.11766403, -0.0046959724, 0.9924669)
 bones/1/scale = Vector3(1, 0.9999999, 0.99999976)
 bones/2/position = Vector3(1.0928758e-16, 0.0092092715, -4.5689572e-10)
-bones/2/rotation = Quaternion(-0.05885021, -1.19002685e-07, -7.015491e-09, 0.9982668)
+bones/2/rotation = Quaternion(-0.05885021, -1.2040752e-07, -6.9095845e-09, 0.9982669)
 bones/2/scale = Vector3(1, 1.0000002, 1.0000001)
 bones/3/position = Vector3(7.806256e-18, 0.010497118, 4.3347245e-10)
-bones/3/rotation = Quaternion(4.989582e-09, 6.1767324e-15, 4.541258e-16, 1)
+bones/3/rotation = Quaternion(0.037596554, 2.1501105e-09, -1.2862272e-10, 0.9992931)
 bones/3/scale = Vector3(1, 0.99999994, 1)
 bones/5/position = Vector3(0.0043765656, 0.0029478034, 3.564689e-10)
-bones/5/rotation = Quaternion(-7.5575755e-08, -8.0940154e-08, -0.68391263, 0.72956395)
+bones/5/rotation = Quaternion(-0.013069364, 0.013943591, -0.68384004, 0.7293816)
 bones/5/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/6/position = Vector3(9.832315e-10, 0.010497119, -2.2551405e-16)
-bones/6/rotation = Quaternion(1.2107465e-07, 2.1047481e-07, -0.04064858, 0.9991735)
+bones/6/rotation = Quaternion(4.103299e-08, 5.876422e-08, -0.61440665, 0.78898954)
 bones/6/scale = Vector3(0.9999999, 0.99999994, 1)
 bones/7/position = Vector3(1.811715e-10, 0.021089219, 8.427275e-11)
-bones/7/rotation = Quaternion(-5.578604e-06, -8.567217e-07, 0.017098865, 0.9998538)
+bones/7/rotation = Quaternion(-5.577808e-06, -8.5787354e-07, 0.017098853, 0.99985385)
 bones/7/scale = Vector3(1, 0.99999994, 1)
 bones/8/position = Vector3(-0.00043714148, 0.010303643, -0.00013844935)
-bones/8/rotation = Quaternion(0.5116788, -0.46121687, 0.53395665, -0.4902592)
+bones/8/rotation = Quaternion(0.5116788, -0.46121696, 0.53395677, -0.49025917)
 bones/8/scale = Vector3(1.0000001, 0.9999999, 1)
 bones/10/position = Vector3(-0.004376559, 0.0029478034, 3.0067906e-11)
-bones/10/rotation = Quaternion(4.4702557e-07, -4.127646e-07, 0.68391263, 0.72956395)
+bones/10/rotation = Quaternion(-0.03460876, -0.03693148, 0.68315125, 0.72852093)
 bones/10/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/11/position = Vector3(1.7383763e-09, 0.010497118, -2.6297411e-10)
-bones/11/rotation = Quaternion(1.2343075e-07, 9.606858e-08, 0.04064858, 0.9991735)
+bones/11/rotation = Quaternion(7.1741374e-07, 1.7639218e-07, 0.60085595, 0.7993573)
 bones/11/scale = Vector3(0.9999999, 0.99999994, 1)
 bones/12/position = Vector3(-2.826596e-09, 0.02108921, 8.427701e-11)
 bones/12/rotation = Quaternion(-5.593634e-06, 8.110229e-07, -0.017099088, 0.9998538)
 bones/12/scale = Vector3(0.99999994, 0.99999994, 1)
-bones/14/position = Vector3(-0.007230463, -0.0011987867, -0.0002109552)
-bones/14/rotation = Quaternion(-0.00017169234, 0.011047916, 0.9998192, 0.015475283)
+bones/14/position = Vector3(-0.007029091, -0.0015037064, -0.0018105537)
+bones/14/rotation = Quaternion(0.069685474, -0.32047284, 0.94208467, 0.07012655)
 bones/15/position = Vector3(-5.9365457e-10, 0.00602703, 1.701395e-11)
-bones/15/rotation = Quaternion(-0.013247412, -2.9521257e-08, 5.948705e-09, 0.99991226)
+bones/15/rotation = Quaternion(-0.013247403, -2.8550389e-08, 5.6435407e-09, 0.99991226)
 bones/15/scale = Vector3(1, 0.99999994, 0.99999994)
-bones/17/position = Vector3(0.006735714, -0.0011987867, -0.00021095187)
-bones/17/rotation = Quaternion(-0.00017169234, 0.011047916, 0.9998192, 0.015475283)
+bones/17/position = Vector3(0.0069183805, -0.0014270927, 0.001655722)
+bones/17/rotation = Quaternion(0.060252838, 0.31819895, 0.9451914, -0.041620817)
 bones/18/position = Vector3(-1.2461444e-09, 0.00602703, 1.7013037e-11)
-bones/18/rotation = Quaternion(-0.013247412, -2.9521257e-08, 5.948705e-09, 0.99991226)
+bones/18/rotation = Quaternion(0.30452657, 0.009818199, 0.00013050229, 0.9524533)
 bones/18/scale = Vector3(1, 0.99999994, 0.99999994)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=235116153]
@@ -85,3 +99,4 @@ tree_root = SubResource("AnimationNodeStateMachine_sf63q")
 anim_player = NodePath("../AnimationPlayer")
 parameters/BlendTree/Blend2/blend_amount = 0.6165955555555807
 parameters/BlendTree/TimeScale/scale = 2.0
+"parameters/BlendTree/Blend2 2/blend_amount" = 0.0

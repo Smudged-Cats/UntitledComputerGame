@@ -33,6 +33,7 @@ var acceleration: float = 25.0
 var deceleration: float = 25.0
 
 var dashWindup: float = 0.0
+var meleeWindup: float = 0.0
 var move_dir: Vector2 = Vector2.ZERO
 
 #Created a cooldown for attacks
@@ -59,6 +60,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	self.stamina += 10 * delta
 	var direction: Vector2 = move_dir
+	
+	if Input.is_action_pressed("debug_spawn_hitbox"):
+		if meleeWindup < 1:
+			self.meleeWindup += delta * 2
+	else:
+		self.meleeWindup = 0
+
+	animTree.set("parameters/BlendTree/Blend2 2/blend_amount", meleeWindup)
 
 	if direction != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, direction.x * speed, acceleration)
@@ -71,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	
 	var blendAmount = self.velocity.length() / speed
 	animTree.set("parameters/BlendTree/Blend2/blend_amount", blendAmount)
-	print(blendAmount)
+	
 	
 	#if self.velocity.length() > 0:
 		#if animPlayer.current_animation != "Armature|Move":
