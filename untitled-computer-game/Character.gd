@@ -64,9 +64,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("debug_spawn_hitbox"):
 		if meleeWindup < 1:
 			self.meleeWindup += delta * 2
-	elif self.meleeWindup > 0:
-		attack()
-		self.meleeWindup = 0
 
 	animTree.set("parameters/BlendTree/MeleeWindup/blend_amount", meleeWindup)
 
@@ -103,11 +100,14 @@ func get_health() -> int:
 func attack() -> void:
 	if attackCooldown.time_left > 0: return
 	
-	animTree.set("parameters/BlendTree/Attack/blend_amount", 1)
+	var power = self.meleeWindup
+	self.meleeWindup = 0
+	
+	animTree.set("parameters/BlendTree/Attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(self)
-	newHitbox.set_damage(50)
+	newHitbox.set_damage(50 * power)
 	add_child(newHitbox)
 	attackCooldown.start()
 

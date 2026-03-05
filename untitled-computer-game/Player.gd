@@ -56,7 +56,7 @@ func get_character() -> Character:
 func listen_for_attack() -> void:
 	
 	#Using the attackCooldown example here
-	if Input.is_action_just_pressed("debug_spawn_hitbox"):
+	if Input.is_action_just_released("debug_spawn_hitbox"):
 		attack()
 
 func listForAbility() -> void:
