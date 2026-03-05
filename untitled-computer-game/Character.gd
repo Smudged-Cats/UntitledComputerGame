@@ -38,12 +38,12 @@ var move_dir: Vector2 = Vector2.ZERO
 #Created a cooldown for attacks
 var attackCooldown: Timer
 
-var animPlayer: AnimationPlayer
+var animTree: AnimationTree
 
 func _ready() -> void:
 	
-	animPlayer = self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("BuggyBoi2").get_node("AnimationPlayer")
-	animPlayer.play("Armature|Idle")
+	animTree = self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("BuggyBoi2").get_node("AnimationTree")
+	#animTree.play("Armature|Idle")
 	
 	# Assign the character a new id
 	self.id = newCharacterId
@@ -69,16 +69,20 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	if self.velocity.length() > 0:
-		if animPlayer.current_animation != "Armature|Move":
-			animPlayer.play("Armature|Move", -1, self.velocity.length()/10)
-	else:
-		animPlayer.play("Armature|Idle")
+	var blendAmount = self.velocity.length() / speed
+	animTree.set("parameters/BlendTree/Blend2/blend_amount", blendAmount)
+	print(blendAmount)
+	
+	#if self.velocity.length() > 0:
+		#if animPlayer.current_animation != "Armature|Move":
+			#animPlayer.play("Armature|Move", -1, self.velocity.length()/10)
+	#else:
+		#animPlayer.play("Armature|Idle")
 	
 	self.z_index = self.global_position.y
 
 func look_in_direction(dir: Vector2) -> void:
-	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").rotation.y = -global_position.direction_to(dir + self.global_position).angle()
+	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").rotation.y = 90 + -global_position.direction_to(dir + self.global_position).angle()
 
 func set_move_dir(dir: Vector2) -> void:
 	self.move_dir = dir
