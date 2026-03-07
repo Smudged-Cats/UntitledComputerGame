@@ -56,22 +56,19 @@ func get_character() -> Character:
 func listen_for_attack() -> void:
 	
 	#Using the attackCooldown example here
-	if Input.is_action_just_released("debug_spawn_hitbox"):
-		attack()
+	if Input.is_action_just_pressed("debug_spawn_hitbox"):
+		_character.start_attack_windup()
+	elif Input.is_action_just_released("debug_spawn_hitbox"):
+		_character.release_attack_windup()
 
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
 		if _character.dashWindup < 500:
 			_character.dashWindup += 25
 	if Input.is_action_just_released("lunge_attack"):
-		dash()
+		_character.dash()
 		_character.dashWindup = 0
-		
-func attack() -> void:
-	_character.attack()
 	
-func dash() -> void:
-	_character.dash()
 	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO

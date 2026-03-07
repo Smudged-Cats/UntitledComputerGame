@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/Tileart/Region1TileTop1.png" id="4_og2gh"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
 [ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/Tileart/Objective_Point.png" id="5_x877k"]
-[ext_resource type="PackedScene" uid="uid://6hftlge5ucy5" path="res://Bomb.tscn" id="7_og2gh"]
+[ext_resource type="PackedScene" path="res://Bomb.tscn" id="7_og2gh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x877k"]
 texture = ExtResource("2_il6hr")

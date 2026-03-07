@@ -32,8 +32,10 @@ var id = 0
 var acceleration: float = 25.0
 var deceleration: float = 25.0
 
-var dashWindup: float = 0.0
-var meleeWindup: float = 0.0
+var _dashWindup: float = 0.0
+var _meleeWindup: float = 0.0
+var _isWindingUpAttack: bool = false
+
 var move_dir: Vector2 = Vector2.ZERO
 
 #Created a cooldown for attacks
@@ -54,12 +56,11 @@ func _ready() -> void:
 	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").global_position.x += self.id * 10
 
 func _physics_process(delta: float) -> void:
-	self.stamina += 10 * delta
+	stamina += 10 * delta
 	var direction: Vector2 = move_dir
 	
-	if Input.is_action_pressed("debug_spawn_hitbox") and get_parent() is Player:
-		if meleeWindup < 1:
-			self.meleeWindup += delta * 2
+	if _isWindingUpAttack and _meleeWindup < 1:
+			_meleeWindup += delta * 2
 
 	if direction != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, direction.x * speed, acceleration)
@@ -79,14 +80,23 @@ func set_move_dir(dir: Vector2) -> void:
 	self.move_dir = dir
 
 func get_health() -> int:
-	return self.health
+	return health
+
+func start_attack_windup() -> void:
+	if attackCooldown.time_left > 0: return
+	_isWindingUpAttack = true
+	
+func release_attack_windup() -> void:
+	_isWindingUpAttack = false
+	if _meleeWindup > 0:
+		attack()
 
 func attack() -> void:
 	if attackCooldown.time_left > 0: return
 	
-	var power = self.meleeWindup
-	self.meleeWindup = 0
-		
+	var power = _meleeWindup
+	_meleeWindup = 0
+	
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(self)
 	newHitbox.set_damage(50 * power)
@@ -95,16 +105,16 @@ func attack() -> void:
 
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
-	if self.stamina >= 20:
-		self.velocity.x = mouseDirection.x * (250 + dashWindup)
-		self.velocity.y = mouseDirection.y * (250 + dashWindup)
-		self.stamina -= 20
+	if stamina >= 20:
+		self.velocity.x = mouseDirection.x * (250 + _dashWindup)
+		self.velocity.y = mouseDirection.y * (250 + _dashWindup)
+		stamina -= 20
 
 
 func takeDamage(sourcePosition: Vector2) -> void:
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
-	self.velocity.x = damageDirection.x * (500 + dashWindup)
-	self.velocity.y = damageDirection.y * (500 + dashWindup)
+	self.velocity.x = damageDirection.x * (500 + _dashWindup)
+	self.velocity.y = damageDirection.y * (500 + _dashWindup)
 	
 #CreateCooldown is an easier way to create a timer that
 # acts like a cooldown between attacks

@@ -13,7 +13,7 @@ func attack() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	
-	animTree.set("parameters/BlendTree/MeleeWindup/blend_amount", meleeWindup)
+	animTree.set("parameters/BlendTree/MeleeWindup/blend_amount", _meleeWindup)
 	
 	var walkBlendAmount = self.velocity.length() / speed
 	animTree.set("parameters/BlendTree/IdleToWalk/blend_amount", walkBlendAmount)
