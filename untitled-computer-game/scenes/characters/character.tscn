@@ -10,7 +10,7 @@ collision_layer = 2
 script = ExtResource("1_x31xa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1903275256]
-z_index = 1
+z_index = 47
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_vu45j")
 

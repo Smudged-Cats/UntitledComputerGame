@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://ejh5yfjmi8hd" path="res://art/tiles/Tileart/Region1TileSpriteSheet.png" id="3_x877k"]
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/Tileart/Region1TileTop1.png" id="4_og2gh"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
+[ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/Tileart/Objective_Point.png" id="5_x877k"]
+[ext_resource type="PackedScene" uid="uid://6hftlge5ucy5" path="res://Bomb.tscn" id="7_og2gh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x877k"]
 texture = ExtResource("2_il6hr")
@@ -46,11 +48,21 @@ texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -29)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uqqtp"]
+texture = ExtResource("5_x877k")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -29)
+
 [sub_resource type="TileSet" id="TileSet_15kbe"]
 tile_shape = 1
 tile_size = Vector2i(128, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3lkvx")
+sources/1 = SubResource("TileSetAtlasSource_uqqtp")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x877k"]
+size = Vector2(81.28537, 84.77896)
 
 [node name="Node2D" type="Node2D" unique_id=631044804]
 script = ExtResource("1_il6hr")
@@ -64,7 +76,7 @@ tile_set = SubResource("TileSet_wcbw0")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="TileMap" unique_id=658583444]
 z_index = 1
-tile_map_data = PackedByteArray("AAD8/wYAAAAAAAAAAAD7/wcAAAAAAAAAAAD8/wgAAAAAAAAAAAD7/wkAAAAAAAAAAAD7/wgAAAAAAAAAAAD6/wkAAAAAAAAAAAD6/woAAAAAAAAAAAD6/wsAAAAAAAAAAAD7/woAAAAAAAAAAAD7/wsAAAAAAAAAAAD8/woAAAAAAAAAAAD8/wkAAAAAAAAAAAD8/wcAAAAAAAAAAAD9/wgAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD8/wsAAAAAAAAAAAD8/wwAAAAAAAAAAAD7/w0AAAAAAAAAAAD7/wwAAAAAAAAAAAD8/w8AAAAAAAAAAAD8/w4AAAAAAAAAAAD+/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD8/w0AAAAAAAAAAAD+/wwAAAAAAAAAAAD+/wEAAAAAAAAAAAD/////AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD+/wsAAAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD7/wUAAAAAAAAAAAD7/wYAAAAAAAAAAAD6/wcAAAAAAAAAAAD6/wgAAAAAAAAAAAD5/wkAAAAAAAAAAAD5/woAAAAAAAAAAAD5/wsAAAAAAAAAAAD6/wwAAAAAAAAAAAD6/w0AAAAAAAAAAAD7/w4AAAAAAAAAAAD7/w8AAAAAAAAAAAD8/xAAAAAAAAAAAAD8/xEAAAAAAAAAAAD9/xAAAAAAAAAAAAD9/w8AAAAAAAAAAAD+/w4AAAAAAAAAAAD+/w0AAAAAAAAAAAD//wwAAAAAAAAAAAD//wsAAAAAAAAAAAD//woAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/wgAAAAAAAAAAAD9/wcAAAAAAAAAAAD9/wYAAAAAAAAAAAD8/wUAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAD///3/AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD//wYAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wYAAAAAAAAAAAD7/wcAAAAAAAAAAAD8/wgAAAAAAAAAAAD7/wkAAAAAAAAAAAD7/wgAAAAAAAAAAAD6/wkAAAAAAAAAAAD6/woAAAAAAAAAAAD6/wsAAAAAAAAAAAD7/woAAAAAAAAAAAD7/wsAAAAAAAAAAAD8/woAAAAAAAAAAAD8/wkAAAAAAAAAAAD8/wcAAAAAAAAAAAD9/wgAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD8/wsAAAAAAAAAAAD8/wwAAAAAAAAAAAD7/w0AAAAAAAAAAAD7/wwAAAAAAAAAAAD8/w8AAAAAAAAAAAD8/w4AAAAAAAAAAAD+/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD8/w0AAQAAAAAAAAD+/wwAAAAAAAAAAAD+/wEAAAAAAAAAAAD/////AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD+/wsAAAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD7/wUAAAAAAAAAAAD7/wYAAAAAAAAAAAD6/wcAAAAAAAAAAAD6/wgAAAAAAAAAAAD5/wkAAAAAAAAAAAD5/woAAAAAAAAAAAD5/wsAAAAAAAAAAAD6/wwAAAAAAAAAAAD6/w0AAAAAAAAAAAD7/w4AAAAAAAAAAAD7/w8AAAAAAAAAAAD8/xAAAAAAAAAAAAD8/xEAAAAAAAAAAAD9/xAAAAAAAAAAAAD9/w8AAAAAAAAAAAD+/w4AAAAAAAAAAAD+/w0AAAAAAAAAAAD//wwAAAAAAAAAAAD//wsAAAAAAAAAAAD//woAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/wgAAAAAAAAAAAD9/wcAAAAAAAAAAAD9/wYAAAAAAAAAAAD8/wUAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAD///3/AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD//wYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_15kbe")
 
 [node name="Entities" type="Node" parent="." unique_id=1282948000]
@@ -76,10 +88,36 @@ position = Vector2(2, 22)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=708580007]
 collision_mask = 3
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=969553977]
+[node name="MapBorder" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=969553977]
 scale = Vector2(2, 2)
 build_mode = 1
 polygon = PackedVector2Array(0, -48, 160, 32, -64, 144, 32, 192, -192, 304, -448, 176, -224, 64, -128, 112, -64, 80, -160, 32)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1171605171]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
+
+[node name="ObjectivePoint" type="Area2D" parent="." unique_id=1751914243]
+collision_mask = 2
+
+[node name="ObjectiveCanInteract" type="CollisionShape2D" parent="ObjectivePoint" unique_id=1027381031]
+position = Vector2(-384.00003, 445)
+rotation = -2.6406832
+scale = Vector2(0.9999998, 0.9999999)
+skew = 0.64577186
+shape = SubResource("RectangleShape2D_x877k")
+
+[node name="Timer" type="Timer" parent="ObjectivePoint" unique_id=552523670]
+wait_time = 5.0
+one_shot = true
+
+[node name="Label" type="Label" parent="ObjectivePoint/Timer" unique_id=1767423109]
+offset_left = -404.0
+offset_top = 392.0
+offset_right = -364.0
+offset_bottom = 415.0
+
+[node name="Bomb" parent="." unique_id=1095892720 instance=ExtResource("7_og2gh")]
+position = Vector2(-455, 275)
+
+[connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
+[connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
