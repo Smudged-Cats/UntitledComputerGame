@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	self.stamina += 10 * delta
 	var direction: Vector2 = move_dir
 	
-	if Input.is_action_pressed("debug_spawn_hitbox"):
+	if Input.is_action_pressed("debug_spawn_hitbox") and get_parent() is Player:
 		if meleeWindup < 1:
 			self.meleeWindup += delta * 2
 
