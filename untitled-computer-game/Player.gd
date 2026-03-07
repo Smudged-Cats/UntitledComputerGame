@@ -63,11 +63,11 @@ func listen_for_attack() -> void:
 
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
-		if _character.dashWindup < 500:
-			_character.dashWindup += 25
+		if _character._dashWindup < 500:
+			_character._dashWindup += 25
 	if Input.is_action_just_released("lunge_attack"):
 		_character.dash()
-		_character.dashWindup = 0
+		_character._dashWindup = 0
 	
 	
 func registerHit() -> void:
