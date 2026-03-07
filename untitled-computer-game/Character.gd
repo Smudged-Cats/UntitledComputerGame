@@ -39,12 +39,7 @@ var move_dir: Vector2 = Vector2.ZERO
 #Created a cooldown for attacks
 var attackCooldown: Timer
 
-var animTree: AnimationTree
-
 func _ready() -> void:
-	
-	animTree = self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("BuggyBoi2").get_node("AnimationTree")
-	#animTree.play("Armature|Idle")
 	
 	# Assign the character a new id
 	self.id = newCharacterId
@@ -52,6 +47,7 @@ func _ready() -> void:
 	
 	#Created a cooldown for attacks
 	self.attackCooldown = createCooldown(0.3)
+	print(self.attackCooldown)
 	
 	# Set the position of the 3d model so that it doesn't interfere with other 3d models
 	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("Camera3D").global_position.x += self.id * 10
@@ -65,8 +61,6 @@ func _physics_process(delta: float) -> void:
 		if meleeWindup < 1:
 			self.meleeWindup += delta * 2
 
-	animTree.set("parameters/BlendTree/MeleeWindup/blend_amount", meleeWindup)
-
 	if direction != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, direction.x * speed, acceleration)
 		self.velocity.y = move_toward(self.velocity.y, direction.y * speed, acceleration)
@@ -75,16 +69,6 @@ func _physics_process(delta: float) -> void:
 		self.velocity.y = move_toward(self.velocity.y, 0.0, deceleration)
 
 	move_and_slide()
-	
-	var blendAmount = self.velocity.length() / speed
-	animTree.set("parameters/BlendTree/IdleToWalk/blend_amount", blendAmount)
-	
-	
-	#if self.velocity.length() > 0:
-		#if animPlayer.current_animation != "Armature|Move":
-			#animPlayer.play("Armature|Move", -1, self.velocity.length()/10)
-	#else:
-		#animPlayer.play("Armature|Idle")
 	
 	self.z_index = self.global_position.y
 
@@ -102,9 +86,7 @@ func attack() -> void:
 	
 	var power = self.meleeWindup
 	self.meleeWindup = 0
-	
-	animTree.set("parameters/BlendTree/Attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	
+		
 	var newHitbox = hitboxScene.instantiate();
 	newHitbox.set_attacker(self)
 	newHitbox.set_damage(50 * power)
@@ -133,4 +115,3 @@ func createCooldown(seconds:float) -> Timer:
 	newTimer.one_shot = true
 	add_child(newTimer)
 	return newTimer
-	
