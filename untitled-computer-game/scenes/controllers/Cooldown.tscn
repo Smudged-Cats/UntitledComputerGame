@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c453k8xhnf8jf"]
+[gd_scene format=3 uid="uid://cddxl2cy4qpi"]
 
-[ext_resource type="Script" uid="uid://q0fdve7iaai3" path="res://cooldown.gd" id="1_05jtp"]
+[ext_resource type="Script" uid="uid://dr5sdwamkx2g8" path="res://Cooldown.gd" id="1_05jtp"]
 
-[node name="Cooldown" type="Timer" unique_id=1721364981]
+[node name="Cooldown2" type="Node" unique_id=1003561917]
 script = ExtResource("1_05jtp")

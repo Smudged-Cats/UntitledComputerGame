@@ -4,12 +4,17 @@ class_name Player
 const CAMERA_CHASE_SPEED: float = 3.0
 
 var _character: Character
+var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
 var _camera: Camera2D
 var _hud: Hud
 
 func _ready() -> void:
 	_camera = get_node("Camera2D")
 	_character = get_node("Character")
+	
+	_weapon = WeaponController.new(2.5, "Pew")
+	add_child(_weapon)
+	
 	_camera.global_position = _character.global_position
 	
 	print("Started player")
@@ -21,6 +26,7 @@ func _physics_process(delta: float) -> void:
 	move_character()
 	face_to_mouse()
 	listen_for_attack()
+	listenForShot()
 	listForAbility()
 	update_camera_position(delta)
 	
@@ -58,6 +64,7 @@ func listen_for_attack() -> void:
 	#Using the attackCooldown example here
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
 		_character.start_attack_windup()
+		pickUpWeapon()
 	elif Input.is_action_just_released("debug_spawn_hitbox"):
 		_character.release_attack_windup()
 
@@ -72,3 +79,13 @@ func listForAbility() -> void:
 	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
+	
+func listenForShot() -> void:
+	if Input.is_action_just_pressed("shoot"):
+		_weapon.shoot()
+		
+func pickUpWeapon() -> void:
+	var tempWeapon:Weapon = Weapon.new()
+	tempWeapon.fireRate = Cooldown.new(0.67)
+	tempWeapon.testText = "Pow"
+	_weapon.setWeapon(tempWeapon)

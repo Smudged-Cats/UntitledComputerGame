@@ -39,7 +39,7 @@ var _isWindingUpAttack: bool = false
 var move_dir: Vector2 = Vector2.ZERO
 
 #Created a cooldown for attacks
-var attackCooldown: Timer
+var attackCooldown: Cooldown = Cooldown.new(0.3)
 
 func _ready() -> void:
 	
@@ -48,7 +48,6 @@ func _ready() -> void:
 	newCharacterId += 1
 	
 	#Created a cooldown for attacks
-	attackCooldown = Cooldown.createCooldown(0.3)
 	add_child(attackCooldown)
 	
 	# Set the position of the 3d model so that it doesn't interfere with other 3d models
@@ -83,8 +82,8 @@ func get_health() -> int:
 	return health
 
 func start_attack_windup() -> void:
-	if attackCooldown.time_left > 0: return
-	_isWindingUpAttack = true
+	if attackCooldown.timeLeft() == 0:
+		_isWindingUpAttack = true
 	
 func release_attack_windup() -> void:
 	_isWindingUpAttack = false
@@ -92,7 +91,7 @@ func release_attack_windup() -> void:
 		attack()
 
 func attack() -> void:
-	if attackCooldown.time_left == 0:
+	if attackCooldown.timeLeft() == 0:
 	
 		var power = _meleeWindup
 		_meleeWindup = 0
@@ -101,7 +100,7 @@ func attack() -> void:
 		newHitbox.set_attacker(self)
 		newHitbox.set_damage(50 * power)
 		add_child(newHitbox)
-		attackCooldown.start()
+		attackCooldown.startTimer()
 
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
