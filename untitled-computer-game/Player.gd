@@ -12,7 +12,9 @@ func _ready() -> void:
 	_camera = get_node("Camera2D")
 	_character = get_node("Character")
 	
-	_weapon = WeaponController.new(2.5, "Pew")
+	#Setting the characterName to be the player for the projectile source
+	_character.characterName = "Player"
+	_weapon = WeaponController.new(_character.characterName, Weapon.new(0.1,21,450))
 	add_child(_weapon)
 	
 	_camera.global_position = _character.global_position
@@ -64,7 +66,6 @@ func listen_for_attack() -> void:
 	#Using the attackCooldown example here
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
 		_character.start_attack_windup()
-		pickUpWeapon()
 	elif Input.is_action_just_released("debug_spawn_hitbox"):
 		_character.release_attack_windup()
 
@@ -81,11 +82,15 @@ func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
 	
 func listenForShot() -> void:
-	if Input.is_action_just_pressed("shoot"):
-		_weapon.shoot()
-		
+	if Input.is_action_pressed("shoot"):
+		var mousePos: Vector2 = get_global_mouse_position() - _character.global_position
+		_weapon.shoot(
+			mousePos, 
+			_character.global_position
+			)
+
+#pickUpWeapon will called whenever the player picks up a weapon
+# for now, it's not fully implemented
 func pickUpWeapon() -> void:
-	var tempWeapon:Weapon = Weapon.new()
-	tempWeapon.fireRate = Cooldown.new(0.67)
-	tempWeapon.testText = "Pow"
-	_weapon.setWeapon(tempWeapon)
+	#_weapon.setWeapon(Weapon.new(0.67,3,50))
+	pass
