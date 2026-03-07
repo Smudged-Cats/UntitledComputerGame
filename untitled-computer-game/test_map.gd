@@ -1,6 +1,9 @@
 extends Node2D
 
+@onready var enemySpawner = preload("res://scenes/enemySpawner.tscn")
+
 var objectiveStarted = false
+var hasCreatedSpawner = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +19,12 @@ func _process(delta: float) -> void:
 	
 	if timeLeft <= 0 and objectiveStarted:
 		print("Explosion")
+	elif objectiveStarted and timeLeft > 0 and !hasCreatedSpawner:
+		var newSpawner = enemySpawner.instantiate()
+		add_child(newSpawner)
+		newSpawner.global_position = Vector2(0,0)
+		hasCreatedSpawner = true
+		
 
 	$ObjectivePoint/Timer/Label.text = timeString
 func _on_objective_point_body_entered(body: Node2D) -> void:
