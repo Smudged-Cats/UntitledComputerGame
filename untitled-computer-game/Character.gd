@@ -48,8 +48,8 @@ func _ready() -> void:
 	newCharacterId += 1
 	
 	#Created a cooldown for attacks
-	self.attackCooldown = createCooldown(0.3)
-	print(self.attackCooldown)
+	attackCooldown = Cooldown.createCooldown(0.3)
+	add_child(attackCooldown)
 	
 	# Set the position of the 3d model so that it doesn't interfere with other 3d models
 	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("Camera3D").global_position.x += self.id * 10
@@ -92,16 +92,16 @@ func release_attack_windup() -> void:
 		attack()
 
 func attack() -> void:
-	if attackCooldown.time_left > 0: return
+	if attackCooldown.time_left == 0:
 	
-	var power = _meleeWindup
-	_meleeWindup = 0
-	
-	var newHitbox = hitboxScene.instantiate();
-	newHitbox.set_attacker(self)
-	newHitbox.set_damage(50 * power)
-	add_child(newHitbox)
-	attackCooldown.start()
+		var power = _meleeWindup
+		_meleeWindup = 0
+		
+		var newHitbox = hitboxScene.instantiate();
+		newHitbox.set_attacker(self)
+		newHitbox.set_damage(50 * power)
+		add_child(newHitbox)
+		attackCooldown.start()
 
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
@@ -115,13 +115,3 @@ func takeDamage(sourcePosition: Vector2) -> void:
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
 	self.velocity.x = damageDirection.x * (500 + _dashWindup)
 	self.velocity.y = damageDirection.y * (500 + _dashWindup)
-	
-#CreateCooldown is an easier way to create a timer that
-# acts like a cooldown between attacks
-func createCooldown(seconds:float) -> Timer:
-	var newTimer = Timer.new()
-	newTimer.wait_time = seconds
-	newTimer.stop()
-	newTimer.one_shot = true
-	add_child(newTimer)
-	return newTimer
