@@ -3,11 +3,9 @@ class_name Weapon
 
 
 var fireRate: Cooldown
-var damage: float
-var projectileSpeed: float
+var projectileStats: ProjectileStats
 #var projectile: Projectile
 
-func _init(fireRate: float, damage: float, projectileSpeed: float):
+func _init(fireRate: float, projectileStats:ProjectileStats):
 	self.fireRate = Cooldown.new(fireRate)
-	self.damage = damage
-	self.projectileSpeed = projectileSpeed
+	self.projectileStats = projectileStats

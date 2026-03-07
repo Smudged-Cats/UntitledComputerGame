@@ -14,7 +14,10 @@ func _ready() -> void:
 	
 	#Setting the characterName to be the player for the projectile source
 	_character.characterName = "Player"
-	_weapon = WeaponController.new(_character.characterName, Weapon.new(0.1,21,450))
+	_weapon = WeaponController.new(
+		_character.characterName, 
+		Weapon.new(0.1,ProjectileStats.new(5,450))
+		)
 	add_child(_weapon)
 	
 	_camera.global_position = _character.global_position
@@ -66,6 +69,7 @@ func listen_for_attack() -> void:
 	#Using the attackCooldown example here
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
 		_character.start_attack_windup()
+		pickUpWeapon()
 	elif Input.is_action_just_released("debug_spawn_hitbox"):
 		_character.release_attack_windup()
 
@@ -92,5 +96,8 @@ func listenForShot() -> void:
 #pickUpWeapon will called whenever the player picks up a weapon
 # for now, it's not fully implemented
 func pickUpWeapon() -> void:
-	#_weapon.setWeapon(Weapon.new(0.67,3,50))
+	_weapon.setWeapon(Weapon.new(
+		1.0,
+		ProjectileStats.new(89,700,3)
+	))
 	pass

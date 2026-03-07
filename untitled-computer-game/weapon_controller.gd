@@ -9,7 +9,7 @@ var baseProjectile = preload("res://scenes/weapons/Projectile.tscn")
 
 #I'm not sure if it makes more sense that have the defaultFireRate be 
 # of type float, or of type Cooldown2
-func _init(holder:String = "", b:Weapon = Weapon.new(1,1,1)):
+func _init(holder:String = "", b:Weapon = Weapon.new(1,ProjectileStats.new(1,1))):
 	self.holder = holder
 	baseWeapon = b
 	
@@ -19,16 +19,16 @@ func _init(holder:String = "", b:Weapon = Weapon.new(1,1,1)):
 	add_child(self.baseWeapon.fireRate)
 
 func shoot(dir:Vector2, pos: Vector2) -> void:
-	print(baseWeapon.fireRate.timeLeft())
+	#print(baseWeapon.fireRate.timeLeft())
 	if (baseWeapon.fireRate.timeLeft() == 0):
 		
 		var tempP = baseProjectile.instantiate()
 		tempP.setProjectile(
 			holder,
-			baseWeapon.damage,
-			baseWeapon.projectileSpeed, 
+			baseWeapon.projectileStats, 
 			dir, 
 			pos)
+		#print(baseWeapon.projectileStats.shotHealth)
 		add_child(tempP)
 		
 		baseWeapon.fireRate.startTimer()
