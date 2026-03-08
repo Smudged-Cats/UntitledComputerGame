@@ -43,3 +43,6 @@ func activateBomb() -> void:
 	get_parent().get_node("ObjectivePoint").get_node("Timer").start()
 	get_parent().objectiveStarted = true
 	
+	$"../TileMap/WallTiles".visible = false
+	$"../StaticBody2D/WallBorder".disabled = true
+	
