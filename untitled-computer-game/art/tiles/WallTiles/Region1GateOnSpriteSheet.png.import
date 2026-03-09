@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2jat2arcse2w"
-path="res://.godot/imported/iso_floor_tile.png-02fd635b8dd47fc748bc923a68484d45.ctex"
+uid="uid://j6dvfk60p23u"
+path="res://.godot/imported/Region1GateOnSpriteSheet.png-79bb52da87886e9b687f00fff6148400.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/iso_floor_tile.png"
-dest_files=["res://.godot/imported/iso_floor_tile.png-02fd635b8dd47fc748bc923a68484d45.ctex"]
+source_file="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png"
+dest_files=["res://.godot/imported/Region1GateOnSpriteSheet.png-79bb52da87886e9b687f00fff6148400.ctex"]
 
 [params]
 

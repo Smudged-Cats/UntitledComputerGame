@@ -9,6 +9,7 @@ var hasCreatedSpawner = false
 func _ready() -> void:
 	$ObjectivePoint/Timer/Label.visible = false	
 	
+	$StaticBody2D/WallBorder2.disabled = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,3 +34,24 @@ func _on_objective_point_body_entered(body: Node2D) -> void:
 
 func _on_objective_point_body_exited(body: Node2D) -> void:
 	$Bomb.onObjective = false
+	
+	
+func toggle_gate_state(is_active:bool) -> void:
+	var location1 = [Vector2i(1, 5), Vector2i(2, 5)]
+	var location2 = [Vector2i(-3, 9), Vector2i(-3, 8)]
+	
+	var openGates = 7
+	var closedGates = 6
+	
+	var sheet_for_1 = openGates if is_active else closedGates
+	var sheet_for_2 = closedGates if is_active else openGates
+	
+	var i = 0
+	for pos in location1:
+		$TileMap/GateTiles.set_cell(pos, sheet_for_1, Vector2i(i, 0))
+		i += 1
+		
+	var j = 2
+	for pos in location2:
+		$TileMap/GateTiles.set_cell(pos, sheet_for_2, Vector2i(j, 0))
+		j += 1

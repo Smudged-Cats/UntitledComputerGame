@@ -1,13 +1,15 @@
 [gd_scene format=4 uid="uid://bgrymso8rttja"]
 
 [ext_resource type="Script" uid="uid://bd6q56k024f3r" path="res://test_map.gd" id="1_il6hr"]
-[ext_resource type="Texture2D" uid="uid://b2jat2arcse2w" path="res://art/tiles/iso_floor_tile.png" id="2_il6hr"]
-[ext_resource type="Texture2D" uid="uid://ejh5yfjmi8hd" path="res://art/tiles/Tileart/Region1TileSpriteSheet.png" id="3_x877k"]
-[ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/Tileart/Region1TileTop1.png" id="4_og2gh"]
+[ext_resource type="Texture2D" uid="uid://b2jat2arcse2w" path="res://art/tiles/FloorTiles/iso_floor_tile.png" id="2_il6hr"]
+[ext_resource type="Texture2D" uid="uid://ejh5yfjmi8hd" path="res://art/tiles/FloorTiles/Region1TileSpriteSheet.png" id="3_x877k"]
+[ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/TileTops/Region1TileTop1.png" id="4_og2gh"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
-[ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/Tileart/Objective_Point.png" id="5_x877k"]
-[ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/Tileart/WallSpriteSheet.png" id="6_uqqtp"]
+[ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="5_x877k"]
+[ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="6_uqqtp"]
 [ext_resource type="PackedScene" uid="uid://6hftlge5ucy5" path="res://Bomb.tscn" id="7_og2gh"]
+[ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="8_15kbe"]
+[ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_x4pwm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x877k"]
 texture = ExtResource("2_il6hr")
@@ -62,15 +64,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3lkvx")
 sources/1 = SubResource("TileSetAtlasSource_uqqtp")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lkvx"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_15kbe"]
-texture = SubResource("CompressedTexture2D_3lkvx")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 31)
-0:1/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4pwm"]
 texture = ExtResource("6_uqqtp")
 texture_region_size = Vector2i(128, 128)
@@ -81,13 +74,56 @@ texture_region_size = Vector2i(128, 128)
 0:1/0 = 0
 1:1/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lkvx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_15kbe"]
+texture = SubResource("CompressedTexture2D_3lkvx")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 31)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xywiv"]
+texture = ExtResource("8_15kbe")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 32)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 32)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uy8mk"]
+texture = ExtResource("8_x4pwm")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 32)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 32)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_x4pwm"]
 tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(128, 64)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_15kbe")
-sources/1 = SubResource("TileSetAtlasSource_x4pwm")
+sources/2 = SubResource("TileSetAtlasSource_x4pwm")
+sources/3 = SubResource("TileSetAtlasSource_15kbe")
+sources/6 = SubResource("TileSetAtlasSource_xywiv")
+sources/7 = SubResource("TileSetAtlasSource_uy8mk")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x877k"]
 size = Vector2(81.28537, 82.33595)
@@ -107,10 +143,10 @@ z_index = 1
 tile_map_data = PackedByteArray("AAD8/wYAAAAAAAAAAAD7/wcAAAAAAAAAAAD8/wgAAAAAAAAAAAD7/wkAAAAAAAAAAAD7/wgAAAAAAAAAAAD6/wkAAAAAAAAAAAD6/woAAAAAAAAAAAD6/wsAAAAAAAAAAAD7/woAAAAAAAAAAAD7/wsAAAAAAAAAAAD8/woAAAAAAAAAAAD8/wkAAAAAAAAAAAD8/wcAAAAAAAAAAAD9/wgAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD8/wsAAAAAAAAAAAD8/wwAAAAAAAAAAAD7/w0AAAAAAAAAAAD7/wwAAAAAAAAAAAD8/w8AAAAAAAAAAAD8/w4AAAAAAAAAAAD+/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD8/w0AAQAAAAAAAAD+/wwAAAAAAAAAAAD+/wEAAAAAAAAAAAD/////AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD+/wsAAAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD7/wUAAAAAAAAAAAD7/wYAAAAAAAAAAAD6/wcAAAAAAAAAAAD6/wgAAAAAAAAAAAD5/wkAAAAAAAAAAAD5/woAAAAAAAAAAAD5/wsAAAAAAAAAAAD6/wwAAAAAAAAAAAD6/w0AAAAAAAAAAAD7/w4AAAAAAAAAAAD7/w8AAAAAAAAAAAD8/xAAAAAAAAAAAAD8/xEAAAAAAAAAAAD9/xAAAAAAAAAAAAD9/w8AAAAAAAAAAAD+/w4AAAAAAAAAAAD+/w0AAAAAAAAAAAD//wwAAAAAAAAAAAD//wsAAAAAAAAAAAD//woAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/wgAAAAAAAAAAAD9/wcAAAAAAAAAAAD9/wYAAAAAAAAAAAD8/wUAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAD///3/AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD//wYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_15kbe")
 
-[node name="WallTiles" type="TileMapLayer" parent="TileMap" unique_id=1021836975]
+[node name="GateTiles" type="TileMapLayer" parent="TileMap" unique_id=1021836975]
 z_index = 4
 texture_filter = 1
-tile_map_data = PackedByteArray("AAABAAUAAQAAAAAAAAACAAUAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/wgABwADAAAAAAABAAUABgAAAAAAAAACAAUABgABAAAAAAD9/wkABwACAAAAAAA=")
 tile_set = SubResource("TileSet_x4pwm")
 
 [node name="Entities" type="Node" parent="." unique_id=1282948000]
@@ -137,6 +173,12 @@ position = Vector2(-514, 189)
 scale = Vector2(2, 2)
 build_mode = 1
 polygon = PackedVector2Array(125.5, 16, 198, 52.5, 207.5, 44, 136.5, 8)
+
+[node name="WallBorder2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=371550955]
+position = Vector2(-519, 185)
+scale = Vector2(2, 2)
+build_mode = 1
+polygon = PackedVector2Array(-103, 31, -93, 36, -25.5, 2.5, -33.5, -3)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1171605171]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)

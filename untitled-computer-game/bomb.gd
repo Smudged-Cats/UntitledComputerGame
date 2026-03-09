@@ -43,6 +43,10 @@ func activateBomb() -> void:
 	get_parent().get_node("ObjectivePoint").get_node("Timer").start()
 	get_parent().objectiveStarted = true
 	
-	$"../TileMap/WallTiles".visible = false
+	var map_node = get_parent()
+	if map_node.has_method("toggle_gate_state"):
+		map_node.toggle_gate_state(true)
+		
 	$"../StaticBody2D/WallBorder".disabled = true
+	$"../StaticBody2D/WallBorder2".disabled = false
 	

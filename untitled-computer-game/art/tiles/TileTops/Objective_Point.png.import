@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq6oq67fbi144"
-path="res://.godot/imported/WallSpriteSheet.png-a71fe4ac42d2545b565748dae3471f95.ctex"
+uid="uid://ccdvvu5knlsnj"
+path="res://.godot/imported/Objective_Point.png-3e445237fe89856d8bebc98c499dda6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/Tileart/WallSpriteSheet.png"
-dest_files=["res://.godot/imported/WallSpriteSheet.png-a71fe4ac42d2545b565748dae3471f95.ctex"]
+source_file="res://art/tiles/TileTops/Objective_Point.png"
+dest_files=["res://.godot/imported/Objective_Point.png-3e445237fe89856d8bebc98c499dda6c.ctex"]
 
 [params]
 
