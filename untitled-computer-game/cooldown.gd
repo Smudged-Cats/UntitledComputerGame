@@ -9,8 +9,11 @@ func _init(waitTime:float):
 	newTimer.stop()
 	add_child(newTimer)
 
-func startTimer() -> void:
-	newTimer.start()
+func startTimer(waitTime:float = -1) -> void:
+	if (waitTime < 0):
+		newTimer.start();
+	else:
+		newTimer.start(waitTime)
 
 func timeLeft() -> float:
 	return newTimer.time_left
