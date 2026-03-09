@@ -47,11 +47,14 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	#Despawn if hitting a wall
 	if (body is StaticBody2D):
-		var getWallAngle:float = body.get_angle_to(self.global_position)
+		
+		#var getWallAngle:float = body.get_angle_to(self.global_position) + PI
+		var getWallAngle:float = self.get_angle_to(body.position)
 		print(getWallAngle, ", ", dir.angle())
 		var n: Vector2 = Vector2(cos(getWallAngle),sin(getWallAngle))
 		var dotProd = dir.x*n.x + dir.y*n.y
 		
 		dir = dir - 2*dotProd*n
 		
+		#dir.y = -sin(dir.angle())
 		#queue_free()
