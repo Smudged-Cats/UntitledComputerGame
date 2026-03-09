@@ -46,4 +46,6 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	#Despawn if hitting a wall
 	if (body is StaticBody2D):
-		queue_free()
+		dir = Vector2(cos(dir.angle()),sin(dir.angle() + PI/2))
+		
+		#queue_free()
