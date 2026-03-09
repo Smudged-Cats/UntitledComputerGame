@@ -8,7 +8,7 @@ var dir: Vector2
 # source, which will also be the characterName string of who shot the weapon
 var source: String
 
-func setProjectile(source:String, stats:ProjectileStats, dir:Vector2, pos:Vector2):
+func setProjectile(source:String, stats:ProjectileStats, d:Vector2, pos:Vector2):
 	self.source = source
 	
 	#Creating a deep copy of the projectile stats so that the piercing
@@ -18,7 +18,7 @@ func setProjectile(source:String, stats:ProjectileStats, dir:Vector2, pos:Vector
 		stats.speed,
 		stats.shotHealth
 	)
-	self.dir = dir.normalized()
+	dir = d.normalized()
 	position = pos
 
 #There seems to be an issue where the distances of the 
@@ -26,6 +26,7 @@ func setProjectile(source:String, stats:ProjectileStats, dir:Vector2, pos:Vector
 # moving relative to the projectile
 func _physics_process(delta: float) -> void:
 	position += dir * stats.speed * delta
+	#print(dir)
 	
 
 func _on_body_entered(body: Node2D) -> void:
@@ -46,6 +47,11 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	#Despawn if hitting a wall
 	if (body is StaticBody2D):
-		dir = Vector2(cos(dir.angle()),sin(dir.angle() + PI/2))
+		var getWallAngle:float = body.get_angle_to(self.global_position)
+		print(getWallAngle, ", ", dir.angle())
+		var n: Vector2 = Vector2(cos(getWallAngle),sin(getWallAngle))
+		var dotProd = dir.x*n.x + dir.y*n.y
+		
+		dir = dir - 2*dotProd*n
 		
 		#queue_free()
