@@ -47,6 +47,4 @@ func activateBomb() -> void:
 	if map_node.has_method("toggle_gate_state"):
 		map_node.toggle_gate_state(true)
 		
-	$"../StaticBody2D/WallBorder".disabled = true
-	$"../StaticBody2D/WallBorder2".disabled = false
 	

@@ -88,12 +88,16 @@ texture = ExtResource("8_15kbe")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -8, -64, 0, 0, 32, 16, 24)
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -8, -64, 0, 0, 32, 16, 24)
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(0, 32)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 0, 48, -8, -16, 24, 0, 32)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(0, 32)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 0, 48, -8, -16, 24, 0, 32)
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
@@ -120,6 +124,7 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(128, 64)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/2 = SubResource("TileSetAtlasSource_x4pwm")
 sources/3 = SubResource("TileSetAtlasSource_15kbe")
 sources/6 = SubResource("TileSetAtlasSource_xywiv")
@@ -167,18 +172,6 @@ polygon = PackedVector2Array(-0.5, -49.5, 162.5, 30, -63.5, 144, 34.5, 191.5, -1
 scale = Vector2(2, 2)
 build_mode = 1
 polygon = PackedVector2Array(-349, 65, -192.5, -15, -131.5, 15, -163, 33, -66.5, 80, -129, 107, -222.5, 59.5, -293.5, 96)
-
-[node name="WallBorder" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=372601108]
-position = Vector2(-514, 189)
-scale = Vector2(2, 2)
-build_mode = 1
-polygon = PackedVector2Array(125.5, 16, 198, 52.5, 207.5, 44, 136.5, 8)
-
-[node name="WallBorder2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=371550955]
-position = Vector2(-519, 185)
-scale = Vector2(2, 2)
-build_mode = 1
-polygon = PackedVector2Array(-103, 31, -93, 36, -25.5, 2.5, -33.5, -3)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1171605171]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)

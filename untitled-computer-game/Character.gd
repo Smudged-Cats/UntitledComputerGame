@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	self.z_index = self.global_position.y
+	#self.z_index = self.global_position.y
 
 func look_in_direction(dir: Vector2) -> void:
 	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").rotation.y = 90 + -global_position.direction_to(dir + self.global_position).angle()

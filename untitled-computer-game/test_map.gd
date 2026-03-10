@@ -9,7 +9,6 @@ var hasCreatedSpawner = false
 func _ready() -> void:
 	$ObjectivePoint/Timer/Label.visible = false	
 	
-	$StaticBody2D/WallBorder2.disabled = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
