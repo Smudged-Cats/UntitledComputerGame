@@ -22,7 +22,7 @@ script = ExtResource("1_gs5ed")
 autostart = true
 
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_o42er")]
-speed = 200.0
+maxSpeed = 200.0
 
 [node name="HealthBar" type="TextureProgressBar" parent="Character" unique_id=1524738123]
 offset_left = -30.0

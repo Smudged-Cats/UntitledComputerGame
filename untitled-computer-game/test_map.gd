@@ -7,7 +7,7 @@ var hasCreatedSpawner = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$ObjectivePoint/Timer/Label.visible = false	
+	$ObjectivePoint/Timer/Label.visible = false
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	elif objectiveStarted and timeLeft > 0 and !hasCreatedSpawner:
 		var newSpawner = enemySpawner.instantiate()
 		add_child(newSpawner)
-		newSpawner.global_position = Vector2(0,0)
+		newSpawner.global_position = Vector2(200,100)
 		hasCreatedSpawner = true
 		
 
@@ -49,7 +49,7 @@ func toggle_gate_state(is_active:bool) -> void:
 	for pos in location1:
 		$TileMap/GateTiles.set_cell(pos, sheet_for_1, Vector2i(i, 0))
 		i += 1
-		
+	
 	var j = 2
 	for pos in location2:
 		$TileMap/GateTiles.set_cell(pos, sheet_for_2, Vector2i(j, 0))
