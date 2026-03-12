@@ -4,6 +4,16 @@
 [ext_resource type="Script" uid="uid://bt7u8cpvn2iju" path="res://scenes/characters/blue_character.gd" id="2_dl504"]
 [ext_resource type="PackedScene" uid="uid://boycjwwdiewif" path="res://buggy_boi.tscn" id="2_yuu1s"]
 
+[sub_resource type="Gradient" id="Gradient_dl504"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vgx8j"]
+gradient = SubResource("Gradient_dl504")
+width = 36
+height = 4
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
 [node name="Bug Character" unique_id=452893723 instance=ExtResource("1_dv2ns")]
 script = ExtResource("2_dl504")
 characterName = "Bug Character"
@@ -19,3 +29,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7677237, 4.7683716e-07)
 
 [node name="BuggyBoi2" parent="SubViewportContainer/SubViewport/ModelRoot" index="0" unique_id=113957721 instance=ExtResource("2_yuu1s")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -0.32078886, 0)
+
+[node name="HealthBar" type="TextureProgressBar" parent="." index="3" unique_id=1711957636]
+offset_left = 48.0
+offset_top = -15.0
+offset_right = 84.0
+offset_bottom = -11.0
+rotation = 1.5707964
+max_value = 1.0
+step = 0.01
+fill_mode = 1
+texture_progress = SubResource("GradientTexture2D_vgx8j")

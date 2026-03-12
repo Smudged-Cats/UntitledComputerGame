@@ -15,6 +15,6 @@ func _physics_process(delta: float) -> void:
 	
 	animTree.set("parameters/BlendTree/MeleeWindup/blend_amount", _meleeWindup)
 	
-	var walkBlendAmount = self.velocity.length() / speed
+	var walkBlendAmount = self.velocity.length() / maxSpeed
 	animTree.set("parameters/BlendTree/IdleToWalk/blend_amount", walkBlendAmount)
 	

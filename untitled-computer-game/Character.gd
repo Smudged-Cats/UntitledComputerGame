@@ -28,7 +28,7 @@ var id = 0
 			# Emit the signal with the new value as an argument
 			emit_signal("stamina_changed", stamina)
 
-@export var speed: float = 300.0
+@export var maxSpeed: float = 300.0
 var acceleration: float = 25.0
 var deceleration: float = 25.0
 
@@ -57,9 +57,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	stamina += 10 * delta
 	var direction: Vector2 = move_dir
+	var speed = maxSpeed
+	if _dashWindup > 0:
+		speed = lerp(speed, speed/5, _dashWindup)
+
 	
 	if _isWindingUpAttack and _meleeWindup < 1:
 			_meleeWindup += delta * 2
+	$HealthBar.value = _meleeWindup
 
 	if direction != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, direction.x * speed, acceleration)
@@ -95,6 +100,7 @@ func attack() -> void:
 	
 		var power = _meleeWindup
 		_meleeWindup = 0
+		stamina -= 10
 		
 		var newHitbox = hitboxScene.instantiate();
 		newHitbox.set_attacker(self)
@@ -105,12 +111,12 @@ func attack() -> void:
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if stamina >= 20:
-		self.velocity.x = mouseDirection.x * (250 + _dashWindup)
-		self.velocity.y = mouseDirection.y * (250 + _dashWindup)
+		self.velocity.x = mouseDirection.x * (400 + _dashWindup * 500)
+		self.velocity.y = mouseDirection.y * (400 + _dashWindup * 500)
 		stamina -= 20
 
 
-func takeDamage(sourcePosition: Vector2) -> void:
+func takeDamage(sourcePosition: Vector2, enemySpeed) -> void:
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
-	self.velocity.x = damageDirection.x * (500 + _dashWindup)
-	self.velocity.y = damageDirection.y * (500 + _dashWindup)
+	self.velocity.x = damageDirection.x * (650 + enemySpeed)
+	self.velocity.y = damageDirection.y * (650 + enemySpeed)

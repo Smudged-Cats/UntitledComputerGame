@@ -34,6 +34,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if(body is Character):
 		if (body.characterName != source):
 			body.health -= stats.damage
+			body.takeDamage(body.global_position + self.global_position, 0)
 			
 			#Trying to simulate piercing shots by giving the shots
 			# health

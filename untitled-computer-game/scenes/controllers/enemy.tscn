@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://divyvrrxdq0n5"]
 
 [ext_resource type="Script" uid="uid://dauahq6ec0hv3" path="res://Enemy.gd" id="1_gs5ed"]
-[ext_resource type="PackedScene" uid="uid://tptn3cx4kksl" path="res://scenes/characters/blue_character.tscn" id="2_o42er"]
+[ext_resource type="PackedScene" uid="uid://b3vf5xisid485" path="res://scenes/characters/red_character.tscn" id="2_o42er"]
+
+[sub_resource type="Gradient" id="Gradient_o42er"]
+offsets = PackedFloat32Array(0.1, 0.15566038, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0.9567397, 0.20641303, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o42er"]
+gradient = SubResource("Gradient_o42er")
+width = 60
+height = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [node name="Enemy" type="Node2D" unique_id=1307567229]
 z_index = 2
@@ -12,5 +23,14 @@ autostart = true
 
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_o42er")]
 speed = 200.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="Character" unique_id=1524738123]
+offset_left = -30.0
+offset_top = -51.0
+offset_right = 30.0
+offset_bottom = -43.0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_o42er")
+tint_progress = Color(1, 0, 0, 1)
 
 [connection signal="timeout" from="CheckForThreats" to="." method="_on_check_for_threats_timeout"]
