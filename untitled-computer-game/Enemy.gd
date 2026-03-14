@@ -41,9 +41,11 @@ func chase_enemy() -> void:
 
 # Check for enemies every x second(s)
 func _on_check_for_threats_timeout() -> void:
-	for entity in entities.get_children():
-		if (entity is Player):
-			var entityCharacter: Character = entity.get_character()
+	var player_nodes = get_tree().get_nodes_in_group("players")
+	
+	for entity in player_nodes:
+		if entity is Player:
+			var entityCharacter = entity.get_character()
 			if !is_instance_valid(entityCharacter) or entityCharacter.get_health() == 0: continue
 			self.currentTarget = entityCharacter
 

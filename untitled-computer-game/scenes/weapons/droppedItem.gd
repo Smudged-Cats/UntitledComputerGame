@@ -8,7 +8,7 @@ var pickedUp = false
 var canPickup = false
 
 @onready
-var playerCharacter = get_parent().get_node("Entities").get_node("Player").get_node("Character")
+var playerCharacter = get_parent().get_node("Player").get_node("Character")
 
 var weapon: WeaponStats = WeaponStats.new(
 	0.01,
