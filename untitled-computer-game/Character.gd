@@ -33,9 +33,9 @@ var id = 0
 var acceleration: float = 25.0
 var deceleration: float = 25.0
 
-var _dashWindup: float = 0.0
-var _meleeWindup: float = 0.0
-var _isWindingUpAttack: bool = false
+var dashWindup: float = 0.0
+var meleeWindup: float = 0.0
+var isWindingUpAttack: bool = false
 
 var move_dir: Vector2 = Vector2.ZERO
 
@@ -52,24 +52,25 @@ func _ready() -> void:
 	add_child(attackCooldown)
 	
 	# Set the position of the 3d model so that it doesn't interfere with other 3d models
-	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("Camera3D").global_position.x += self.id * 10
-	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").global_position.x += self.id * 10
+	$SubViewportContainer/SubViewport/Camera3D.global_position.x += self.id * 10
+	$SubViewportContainer/SubViewport/ModelRoot.global_position.x += self.id * 10
 
 func _physics_process(delta: float) -> void:
-	stamina += 10 * delta
-	var direction: Vector2 = move_dir
-	var speed = maxSpeed
-	if _dashWindup > 0:
-		speed = lerp(speed, speed/5, _dashWindup)
-
 	
-	if _isWindingUpAttack and _meleeWindup < 1:
-			_meleeWindup += delta * 2
-	$HealthBar.value = _meleeWindup
+	# update stamina
+	stamina += 10 * delta
+	
+	var speed = maxSpeed
+	if dashWindup > 0:
+		speed = lerp(speed, speed/5, dashWindup)
+	
+	if isWindingUpAttack and meleeWindup < 1:
+			meleeWindup = move_toward(meleeWindup, 1, delta * 2)
+	$HealthBar.value = meleeWindup
 
-	if direction != Vector2.ZERO:
-		self.velocity.x = move_toward(self.velocity.x, direction.x * speed, acceleration)
-		self.velocity.y = move_toward(self.velocity.y, direction.y * speed, acceleration)
+	if move_dir != Vector2.ZERO:
+		self.velocity.x = move_toward(self.velocity.x, move_dir.x * speed, acceleration)
+		self.velocity.y = move_toward(self.velocity.y, move_dir.y * speed, acceleration)
 	else:
 		self.velocity.x = move_toward(self.velocity.x, 0.0, deceleration)
 		self.velocity.y = move_toward(self.velocity.y, 0.0, deceleration)
@@ -78,8 +79,8 @@ func _physics_process(delta: float) -> void:
 	
 	#self.z_index = self.global_position.y
 
-func look_in_direction(dir: Vector2) -> void:
-	self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").rotation.y = 90 + -global_position.direction_to(dir + self.global_position).angle()
+func look_in_direction(dir: Vector2, delta: float = 1) -> void:
+	$SubViewportContainer/SubViewport/ModelRoot.rotation.y = 90 + -global_position.direction_to(dir + self.global_position).angle()
 
 func set_move_dir(dir: Vector2) -> void:
 	self.move_dir = dir
@@ -89,18 +90,18 @@ func get_health() -> int:
 
 func start_attack_windup() -> void:
 	if attackCooldown.timeLeft() == 0:
-		_isWindingUpAttack = true
+		isWindingUpAttack = true
 	
 func release_attack_windup() -> void:
-	_isWindingUpAttack = false
-	if _meleeWindup > 0:
+	isWindingUpAttack = false
+	if meleeWindup > 0:
 		attack()
 
 func attack() -> void:
 	if attackCooldown.timeLeft() == 0:
 	
-		var power = _meleeWindup
-		_meleeWindup = 0
+		var power = meleeWindup
+		meleeWindup = 0
 		stamina -= 10
 		
 		var newHitbox = hitboxScene.instantiate();
@@ -112,8 +113,8 @@ func attack() -> void:
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if stamina >= 20:
-		self.velocity.x = mouseDirection.x * (400 + _dashWindup * 500)
-		self.velocity.y = mouseDirection.y * (400 + _dashWindup * 500)
+		self.velocity.x = mouseDirection.x * (400 + dashWindup * 500)
+		self.velocity.y = mouseDirection.y * (400 + dashWindup * 500)
 		stamina -= 20
 
 

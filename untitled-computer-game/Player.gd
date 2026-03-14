@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		print("YOU LOSE!")
 		
 	move_character()
-	face_to_mouse()
+	face_to_mouse(delta)
 	listen_for_attack()
 	listenForShot()
 	listForAbility()
@@ -42,10 +42,10 @@ func _physics_process(delta: float) -> void:
 	update_camera_position(delta)
 	
 
-func face_to_mouse() -> void:
+func face_to_mouse(delta: float = 1) -> void:
 	# get_global_mouse_position returns the mouse position relative to the player (not the character)
 	var worldMousePos = get_global_mouse_position() - self._character.global_position
-	_character.look_in_direction(worldMousePos)
+	_character.look_in_direction(worldMousePos, delta)
 
 func update_camera_position(delta: float) -> void:
 	if !is_instance_valid(_camera):
@@ -87,11 +87,11 @@ func listen_for_drop_item() -> void:
 
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
-		if _character._dashWindup < 1:
-			_character._dashWindup += 0.05
+		if _character.dashWindup < 1:
+			_character.dashWindup += 0.05
 	if Input.is_action_just_released("lunge_attack"):
 		_character.dash()
-		_character._dashWindup = 0
+		_character.dashWindup = 0
 	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO

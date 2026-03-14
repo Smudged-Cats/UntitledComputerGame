@@ -10,7 +10,8 @@ var fadeout: bool = false
 var v: Vector2 = Vector2(0, -200)
 
 func _ready() -> void:
-	v.x = randi_range(-50, 50)
+	pass
+	#v.x = randi_range(-50, 50)
 	
 	# TODO: if not isDamage, set tint color to green to indicate health or something (self modulate)
 

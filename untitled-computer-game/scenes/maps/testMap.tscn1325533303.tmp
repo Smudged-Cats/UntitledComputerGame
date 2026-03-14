@@ -171,8 +171,6 @@ z_index = 2
 y_sort_enabled = true
 position = Vector2(2, 22)
 
-[node name="Entities" type="Node" parent="." unique_id=1282948000]
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=708580007]
 collision_mask = 3
 
