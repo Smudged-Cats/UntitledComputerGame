@@ -206,10 +206,5 @@ light_mask = 31
 visibility_layer = 2
 position = Vector2(-271, -45)
 
-[node name="Node2D2" parent="Items" unique_id=1104612395 instance=ExtResource("11_x4pwm")]
-light_mask = 31
-visibility_layer = 2
-position = Vector2(-347, -70)
-
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
