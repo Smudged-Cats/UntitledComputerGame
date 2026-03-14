@@ -104,7 +104,7 @@ func attack() -> void:
 		
 		var newHitbox = hitboxScene.instantiate();
 		newHitbox.set_attacker(self)
-		newHitbox.set_damage(50 * power)
+		newHitbox.set_damage(50 * power + 50)
 		add_child(newHitbox)
 		attackCooldown.startTimer()
 

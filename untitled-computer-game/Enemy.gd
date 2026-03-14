@@ -32,7 +32,7 @@ func chase_enemy() -> void:
 		var threatDirection = (difference).normalized()
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
 		if difference.length() <= 5:
-			create_hitbox()
+			_character.attack()
 		_character.set_move_dir(threatDirectionToIso)
 		_character.look_in_direction(threatDirection)
 	else:
