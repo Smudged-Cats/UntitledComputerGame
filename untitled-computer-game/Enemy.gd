@@ -12,6 +12,7 @@ var currentTarget: Character
 func _ready() -> void:
 	_character = get_node("Character")
 	entities = get_parent()
+	z_index = 1
 
 func _physics_process(delta: float) -> void:
 	if !is_instance_valid(_character): return
