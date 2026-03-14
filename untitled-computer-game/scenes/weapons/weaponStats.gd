@@ -1,5 +1,5 @@
-extends Node2D
-class_name Weapon
+extends Node
+class_name WeaponStats
 
 
 var fireRate: float

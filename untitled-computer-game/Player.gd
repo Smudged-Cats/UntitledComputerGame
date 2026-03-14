@@ -8,6 +8,8 @@ var _weapon: WeaponController #This is here just for quick access to the WeaponC
 var _camera: Camera2D
 var _hud: Hud
 
+@onready var itemList = []
+
 func _ready() -> void:
 	_camera = get_node("Camera2D")
 	_character = get_node("Character")
@@ -16,7 +18,7 @@ func _ready() -> void:
 	_character.characterName = "Player"
 	_weapon = WeaponController.new(
 		_character.characterName, 
-		Weapon.new(0.1,ProjectileStats.new(5,450))
+		WeaponStats.new(0.1,ProjectileStats.new(5,450))
 		)
 	add_child(_weapon)
 	
@@ -69,7 +71,6 @@ func listen_for_attack() -> void:
 	#Using the attackCooldown example here
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
 		_character.start_attack_windup()
-		pickUpWeapon()
 	elif Input.is_action_just_released("debug_spawn_hitbox"):
 		_character.release_attack_windup()
 
@@ -95,9 +96,6 @@ func listenForShot() -> void:
 
 #pickUpWeapon will called whenever the player picks up a weapon
 # for now, it's not fully implemented
-func pickUpWeapon() -> void:
-	_weapon.setWeapon(Weapon.new(
-		1.0,
-		ProjectileStats.new(89,700,3)
-	))
-	pass
+func pickUpWeapon(w:WeaponStats) -> void:
+	_weapon.setWeapon(w)
+	itemList.append(w)
