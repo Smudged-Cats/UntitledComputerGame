@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dhqwudte4ko5p"]
+
+[ext_resource type="Script" uid="uid://cofdvshpaigmc" path="res://scenes/weapons/droppedItem.gd" id="1_4d08c"]
+[ext_resource type="Texture2D" uid="uid://cgolv1ghso7bl" path="res://art/PewPew.png" id="2_emj6a"]
+[ext_resource type="PackedScene" uid="uid://btxlnraqgswqh" path="res://scenes/weapons/weapon.tscn" id="3_gqvr4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55xjf"]
+radius = 27.018513
+
+[node name="Area2D" type="Area2D" unique_id=1104612395]
+script = ExtResource("1_4d08c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971291295]
+shape = SubResource("CircleShape2D_55xjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1219356732]
+position = Vector2(0.5, 0)
+scale = Vector2(2.6190476, 1)
+texture = ExtResource("2_emj6a")
+
+[node name="Weapon" parent="." unique_id=1478844935 instance=ExtResource("3_gqvr4")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
