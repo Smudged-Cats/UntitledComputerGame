@@ -93,7 +93,6 @@ func listForAbility() -> void:
 		_character.dash()
 		_character._dashWindup = 0
 	
-	
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
 	
@@ -105,33 +104,17 @@ func listenForShot() -> void:
 			_character.global_position
 			)
 
-#pickUpWeapon will called whenever the player picks up a weapon
-# for now, it's not fully implemented
-#func pickUpWeapon(w:WeaponStats) -> void:
-	#_weapon.setWeapon(w)
-	#inventory.append(w)
-	#
-#func dropWeapon(i: int) -> void:
-	#_weapon.setWeapon(null)
-	#inventory.remove_at(i)
-
 # Called when an item comes close to the character
 func add_item_to_nearby(area: Area2D) -> void:
 	if area is DroppedItem:
-		#itemsInProximity.append(area)
 		itemsInProximity[area] = true
-		print("I COULD pick up this item")
 
-# TODO: Hashmap istead?
+# Called when an item leaves proximity
 func remove_item_from_nearby(area: Area2D) -> void:
-	#for i in range(0, len(itemsInProximity)):
-		#if itemsInProximity[i] == area:
-			#itemsInProximity.remove_at(i)
-			#print("I can no longer pick up this item")
 	itemsInProximity.erase(area)
-	print("I can no longer pick up this item")
 
 # Search through the itemsInProximity list to determine the closest item
+# TODO: Do we want to pick up the first item we see that is in proximity? Would be faster
 func get_closest_dropped_item() -> DroppedItem:
 	var closestItem = null
 	var closestItemDistance = INF
@@ -155,8 +138,14 @@ func pickup_item() -> void:
 
 func drop_item() -> void:
 	if len(inventory) == 0: return
-	var weaponStats = inventory.pop_front()
-	_weapon.setWeapon(null)
+	
+	var weaponStats = inventory.pop_back()
+	
+	if len(inventory) == 0:
+		_weapon.setWeapon(null)
+	else:
+		_weapon.setWeapon(inventory.back())
+	
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
 	get_tree().get_root().get_node("Node2D").get_node("Items").add_child(newDroppedItem)
