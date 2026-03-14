@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Character
 
 @onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
+@onready var damageNumberScene = preload("res://damageNumber.tscn")
 
 signal health_changed(newHealth: int)
 signal stamina_changed(newstamina: int)
@@ -116,7 +117,15 @@ func dash() -> void:
 		stamina -= 20
 
 
-func takeDamage(sourcePosition: Vector2, enemySpeed) -> void:
+func takeDamage(damage: int, sourcePosition: Vector2, enemySpeed) -> void:
+	
+	health -= damage
+	
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
 	self.velocity.x = damageDirection.x * (650 + enemySpeed)
 	self.velocity.y = damageDirection.y * (650 + enemySpeed)
+	
+	var newNumberScene = damageNumberScene.instantiate()
+	newNumberScene.damage = damage
+	newNumberScene.global_position = global_position
+	get_tree().get_root().add_child(newNumberScene)
