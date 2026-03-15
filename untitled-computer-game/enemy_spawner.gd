@@ -11,5 +11,3 @@ func _ready() -> void:
 		var newEnemy = enemyScene.instantiate()
 		get_tree().get_root().get_node("Node2D").add_child(newEnemy)
 		newEnemy.global_position = self.global_position
-
-			

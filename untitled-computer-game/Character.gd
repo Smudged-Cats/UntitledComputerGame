@@ -2,10 +2,12 @@ extends CharacterBody2D
 class_name Character
 
 @onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
-@onready var damageNumberScene = preload("res://damageNumber.tscn")
+@onready var damageNumberScene = preload("res://scenes/ui/damageNumber.tscn")
 
 signal health_changed(newHealth: int)
 signal stamina_changed(newstamina: int)
+
+signal damaged(damage: int)
 
 static var newCharacterId = 0
 var id = 0
@@ -18,9 +20,12 @@ var id = 0
 @export var health: int = 100:
 	set(value):
 		if health != value:
+			var oldHealth = health
 			health = clamp(value, 0, maxHealth)
-			# Emit the signal with the new value as an argument
+			# Emit signals
 			emit_signal("health_changed", health)
+			if health - oldHealth < 0:
+				emit_signal("damaged", health - oldHealth)
 
 @export var stamina: float = 100:
 	set(value):
