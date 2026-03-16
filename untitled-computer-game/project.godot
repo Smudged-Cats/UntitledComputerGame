@@ -32,6 +32,11 @@ project/assembly_name="UntitledComputerGame"
 
 import/blender/enabled=false
 
+[global_group]
+
+items=""
+characters=""
+
 [input]
 
 move_left={

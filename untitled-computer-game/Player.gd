@@ -139,7 +139,7 @@ func drop_item() -> void:
 	
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
-	get_tree().get_root().get_node("Node2D").get_node("Items").add_child(newDroppedItem)
+	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
 	newDroppedItem.global_position = _character.global_position
 
 func show_death_screen() -> void:

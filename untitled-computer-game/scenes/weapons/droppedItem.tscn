@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_55xjf"]
 radius = 27.018513
 
-[node name="Area2D" type="Area2D" unique_id=1104612395]
+[node name="Area2D" type="Area2D" unique_id=1104612395 groups=["items"]]
 collision_mask = 3
 script = ExtResource("1_4d08c")
 
