@@ -1,11 +1,12 @@
 extends Node
 class_name WeaponStats
 
-
-var fireRate: float
+var stats: Dictionary = {
+	"fireRate": 0.0
+}
 var projectileStats: ProjectileStats
-#var projectile: Projectile
 
 func _init(fireRate: float, projectileStats:ProjectileStats):
-	self.fireRate = fireRate
+	stats["fireRate"] = fireRate
+	#print(stats["fireRateaw"])
 	self.projectileStats = projectileStats

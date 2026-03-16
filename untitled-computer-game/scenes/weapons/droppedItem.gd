@@ -13,8 +13,8 @@ var canPickup = false
 #var playerCharacter = get_parent().get_node("Player").get_node("Character")
 
 var weaponStats: WeaponStats = WeaponStats.new(
-	randf(),#0.01,
-	ProjectileStats.new(50,500)
+	randf() + 0.01,
+	ProjectileStats.new(randf_range(15,90),500)
 )
 #func _process(delta: float) -> void:
 		#

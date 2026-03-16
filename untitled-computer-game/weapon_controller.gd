@@ -42,7 +42,7 @@ func shoot(dir:Vector2, pos: Vector2) -> void:
 		#print(baseWeapon.projectileStats.shotHealth)
 		add_child(tempP)
 		
-		fireRateTimer.startTimer(baseWeapon.fireRate)
+		fireRateTimer.startTimer(baseWeapon.stats["fireRate"])
 
 func setWeapon(w:WeaponStats):
 	baseWeapon = w

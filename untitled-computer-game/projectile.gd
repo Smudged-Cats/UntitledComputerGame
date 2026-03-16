@@ -14,9 +14,9 @@ func setProjectile(source:String, stats:ProjectileStats, d:Vector2, pos:Vector2)
 	#Creating a deep copy of the projectile stats so that the piercing
 	# health works for the projectiles
 	self.stats = ProjectileStats.new(
-		stats.damage,
-		stats.speed,
-		stats.shotHealth
+		stats.stats["damage"],
+		stats.stats["speed"],
+		stats.stats["shotHealth"]
 	)
 	dir = d.normalized()
 	position = pos
@@ -25,7 +25,7 @@ func setProjectile(source:String, stats:ProjectileStats, d:Vector2, pos:Vector2)
 # projectiles sort of "stretch" and "compress depending on where the player is
 # moving relative to the projectile
 func _physics_process(delta: float) -> void:
-	position += dir * stats.speed * delta
+	position += dir * stats.stats["speed"] * delta
 	#print(dir)
 	
 
@@ -33,12 +33,12 @@ func _on_body_entered(body: Node2D) -> void:
 	#Prevent friendly fire
 	if(body is Character):
 		if (body.characterName != source):
-			body.takeDamage(stats.damage, body.global_position + self.global_position, 0)
+			body.takeDamage(stats.stats["damage"], body.global_position + self.global_position, 0)
 			
 			#Trying to simulate piercing shots by giving the shots
 			# health
 			stats.shotHealth -= 1
-			if (stats.shotHealth <= 0):
+			if (stats.stats["shotHealth"] <= 0):
 				queue_free()
 			else:
 				position += 5*dir

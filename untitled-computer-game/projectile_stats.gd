@@ -1,11 +1,13 @@
 extends Node
 class_name ProjectileStats
 
-var damage: float
-var speed: float
-var shotHealth: int
+var stats: Dictionary = {
+	"damage": 0.0,
+	"speed": 0.0,
+	"shotHealth": 0
+}
 
 func _init(damage:float, speed:float, shotHealth: int = 1):
-	self.damage = damage
-	self.speed = speed
-	self.shotHealth = shotHealth
+	stats["damage"] = damage
+	stats["speed"] = speed
+	stats["shotHealth"] = shotHealth
