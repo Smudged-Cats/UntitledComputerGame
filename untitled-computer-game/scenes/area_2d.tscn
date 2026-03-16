@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cu46etqklqq3q" path="res://area_2d.gd" id="1_svk5y"]
 
-[node name="Area2D" type="Area2D" unique_id=1678880998]
+[node name="Node" type="Node" unique_id=273860709]
 script = ExtResource("1_svk5y")

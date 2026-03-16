@@ -8,6 +8,7 @@ var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
 var _camera: Camera2D
 var _hud: Hud
+var modList: Array[Modifier]
 
 @onready var inventory = []
 
@@ -63,6 +64,7 @@ func listen_for_attack() -> void:
 	#Using the attackCooldown example here
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
 		_character.start_attack_windup()
+		addMod()
 	elif Input.is_action_just_released("debug_spawn_hitbox"):
 		_character.release_attack_windup()
 
@@ -150,3 +152,7 @@ func show_death_screen() -> void:
 func _on_character_killed() -> void:
 	show_death_screen()
 	_character.queue_free()
+
+func addMod():
+	modList.append(Modifier.new({"fireRate":0.3},{"damage":1.0}))
+	modList.get(modList.size() - 1).applyBoost(self)

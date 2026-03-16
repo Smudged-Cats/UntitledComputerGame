@@ -8,6 +8,7 @@ var dir: Vector2
 # source, which will also be the characterName string of who shot the weapon
 var source: String
 
+#Add weaponMuls.projectileStats as a parameter
 func setProjectile(source:String, stats:ProjectileStats, d:Vector2, pos:Vector2):
 	self.source = source
 	
@@ -37,7 +38,7 @@ func _on_body_entered(body: Node2D) -> void:
 			
 			#Trying to simulate piercing shots by giving the shots
 			# health
-			stats.shotHealth -= 1
+			stats.stats["shotHealth"] -= 1
 			if (stats.stats["shotHealth"] <= 0):
 				queue_free()
 			else:
