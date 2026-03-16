@@ -2,7 +2,7 @@ extends Node2D
 class_name Player
 
 var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
-var deathScreenScene = preload("res://death_screen.tscn")
+var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -144,7 +144,6 @@ func drop_item() -> void:
 
 func show_death_screen() -> void:
 	var newDeathScreen = deathScreenScene.instantiate()
-	print(newDeathScreen.position)
 	add_child(newDeathScreen)
 
 

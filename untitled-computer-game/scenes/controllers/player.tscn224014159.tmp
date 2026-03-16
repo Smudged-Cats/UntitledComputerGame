@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bi2rcccjtm42m"]
+
+[ext_resource type="Script" uid="uid://bnmpwwdj1dfs0" path="res://Player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://i8dbxb8o0ykw" path="res://scenes/controllers/game_camera.gd" id="2_bqoay"]
+[ext_resource type="PackedScene" uid="uid://tptn3cx4kksl" path="res://scenes/characters/blue_character.tscn" id="2_hlsme"]
+[ext_resource type="PackedScene" uid="uid://bm7dmi8pto8pk" path="res://scenes/ui/hud.tscn" id="3_uoc7w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uoc7w"]
+radius = 51.0
+
+[sub_resource type="Gradient" id="Gradient_dl504"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bqoay"]
+gradient = SubResource("Gradient_dl504")
+width = 36
+height = 4
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[node name="Player" type="Node2D" unique_id=851249208]
+z_index = 1
+script = ExtResource("1_onrkg")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1017356890 node_paths=PackedStringArray("subject")]
+zoom = Vector2(2, 2)
+script = ExtResource("2_bqoay")
+subject = NodePath("../Character")
+
+[node name="HUD" parent="Camera2D" unique_id=185743204 instance=ExtResource("3_uoc7w")]
+
+[node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_hlsme")]
+characterName = "Player Character"
+
+[node name="ItemDetector" type="Area2D" parent="Character" unique_id=560677249]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/ItemDetector" unique_id=1820617821]
+shape = SubResource("CircleShape2D_uoc7w")
+
+[node name="MeleeBar" type="TextureProgressBar" parent="Character" unique_id=2049237695]
+offset_left = 48.0
+offset_top = -15.0
+offset_right = 84.0
+offset_bottom = -11.0
+rotation = 1.5707964
+max_value = 1.0
+step = 0.01
+fill_mode = 1
+texture_progress = SubResource("GradientTexture2D_bqoay")
+
+[connection signal="damaged" from="Character" to="Camera2D" method="_on_character_damaged"]
+[connection signal="health_changed" from="Character" to="Camera2D/HUD" method="_on_character_health_changed"]
+[connection signal="killed" from="Character" to="." method="_on_character_killed"]
+[connection signal="stamina_changed" from="Character" to="Camera2D/HUD" method="_on_character_stamina_changed"]
+[connection signal="area_entered" from="Character/ItemDetector" to="." method="add_item_to_nearby"]
+[connection signal="area_exited" from="Character/ItemDetector" to="." method="remove_item_from_nearby"]
