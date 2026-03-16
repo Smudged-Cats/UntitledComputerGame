@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	
 	if isWindingUpAttack and meleeWindup < 1:
 			meleeWindup = move_toward(meleeWindup, 1, delta * 2)
-	$HealthBar.value = meleeWindup
+	$MeleeBar.value = meleeWindup
 
 	if move_dir != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, move_dir.x * speed, acceleration)

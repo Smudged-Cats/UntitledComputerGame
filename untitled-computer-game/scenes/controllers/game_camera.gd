@@ -7,7 +7,7 @@ const DEFAULT_ZOOM: float = 2.0
 
 var pulseCurve = preload("res://resources/camera_pulse_curve.tres")
 
-var _tPulse: float = 0
+var _tPulse: float = pulseCurve.max_domain
 var _pulse_factor: float = 0.25
 
 func _ready() -> void:

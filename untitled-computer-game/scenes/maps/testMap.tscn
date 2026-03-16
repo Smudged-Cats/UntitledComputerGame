@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://6hftlge5ucy5" path="res://Bomb.tscn" id="7_og2gh"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="8_15kbe"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_x4pwm"]
-[ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="11_x4pwm"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/droppedItem.tscn" id="11_x4pwm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x877k"]
 texture = ExtResource("2_il6hr")

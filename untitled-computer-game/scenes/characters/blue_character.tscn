@@ -30,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7677237, 4.7683716e-07)
 [node name="BuggyBoi2" parent="SubViewportContainer/SubViewport/ModelRoot" index="0" unique_id=113957721 instance=ExtResource("2_yuu1s")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -0.32078886, 0)
 
-[node name="HealthBar" type="TextureProgressBar" parent="." index="3" unique_id=1711957636]
+[node name="MeleeBar" type="TextureProgressBar" parent="." index="3" unique_id=1711957636]
 offset_left = 48.0
 offset_top = -15.0
 offset_right = 84.0
