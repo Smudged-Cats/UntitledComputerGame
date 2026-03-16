@@ -8,6 +8,7 @@ signal health_changed(newHealth: int)
 signal stamina_changed(newstamina: int)
 
 signal damaged(damage: int)
+signal killed()
 
 static var newCharacterId = 0
 var id = 0
@@ -26,6 +27,8 @@ var id = 0
 			emit_signal("health_changed", health)
 			if health - oldHealth < 0:
 				emit_signal("damaged", health - oldHealth)
+			if health == 0:
+				emit_signal("killed")
 
 @export var stamina: float = 100:
 	set(value):
@@ -62,6 +65,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	if !is_instance_valid(self): return
+	
 	# update stamina
 	stamina += 10 * delta
 	
@@ -71,7 +76,6 @@ func _physics_process(delta: float) -> void:
 	
 	if isWindingUpAttack and meleeWindup < 1:
 			meleeWindup = move_toward(meleeWindup, 1, delta * 2)
-	$MeleeBar.value = meleeWindup
 
 	if move_dir != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, move_dir.x * speed, acceleration)

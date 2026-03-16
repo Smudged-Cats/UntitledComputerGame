@@ -2,6 +2,7 @@ extends Node2D
 class_name Player
 
 var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
+var deathScreenScene = preload("res://death_screen.tscn")
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -25,8 +26,8 @@ func _ready() -> void:
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
-	if get_node("Character").health <= 0:
-		print("YOU LOSE!")
+	
+	if !is_instance_valid(_character): return
 		
 	move_character()
 	face_to_mouse(delta)
@@ -37,6 +38,8 @@ func _physics_process(delta: float) -> void:
 	listen_for_drop_item()
 	_camera.update_camera_position(delta)
 	
+	_character.get_node("MeleeBar").value = _character.meleeWindup
+	
 
 func face_to_mouse(delta: float = 1) -> void:
 	# get_global_mouse_position returns the mouse position relative to the player (not the character)
@@ -44,7 +47,6 @@ func face_to_mouse(delta: float = 1) -> void:
 	_character.look_in_direction(worldMousePos, delta)
 
 func move_character() -> void:
-	if !is_instance_valid(_character): return
 	var move_dir: Vector2 = get_move_input() * Vector2(1, 0.5)
 	_character.set_move_dir(move_dir)
 
@@ -103,6 +105,7 @@ func remove_item_from_nearby(area: Area2D) -> void:
 # Search through the itemsInProximity list to determine the closest item
 # TODO: Do we want to pick up the first item we see that is in proximity? Would be faster
 func get_closest_dropped_item() -> DroppedItem:
+	
 	var closestItem = null
 	var closestItemDistance = INF
 	for item in itemsInProximity:
@@ -113,7 +116,7 @@ func get_closest_dropped_item() -> DroppedItem:
 	return closestItem
 
 func pickup_item() -> void:
-	
+		
 	var item = get_closest_dropped_item()
 	if item == null: return
 	
@@ -124,6 +127,7 @@ func pickup_item() -> void:
 	item.queue_free()
 
 func drop_item() -> void:
+	
 	if len(inventory) == 0: return
 	
 	var weaponStats = inventory.pop_back()
@@ -137,3 +141,13 @@ func drop_item() -> void:
 	var newDroppedItem = droppedItemScene.instantiate()
 	get_tree().get_root().get_node("Node2D").get_node("Items").add_child(newDroppedItem)
 	newDroppedItem.global_position = _character.global_position
+
+func show_death_screen() -> void:
+	var newDeathScreen = deathScreenScene.instantiate()
+	print(newDeathScreen.position)
+	add_child(newDeathScreen)
+
+
+func _on_character_killed() -> void:
+	show_death_screen()
+	_character.queue_free()

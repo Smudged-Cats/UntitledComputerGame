@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	
 
 func update_camera_position(delta: float) -> void:
-	if !is_instance_valid(self):
+	if !is_instance_valid(self) or !is_instance_valid(subject):
 		return
 	
 	self.global_position = self.global_position.lerp(
