@@ -65,6 +65,7 @@ func listen_for_attack() -> void:
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
 		_character.start_attack_windup()
 		addMod()
+		print(_weapon.weaponMuls.projectileStats.stats)
 	elif Input.is_action_just_released("debug_spawn_hitbox"):
 		_character.release_attack_windup()
 

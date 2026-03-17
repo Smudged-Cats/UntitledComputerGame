@@ -9,15 +9,15 @@ var dir: Vector2
 var source: String
 
 #Add weaponMuls.projectileStats as a parameter
-func setProjectile(source:String, stats:ProjectileStats, d:Vector2, pos:Vector2):
+func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStats, d:Vector2, pos:Vector2):
 	self.source = source
 	
 	#Creating a deep copy of the projectile stats so that the piercing
 	# health works for the projectiles
 	self.stats = ProjectileStats.new(
-		stats.stats["damage"],
-		stats.stats["speed"],
-		stats.stats["shotHealth"]
+		stats.stats["damage"] * statMuls.stats["damage"],
+		stats.stats["speed"] * statMuls.stats["speed"],
+		stats.stats["shotHealth"] * statMuls.stats["shotHealth"]
 	)
 	dir = d.normalized()
 	position = pos

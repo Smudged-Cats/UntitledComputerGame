@@ -5,7 +5,7 @@ var projectileBoost: Dictionary
 var weaponKeyList: Array
 var projectileKeyList: Array
 
-func _init(weaponBoosts:Dictionary,projectileBoost:Dictionary):
+func _init(weaponBoost:Dictionary,projectileBoost:Dictionary):
 	self.weaponBoost = weaponBoost
 	self.projectileBoost = projectileBoost
 	weaponKeyList = self.weaponBoost.keys()
