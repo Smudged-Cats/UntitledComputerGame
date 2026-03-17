@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name Character
 
-@onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
-@onready var damageNumberScene = preload("res://scenes/ui/damageNumber.tscn")
+@onready var _hitboxScene = preload("res://scenes/radialHitbox.tscn")
+@onready var _damageNumberScene = preload("res://scenes/ui/damageNumber.tscn")
+@onready var _melee_windup_curve = preload("res://resources/melee_windup_curve.tres")
 
 signal health_changed(newHealth: int)
 signal stamina_changed(newstamina: int)
@@ -45,6 +46,9 @@ var dashWindup: float = 0.0
 var meleeWindup: float = 0.0
 var isWindingUpAttack: bool = false
 
+# Keep track the amount of time elapsed since the start of the melee windup
+var _tMeleeWindup: float = 0
+
 var move_dir: Vector2 = Vector2.ZERO
 
 #Created a cooldown for attacks
@@ -75,7 +79,8 @@ func _physics_process(delta: float) -> void:
 		speed = lerp(speed, speed/5, dashWindup)
 	
 	if isWindingUpAttack and meleeWindup < 1:
-			meleeWindup = move_toward(meleeWindup, 1, delta * 2)
+		_tMeleeWindup = move_toward(_tMeleeWindup, 1, delta * 2)
+		meleeWindup = _melee_windup_curve.sample(_tMeleeWindup)
 
 	if move_dir != Vector2.ZERO:
 		self.velocity.x = move_toward(self.velocity.x, move_dir.x * speed, acceleration)
@@ -103,6 +108,7 @@ func start_attack_windup() -> void:
 	
 func release_attack_windup() -> void:
 	isWindingUpAttack = false
+	_tMeleeWindup = 0
 	if meleeWindup > 0:
 		attack()
 
@@ -111,9 +117,10 @@ func attack() -> void:
 	
 		var power = meleeWindup
 		meleeWindup = 0
+		
 		stamina -= 10
 		
-		var newHitbox = hitboxScene.instantiate();
+		var newHitbox = _hitboxScene.instantiate();
 		newHitbox.set_attacker(self)
 		newHitbox.set_damage(50 * power + 50)
 		add_child(newHitbox)
@@ -135,7 +142,7 @@ func takeDamage(damage: int, sourcePosition: Vector2, enemySpeed) -> void:
 	self.velocity.x = damageDirection.x * (650 + enemySpeed)
 	self.velocity.y = damageDirection.y * (650 + enemySpeed)
 	
-	var newNumberScene = damageNumberScene.instantiate()
+	var newNumberScene = _damageNumberScene.instantiate()
 	newNumberScene.damage = damage
 	newNumberScene.global_position = global_position
 	get_tree().get_root().add_child(newNumberScene)

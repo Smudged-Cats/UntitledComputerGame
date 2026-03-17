@@ -215,13 +215,11 @@ position = Vector2(-455, 275)
 [node name="Node2D" parent="." unique_id=1575393635 instance=ExtResource("11_x4pwm")]
 light_mask = 31
 visibility_layer = 2
-z_index = 1
 position = Vector2(-297, -54)
 
 [node name="Node2D2" parent="." unique_id=1104612395 instance=ExtResource("11_x4pwm")]
 light_mask = 31
 visibility_layer = 2
-z_index = 1
 position = Vector2(-373, -79)
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
