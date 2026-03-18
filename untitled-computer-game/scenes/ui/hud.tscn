@@ -48,3 +48,12 @@ offset_right = 247.0
 offset_bottom = 94.0
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_bo48s")
+
+[node name="AmmoCount" type="Label" parent="PlayerStatus" unique_id=1411786204]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 115.0
+offset_right = 244.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 56
+text = "0/20"

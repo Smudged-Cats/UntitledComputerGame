@@ -27,7 +27,11 @@ func _ready() -> void:
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
-	
+	if len(inventory) > 0:
+		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[len(inventory)-1].stats["ammo"]) + "/20"
+		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = true
+	else:
+		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = false
 	if !is_instance_valid(_character): return
 		
 	move_character()

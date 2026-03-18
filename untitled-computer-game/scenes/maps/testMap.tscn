@@ -218,7 +218,13 @@ visibility_layer = 2
 position = Vector2(-297, -54)
 itemType = "Weapon"
 
-[node name="Node2D2" parent="." unique_id=1104612395 instance=ExtResource("11_x4pwm")]
+[node name="Node2D3" parent="." unique_id=1104612395 instance=ExtResource("11_x4pwm")]
+light_mask = 31
+visibility_layer = 2
+position = Vector2(-141, 11)
+itemType = "Weapon"
+
+[node name="Node2D2" parent="." unique_id=2093357079 instance=ExtResource("11_x4pwm")]
 light_mask = 31
 visibility_layer = 2
 position = Vector2(-373, -79)
