@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://4hkhphah4rub"]
+
+[ext_resource type="PackedScene" uid="uid://uxlxkghmq11y" path="res://art/3D Assets/RamEnemy.fbx" id="1_b34pt"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b34pt"]
+animation = &"Armature|Slither"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a5ege"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fscuh"]
+states/Armature|Slither/node = SubResource("AnimationNodeAnimation_b34pt")
+states/Armature|Slither/position = Vector2(376, 100)
+states/Start/position = Vector2(198, 100)
+transitions = ["Start", "Armature|Slither", SubResource("AnimationNodeStateMachineTransition_a5ege")]
+graph_offset = Vector2(-262, -79)
+
+[node name="RamEnemy" unique_id=1292831314 instance=ExtResource("1_b34pt")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(671020648) index="0" unique_id=26971605]
+bones/0/position = Vector3(-0.011249904, 0.11260051, 0.01766634)
+bones/0/rotation = Quaternion(-0.67970943, -0.19484755, 0.6771262, -0.20378804)
+bones/1/rotation = Quaternion(0.03494459, -0.002629266, 0.026797315, 0.99902654)
+bones/2/rotation = Quaternion(0.12175642, 0.6974859, 0.07454336, 0.7022336)
+bones/3/rotation = Quaternion(-0.00021620624, -0.0002928602, 0.11351946, 0.9935357)
+bones/4/rotation = Quaternion(0.0007823688, 0.24964136, -0.002062928, 0.9683359)
+bones/5/rotation = Quaternion(0.046113458, -7.182885e-08, 0.024593737, 0.99863344)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=912792993]
+tree_root = SubResource("AnimationNodeStateMachine_fscuh")
+anim_player = NodePath("../AnimationPlayer")
