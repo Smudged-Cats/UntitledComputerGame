@@ -49,7 +49,10 @@ func activateBomb() -> void:
 	get_parent().objectiveStarted = true
 	
 	var map_node = get_parent()
-	if map_node.has_method("toggle_gate_state"):
-		map_node.toggle_gate_state(true)
-		
+	var tilemap_instance = map_node.get_node_or_null("TileMapScene")
 	
+	if tilemap_instance and tilemap_instance.toggle_gate_state(true):
+		tilemap_instance.toggle_gate_state(true)
+	else:
+		print("Not there baby")
+		
