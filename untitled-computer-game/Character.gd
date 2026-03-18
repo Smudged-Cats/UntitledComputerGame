@@ -83,11 +83,13 @@ func _physics_process(delta: float) -> void:
 		meleeWindup = _melee_windup_curve.sample(_tMeleeWindup)
 
 	if move_dir != Vector2.ZERO:
-		self.velocity.x = move_toward(self.velocity.x, move_dir.x * speed, acceleration)
-		self.velocity.y = move_toward(self.velocity.y, move_dir.y * speed, acceleration)
+		self.velocity = self.velocity.move_toward(move_dir * speed, acceleration)
+		#self.velocity.x = move_toward(self.velocity.x, move_dir.x * speed, acceleration)
+		#self.velocity.y = move_toward(self.velocity.y, move_dir.y * speed, acceleration)
 	else:
-		self.velocity.x = move_toward(self.velocity.x, 0.0, deceleration)
-		self.velocity.y = move_toward(self.velocity.y, 0.0, deceleration)
+		self.velocity = self.velocity.move_toward(Vector2.ZERO, deceleration)
+		#self.velocity.x = move_toward(self.velocity.x, 0.0, deceleration)
+		#self.velocity.y = move_toward(self.velocity.y, 0.0, deceleration)
 
 	move_and_slide()
 	
