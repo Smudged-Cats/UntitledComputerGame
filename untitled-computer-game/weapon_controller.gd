@@ -17,7 +17,7 @@ var baseProjectile = preload("res://scenes/weapons/Projectile.tscn")
 func _init(holder:String = "", b:WeaponStats =null):
 	self.holder = holder
 	baseWeapon = b
-	weaponMuls = WeaponStats.new(1,ProjectileStats.new(1,1,1))
+	weaponMuls = WeaponStats.new(1,1,ProjectileStats.new(1,1,1),1)
 	fireRateTimer = Cooldown.new(1.0)
 	
 	#For some reason, the Cooldown needs to be added as a child
@@ -33,15 +33,19 @@ func shoot(dir:Vector2, pos: Vector2) -> void:
 	#print(baseWeapon.fireRate.timeLeft())
 	if (fireRateTimer.timeLeft() == 0):
 		
-		var tempP = baseProjectile.instantiate()
-		tempP.setProjectile(
-			holder,
-			baseWeapon.projectileStats, 
-			weaponMuls.projectileStats,
-			dir, 
-			pos)
-		#print(baseWeapon.projectileStats.shotHealth)
-		add_child(tempP)
+		var spreadFactor: float = baseWeapon.stats["spread"]
+		for i in range(baseWeapon.stats["projectileCount"]):
+			var tempP = baseProjectile.instantiate()
+			var newAngle: float = dir.angle() + randf_range(-spreadFactor,spreadFactor)
+			var newDir: Vector2 = Vector2(cos(newAngle),sin(newAngle))
+			tempP.setProjectile(
+				holder,
+				baseWeapon.projectileStats, 
+				weaponMuls.projectileStats,
+				newDir, 
+				pos)
+			#print(baseWeapon.projectileStats.shotHealth)
+			add_child(tempP)
 		
 		fireRateTimer.startTimer(baseWeapon.stats["fireRate"]/weaponMuls.stats["fireRate"])
 

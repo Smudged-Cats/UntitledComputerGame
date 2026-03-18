@@ -14,7 +14,9 @@ var canPickup = false
 
 var weaponStats: WeaponStats = WeaponStats.new(
 	randf() + 0.01,
-	ProjectileStats.new(randf_range(15,90),500)
+	randf(),
+	ProjectileStats.new(randf_range(15,90),500),
+	3
 )
 #func _process(delta: float) -> void:
 		#
