@@ -150,6 +150,8 @@ func drop_item() -> void:
 	var newDroppedItem = droppedItemScene.instantiate()
 	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
 	newDroppedItem.global_position = _character.global_position
+	newDroppedItem.itemType = "Weapon"
+	newDroppedItem.item = weaponStats
 
 func show_death_screen() -> void:
 	var newDeathScreen = deathScreenScene.instantiate()
