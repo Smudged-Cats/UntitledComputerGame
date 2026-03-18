@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	listForAbility()
 	listen_for_pickup_item()
 	listen_for_drop_item()
+	listen_for_drop_mod()
 	_camera.update_camera_position(delta)
 	
 	_character.get_node("MeleeBar").value = _character.meleeWindup
@@ -74,6 +75,10 @@ func listen_for_pickup_item() -> void:
 func listen_for_drop_item() -> void:
 	if Input.is_action_just_pressed("drop"):
 		drop_item()
+		
+func listen_for_drop_mod() -> void:
+	if Input.is_action_just_pressed("dropMod"):
+		dropMod()
 
 func listForAbility() -> void:
 	if Input.is_action_pressed("lunge_attack"):
@@ -152,6 +157,18 @@ func drop_item() -> void:
 	newDroppedItem.global_position = _character.global_position
 	newDroppedItem.itemType = "Weapon"
 	newDroppedItem.item = weaponStats
+	
+func dropMod() -> void:
+	if len(modList) == 0: return
+	
+	var modifier = modList.pop_back()
+	modifier.removeBoost(self)
+	
+	var newDroppedItem = droppedItemScene.instantiate()
+	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
+	newDroppedItem.global_position = _character.global_position
+	newDroppedItem.itemType = "Modifier"
+	newDroppedItem.item = modifier
 
 func show_death_screen() -> void:
 	var newDeathScreen = deathScreenScene.instantiate()

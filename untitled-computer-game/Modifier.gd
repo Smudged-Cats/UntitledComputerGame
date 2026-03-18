@@ -19,3 +19,10 @@ func applyBoost(entity:Node2D):
 		for key in projectileKeyList:
 			entity._weapon.weaponMuls.projectileStats.stats[key] += projectileBoost[key]
 		 
+func removeBoost(entity:Node2D):
+	if (entity is Player):
+		for key in weaponKeyList:
+			entity._weapon.weaponMuls.stats[key] -= weaponBoost[key]
+			
+		for key in projectileKeyList:
+			entity._weapon.weaponMuls.projectileStats.stats[key] -= projectileBoost[key]

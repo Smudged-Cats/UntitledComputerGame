@@ -19,12 +19,27 @@ var item
 
 func _ready() -> void:
 	if (itemType == "Weapon"):
-		item = WeaponStats.new(
-			randf_range(0.05,0.2),
-			randf()*0.1,
-			ProjectileStats.new(randf_range(15,90),500),
-			1
-		)
+		var ranWeapon = randi_range(1,3)
+		if (ranWeapon == 1):
+			item = WeaponStats.new(
+				randf_range(0.07,0.2),
+				0.02,
+				ProjectileStats.new(randf_range(8,20),700)
+			)
+		elif (ranWeapon == 2):
+			item = WeaponStats.new(
+				randf_range(0.3,0.55),
+				randf_range(0.1,0.3),
+				ProjectileStats.new(6,700),
+				randi_range(5,8)
+			)
+		elif (ranWeapon == 3):
+			item = WeaponStats.new(
+				randf_range(0.8,1.3),
+				0.001,
+				ProjectileStats.new(randi_range(65,90),1000,3)
+			)
+		
 	elif (itemType == "Modifier"):
 		item = Modifier.new(
 			{"fireRate":0.3,"projectileCount":1,"spread":0.35},
