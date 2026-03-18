@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var spectatorScene = preload("res://scenes/controllers/spectator.tscn")
+
 var tFade: float = 0
 var fading = false
 
@@ -21,3 +23,11 @@ func _on_fade_timer_timeout() -> void:
 
 func _on_texture_button_pressed() -> void:
 	get_tree().reload_current_scene()
+	
+
+
+func _on_spectate_button_pressed() -> void:
+	var newSpectator = spectatorScene.instantiate()
+	get_tree().get_root().get_node("Node2D").add_child(newSpectator)
+	newSpectator.make_current()
+	queue_free()
