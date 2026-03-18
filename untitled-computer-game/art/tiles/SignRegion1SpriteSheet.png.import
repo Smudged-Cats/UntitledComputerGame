@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbli8hw740ib1"
-path="res://.godot/imported/SignDesignsSpriteSheet.png-40807c55482861b3231d0267c248d677.ctex"
+uid="uid://yry0m0fid6g2"
+path="res://.godot/imported/SignRegion1SpriteSheet.png-228806b66785ce6ce303ebcac5c0b482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/SignDesignsSpriteSheet.png"
-dest_files=["res://.godot/imported/SignDesignsSpriteSheet.png-40807c55482861b3231d0267c248d677.ctex"]
+source_file="res://art/tiles/SignRegion1SpriteSheet.png"
+dest_files=["res://.godot/imported/SignRegion1SpriteSheet.png-228806b66785ce6ce303ebcac5c0b482.ctex"]
 
 [params]
 
