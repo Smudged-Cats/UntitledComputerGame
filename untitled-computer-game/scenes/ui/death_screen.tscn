@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://biqg8t443upgb"]
 
+[ext_resource type="Script" uid="uid://bhhofh2yku7bj" path="res://scenes/ui/death_screen.gd" id="1_j0ehl"]
+
 [sub_resource type="SystemFont" id="SystemFont_7hb72"]
 font_names = PackedStringArray("Arial Rounded MT")
 font_italic = true
@@ -13,6 +15,7 @@ outline_size = 4
 outline_color = Color(0.38, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1322925107]
+script = ExtResource("1_j0ehl")
 
 [node name="DeathScreen" type="Control" parent="." unique_id=716551139]
 layout_mode = 3
@@ -23,20 +26,28 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DeathLabel" type="Label" parent="DeathScreen" unique_id=379235419]
+z_index = 5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "DEATH"
+text = "QUEUE FREE"
 label_settings = SubResource("LabelSettings_7hb72")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ColorRect" type="ColorRect" parent="DeathScreen" unique_id=456480501]
+[node name="Tint" type="ColorRect" parent="DeathScreen" unique_id=456480501]
 layout_mode = 0
 offset_right = 1600.0
 offset_bottom = 900.0
 color = Color(1, 0, 0, 0.078431375)
+
+[node name="FadeTimer" type="Timer" parent="." unique_id=738700059]
+wait_time = 0.75
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
