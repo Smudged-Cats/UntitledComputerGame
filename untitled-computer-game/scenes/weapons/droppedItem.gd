@@ -1,6 +1,9 @@
 extends Area2D
 class_name DroppedItem
 
+@export
+var itemType: String = ""
+
 signal pickUp()
 
 @onready 
@@ -9,15 +12,28 @@ var pickedUp = false
 @onready 
 var canPickup = false
 
-@onready
+#@onready
 #var playerCharacter = get_parent().get_node("Player").get_node("Character")
 
-var weaponStats: WeaponStats = WeaponStats.new(
-	randf() + 0.01,
-	randf(),
-	ProjectileStats.new(randf_range(15,90),500),
-	3
-)
+var item
+
+func _ready() -> void:
+	if (itemType == "Weapon"):
+		item = WeaponStats.new(
+			randf_range(0.05,0.2),
+			randf()*0.1,
+			ProjectileStats.new(randf_range(15,90),500),
+			1
+		)
+	elif (itemType == "Modifier"):
+		item = Modifier.new(
+			{"fireRate":0.3,"projectileCount":1,"spread":0.35},
+			{"damage":1.0}
+			)
+
+
+
+
 #func _process(delta: float) -> void:
 		#
 	## Moving bomb with player

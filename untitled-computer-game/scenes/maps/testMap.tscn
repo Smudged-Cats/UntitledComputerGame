@@ -216,11 +216,13 @@ position = Vector2(-455, 275)
 light_mask = 31
 visibility_layer = 2
 position = Vector2(-297, -54)
+itemType = "Weapon"
 
 [node name="Node2D2" parent="." unique_id=1104612395 instance=ExtResource("11_x4pwm")]
 light_mask = 31
 visibility_layer = 2
 position = Vector2(-373, -79)
+itemType = "Modifier"
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]

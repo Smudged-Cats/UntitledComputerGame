@@ -64,8 +64,6 @@ func listen_for_attack() -> void:
 	#Using the attackCooldown example here
 	if Input.is_action_just_pressed("debug_spawn_hitbox"):
 		_character.start_attack_windup()
-		addMod()
-		print(_weapon.weaponMuls.projectileStats.stats)
 	elif Input.is_action_just_released("debug_spawn_hitbox"):
 		_character.release_attack_windup()
 
@@ -121,13 +119,21 @@ func get_closest_dropped_item() -> DroppedItem:
 func pickup_item() -> void:
 		
 	var item = get_closest_dropped_item()
-	if item == null: return
-	
-	var weaponStats = item.weaponStats
-	_weapon.setWeapon(weaponStats)
-	inventory.append(weaponStats)
+	if item == null: 
+		return
+	elif (item.item is WeaponStats):
+		var weaponStats = item.item
+		_weapon.setWeapon(weaponStats)
+		inventory.append(weaponStats)
+		print("Picked up weapon\n",_weapon.baseWeapon.stats,"\n",_weapon.baseWeapon.projectileStats.stats)
+	elif item.item is Modifier:
+		item.item.applyBoost(self)
+		modList.append(item.item)
+		print("Applied modifications\n",_weapon.weaponMuls.stats,"\n",_weapon.weaponMuls.projectileStats.stats)
+		
 	# remove the dropped item from the world
 	item.queue_free()
+	
 
 func drop_item() -> void:
 	

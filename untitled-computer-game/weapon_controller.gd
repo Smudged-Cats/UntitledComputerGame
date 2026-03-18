@@ -33,8 +33,11 @@ func shoot(dir:Vector2, pos: Vector2) -> void:
 	#print(baseWeapon.fireRate.timeLeft())
 	if (fireRateTimer.timeLeft() == 0):
 		
-		var spreadFactor: float = baseWeapon.stats["spread"]
-		for i in range(baseWeapon.stats["projectileCount"]):
+		var spreadFactor: float = baseWeapon.stats["spread"] * weaponMuls.stats["spread"]
+		#print(spreadFactor)
+		var totalProjectiles:int = baseWeapon.stats["projectileCount"] * weaponMuls.stats["projectileCount"]
+		#print(baseWeapon.stats["projectileCount"] * weaponMuls.stats["projectileCount"])
+		for i in range(totalProjectiles):
 			var tempP = baseProjectile.instantiate()
 			var newAngle: float = dir.angle() + randf_range(-spreadFactor,spreadFactor)
 			var newDir: Vector2 = Vector2(cos(newAngle),sin(newAngle))
