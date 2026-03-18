@@ -17,3 +17,7 @@ func _process(delta: float) -> void:
 
 func _on_fade_timer_timeout() -> void:
 	fading = true
+
+
+func _on_texture_button_pressed() -> void:
+	get_tree().reload_current_scene()

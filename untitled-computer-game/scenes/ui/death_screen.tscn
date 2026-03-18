@@ -33,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "QUEUE FREE"
+text = "QUEUE FREE'D"
 label_settings = SubResource("LabelSettings_7hb72")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -45,9 +45,27 @@ offset_right = 1600.0
 offset_bottom = 900.0
 color = Color(1, 0, 0, 0.078431375)
 
+[node name="TextureButton" type="TextureButton" parent="DeathScreen" unique_id=513987543]
+layout_mode = 0
+offset_left = 641.0
+offset_top = 513.0
+offset_right = 962.42505
+offset_bottom = 582.0
+
+[node name="Label" type="Label" parent="DeathScreen/TextureButton" unique_id=294894953]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 11.0
+offset_right = 276.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 33
+text = "Restart Game"
+horizontal_alignment = 1
+
 [node name="FadeTimer" type="Timer" parent="." unique_id=738700059]
 wait_time = 0.75
 one_shot = true
 autostart = true
 
+[connection signal="pressed" from="DeathScreen/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
