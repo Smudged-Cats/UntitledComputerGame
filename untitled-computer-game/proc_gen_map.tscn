@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c7cn2v5xv62fv"]
+[gd_scene format=4 uid="uid://c7cn2v5xv62fv"]
 
 [ext_resource type="Script" uid="uid://dob4eh8rnysd0" path="res://map_generation.gd" id="2_6ah64"]
 [ext_resource type="Texture2D" uid="uid://yry0m0fid6g2" path="res://art/tiles/SignRegion1SpriteSheet.png" id="2_g05o0"]
