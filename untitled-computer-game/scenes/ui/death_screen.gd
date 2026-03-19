@@ -29,5 +29,6 @@ func _on_texture_button_pressed() -> void:
 func _on_spectate_button_pressed() -> void:
 	var newSpectator = spectatorScene.instantiate()
 	get_tree().get_root().get_node("Node2D").add_child(newSpectator)
-	newSpectator.make_current()
+	Player.instance.queue_free()
+	#newSpectator.make_current()
 	queue_free()

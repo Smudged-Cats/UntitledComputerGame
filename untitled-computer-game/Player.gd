@@ -1,6 +1,9 @@
 extends Node2D
 class_name Player
 
+# Singleton class, because there can only be one player
+static var instance: Player
+
 var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 
@@ -16,6 +19,11 @@ var modList: Array[Modifier]
 var itemsInProximity = {}
 
 func _ready() -> void:
+	if instance:
+		push_error("More than one player instance detected")
+		queue_free()
+	
+	instance = self
 	_camera = $Camera2D
 	_character = $Character
 	
