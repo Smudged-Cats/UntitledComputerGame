@@ -27,7 +27,7 @@ func _ready() -> void:
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
-	if len(inventory) > 0:
+	if len(inventory) > 0 and inventory[len(inventory)-1] is WeaponStats:
 		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[len(inventory)-1].stats["ammo"]) + "/20"
 		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = true
 	else:
@@ -130,6 +130,10 @@ func pickup_item() -> void:
 	var item = get_closest_dropped_item()
 	if item == null: 
 		return
+	elif (item.item is MeleeStats):
+		var meleeStats = item.item
+		inventory.append(meleeStats)
+
 	elif (item.item is WeaponStats):
 		var weaponStats = item.item
 		_weapon.setWeapon(weaponStats)
@@ -147,14 +151,18 @@ func pickup_item() -> void:
 func drop_item() -> void:
 	
 	if len(inventory) == 0: return
-	
+
 	var weaponStats = inventory.pop_back()
-	
+
 	if len(inventory) == 0:
 		_weapon.setWeapon(null)
-	else:
+	elif inventory.back() is not MeleeStats:
 		_weapon.setWeapon(inventory.back())
-	
+	else:
+		_weapon.setWeapon(null)
+
+		
+		
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
 	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)

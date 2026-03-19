@@ -105,7 +105,7 @@ func get_health() -> int:
 	return health
 
 func start_attack_windup() -> void:
-	if attackCooldown.timeLeft() == 0:
+	if attackCooldown.timeLeft() == 0 and get_parent().inventory.back() is MeleeStats:
 		isWindingUpAttack = true
 	
 func release_attack_windup() -> void:
@@ -116,7 +116,7 @@ func release_attack_windup() -> void:
 
 func attack() -> void:
 	if attackCooldown.timeLeft() == 0:
-	
+
 		var power = meleeWindup
 		meleeWindup = 0
 		
@@ -124,7 +124,10 @@ func attack() -> void:
 		
 		var newHitbox = _hitboxScene.instantiate();
 		newHitbox.set_attacker(self)
-		newHitbox.set_damage(50 * power + 50)
+		if (get_parent() is Player):
+			newHitbox.set_damage(50 * power + get_parent().inventory.back().stats["damage"])
+		else:
+			newHitbox.set_damage(50)
 		add_child(newHitbox)
 		attackCooldown.startTimer()
 

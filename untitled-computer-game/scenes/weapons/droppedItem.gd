@@ -39,6 +39,8 @@ func _ready() -> void:
 				0.001,
 				ProjectileStats.new(randi_range(65,90),1000,3)
 			)
+	elif (itemType == "Melee"):
+		item = MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5))
 		
 	elif (itemType == "Modifier"):
 		item = Modifier.new(

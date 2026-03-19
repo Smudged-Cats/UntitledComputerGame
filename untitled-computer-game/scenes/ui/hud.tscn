@@ -57,3 +57,28 @@ offset_right = 244.0
 offset_bottom = 192.0
 theme_override_font_sizes/font_size = 56
 text = "0/20"
+
+[node name="PlayerInventory" type="Control" parent="." unique_id=1536865170]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="PlayerInventory" unique_id=1459173770]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 240.0
+offset_right = 217.0
+offset_bottom = 559.0
+theme_override_constants/v_separation = 112
+
+[node name="Slot1" type="Label" parent="PlayerInventory/GridContainer" unique_id=926059313]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot2" type="Label" parent="PlayerInventory/GridContainer" unique_id=1518547357]
+layout_mode = 2
+
+[node name="Slot3" type="Label" parent="PlayerInventory/GridContainer" unique_id=132037547]
+layout_mode = 2
