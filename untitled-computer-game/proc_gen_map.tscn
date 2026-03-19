@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c7cn2v5xv62fv"]
+[gd_scene format=4 uid="uid://c7cn2v5xv62fv"]
 
 [ext_resource type="PackedScene" uid="uid://cb1a4nl8n8lc2" path="res://tile_map_scene.tscn" id="1_pfmuh"]
 [ext_resource type="Script" uid="uid://dob4eh8rnysd0" path="res://map_generation.gd" id="2_6ah64"]
@@ -17,7 +17,7 @@ script = ExtResource("2_6ah64")
 z_index = 1
 
 [node name="Tiles" parent="TileMapScene/Region1Tiles" index="1" unique_id=1878556538]
-tile_map_data = PackedByteArray()
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
 
 [node name="TileTop" parent="TileMapScene/Region1Tiles" index="2" unique_id=1298739136]
 tile_map_data = PackedByteArray()
