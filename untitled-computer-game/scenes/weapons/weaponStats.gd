@@ -14,6 +14,6 @@ func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, proje
 	stats["fireRate"] = fireRate
 	stats["projectileCount"] = projectileCount
 	stats["spread"] = spread
-	#print(stats["fireRateaw"])
+	#print(stats["fireRate"])
 	stats["ammo"] = ammo
 	self.projectileStats = projectileStats

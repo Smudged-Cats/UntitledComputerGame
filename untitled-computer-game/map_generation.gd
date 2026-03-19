@@ -4,7 +4,7 @@ extends Node2D
 
 var atlas_id = 5
 var room_tile_v2i = Vector2i(0, 0)
-var room_center_tile_v2i = Vector2i(1, 0)
+var room_corner_tile_v2i = Vector2i(1, 0)
 var tunnel_tile_v2i = Vector2i(1, 0)
 
 class Room:
@@ -13,8 +13,8 @@ class Room:
 
 # Breadth first approach to generate rooms
 
-const PADDING = 4
-const RANDOM_OFFSET = 4
+const PADDING = 2
+const RANDOM_OFFSET = 2
 
 # Stores possible positions for rooms to generate at
 var roomsToGenerate = []
@@ -35,7 +35,7 @@ func generate_rooms(roomsLeft) -> void:
 	if roomsLeft == 0: return
 	
 	var room_pos: Vector2i
-	var room_size = Vector2i(randi_range(6, 16), randi_range(6, 16))
+	var room_size = Vector2i(randi_range(3, 8), randi_range(3, 8))
 	
 	# Attempt to generate room
 	var room_success = false
@@ -60,13 +60,15 @@ func generate_room(p: Vector2i, s: Vector2i = Vector2i(1, 1)) -> bool:
 	# Check for any room collision + padding
 	for x in range(s.x + PADDING*2):
 		for y in range(s.y + PADDING*2):
-			if floor_layer.get_cell_source_id(Vector2i(p.x + x - PADDING, p.y + y - PADDING)) == 1: return false
+			if floor_layer.get_cell_source_id(Vector2i(p.x + x - PADDING, p.y + y - PADDING)) == atlas_id: return false
 	
+	# Paint the room
 	for x in range(s.x):
 		for y in range(s.y):
 			floor_layer.set_cell(Vector2i(p.x + x, p.y + y), atlas_id, room_tile_v2i)
 	
-	floor_layer.set_cell(Vector2i(p.x, p.y), atlas_id, room_center_tile_v2i)
+	# Debug corner tile
+	floor_layer.set_cell(Vector2i(p.x, p.y), atlas_id, room_corner_tile_v2i)
 	
 	var newRoom = Room.new()
 	newRoom.p = p
