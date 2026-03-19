@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cb1a4nl8n8lc2" path="res://tile_map_scene.tscn" id="1_pfmuh"]
 [ext_resource type="Script" uid="uid://dob4eh8rnysd0" path="res://map_generation.gd" id="2_6ah64"]
-[ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="3_p5emv"]
+[ext_resource type="PackedScene" uid="uid://dnjv6dcen5ndf" path="res://scenes/controllers/spectator.tscn" id="3_p5emv"]
 
 [node name="Node2D" type="Node2D" unique_id=1977402749]
 
@@ -25,9 +25,9 @@ tile_map_data = PackedByteArray()
 [node name="GateTiles" parent="TileMapScene/Region1Tiles" index="3" unique_id=1349226113]
 tile_map_data = PackedByteArray()
 
-[node name="Player" parent="." unique_id=851249208 instance=ExtResource("3_p5emv")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=957132427]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
+
+[node name="SpectatorCamera" parent="." unique_id=1630228745 instance=ExtResource("3_p5emv")]
 
 [editable path="TileMapScene"]

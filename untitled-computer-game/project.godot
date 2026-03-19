@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="UntitledComputerGame"
-run/main_scene="uid://bgrymso8rttja"
+run/main_scene="uid://c7cn2v5xv62fv"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://art/icon.svg"
 

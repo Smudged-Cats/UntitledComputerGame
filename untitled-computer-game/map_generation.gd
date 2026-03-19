@@ -63,9 +63,14 @@ func generate_room(p: Vector2i, s: Vector2i = Vector2i(1, 1)) -> bool:
 			if floor_layer.get_cell_source_id(Vector2i(p.x + x - PADDING, p.y + y - PADDING)) == atlas_id: return false
 	
 	# Paint the room
-	for x in range(s.x):
-		for y in range(s.y):
-			floor_layer.set_cell(Vector2i(p.x + x, p.y + y), atlas_id, room_tile_v2i)
+	#for x in range(s.x):
+		#for y in range(s.y):
+			#floor_layer.set_cell(Vector2i(p.x + x, p.y + y), atlas_id, room_tile_v2i)
+	
+	var pattern: TileMapPattern = floor_layer.get_pattern( [Vector2i(6, 6)] )
+	pattern.set_size(Vector2i(5, 5))
+	print(pattern.get_used_cells())
+	floor_layer.set_pattern(p, pattern)
 	
 	# Debug corner tile
 	floor_layer.set_cell(Vector2i(p.x, p.y), atlas_id, room_corner_tile_v2i)
