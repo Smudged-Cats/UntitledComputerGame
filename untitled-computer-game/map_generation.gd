@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var floor_layer = $Tiles
 
+var tile_set = preload("res://resources/floor_tile_set.tres")
+
 var atlas_id = 5
 var room_tile_v2i = Vector2i(0, 0)
 var room_corner_tile_v2i = Vector2i(1, 0)
@@ -62,18 +64,11 @@ func generate_room(p: Vector2i, s: Vector2i = Vector2i(1, 1)) -> bool:
 		for y in range(s.y + PADDING*2):
 			if floor_layer.get_cell_source_id(Vector2i(p.x + x - PADDING, p.y + y - PADDING)) == atlas_id: return false
 	
-	# Paint the room
-	#for x in range(s.x):
-		#for y in range(s.y):
-			#floor_layer.set_cell(Vector2i(p.x + x, p.y + y), atlas_id, room_tile_v2i)
-	
-	var pattern: TileMapPattern = floor_layer.get_pattern( [Vector2i(6, 6)] )
-	pattern.set_size(Vector2i(5, 5))
-	print(pattern.get_used_cells())
+	var pattern: TileMapPattern = tile_set.get_pattern(randi_range(0, 2))
 	floor_layer.set_pattern(p, pattern)
 	
 	# Debug corner tile
-	floor_layer.set_cell(Vector2i(p.x, p.y), atlas_id, room_corner_tile_v2i)
+	#floor_layer.set_cell(Vector2i(p.x, p.y), atlas_id, room_corner_tile_v2i)
 	
 	var newRoom = Room.new()
 	newRoom.p = p

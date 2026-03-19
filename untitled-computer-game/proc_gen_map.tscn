@@ -1,33 +1,160 @@
 [gd_scene format=3 uid="uid://c7cn2v5xv62fv"]
 
-[ext_resource type="PackedScene" uid="uid://cb1a4nl8n8lc2" path="res://tile_map_scene.tscn" id="1_pfmuh"]
 [ext_resource type="Script" uid="uid://dob4eh8rnysd0" path="res://map_generation.gd" id="2_6ah64"]
+[ext_resource type="Texture2D" uid="uid://yry0m0fid6g2" path="res://art/tiles/SignRegion1SpriteSheet.png" id="2_g05o0"]
 [ext_resource type="PackedScene" uid="uid://dnjv6dcen5ndf" path="res://scenes/controllers/spectator.tscn" id="3_p5emv"]
+[ext_resource type="TileSet" uid="uid://d1axw2i7ttdlj" path="res://resources/floor_tile_set.tres" id="3_qm4jc"]
+[ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/TileTops/Region1TileTop1.png" id="4_udskl"]
+[ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="5_y1omr"]
+[ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="6_2morg"]
+[ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="7_q41uj"]
+[ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_o6k6t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui48y"]
+texture = ExtResource("2_g05o0")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 50)
+0:0/0/custom_data_0 = true
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 50)
+1:0/0/custom_data_0 = true
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 50)
+2:0/0/custom_data_0 = true
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 50)
+3:0/0/custom_data_0 = true
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nc4n3"]
+tile_shape = 1
+tile_size = Vector2i(128, 64)
+custom_data_layer_0/name = "show_text"
+custom_data_layer_0/type = 1
+sources/1 = SubResource("TileSetAtlasSource_ui48y")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyb07"]
+texture = ExtResource("4_udskl")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -29)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgkgg"]
+texture = ExtResource("5_y1omr")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -29)
+
+[sub_resource type="TileSet" id="TileSet_mtlp5"]
+tile_shape = 1
+tile_size = Vector2i(128, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_gyb07")
+sources/1 = SubResource("TileSetAtlasSource_cgkgg")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldj7o"]
+texture = ExtResource("6_2morg")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 31)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 31)
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lkvx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a43d2"]
+texture = SubResource("CompressedTexture2D_3lkvx")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 31)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqboy"]
+texture = ExtResource("7_q41uj")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/y_sort_origin = 6
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -8, -64, 0, 0, 32, 16, 24)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/y_sort_origin = 6
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -8, -64, 0, 0, 32, 16, 24)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 32)
+2:0/0/y_sort_origin = 6
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 0, 48, -8, -16, 24, 0, 32)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 32)
+3:0/0/y_sort_origin = 6
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 0, 48, -8, -16, 24, 0, 32)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_emd7t"]
+texture = ExtResource("8_o6k6t")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/y_sort_origin = 12
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/y_sort_origin = 12
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 32)
+2:0/0/y_sort_origin = 12
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 32)
+3:0/0/y_sort_origin = 12
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_847ud"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(128, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/2 = SubResource("TileSetAtlasSource_ldj7o")
+sources/3 = SubResource("TileSetAtlasSource_a43d2")
+sources/6 = SubResource("TileSetAtlasSource_wqboy")
+sources/7 = SubResource("TileSetAtlasSource_emd7t")
 
 [node name="Node2D" type="Node2D" unique_id=1977402749]
-
-[node name="TileMapScene" parent="." unique_id=2093191107 instance=ExtResource("1_pfmuh")]
-script = null
-
-[node name="Region1Tiles" parent="TileMapScene" index="0" unique_id=1644150485]
-y_sort_enabled = true
-script = ExtResource("2_6ah64")
-
-[node name="Signs" parent="TileMapScene/Region1Tiles" index="0" unique_id=264127295]
-z_index = 1
-
-[node name="Tiles" parent="TileMapScene/Region1Tiles" index="1" unique_id=1878556538]
-tile_map_data = PackedByteArray()
-
-[node name="TileTop" parent="TileMapScene/Region1Tiles" index="2" unique_id=1298739136]
-tile_map_data = PackedByteArray()
-
-[node name="GateTiles" parent="TileMapScene/Region1Tiles" index="3" unique_id=1349226113]
-tile_map_data = PackedByteArray()
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=957132427]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
 
 [node name="SpectatorCamera" parent="." unique_id=1630228745 instance=ExtResource("3_p5emv")]
 
-[editable path="TileMapScene"]
+[node name="Region1Tiles" type="Node2D" parent="." unique_id=1000911632]
+script = ExtResource("2_6ah64")
+
+[node name="Signs" type="TileMapLayer" parent="Region1Tiles" unique_id=1691149576]
+z_index = 2
+y_sort_enabled = true
+tile_set = SubResource("TileSet_nc4n3")
+
+[node name="Tiles" type="TileMapLayer" parent="Region1Tiles" unique_id=1827245817]
+y_sort_enabled = true
+tile_set = ExtResource("3_qm4jc")
+
+[node name="TileTop" type="TileMapLayer" parent="Region1Tiles" unique_id=173517622]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_mtlp5")
+
+[node name="GateTiles" type="TileMapLayer" parent="Region1Tiles" unique_id=941052323]
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
+tile_set = SubResource("TileSet_847ud")
