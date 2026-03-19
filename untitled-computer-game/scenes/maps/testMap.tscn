@@ -77,7 +77,7 @@ itemType = "Weapon"
 light_mask = 31
 visibility_layer = 2
 position = Vector2(-141, 11)
-itemType = "Weapon"
+itemType = "Melee"
 
 [node name="Node2D2" parent="." unique_id=2093357079 instance=ExtResource("11_x4pwm")]
 light_mask = 31
