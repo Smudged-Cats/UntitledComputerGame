@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Character
 
-@onready var _hitboxScene = preload("res://scenes/radialHitbox.tscn")
+#@onready var _hitboxScene = preload("res://scenes/radialHitbox.tscn")
 @onready var _damageNumberScene = preload("res://scenes/ui/damageNumber.tscn")
 @onready var _melee_windup_curve = preload("res://resources/melee_windup_curve.tres")
 
@@ -52,16 +52,19 @@ var _tMeleeWindup: float = 0
 var move_dir: Vector2 = Vector2.ZERO
 
 #Created a cooldown for attacks
-var attackCooldown: Cooldown = Cooldown.new(0.3)
+#var attackCooldown: Cooldown = Cooldown.new(0.3)
+
+var melee: MeleeController
 
 func _ready() -> void:
 	
 	# Assign the character a new id
 	self.id = newCharacterId
 	newCharacterId += 1
-	
+	melee = MeleeController.new(self)
+	add_child(melee)
 	#Created a cooldown for attacks
-	add_child(attackCooldown)
+	#add_child(attackCooldown)
 	
 	# Set the position of the 3d model so that it doesn't interfere with other 3d models
 	$SubViewportContainer/SubViewport/Camera3D.global_position.x += self.id * 10
@@ -105,15 +108,24 @@ func get_health() -> int:
 	return health
 
 func start_attack_windup() -> void:
-	if attackCooldown.timeLeft() == 0 and get_parent().inventory.back() is MeleeStats:
+	if melee.attackCooldown.timeLeft() == 0 and melee.baseMelee != null:
 		isWindingUpAttack = true
 	
 func release_attack_windup() -> void:
 	isWindingUpAttack = false
 	_tMeleeWindup = 0
 	if meleeWindup > 0:
-		attack()
-
+		stamina -= 10
+		melee.meleeMuls.stats["damage"] += meleeWindup
+		melee.attack()
+		attackAnim()
+		melee.meleeMuls.stats["damage"] -= meleeWindup
+		meleeWindup = 0
+		
+#Added for the blue_character script to override and play animations
+func attackAnim() -> void:
+	pass
+'''
 func attack() -> void:
 	if attackCooldown.timeLeft() == 0:
 
@@ -130,7 +142,7 @@ func attack() -> void:
 			newHitbox.set_damage(50)
 		add_child(newHitbox)
 		attackCooldown.startTimer()
-
+'''
 func dash() -> void:
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if stamina >= 20:

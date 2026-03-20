@@ -6,7 +6,7 @@ func _ready() -> void:
 	super()
 	animTree = self.get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("BuggyBoi2").get_node("AnimationTree")
 
-func attack() -> void:
+func attackAnim() -> void:
 	super()
 	animTree.set("parameters/BlendTree/Attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 

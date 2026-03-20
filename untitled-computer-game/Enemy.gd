@@ -10,6 +10,7 @@ var currentTarget: Character
 
 func _ready() -> void:
 	_character = get_node("Character")
+	_character.melee.baseMelee = MeleeStats.new(50,0.3)
 	z_index = 1
 
 func _physics_process(delta: float) -> void:
@@ -31,7 +32,7 @@ func chase_enemy(delta: float = 1) -> void:
 		var threatDirection = (difference).normalized()
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
 		if difference.length() <= 5:
-			_character.attack()
+			_character.melee.attack()
 		_character.set_move_dir(threatDirectionToIso)
 		_character.look_in_direction(threatDirection, delta)
 	else:

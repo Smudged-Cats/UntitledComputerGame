@@ -141,6 +141,7 @@ func pickup_item() -> void:
 	elif (item.item is MeleeStats):
 		var meleeStats = item.item
 		inventory.append(meleeStats)
+		_character.melee.baseMelee = meleeStats
 
 	elif (item.item is WeaponStats):
 		var weaponStats = item.item

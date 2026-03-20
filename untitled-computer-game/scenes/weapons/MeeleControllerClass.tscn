@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b7us31jerywws"]
+
+[ext_resource type="Script" uid="uid://dh0pxecggdamh" path="res://scenes/weapons/meele_controller_class.gd" id="1_4r5be"]
+
+[node name="MeeleControllerClass" type="Node" unique_id=2017721126]
+script = ExtResource("1_4r5be")
