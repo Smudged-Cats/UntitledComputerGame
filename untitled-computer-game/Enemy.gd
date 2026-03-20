@@ -3,6 +3,8 @@ class_name Enemy
 
 @onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
 
+
+
 var _character: Character
 var currentTarget: Character
 

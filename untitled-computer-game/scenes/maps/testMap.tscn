@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bd6q56k024f3r" path="res://test_map.gd" id="1_il6hr"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
 [ext_resource type="PackedScene" uid="uid://6hftlge5ucy5" path="res://Bomb.tscn" id="7_og2gh"]
-[ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="11_x4pwm"]
 [ext_resource type="PackedScene" uid="uid://cb1a4nl8n8lc2" path="res://tile_map_scene.tscn" id="12_xywiv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x877k"]
@@ -67,24 +66,6 @@ offset_bottom = 415.0
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-455, 275)
-
-[node name="Node2D" parent="." unique_id=1575393635 instance=ExtResource("11_x4pwm")]
-light_mask = 31
-visibility_layer = 2
-position = Vector2(-297, -54)
-itemType = "Weapon"
-
-[node name="Node2D3" parent="." unique_id=1104612395 instance=ExtResource("11_x4pwm")]
-light_mask = 31
-visibility_layer = 2
-position = Vector2(-141, 11)
-itemType = "Melee"
-
-[node name="Node2D2" parent="." unique_id=2093357079 instance=ExtResource("11_x4pwm")]
-light_mask = 31
-visibility_layer = 2
-position = Vector2(-373, -79)
-itemType = "Modifier"
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
