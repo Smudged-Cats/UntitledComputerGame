@@ -12,6 +12,12 @@ var pickedUp = false
 @onready 
 var canPickup = false
 
+@onready 
+var meleePlaceholderSprite = preload("res://art/tiles/pixil-frame-0_1.png")
+
+@onready 
+var rangedPlaceholderSprite = preload("res://art/tiles/pixil-frame-0.png")
+
 #@onready
 #var playerCharacter = get_parent().get_node("Player").get_node("Character")
 
@@ -19,6 +25,8 @@ var item
 
 func _ready() -> void:
 	if (itemType == "Weapon"):
+		$Sprite2D.texture = rangedPlaceholderSprite
+		$Sprite2D.scale = Vector2(0.1, 0.1)
 		var ranWeapon = randi_range(1,3)
 		if (ranWeapon == 1):
 			item = WeaponStats.new(
@@ -40,6 +48,8 @@ func _ready() -> void:
 				ProjectileStats.new(randi_range(65,90),1000,3)
 			)
 	elif (itemType == "Melee"):
+		$Sprite2D.texture = meleePlaceholderSprite
+		$Sprite2D.scale = Vector2(0.1, 0.1)
 		item = MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5))
 		
 	elif (itemType == "Modifier"):
@@ -77,3 +87,9 @@ func _on_body_exited(body: Node2D) -> void:
 	
 func setWeaponType(type: String):
 	self.itemType = type
+	if type == "Melee":
+		$Sprite2D.texture = meleePlaceholderSprite
+		$Sprite2D.scale = Vector2(0.1, 0.1)
+	if type == "Weapon":
+		$Sprite2D.texture = rangedPlaceholderSprite
+		$Sprite2D.scale = Vector2(0.1, 0.1)
