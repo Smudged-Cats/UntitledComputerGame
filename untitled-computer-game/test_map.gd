@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var enemySpawner = preload("res://scenes/enemySpawner.tscn")
+@onready var enemyTSCN = preload("res://scenes/characters/red_character.tscn")
 
 var objectiveStarted = false
 var hasCreatedSpawner = false
@@ -33,4 +34,17 @@ func _on_objective_point_body_entered(body: Node2D) -> void:
 
 func _on_objective_point_body_exited(body: Node2D) -> void:
 	$Bomb.onObjective = false
+	
+func spawnEnemiesInRoom(room: Room):
+	var numberRoomEnemies = randint_range(1,10)
+	for i in range(numberRoomEnemies):
+		var randomLocation = Vector2i(randint(room.p, room.p + room.s))
+		newEnemy = enemyTSCN.instantiate()
+		var pixelPos = map_to_local(randomLocation)
+		add_child(newEnemy)
+		newEnemy.postion = pixelPos
+		add_child(newEnemy)
+
+		
+	
 	
