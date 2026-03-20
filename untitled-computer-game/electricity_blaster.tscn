@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bnp1qh5h6jyu"]
+
+[ext_resource type="PackedScene" uid="uid://vqubtmjjxksw" path="res://art/3D Assets/ElectricityBlaster.fbx" id="1_djw5p"]
+
+[node name="ElectricityBlaster" unique_id=860970551 instance=ExtResource("1_djw5p")]
