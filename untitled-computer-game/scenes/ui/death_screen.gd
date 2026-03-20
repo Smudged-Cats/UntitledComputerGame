@@ -32,3 +32,7 @@ func _on_spectate_button_pressed() -> void:
 	Player.instance.queue_free()
 	#newSpectator.make_current()
 	queue_free()
+	
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
