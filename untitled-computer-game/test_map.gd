@@ -1,13 +1,19 @@
 extends Node2D
 
 @onready var enemySpawner = preload("res://scenes/enemySpawner.tscn")
-@onready var enemyTSCN = preload("res://scenes/characters/red_character.tscn")
+@onready var enemyTSCN = preload("res://scenes/controllers/enemy.tscn")
 
 var objectiveStarted = false
 var hasCreatedSpawner = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	spawnEnemiesInRoom(
+		Room.new(
+			Vector2i(-2,6), # position
+			Vector2i(8, 6) # size
+			)
+		)
 	$ObjectivePoint/Timer/Label.visible = false
 	
 	
@@ -36,13 +42,13 @@ func _on_objective_point_body_exited(body: Node2D) -> void:
 	$Bomb.onObjective = false
 	
 func spawnEnemiesInRoom(room: Room):
-	var numberRoomEnemies = randint_range(1,10)
+	var numberRoomEnemies = randi_range(1,10)
 	for i in range(numberRoomEnemies):
-		var randomLocation = Vector2i(randint(room.p, room.p + room.s))
-		newEnemy = enemyTSCN.instantiate()
-		var pixelPos = map_to_local(randomLocation)
+		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
+		var newEnemy = enemyTSCN.instantiate()
+		var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(randomLocation)
 		add_child(newEnemy)
-		newEnemy.postion = pixelPos
+		newEnemy.position = pixelPos
 		add_child(newEnemy)
 
 		
