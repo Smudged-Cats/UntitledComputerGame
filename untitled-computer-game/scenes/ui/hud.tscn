@@ -72,13 +72,14 @@ offset_right = 217.0
 offset_bottom = 559.0
 theme_override_constants/v_separation = 112
 
-[node name="Slot1" type="Label" parent="PlayerInventory/GridContainer" unique_id=926059313]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Slot1" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=573055214]
+position = Vector2(66.25, 48.25)
+scale = Vector2(0.207, 0.207)
 
-[node name="Slot2" type="Label" parent="PlayerInventory/GridContainer" unique_id=1518547357]
-layout_mode = 2
+[node name="Slot2" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=1614141506]
+position = Vector2(74.00003, 140)
+scale = Vector2(0.17, 0.17)
 
-[node name="Slot3" type="Label" parent="PlayerInventory/GridContainer" unique_id=132037547]
-layout_mode = 2
+[node name="Slot3" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=747462911]
+position = Vector2(62.499992, 234)
+scale = Vector2(0.194, 0.17600006)
