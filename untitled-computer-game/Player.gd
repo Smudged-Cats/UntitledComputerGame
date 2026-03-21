@@ -58,6 +58,9 @@ func _physics_process(delta: float) -> void:
 	listen_for_drop_mod()
 	_camera.update_camera_position(delta)
 	
+	if Input.is_action_just_pressed("kill me"):
+		_character.health = 0
+	
 	_character.get_node("MeleeBar").value = _character.meleeWindup
 	
 
