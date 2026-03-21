@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="6_2morg"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="7_q41uj"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_o6k6t"]
-[ext_resource type="Texture2D" uid="uid://b0rqr2isl1u56" path="res://Background.png" id="10_udskl"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="11_y1omr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui48y"]
@@ -195,9 +194,5 @@ z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 tile_set = SubResource("TileSet_847ud")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1692472766]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_udskl")
 
 [node name="Player" parent="." unique_id=851249208 instance=ExtResource("11_y1omr")]

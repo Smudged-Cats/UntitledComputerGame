@@ -90,17 +90,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.0
-offset_top = 164.0
-offset_right = 33.0
-offset_bottom = 217.0
+offset_left = 181.0
+offset_top = 152.0
+offset_right = 256.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+flat = true
+
+[node name="MenuButton" type="Button" parent="." unique_id=741286577]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = 152.0
+offset_right = -80.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Return to menu"
 flat = true
 
 [connection signal="pressed" from="DeathScreen/RestartButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="DeathScreen/SpectateButton" to="." method="_on_spectate_button_pressed"]
 [connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

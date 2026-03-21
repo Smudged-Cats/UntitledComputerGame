@@ -1,15 +1,16 @@
 [gd_scene format=3 uid="uid://cc1a7o2rpfoga"]
 
 [ext_resource type="Script" uid="uid://bglw30xmlwjup" path="res://start_menu.gd" id="1_ia0g5"]
-[ext_resource type="Texture2D" uid="uid://b0rqr2isl1u56" path="res://Background.png" id="2_vpdu5"]
+[ext_resource type="Texture2D" uid="uid://b5mm5yw0nlji4" path="res://art/StartMenuNoGif.png" id="2_vpdu5"]
+[ext_resource type="FontFile" uid="uid://csebotlnryy4i" path="res://resources/Nautica-aYw9K.otf" id="3_v2mkm"]
 
 [node name="StartMenu" type="CanvasLayer" unique_id=1294816236]
 script = ExtResource("1_ia0g5")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1584375831]
 z_index = -1
-position = Vector2(799, 448.25)
-scale = Vector2(2.3679526, 1.9855233)
+position = Vector2(801.49994, 452.3714)
+scale = Vector2(1.99875, 2.0105393)
 texture = ExtResource("2_vpdu5")
 
 [node name="Label" type="Label" parent="." unique_id=864180054]
@@ -17,13 +18,13 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -800.0
+offset_top = 28.97
 offset_right = 800.0
-offset_bottom = 179.0
+offset_bottom = 207.97
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 60
+theme_override_fonts/font = ExtResource("3_v2mkm")
 theme_override_font_sizes/font_size = 64
-text = "WAHHHHHHHHHHHH"
+text = "Untitled Computer Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -34,13 +35,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -176.5
-offset_top = -233.0
-offset_right = 176.5
+offset_left = -177.0
+offset_top = -550.0
+offset_right = 173.0
+offset_bottom = -450.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 64
+pivot_offset = Vector2(175, 50)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_v2mkm")
+theme_override_font_sizes/font_size = 48
 text = "Quit"
+flat = true
 
 [node name="StartButton" type="Button" parent="." unique_id=2137597051]
 anchors_preset = 8
@@ -48,14 +54,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -190.75
-offset_top = -112.0
-offset_right = 190.75
-offset_bottom = 112.0
+offset_left = -174.0
+offset_top = -218.0
+offset_right = 176.0
+offset_bottom = -118.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
+pivot_offset = Vector2(175, 50)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_v2mkm")
+theme_override_font_sizes/font_size = 48
 text = "Start"
+flat = true
 
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="QuitButton" to="." method="_on_quit_button_mouse_exited"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="StartButton" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
