@@ -27,7 +27,7 @@ func _on_start_button_mouse_entered() -> void:
 	otherButton = $QuitButton
 
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/maps/testMap.tscn")
+	get_tree().change_scene_to_file("res://proc_gen_map.tscn")
 
 	
 func _on_quit_button_mouse_entered() -> void:
