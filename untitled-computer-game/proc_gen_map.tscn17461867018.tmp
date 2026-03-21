@@ -150,10 +150,6 @@ tile_set = SubResource("TileSet_nc4n3")
 y_sort_enabled = true
 tile_set = ExtResource("3_qm4jc")
 
-[node name="Timer" type="Timer" parent="Region1Tiles/Tiles" unique_id=1019158076]
-wait_time = 2.0
-autostart = true
-
 [node name="TileTop" type="TileMapLayer" parent="Region1Tiles" unique_id=173517622]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_mtlp5")
@@ -167,5 +163,3 @@ tile_set = SubResource("TileSet_847ud")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1692472766]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_udskl")
-
-[connection signal="timeout" from="Region1Tiles/Tiles/Timer" to="Region1Tiles" method="_on_timer_timeout"]

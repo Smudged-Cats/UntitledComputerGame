@@ -4,79 +4,170 @@ extends Node2D
 
 var tile_set = preload("res://resources/floor_tile_set.tres")
 
-var atlas_id = 5
+var socket_tiles_atlas_id = 0
+var socket_tile_top_left = Vector2i(0, 0)
+var socket_tile_top_right = Vector2i(1, 0)
+var socket_tile_bottom_left = Vector2i(0, 1)
+var socket_tile_bottom_right = Vector2i(1, 1)
+
 var room_tile_v2i = Vector2i(0, 0)
 var room_corner_tile_v2i = Vector2i(1, 0)
 var tunnel_tile_v2i = Vector2i(1, 0)
 
-# Stores possible positions for rooms to generate at
-var roomsToGenerate = []
+# Stores possible positions for patterns to generate at
+var patternSockets = []
 
-# Stores all generated room objects
-var roomsGenerated = []
+# Stores all generated pattern objects
+var patternsGenerated = []
 
 func _ready():
-	generatePattern()
+	#generate_patterns(30)
+	generate_pattern(0)
+	
+	#for socket in patternSockets:
+		#print(socket.p)
+	#
+	#var socketToPop = patternSockets.pop_at(0)
+	#generate_pattern(0, socketToPop)
+	#
+	#for socket in patternSockets:
+		#print(socket.p)
+	#
+	#socketToPop = patternSockets.pop_at(0)
+	#generate_pattern(0, socketToPop)
+	#
+	#for socket in patternSockets:
+		#print(socket.p)
 
-func pickRandomPattern() -> TileMapPattern:
-	return tile_set.get_pattern(randi_range(0, tile_set.get_patterns_count() - 1))
+func generate_patterns(n: int) -> void:
+	
+	if n <= 0: return
+	
+	# Generate the root room
+	generate_pattern(0)
+	
+	for i in (n - 1):
+		
+		var success = false
+		while success == false:
+			var socketToPop = patternSockets.pop_at(randi_range(0, patternSockets.size() - 1))
+			success = generate_pattern(randi_range(0, 6), socketToPop)
+		
 
-func generatePattern(p: Vector2i = Vector2i.ZERO) -> void:
-	var pattern: TileMapPattern = pickRandomPattern()
+func generate_pattern(id: int = -1, layerTileSocket: PatternSocket = null) -> bool:
+	print("Generating pattern...")
+	
+	var pattern: TileMapPattern = pick_pattern(id)
+	
+	# Get all the sockets from the pattern
+	var patternSocketsToAdd = get_sockets_from_pattern(pattern)
+	
+	#print("Sockets detected: ", len(patternSocketsToAdd))
+	
+	# If we don't want to connect this pattern to a socket, then just generate at 0,0
+	if layerTileSocket == null:
+		#print("Placing at: 0,0")
+		place_pattern(pattern, Vector2i.ZERO)
+		patternSockets.append_array(patternSocketsToAdd)
+		return true
+	
+	var socketTypeToMatch = get_inverse_pattern_socket_type(layerTileSocket.type) 
+	#print("Type to match:" + str(socketTypeToMatch))
+	
+	# Check every socket in the pattern to see if the pattern fits
+	for i in (patternSocketsToAdd.size()):
+		var patternSocket = patternSocketsToAdd[i]
+		#print("Socket type: " + str(patternSocket.type))
+		if patternSocket.type != socketTypeToMatch: continue
+		
+		#print("Found matching socket in pattern")
+		
+		
+		# Get the position that the pattern would be in for this socket to fit
+		var patternP = layerTileSocket.p - patternSocket.p
+		
+		# Check for collisions
+		var collision_detected = check_pattern_placement_for_collision(pattern, patternP)
+		if collision_detected:
+			print("COLLISION!")
+			continue
+			
+		# If we get here, then we should be good to place the pattern down.
+		
+		# Remove the current socket from the list of available sockets
+		patternSocketsToAdd.pop_at(i)
+		
+		#print("Placing at: " + str(patternP))
+		place_pattern(pattern, patternP)
+		for j in (patternSocketsToAdd.size()):
+			patternSocketsToAdd[j].p += patternP
+		
+		patternSockets.append_array(patternSocketsToAdd)
+		return true
+	
+	print("Failed to generate room!")
+	return false
+	
+# Get all the sockets in the pattern
+func get_sockets_from_pattern(pattern: TileMapPattern):
+	
+	var s = pattern.get_size()
+	var patternSocketsToAdd = []
+	
+	# O(n^2) to check all tiles in the pattern, sorry
+	# TODO: 	We could actually detect socket tiles in an offline process and cache them, it could be
+	#			faster but would require a bit of work to code.
+	for x in s.x:
+		for y in s.y:
+			var patternTileIsSocket = pattern.get_cell_source_id(Vector2i(x, y)) == socket_tiles_atlas_id
+			#var layerTileIsSocket = floor_layer.get_cell_source_id(Vector2i(p.x + x, p.y + y)) == socket_tiles_atlas_id
+			
+			if patternTileIsSocket:
+				var newPatternSocket = PatternSocket.new()
+				newPatternSocket.p = Vector2i(x, y)
+				newPatternSocket.type = pattern.get_cell_atlas_coords(Vector2i(x, y))
+				patternSocketsToAdd.append(newPatternSocket)
+	return patternSocketsToAdd
+	
+# Check if placing a pattern at point p would cause a collision
+func check_pattern_placement_for_collision(pattern: TileMapPattern, p: Vector2i) -> bool:
+	
+	var s = pattern.get_size()
+	for x in s.x:
+		for y in s.y:
+			var patternTileId = pattern.get_cell_source_id(Vector2i(x, y))
+			var layerTileId = floor_layer.get_cell_source_id(Vector2i(p.x + x, p.y + y))
+			
+			if (patternTileId != -1 and patternTileId != socket_tiles_atlas_id) and (layerTileId != -1 and layerTileId != socket_tiles_atlas_id):
+				return true
+	return false
+
+func get_inverse_pattern_socket_type(type: Vector2i) -> Vector2i:
+	if type == socket_tile_top_left: return socket_tile_bottom_right
+	if type == socket_tile_top_right: return socket_tile_bottom_left
+	if type == socket_tile_bottom_left: return socket_tile_top_right
+	return socket_tile_top_left
+
+# Force place a pattern at point p
+func place_pattern(pattern: TileMapPattern, p: Vector2i):
 	floor_layer.set_pattern(p, pattern)
+	var newRoom = Room.new(p, pattern.get_size())
+	patternsGenerated.append(newRoom)
 
-# Breadth first approach to generate rooms
-#
-#const PADDING = 2
-#const RANDOM_OFFSET = 2
-#
-#func _ready() -> void:
-	#
-	## Start generation at the 0, 0 coordinate
-	#roomsToGenerate.append(Vector2i(0, 0))
-	#
-	#generate_rooms(20)
-#
-#func generate_rooms(roomsLeft) -> void:
-	#
-	#if roomsLeft == 0: return
-	#
-	#var room_pos: Vector2i
-	#var room_size = Vector2i(randi_range(3, 8), randi_range(3, 8))
-	#
-	## Attempt to generate room
-	#var room_success = false
-	#while room_success == false:
-		#var numOfRoomPositions = len(roomsToGenerate)
-		#if numOfRoomPositions == 0: return
-		#room_pos = roomsToGenerate.pop_at(randi_range(0, numOfRoomPositions - 1))
-		#room_success = generate_room(room_pos - room_size/2, room_size)
-	#
-	## add the new possible positions to generate a room at
-	#roomsToGenerate.append(room_pos + Vector2i(0, -room_size.y) + Vector2i.UP * PADDING + Vector2i(randi_range(-RANDOM_OFFSET, RANDOM_OFFSET), -PADDING))
-	#roomsToGenerate.append(room_pos + Vector2i(0, room_size.y) + Vector2i.DOWN * PADDING + Vector2i(randi_range(-RANDOM_OFFSET, RANDOM_OFFSET), PADDING))
-	#roomsToGenerate.append(room_pos + Vector2i(-room_size.y, 0) + Vector2i.LEFT * PADDING + Vector2i(-PADDING, randi_range(-RANDOM_OFFSET, RANDOM_OFFSET)))
-	#roomsToGenerate.append(room_pos + Vector2i(room_size.y, 0) + Vector2i.RIGHT * PADDING + Vector2i(PADDING, randi_range(-RANDOM_OFFSET, RANDOM_OFFSET)))
-	#
-	## Recurse
-	#generate_rooms(roomsLeft - 1)
 
-# Generate a room given the position and size
-#func generate_room(p: Vector2i, s: Vector2i = Vector2i(1, 1)) -> bool:
-	#
-	## Check for any room collision + padding
-	#for x in range(s.x + PADDING*2):
-		#for y in range(s.y + PADDING*2):
-			#if floor_layer.get_cell_source_id(Vector2i(p.x + x - PADDING, p.y + y - PADDING)) == atlas_id: return false
-	#
-	#var pattern: TileMapPattern = tile_set.get_pattern(randi_range(0, 2))
-	#floor_layer.set_pattern(p, pattern)
-	#
-	## Debug corner tile
-	##floor_layer.set_cell(Vector2i(p.x, p.y), atlas_id, room_corner_tile_v2i)
-	#
-	#var newRoom = Room.new()
-	#newRoom.p = p
-	#newRoom.s = s
-	#roomsGenerated.append(newRoom)
-	#return true
+# Return a pattern via index. If no index, return a random pattern
+func pick_pattern(id: int = -1) -> TileMapPattern:
+	if id < 0 or id >= tile_set.get_patterns_count(): 
+		id = randi_range(0, tile_set.get_patterns_count() - 1)
+	return tile_set.get_pattern(id)
+
+
+func _on_timer_timeout() -> void:
+	var success = false
+	while success == false:
+		print("Number of sockets to pick from: " + str(patternSockets.size()))
+		var randomIndex = randi_range(0, patternSockets.size() - 1)
+		print("Chosen index: " + str(randomIndex))
+		var socketToPop = patternSockets.pop_at(randomIndex)
+		print("SOCKET: " + str(socketToPop))
+		success = generate_pattern(randi_range(0, 6), socketToPop)
