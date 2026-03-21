@@ -3,3 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://vqubtmjjxksw" path="res://art/3D Assets/ElectricityBlaster.fbx" id="1_djw5p"]
 
 [node name="ElectricityBlaster" unique_id=860970551 instance=ExtResource("1_djw5p")]
+
+[node name="Barrel" parent="." index="0" unique_id=568826726]
+transform = Transform3D(7.836386, 0, 0, 0, -6.5118167e-07, 5.4625077, 0, -5.4625077, -6.5118167e-07, 0.026079778, 1.1052226, 0.57626003)
+
+[node name="Cube" parent="." index="1" unique_id=1370866978]
+transform = Transform3D(-3.9698408, -1.6279542e-07, 5.1820617, -7.28935, 0, -2.822194, 2.4736693e-07, -5.4625077, 0, 0.08565332, 1.0493858, -0.97987664)
+
+[node name="Cube_001" parent="." index="2" unique_id=325964433]
+transform = Transform3D(5.4625077, 0, 0, 0, -1.7457435, 5.1760387, 0, -5.1760387, -1.7457435, -0.16910744, 0.88596404, 0.29551175)
+
+[node name="Cylinder" parent="." index="3" unique_id=2137633084]
+transform = Transform3D(3.072164, 0, 0, 0, 3.072164, -6.4659184e-07, 0, 1.3428853e-07, 14.792296, 0.025727568, 1.4003644, 0.23223852)
+
+[node name="Grip" parent="." index="4" unique_id=1985675233]
+transform = Transform3D(6.3670897, 0, 0, 0, 1.9614364, 5.1405454, 0, -5.1405454, 1.9614364, 0.0324516, 0.91889405, 0.2185231)
+
+[node name="Main" parent="." index="5" unique_id=365021950]
+transform = Transform3D(7.836386, 0, 0, 0, -6.5118167e-07, 5.4625077, 0, -5.4625077, -6.5118167e-07, 0.026079778, 1.1052226, 0.53735405)
+
+[node name="StockBottom" parent="." index="6" unique_id=965909658]
+transform = Transform3D(3.2446346, 0, 0, 0, 4.4566593, 3.1586683, 0, -3.1586683, 4.4566593, 0.026536958, 0.9592156, -0.09751857)

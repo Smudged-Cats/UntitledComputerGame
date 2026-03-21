@@ -3,3 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://csxqh5rxwvdva" path="res://art/3D Assets/RGBSword.fbx" id="1_hrkyk"]
 
 [node name="RGBSword" unique_id=2084432744 instance=ExtResource("1_hrkyk")]
+
+[node name="CrossGuard" parent="." index="0" unique_id=1539544796]
+transform = Transform3D(1.1670278, -3.101998e-08, -0.26021442, -0.15277189, -2.3696228e-07, -1.9877834, 0, 2.004743, -2.3898403e-07, -0.018116105, -0.12975998, -0.014395985)
+
+[node name="Cube" parent="." index="1" unique_id=2047090535]
+transform = Transform3D(0.46308944, -2.0173278e-08, 1.6989667, -0.06062157, -1.5410413e-07, 12.978444, 0, -1.3037481, -1.5603516e-06, 0.12326683, 0.94724905, -0.011277524)
+
+[node name="Cube_001" parent="." index="2" unique_id=1243583419]
+transform = Transform3D(-0.114687465, 0.11468704, 3.6043885, -0.87609774, 0.87609774, -0.47183937, -0.8835724, -0.88357264, -8.666851e-07, -0.008829184, -0.06540926, -0.011939816)
+
+[node name="Grip" parent="." index="3" unique_id=1435814854]
+transform = Transform3D(1.2200594, -3.101998e-08, 0.26021442, -0.1597141, -2.3696228e-07, 1.9877834, 0, -2.004743, -2.3898403e-07, -0.025417741, -0.21899383, -0.012180276)

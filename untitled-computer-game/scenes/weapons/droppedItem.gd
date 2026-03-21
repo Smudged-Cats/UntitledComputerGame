@@ -6,6 +6,12 @@ var itemType: String = ""
 
 signal pickUp()
 
+
+var t = 0
+
+static var newDroppedID = 0
+var id = 0
+
 @onready 
 var pickedUp = false
 
@@ -18,15 +24,29 @@ var meleePlaceholderSprite = preload("res://art/tiles/pixil-frame-0_1.png")
 @onready 
 var rangedPlaceholderSprite = preload("res://art/tiles/pixil-frame-0.png")
 
+@onready
+var melee3DModel = preload("res://rgb_sword.tscn")
+
+@onready
+var ranged3DModel = preload("res://electricity_blaster.tscn")
+
 #@onready
 #var playerCharacter = get_parent().get_node("Player").get_node("Character")
 
 var item
 
 func _ready() -> void:
+	self.id = newDroppedID
+	newDroppedID += 1
+	$SubViewportContainer/SubViewport/Camera3D.global_position.x += self.id * 10
+	$SubViewportContainer/SubViewport/ModelRoot.global_position.x += self.id * 10
+	
+	$SubViewportContainer/SubViewport/Camera3D.global_position.y += 10
+	$SubViewportContainer/SubViewport/ModelRoot.global_position.y += 10
+	
+	
 	if (itemType == "Weapon"):
-		$Sprite2D.texture = rangedPlaceholderSprite
-		$Sprite2D.scale = Vector2(0.1, 0.1)
+		setWeaponType("Weapon")
 		var ranWeapon = randi_range(1,3)
 		if (ranWeapon == 1):
 			item = WeaponStats.new(
@@ -48,8 +68,7 @@ func _ready() -> void:
 				ProjectileStats.new(randi_range(65,90),1000,3)
 			)
 	elif (itemType == "Melee"):
-		$Sprite2D.texture = meleePlaceholderSprite
-		$Sprite2D.scale = Vector2(0.1, 0.1)
+		setWeaponType("Melee")
 		item = MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5))
 		
 	elif (itemType == "Modifier"):
@@ -61,21 +80,13 @@ func _ready() -> void:
 
 
 
-#func _process(delta: float) -> void:
-		#
-	## Moving bomb with player
-	#if pickedUp:
-		#self.global_position = Vector2(playerCharacter.global_position)
-		#
-	## Picking up bomb / dropping
-	#if canPickup:
-		#if Input.is_action_just_pressed("interact"):
-			#if pickedUp == false:
-				#pickedUp = true
-				#playerCharacter.get_parent().pickUpWeapon(weapon)
-			#elif pickedUp:
-				#pickedUp = false
-#
+func _process(delta: float) -> void:
+	$SubViewportContainer/SubViewport/ModelRoot.rotate_y(1*delta)
+	$SubViewportContainer/SubViewport/ModelRoot.global_position.z = sin(t)
+	t+= delta
+
+
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Character):
@@ -87,9 +98,11 @@ func _on_body_exited(body: Node2D) -> void:
 	
 func setWeaponType(type: String):
 	self.itemType = type
+	if not is_node_ready():
+		await ready 
 	if type == "Melee":
-		$Sprite2D.texture = meleePlaceholderSprite
-		$Sprite2D.scale = Vector2(0.1, 0.1)
+		var newModel = melee3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if type == "Weapon":
-		$Sprite2D.texture = rangedPlaceholderSprite
-		$Sprite2D.scale = Vector2(0.1, 0.1)
+		var newModel = ranged3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)

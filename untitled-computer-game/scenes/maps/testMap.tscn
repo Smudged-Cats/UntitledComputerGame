@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bd6q56k024f3r" path="res://test_map.gd" id="1_il6hr"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
+[ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="5_il6hr"]
 [ext_resource type="PackedScene" uid="uid://6hftlge5ucy5" path="res://Bomb.tscn" id="7_og2gh"]
 [ext_resource type="PackedScene" uid="uid://cb1a4nl8n8lc2" path="res://tile_map_scene.tscn" id="12_xywiv"]
 
@@ -66,6 +67,14 @@ offset_bottom = 415.0
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-455, 275)
+
+[node name="SwordTest" parent="." unique_id=1104612395 instance=ExtResource("5_il6hr")]
+position = Vector2(262, 54)
+itemType = "Melee"
+
+[node name="GunTest" parent="." unique_id=172808262 instance=ExtResource("5_il6hr")]
+position = Vector2(194, 16)
+itemType = "Weapon"
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]

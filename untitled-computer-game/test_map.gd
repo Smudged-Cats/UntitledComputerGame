@@ -67,7 +67,7 @@ func spawnRoomLoot(room: Room):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($TileMapScene/Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):
 			var newDroppedItem = droppedItem.instantiate()
-			newDroppedItem.setWeaponType(weaponTypes[randi_range(1,2)])
+			newDroppedItem.setWeaponType(weaponTypes[randi_range(0,2)])
 			var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(randomLocation)
 			newDroppedItem.position = pixelPos
 			add_child(newDroppedItem)

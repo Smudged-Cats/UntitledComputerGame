@@ -161,6 +161,7 @@ func drop_item() -> void:
 	
 	if len(inventory) == 0: return
 
+	var droppedWeapon = inventory.back()
 	var weaponStats = inventory.pop_back()
 
 	if len(inventory) == 0:
@@ -175,8 +176,13 @@ func drop_item() -> void:
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
 	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
+	if droppedWeapon.stats.has("damage"):
+		newDroppedItem.itemType = "Melee"
+		newDroppedItem.setWeaponType("Melee")
+	elif droppedWeapon.stats.has("fireRate"):
+		newDroppedItem.itemType = "Weapon"
+		newDroppedItem.setWeaponType("Weapon")
 	newDroppedItem.global_position = _character.global_position
-	newDroppedItem.itemType = "Weapon"
 	newDroppedItem.item = weaponStats
 	
 func dropMod() -> void:
