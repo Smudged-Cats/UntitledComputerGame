@@ -2,14 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dob4eh8rnysd0" path="res://map_generation.gd" id="2_6ah64"]
 [ext_resource type="Texture2D" uid="uid://yry0m0fid6g2" path="res://art/tiles/SignRegion1SpriteSheet.png" id="2_g05o0"]
-[ext_resource type="PackedScene" uid="uid://dnjv6dcen5ndf" path="res://scenes/controllers/spectator.tscn" id="3_p5emv"]
-[ext_resource type="TileSet" uid="uid://d1axw2i7ttdlj" path="res://resources/floor_tile_set.tres" id="3_qm4jc"]
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/TileTops/Region1TileTop1.png" id="4_udskl"]
+[ext_resource type="Texture2D" uid="uid://b2jat2arcse2w" path="res://art/tiles/FloorTiles/iso_floor_tile.png" id="4_y1omr"]
+[ext_resource type="Texture2D" uid="uid://ejh5yfjmi8hd" path="res://art/tiles/FloorTiles/Region1TileSpriteSheet.png" id="5_2morg"]
 [ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="5_y1omr"]
 [ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="6_2morg"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="7_q41uj"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_o6k6t"]
 [ext_resource type="Texture2D" uid="uid://b0rqr2isl1u56" path="res://Background.png" id="10_udskl"]
+[ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="11_y1omr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui48y"]
 texture = ExtResource("2_g05o0")
@@ -37,6 +38,43 @@ tile_size = Vector2i(128, 64)
 custom_data_layer_0/name = "show_text"
 custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_ui48y")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ir4s8"]
+texture = ExtResource("4_y1omr")
+texture_region_size = Vector2i(128, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bmcly"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1tpq"]
+texture = SubResource("CompressedTexture2D_bmcly")
+texture_region_size = Vector2i(64, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sivc6"]
+texture = ExtResource("5_2morg")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -29)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -29)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -29)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_q41uj"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(128, 64)
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_ir4s8")
+sources/1 = SubResource("TileSetAtlasSource_v1tpq")
+sources/5 = SubResource("TileSetAtlasSource_sivc6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyb07"]
 texture = ExtResource("4_udskl")
@@ -136,8 +174,6 @@ sources/7 = SubResource("TileSetAtlasSource_emd7t")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=957132427]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
 
-[node name="SpectatorCamera" parent="." unique_id=1630228745 instance=ExtResource("3_p5emv")]
-
 [node name="Region1Tiles" type="Node2D" parent="." unique_id=1000911632]
 script = ExtResource("2_6ah64")
 
@@ -148,11 +184,7 @@ tile_set = SubResource("TileSet_nc4n3")
 
 [node name="Tiles" type="TileMapLayer" parent="Region1Tiles" unique_id=1827245817]
 y_sort_enabled = true
-tile_set = ExtResource("3_qm4jc")
-
-[node name="Timer" type="Timer" parent="Region1Tiles/Tiles" unique_id=1019158076]
-wait_time = 2.0
-autostart = true
+tile_set = SubResource("TileSet_q41uj")
 
 [node name="TileTop" type="TileMapLayer" parent="Region1Tiles" unique_id=173517622]
 y_sort_enabled = true
@@ -168,4 +200,4 @@ tile_set = SubResource("TileSet_847ud")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_udskl")
 
-[connection signal="timeout" from="Region1Tiles/Tiles/Timer" to="Region1Tiles" method="_on_timer_timeout"]
+[node name="Player" parent="." unique_id=851249208 instance=ExtResource("11_y1omr")]

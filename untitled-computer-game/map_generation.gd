@@ -21,8 +21,8 @@ var patternSockets = []
 var patternsGenerated = []
 
 func _ready():
-	#generate_patterns(30)
-	generate_pattern(0)
+	generate_patterns(20)
+	#generate_pattern(0)
 	
 	#for socket in patternSockets:
 		#print(socket.p)
@@ -50,26 +50,29 @@ func generate_patterns(n: int) -> void:
 		
 		var success = false
 		while success == false:
-			var socketToPop = patternSockets.pop_at(randi_range(0, patternSockets.size() - 1))
-			success = generate_pattern(randi_range(0, 6), socketToPop)
+			var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
+			var randomPatternIndex = randi_range(0, 6)
+			
+			success = generate_pattern(randomPatternIndex, randomSocketIndex)
 		
 
-func generate_pattern(id: int = -1, layerTileSocket: PatternSocket = null) -> bool:
-	print("Generating pattern...")
+func generate_pattern(id: int = -1, layerTileSocketIndex: int = -1) -> bool:
+	#print("Generating pattern...")
+	
 	
 	var pattern: TileMapPattern = pick_pattern(id)
 	
 	# Get all the sockets from the pattern
 	var patternSocketsToAdd = get_sockets_from_pattern(pattern)
 	
-	#print("Sockets detected: ", len(patternSocketsToAdd))
-	
 	# If we don't want to connect this pattern to a socket, then just generate at 0,0
-	if layerTileSocket == null:
+	if layerTileSocketIndex == -1:
 		#print("Placing at: 0,0")
 		place_pattern(pattern, Vector2i.ZERO)
 		patternSockets.append_array(patternSocketsToAdd)
 		return true
+	
+	var layerTileSocket = patternSockets[layerTileSocketIndex]
 	
 	var socketTypeToMatch = get_inverse_pattern_socket_type(layerTileSocket.type) 
 	#print("Type to match:" + str(socketTypeToMatch))
@@ -89,7 +92,7 @@ func generate_pattern(id: int = -1, layerTileSocket: PatternSocket = null) -> bo
 		# Check for collisions
 		var collision_detected = check_pattern_placement_for_collision(pattern, patternP)
 		if collision_detected:
-			print("COLLISION!")
+			#print("COLLISION!")
 			continue
 			
 		# If we get here, then we should be good to place the pattern down.
@@ -105,7 +108,7 @@ func generate_pattern(id: int = -1, layerTileSocket: PatternSocket = null) -> bo
 		patternSockets.append_array(patternSocketsToAdd)
 		return true
 	
-	print("Failed to generate room!")
+	#print("Failed to generate room!")
 	return false
 	
 # Get all the sockets in the pattern
@@ -165,9 +168,7 @@ func pick_pattern(id: int = -1) -> TileMapPattern:
 func _on_timer_timeout() -> void:
 	var success = false
 	while success == false:
-		print("Number of sockets to pick from: " + str(patternSockets.size()))
-		var randomIndex = randi_range(0, patternSockets.size() - 1)
-		print("Chosen index: " + str(randomIndex))
-		var socketToPop = patternSockets.pop_at(randomIndex)
-		print("SOCKET: " + str(socketToPop))
-		success = generate_pattern(randi_range(0, 6), socketToPop)
+		var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
+		var randomPatternIndex = randi_range(0, 6)
+		
+		success = generate_pattern(randomPatternIndex, randomSocketIndex)

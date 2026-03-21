@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("spectator zoom in"):
 		target_zoom = min(target_zoom + 0.1, 5)
 	elif Input.is_action_just_pressed("spectator zoom out"):
-		target_zoom = max(target_zoom - 0.1, 0.1)
+		target_zoom = max(target_zoom - 0.1, 0.05)
 		
 	if mouse_down:
 		target_position = camera_offset + mouse_origin - get_local_mouse_position()
