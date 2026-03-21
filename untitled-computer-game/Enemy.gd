@@ -3,7 +3,7 @@ class_name Enemy
 
 @onready var hitboxScene = preload("res://scenes/radialHitbox.tscn")
 
-
+@onready var lootScene = preload("res://scenes/weapons/droppedItem.tscn")
 
 var _character: Character
 var currentTarget: Character
@@ -24,6 +24,14 @@ func _process(delta: float) -> void:
 		die()
 
 func die() -> void:
+	var chanceOfLoot = randi_range(1,10)
+	var weaponTypes = ["Weapon", "Melee", "Modifier"]
+	if chanceOfLoot == 1:
+		var newDroppedItem = lootScene.instantiate()
+		newDroppedItem.setWeaponType(weaponTypes[randi_range(0,2)])
+		newDroppedItem.position = _character.global_position
+		get_parent().add_child(newDroppedItem)
+		
 	queue_free()
 
 func chase_enemy(delta: float = 1) -> void:
