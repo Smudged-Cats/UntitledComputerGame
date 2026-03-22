@@ -68,7 +68,7 @@ func generate_pattern(id: int = -1, layerTileSocketIndex: int = -1) -> bool:
 	# If we don't want to connect this pattern to a socket, then just generate at 0,0
 	if layerTileSocketIndex == -1:
 		#print("Placing at: 0,0")
-		place_pattern(pattern, Vector2i.ZERO)
+		place_pattern(pattern, -pattern.get_size()/2)
 		patternSockets.append_array(patternSocketsToAdd)
 		return true
 	
