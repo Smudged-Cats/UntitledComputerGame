@@ -171,7 +171,7 @@ script = ExtResource("1_256qa")
 [node name="Region1Tiles" type="Node2D" parent="." unique_id=1644150485]
 
 [node name="Signs" type="TileMapLayer" parent="Region1Tiles" unique_id=264127295]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
 tile_set = SubResource("TileSet_6furj")
 
