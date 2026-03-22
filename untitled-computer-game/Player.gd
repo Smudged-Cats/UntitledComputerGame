@@ -151,11 +151,12 @@ func pickup_item() -> void:
 		var meleeStats = item.item
 		inventory.append(meleeStats)
 		_character.melee.baseMelee = meleeStats
-
+		_weapon.baseWeapon = null
 	elif (item.item is WeaponStats):
 		var weaponStats = item.item
 		_weapon.setWeapon(weaponStats)
 		inventory.append(weaponStats)
+		_character.melee.baseMelee = null
 		print("Picked up weapon\n",_weapon.baseWeapon.stats,"\n",_weapon.baseWeapon.projectileStats.stats)
 	elif item.item is Modifier:
 		item.item.applyBoost(self)
@@ -176,10 +177,14 @@ func drop_item() -> void:
 
 	if len(inventory) == 0:
 		_weapon.setWeapon(null)
+		_character.melee.baseMelee = null
 	elif inventory.back() is not MeleeStats:
 		_weapon.setWeapon(inventory.back())
+		_character.melee.baseMelee = null
 	else:
 		_weapon.setWeapon(null)
+		_character.melee.baseMelee = inventory.back()
+		
 
 		
 		
