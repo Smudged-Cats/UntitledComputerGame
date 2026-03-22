@@ -47,10 +47,10 @@ color = Color(1, 0, 0, 0.078431375)
 
 [node name="RestartButton" type="TextureButton" parent="DeathScreen" unique_id=513987543]
 layout_mode = 0
-offset_left = 872.0
-offset_top = 513.0
-offset_right = 1193.425
-offset_bottom = 582.0
+offset_left = 642.0
+offset_top = 494.0
+offset_right = 963.42505
+offset_bottom = 563.0
 
 [node name="Label" type="Label" parent="DeathScreen/RestartButton" unique_id=294894953]
 layout_mode = 0
@@ -64,10 +64,10 @@ horizontal_alignment = 1
 
 [node name="SpectateButton" type="TextureButton" parent="DeathScreen" unique_id=48428183]
 layout_mode = 0
-offset_left = 427.0
-offset_top = 513.0
-offset_right = 748.42505
-offset_bottom = 582.0
+offset_left = 632.0
+offset_top = 570.0
+offset_right = 953.42505
+offset_bottom = 639.0
 
 [node name="Label" type="Label" parent="DeathScreen/SpectateButton" unique_id=39878622]
 layout_mode = 0
@@ -90,10 +90,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 181.0
-offset_top = 152.0
-offset_right = 256.0
-offset_bottom = 205.0
+offset_left = -39.0
+offset_top = 291.0
+offset_right = 36.0
+offset_bottom = 344.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -107,10 +107,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -333.0
-offset_top = 152.0
-offset_right = -80.0
-offset_bottom = 205.0
+offset_left = -134.0
+offset_top = 211.0
+offset_right = 119.0
+offset_bottom = 264.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -118,8 +118,13 @@ theme_override_font_sizes/font_size = 32
 text = "Return to menu"
 flat = true
 
+[connection signal="mouse_entered" from="DeathScreen/RestartButton" to="." method="_on_restart_button_mouse_entered"]
+[connection signal="mouse_exited" from="DeathScreen/RestartButton" to="." method="_on_restart_button_mouse_exited"]
 [connection signal="pressed" from="DeathScreen/RestartButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="DeathScreen/SpectateButton" to="." method="_on_spectate_button_mouse_entered"]
 [connection signal="pressed" from="DeathScreen/SpectateButton" to="." method="_on_spectate_button_pressed"]
 [connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="MenuButton" to="." method="_on_menu_button_mouse_entered"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

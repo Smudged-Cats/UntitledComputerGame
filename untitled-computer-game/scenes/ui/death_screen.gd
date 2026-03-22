@@ -5,9 +5,12 @@ extends CanvasLayer
 var tFade: float = 0
 var fading = false
 
+@onready var btns = [$DeathScreen/RestartButton/Label, $DeathScreen/SpectateButton/Label, $MenuButton, $QuitButton]
+@onready var btnLoc = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	_on_restart_button_mouse_entered()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +26,6 @@ func _on_fade_timer_timeout() -> void:
 
 func _on_texture_button_pressed() -> void:
 	get_tree().reload_current_scene()
-	
 
 
 func _on_spectate_button_pressed() -> void:
@@ -40,3 +42,73 @@ func _on_quit_button_pressed() -> void:
 
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://start_menu.tscn")
+
+
+# All of this stuff is code that allows you to navigate the buttons via keys or mouse
+func _on_restart_button_mouse_entered() -> void:
+	$DeathScreen/RestartButton/Label.pivot_offset = $DeathScreen/RestartButton/Label.size / 2
+	$DeathScreen/RestartButton/Label.scale = Vector2(1.1, 1.1)
+	$DeathScreen/RestartButton/Label.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	if btnLoc != 0:
+		inactivate_buttons(btnLoc)
+	btnLoc = 0
+	
+func _on_spectate_button_mouse_entered() -> void:
+	$DeathScreen/SpectateButton/Label.pivot_offset = $DeathScreen/SpectateButton/Label.size / 2
+	$DeathScreen/SpectateButton/Label.scale = Vector2(1.1, 1.1)
+	$DeathScreen/SpectateButton/Label.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	if btnLoc != 1:
+		inactivate_buttons(btnLoc)
+	btnLoc = 1
+
+func _on_menu_button_mouse_entered() -> void:
+	$MenuButton.pivot_offset = $MenuButton.size / 2
+	$MenuButton.scale = Vector2(1.1, 1.1)
+	$MenuButton.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	if btnLoc != 2:
+		inactivate_buttons(btnLoc)
+	btnLoc = 2
+	
+func _on_quit_button_mouse_entered() -> void:
+	$QuitButton.pivot_offset = $QuitButton.size / 2
+	$QuitButton.scale = Vector2(1.1, 1.1)
+	$QuitButton.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	if btnLoc != 3:
+		inactivate_buttons(btnLoc)
+	btnLoc = 3
+
+	
+func inactivate_buttons(prevIndex: int) -> void:
+	btns[prevIndex].scale = Vector2(1, 1)
+	btns[prevIndex].modulate = Color(1, 1, 1, 1)
+	
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("move_down") and btnLoc < 3:
+		inactivate_buttons(btnLoc)
+		btnLoc += 1
+		eh()
+	if Input.is_action_just_pressed("move_up") and btnLoc > 0:
+		inactivate_buttons(btnLoc)
+		btnLoc -= 1
+		eh()
+		
+	if Input.is_action_just_pressed("enter"):
+		if btnLoc == 0:
+			_on_texture_button_pressed()
+		elif btnLoc == 1:
+			_on_spectate_button_pressed()
+		elif btnLoc == 2:
+			_on_menu_button_pressed()
+		else:
+			_on_quit_button_pressed()
+	
+func eh() -> void:
+	if btnLoc == 0:
+		_on_restart_button_mouse_entered()
+	elif btnLoc == 1:
+		_on_spectate_button_mouse_entered()
+	elif btnLoc == 2:
+		_on_menu_button_mouse_entered()
+	else:
+		_on_quit_button_mouse_entered()
+	
