@@ -46,33 +46,33 @@ func _on_menu_button_pressed() -> void:
 
 # All of this stuff is code that allows you to navigate the buttons via keys or mouse
 func _on_restart_button_mouse_entered() -> void:
-	$DeathScreen/RestartButton/Label.pivot_offset = $DeathScreen/RestartButton/Label.size / 2
-	$DeathScreen/RestartButton/Label.scale = Vector2(1.1, 1.1)
-	$DeathScreen/RestartButton/Label.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	btns[0].pivot_offset = btns[0].size / 2
+	btns[0].scale = Vector2(1.1, 1.1)
+	btns[0].modulate = Color(1.2, 0.0, 0.085, 1.0)
 	if btnLoc != 0:
 		inactivate_buttons(btnLoc)
 	btnLoc = 0
 	
 func _on_spectate_button_mouse_entered() -> void:
-	$DeathScreen/SpectateButton/Label.pivot_offset = $DeathScreen/SpectateButton/Label.size / 2
-	$DeathScreen/SpectateButton/Label.scale = Vector2(1.1, 1.1)
-	$DeathScreen/SpectateButton/Label.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	btns[1].pivot_offset = btns[1].size / 2
+	btns[1].scale = Vector2(1.1, 1.1)
+	btns[1].modulate = Color(1.2, 0.0, 0.085, 1.0)
 	if btnLoc != 1:
 		inactivate_buttons(btnLoc)
 	btnLoc = 1
 
 func _on_menu_button_mouse_entered() -> void:
-	$MenuButton.pivot_offset = $MenuButton.size / 2
-	$MenuButton.scale = Vector2(1.1, 1.1)
-	$MenuButton.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	btns[2].pivot_offset = btns[2].size / 2
+	btns[2].scale = Vector2(1.1, 1.1)
+	btns[2].modulate = Color(1.2, 0.0, 0.085, 1.0)
 	if btnLoc != 2:
 		inactivate_buttons(btnLoc)
 	btnLoc = 2
 	
 func _on_quit_button_mouse_entered() -> void:
-	$QuitButton.pivot_offset = $QuitButton.size / 2
-	$QuitButton.scale = Vector2(1.1, 1.1)
-	$QuitButton.modulate = Color(1.2, 0.0, 0.085, 1.0)
+	btns[3].pivot_offset = btns[3].size / 2
+	btns[3].scale = Vector2(1.1, 1.1)
+	btns[3].modulate = Color(1.2, 0.0, 0.085, 1.0)
 	if btnLoc != 3:
 		inactivate_buttons(btnLoc)
 	btnLoc = 3
