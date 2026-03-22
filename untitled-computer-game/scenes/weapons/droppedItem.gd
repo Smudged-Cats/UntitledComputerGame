@@ -47,29 +47,10 @@ func _ready() -> void:
 	
 	if (itemType == "Weapon"):
 		setWeaponType("Weapon")
-		var ranWeapon = randi_range(1,3)
-		if (ranWeapon == 1):
-			item = WeaponStats.new(
-				randf_range(0.07,0.2),
-				0.02,
-				ProjectileStats.new(randf_range(8,20),700)
-			)
-		elif (ranWeapon == 2):
-			item = WeaponStats.new(
-				randf_range(0.3,0.55),
-				randf_range(0.1,0.3),
-				ProjectileStats.new(6,700),
-				randi_range(5,8)
-			)
-		elif (ranWeapon == 3):
-			item = WeaponStats.new(
-				randf_range(0.8,1.3),
-				0.001,
-				ProjectileStats.new(randi_range(65,90),1000,3)
-			)
+		item = ranGun()
 	elif (itemType == "Melee"):
 		setWeaponType("Melee")
-		item = MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5))
+		item = ranMelee()
 		
 	elif (itemType == "Modifier"):
 		item = Modifier.new(
@@ -95,7 +76,34 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	canPickup = false
-	
+
+func ranGun() -> WeaponStats:
+	var ranWeapon = randi_range(1,3)
+	var weaponToGive: WeaponStats
+	if (ranWeapon == 1):
+		weaponToGive = WeaponStats.new(
+			randf_range(0.07,0.2),
+			0.02,
+			ProjectileStats.new(randf_range(8,20),700)
+		)
+	elif (ranWeapon == 2):
+		weaponToGive = WeaponStats.new(
+			randf_range(0.3,0.55),
+			randf_range(0.1,0.3),
+			ProjectileStats.new(6,700),
+			randi_range(5,8)
+		)
+	elif (ranWeapon == 3):
+		weaponToGive = WeaponStats.new(
+			randf_range(0.8,1.3),
+			0.001,
+			ProjectileStats.new(randi_range(65,90),1000,3)
+		)
+	return weaponToGive
+
+func ranMelee() -> MeleeStats:
+	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5))
+
 func setWeaponType(type: String):
 	self.itemType = type
 	if not is_node_ready():
