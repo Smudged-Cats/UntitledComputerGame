@@ -7,6 +7,8 @@ var gatesAlongY = []
 
 # hard-coded positions for the pre-placed gates in testMap
 func _ready() -> void:
+	$Region1Tiles/BarrierTiles.visible = false
+	
 	var gates1 = [Vector2i(1, 5), Vector2i(2, 5)]
 	var gates2 = [Vector2i(-3, 9), Vector2i(-3, 8)]
 	gatesAlongX.append(gates1)

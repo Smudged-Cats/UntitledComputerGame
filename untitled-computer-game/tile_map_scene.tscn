@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="5_h03qd"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="6_fqd2q"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="7_ltadu"]
+[ext_resource type="Texture2D" uid="uid://c6omr1l6ix4f3" path="res://art/tiles/barrierTile.png" id="9_256qa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfv8e"]
 texture = ExtResource("2_8qvsh")
@@ -52,6 +53,8 @@ texture_region_size = Vector2i(128, 128)
 [sub_resource type="TileSet" id="TileSet_8qvsh"]
 tile_shape = 1
 tile_size = Vector2i(128, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_256qa")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bc3jk"]
@@ -147,6 +150,20 @@ sources/3 = SubResource("TileSetAtlasSource_pbtg3")
 sources/6 = SubResource("TileSetAtlasSource_buivq")
 sources/7 = SubResource("TileSetAtlasSource_o88wt")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8qvsh"]
+texture = ExtResource("9_256qa")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, -64, 0, 0, 32, 64, 0)
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pfv8e"]
+tile_shape = 1
+tile_size = Vector2i(128, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_8qvsh")
+
 [node name="TileMapScene" type="Node2D" unique_id=2093191107]
 y_sort_enabled = true
 script = ExtResource("1_256qa")
@@ -173,3 +190,7 @@ y_sort_enabled = true
 texture_filter = 1
 tile_map_data = PackedByteArray("AAD9/wgABwADAAAAAAABAAUABgAAAAAAAAACAAUABgABAAAAAAD9/wkABwACAAAAAAA=")
 tile_set = SubResource("TileSet_vr13i")
+
+[node name="BarrierTiles" type="TileMapLayer" parent="Region1Tiles" unique_id=375717924]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_pfv8e")
