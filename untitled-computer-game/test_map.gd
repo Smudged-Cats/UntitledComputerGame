@@ -10,17 +10,17 @@ var hasCreatedSpawner = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var testMapRoom = Room.new(Vector2i(-2,6), Vector2i(8,6))
 	spawnEnemiesInRoom(
 		Room.new(
 			Vector2i(-2,6), # position
-			Vector2i(8, 6) # size
-			)
+			Vector2i(8, 6), # size
+			false)
 		)
 	spawnRoomLoot(
 		Room.new(
 			Vector2i(-2,6), # position
-			Vector2i(8, 6) # size
+			Vector2i(8, 6),# size
+			false 
 			)
 		)
 	$ObjectivePoint/Timer/Label.visible = false

@@ -11,12 +11,13 @@ var tileSet = $Region1Tiles
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for room in tileSet.patternsGenerated:
-		spawnEnemiesInRoom(room)
-		print("Yipee")
+		if (room.isRoom):
+			spawnEnemiesInRoom(room)
+			spawnRoomLoot(room)
 
 	
 func spawnEnemiesInRoom(room: Room):
-	var numberRoomEnemies = randi_range(1,100)
+	var numberRoomEnemies = randi_range(1,10)
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):
