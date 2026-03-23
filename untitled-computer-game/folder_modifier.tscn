@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://68srtmt0bfde"]
+
+[ext_resource type="PackedScene" uid="uid://dhq16q0dfxsuw" path="res://art/3D Assets/FolderModifier.fbx" id="1_s6qo5"]
+
+[node name="FolderModifier" unique_id=894274761 instance=ExtResource("1_s6qo5")]
+
+[node name="Cube" parent="." index="0" unique_id=1772809879]
+transform = Transform3D(3.5839202, 0, 0, 0, -9.537335e-07, 8.000497, 0, -8.000497, -9.537335e-07, 0.13352096, 0.07286723, -0.038003825)
+
+[node name="Cube_001" parent="." index="1" unique_id=1353675061]
+transform = Transform3D(1.1738695, 0, 0, 0, -7.782802e-07, 6.528687, 0, -6.528687, -7.782802e-07, 0.1519441, 0.23017466, -0.04777497)
+
+[node name="Cube_002" parent="." index="2" unique_id=646261096]
+transform = Transform3D(3.4529626e-07, 9.2280163e-07, -0.20961127, 0, -6.1114388, -3.1650423e-08, -5.79311, 8.684877e-14, -2.498761e-08, 0.14792913, -0.115399554, 0.29070732)

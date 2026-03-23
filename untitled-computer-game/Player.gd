@@ -211,6 +211,8 @@ func dropMod() -> void:
 	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
 	newDroppedItem.global_position = _character.global_position
 	newDroppedItem.itemType = "Modifier"
+	newDroppedItem.setWeaponType("Modifier")
+
 	newDroppedItem.item = modifier
 	
 	

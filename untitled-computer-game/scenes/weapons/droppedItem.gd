@@ -30,6 +30,9 @@ var melee3DModel = preload("res://rgb_sword.tscn")
 @onready
 var ranged3DModel = preload("res://electricity_blaster.tscn")
 
+@onready 
+var modifier3DModel = preload("res://folder_modifier.tscn")
+
 #@onready
 #var playerCharacter = get_parent().get_node("Player").get_node("Character")
 
@@ -117,4 +120,7 @@ func setWeaponType(type: String):
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if type == "Weapon":
 		var newModel = ranged3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+	if type == "Modifier":
+		var newModel = modifier3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
