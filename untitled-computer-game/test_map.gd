@@ -4,6 +4,8 @@ extends Node2D
 @onready var enemyTSCN = preload("res://scenes/controllers/enemy.tscn")
 @onready var droppedItem = preload("res://scenes/weapons/droppedItem.tscn")
 
+@onready var tilemap_instance = get_node_or_null("TileMapScene")
+
 
 var objectiveStarted = false
 var hasCreatedSpawner = false
@@ -35,6 +37,7 @@ func _process(delta: float) -> void:
 	
 	
 	if timeLeft <= 0 and objectiveStarted:
+		tilemap_instance.toggle_gate_state(true, [Vector2i(1, 12), Vector2i(2, 12)] as Array[Vector2i], true)
 		print("Explosion")
 	elif objectiveStarted and timeLeft > 0 and !hasCreatedSpawner:
 		var newSpawner = enemySpawner.instantiate()
@@ -43,9 +46,7 @@ func _process(delta: float) -> void:
 		hasCreatedSpawner = true
 		
 		
-		var tilemap_instance = get_node_or_null("TileMapScene")
-		if tilemap_instance and tilemap_instance.changeUSBtile(Vector2i(-4, 13)):
-			tilemap_instance.changeUSBtile(Vector2(-4, 13))
+		tilemap_instance.changeUSBtile(Vector2(-4, 13))
 		
 
 	$ObjectivePoint/Timer/Label.text = timeString
