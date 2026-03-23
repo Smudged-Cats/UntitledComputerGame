@@ -160,7 +160,7 @@ func get_inverse_pattern_socket_type(type: Vector2i) -> Vector2i:
 # Force place a pattern at point p
 func place_pattern(pattern: TileMapPattern, p: Vector2i):
 	floor_layer.set_pattern(p, pattern)
-	var newRoom = Room.new(p, pattern.get_size())
+	var newRoom = Room.new(p, pattern.get_size(), )
 	patternsGenerated.append(newRoom)
 
 

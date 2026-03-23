@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c7cn2v5xv62fv"]
 
+[ext_resource type="Script" uid="uid://bn83qogdus8ij" path="res://proc_gen_map.gd" id="1_udskl"]
 [ext_resource type="Script" uid="uid://dob4eh8rnysd0" path="res://map_generation.gd" id="2_6ah64"]
 [ext_resource type="Texture2D" uid="uid://yry0m0fid6g2" path="res://art/tiles/SignRegion1SpriteSheet.png" id="2_g05o0"]
 [ext_resource type="TileSet" uid="uid://bblnf8511nj63" path="res://resources/floor_tile_set.tres" id="3_qm4jc"]
@@ -131,6 +132,7 @@ sources/6 = SubResource("TileSetAtlasSource_wqboy")
 sources/7 = SubResource("TileSetAtlasSource_emd7t")
 
 [node name="Node2D" type="Node2D" unique_id=1977402749]
+script = ExtResource("1_udskl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=957132427]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
