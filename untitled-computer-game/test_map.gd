@@ -51,7 +51,7 @@ func _on_objective_point_body_exited(body: Node2D) -> void:
 	$Bomb.onObjective = false
 	
 func spawnEnemiesInRoom(room: Room):
-	var numberRoomEnemies = randi_range(1,10)
+	var numberRoomEnemies = randi_range(1,100)
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($TileMapScene/Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):
