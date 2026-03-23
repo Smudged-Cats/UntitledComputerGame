@@ -42,6 +42,11 @@ func _process(delta: float) -> void:
 		newSpawner.global_position = Vector2(200,100)
 		hasCreatedSpawner = true
 		
+		
+		var tilemap_instance = get_node_or_null("TileMapScene")
+		if tilemap_instance and tilemap_instance.changeUSBtile(Vector2i(-4, 13)):
+			tilemap_instance.changeUSBtile(Vector2(-4, 13))
+		
 
 	$ObjectivePoint/Timer/Label.text = timeString
 func _on_objective_point_body_entered(body: Node2D) -> void:

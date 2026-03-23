@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 	# Dropping bomb on objective
 	if onObjective and pickedUp and Input.is_action_just_pressed("interact") and not isActivated:
 		activateBomb()
+		$Sprite2D.visible = false
 		
 	# Moving bomb with player
 	if pickedUp and not isActivated:
@@ -53,6 +54,4 @@ func activateBomb() -> void:
 	
 	if tilemap_instance and tilemap_instance.toggle_gate_state(true):
 		tilemap_instance.toggle_gate_state(true)
-	else:
-		print("Not there baby")
 		

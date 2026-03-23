@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var gates: TileMapLayer = $Region1Tiles/GateTiles
+@onready var tiletops: TileMapLayer = $Region1Tiles/TileTop
 
 var gatesAlongX = []
 var gatesAlongY = []
@@ -37,3 +38,7 @@ func toggle_gate_state(is_active:bool) -> void:
 		for pos in gate:
 			gates.set_cell(pos, sheet_for_2, Vector2i(j, 0))
 			j += 1
+
+func changeUSBtile(pos: Vector2i) -> void:
+	var usbSource = 3
+	tiletops.set_cell(pos, usbSource, Vector2i(1, 0))
