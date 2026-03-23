@@ -3,7 +3,7 @@ extends Camera2D
 @export var subject: Node2D
 
 const CAMERA_CHASE_SPEED: float = 3.0
-const DEFAULT_ZOOM: float = 2.0
+const DEFAULT_ZOOM: float = 1.0
 
 var pulseCurve = preload("res://resources/camera_pulse_curve.tres")
 

@@ -36,6 +36,7 @@ var ranged3DModel = preload("res://electricity_blaster.tscn")
 var item
 
 func _ready() -> void:
+	get_node("PickupPrompt").visible = false
 	self.id = newDroppedID
 	newDroppedID += 1
 	$SubViewportContainer/SubViewport/Camera3D.global_position.x += self.id * 10
@@ -71,11 +72,14 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Character):
+		get_node("PickupPrompt").visible = true
 		canPickup = true
 
 
 func _on_body_exited(body: Node2D) -> void:
-	canPickup = false
+	if (body is Character):
+		get_node("PickupPrompt").visible = false
+		canPickup = false
 
 func ranGun() -> WeaponStats:
 	var ranWeapon = randi_range(1,3)
