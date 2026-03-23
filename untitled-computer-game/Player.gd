@@ -19,7 +19,10 @@ var _camera: Camera2D
 var _hud: Hud
 var modList: Array[Modifier]
 
-@onready var inventory = []
+#Adjust the the updatedSprites so that it works with the 3 null list
+@onready var inventory = [null, null, null]
+const MAX_ITEMS:int = 3
+var selectedItem:int = 0
 
 # Store dropped items that are close enough that they can be picked up
 var itemsInProximity = {}
@@ -56,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	listen_for_pickup_item()
 	listen_for_drop_item()
 	listen_for_drop_mod()
+	listenForNum()
 	_camera.update_camera_position(delta)
 	
 	if Input.is_action_just_pressed("kill me"):
@@ -63,7 +67,28 @@ func _physics_process(delta: float) -> void:
 	
 	_character.get_node("MeleeBar").value = _character.meleeWindup
 	
+func listenForNum() -> void:
+	if (Input.is_action_just_pressed("1")):
+		selectWeapon(0)
+	elif (Input.is_action_just_pressed("2")):
+		selectWeapon(1)
+	elif (Input.is_action_just_pressed("3")):
+		selectWeapon(2)
+	
 
+func selectWeapon(selectIndex:int) -> void:
+	var currItem = inventory[selectIndex]
+	print(currItem != null)
+	if (currItem != null):
+		selectedItem = selectIndex
+		if (currItem is WeaponStats):
+			_weapon.baseWeapon = currItem
+			_character.melee.baseMelee = null
+		elif (currItem is MeleeStats):
+			_weapon.baseWeapon = null
+			_character.melee.baseMelee = currItem
+			
+			
 func face_to_mouse(delta: float = 1) -> void:
 	# get_global_mouse_position returns the mouse position relative to the player (not the character)
 	var worldMousePos = get_global_mouse_position() - self._character.global_position
@@ -143,20 +168,35 @@ func get_closest_dropped_item() -> DroppedItem:
 	return closestItem
 
 func pickup_item() -> void:
-		
+	var emptyIndex: int = inventory.find(null)
+	print(emptyIndex)
+	
 	var item = get_closest_dropped_item()
 	if item == null: 
 		return
 	elif (item.item is MeleeStats):
 		var meleeStats = item.item
-		inventory.append(meleeStats)
-		_character.melee.baseMelee = meleeStats
-		_weapon.baseWeapon = null
+		if (emptyIndex != -1):
+			inventory.set(emptyIndex, meleeStats)
+			selectWeapon(emptyIndex)
+		else:
+			drop_item()
+			inventory.set(selectedItem, meleeStats)
+			selectWeapon(selectedItem)
+		#_character.melee.baseMelee = meleeStats
+		#_weapon.baseWeapon = null
 	elif (item.item is WeaponStats):
 		var weaponStats = item.item
-		_weapon.setWeapon(weaponStats)
-		inventory.append(weaponStats)
-		_character.melee.baseMelee = null
+		if (emptyIndex != -1):
+			inventory.set(emptyIndex,weaponStats)
+			selectWeapon(emptyIndex)
+		else:
+			drop_item()
+			inventory.set(selectedItem,weaponStats)
+			selectWeapon(selectedItem)
+		#_weapon.setWeapon(weaponStats)
+		#inventory.append(weaponStats)
+		#_character.melee.baseMelee = null
 		print("Picked up weapon\n",_weapon.baseWeapon.stats,"\n",_weapon.baseWeapon.projectileStats.stats)
 	elif item.item is Modifier:
 		item.item.applyBoost(self)
@@ -170,11 +210,11 @@ func pickup_item() -> void:
 
 func drop_item() -> void:
 	
-	if len(inventory) == 0: return
+	if len(inventory) == 0 || inventory[selectedItem] == null: return
 
-	var droppedWeapon = inventory.back()
-	var weaponStats = inventory.pop_back()
-
+	var droppedWeapon = inventory.get(selectedItem)
+	#var weaponStats = inventory.pop_back()
+	'''
 	if len(inventory) == 0:
 		_weapon.setWeapon(null)
 		_character.melee.baseMelee = null
@@ -184,21 +224,22 @@ func drop_item() -> void:
 	else:
 		_weapon.setWeapon(null)
 		_character.melee.baseMelee = inventory.back()
-		
-
-		
-		
+	'''
+	
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
 	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
 	if droppedWeapon.stats.has("damage"):
 		newDroppedItem.itemType = "Melee"
 		newDroppedItem.setWeaponType("Melee")
+		_character.melee.baseMelee = null
 	elif droppedWeapon.stats.has("fireRate"):
 		newDroppedItem.itemType = "Weapon"
 		newDroppedItem.setWeaponType("Weapon")
+		_weapon.baseWeapon = null
 	newDroppedItem.global_position = _character.global_position
-	newDroppedItem.item = weaponStats
+	newDroppedItem.item = droppedWeapon
+	inventory.set(selectedItem,null)
 	updateInventorySprites()
 	
 func dropMod() -> void:
@@ -220,9 +261,9 @@ func dropMod() -> void:
 func updateInventorySprites() -> void:
 	var inventoryCurrentSize = inventory.size()
 	for i in range(inventoryCurrentSize):
-		if inventory[inventoryCurrentSize - 1 - i].stats.has("damage"):
+		if inventory[inventoryCurrentSize - 1 - i] != null and inventory[inventoryCurrentSize - 1 - i].stats.has("damage"):
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = swordSprite
-		elif inventory[inventoryCurrentSize - 1 - i].stats.has("fireRate"):
+		elif inventory[inventoryCurrentSize - 1 - i] != null and inventory[inventoryCurrentSize - 1 - i].stats.has("fireRate"):
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = gunSprite
 	if inventoryCurrentSize == 2:
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
