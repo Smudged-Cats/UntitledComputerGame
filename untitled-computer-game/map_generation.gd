@@ -21,7 +21,8 @@ var patternSockets = []
 var patternsGenerated = []
 
 func _ready():
-	generate_patterns(20)
+	generate_rooms(8)
+	#generate_patterns(20)
 	#generate_pattern(0)
 	
 	#for socket in patternSockets:
@@ -39,6 +40,23 @@ func _ready():
 	#for socket in patternSockets:
 		#print(socket.p)
 
+func generate_rooms(n: int) -> void:
+	
+	if n <= 0: return
+	
+	generate_pattern(0)
+	
+	for i in (n - 1):
+		var success = false
+		var isRoom = false
+		while success == false or isRoom == false:
+			isRoom = false
+			success = false
+			var randomPatternIndex = randi_range(0, 6)
+			var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
+			success = generate_pattern(randomPatternIndex, randomSocketIndex)
+			if randomPatternIndex == 0: isRoom = true
+		
 func generate_patterns(n: int) -> void:
 	
 	if n <= 0: return
@@ -107,9 +125,15 @@ func generate_pattern(id: int = -1, layerTileSocketIndex: int = -1) -> bool:
 		patternSocketsToAdd.pop_at(i)
 		
 		#print("Placing at: " + str(patternP))
+		
 		place_pattern(pattern, patternP)
 		for j in (patternSocketsToAdd.size()):
 			patternSocketsToAdd[j].p += patternP
+		
+		# Remove socket tiles
+		#floor_layer.set_cell(patternSocket.p, -1)
+		
+		floor_layer.set_cell(layerTileSocket.p, -1)
 		
 		patternSockets.append_array(patternSocketsToAdd)
 		return true
