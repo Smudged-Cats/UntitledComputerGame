@@ -20,6 +20,7 @@ var patternSockets = []
 # Stores all generated pattern objects
 var patternsGenerated = []
 
+# Entry point
 func _ready():
 	generate_rooms(8)
 	#generate_patterns(20)
@@ -40,6 +41,7 @@ func _ready():
 	#for socket in patternSockets:
 		#print(socket.p)
 
+# This will randomly generate any pattern until there are n rooms on the map
 func generate_rooms(n: int) -> void:
 	
 	if n <= 0: return
@@ -57,6 +59,7 @@ func generate_rooms(n: int) -> void:
 			success = generate_pattern(randomPatternIndex, randomSocketIndex)
 			if randomPatternIndex == 0: isRoom = true
 		
+# Generate n patterns. No other conditions
 func generate_patterns(n: int) -> void:
 	
 	if n <= 0: return
@@ -73,7 +76,7 @@ func generate_patterns(n: int) -> void:
 			
 			success = generate_pattern(randomPatternIndex, randomSocketIndex)
 		
-
+# Given a pattern id, attempt to generate it at the given socket
 func generate_pattern(id: int = -1, layerTileSocketIndex: int = -1) -> bool:
 	#print("Generating pattern...")
 	
@@ -132,8 +135,7 @@ func generate_pattern(id: int = -1, layerTileSocketIndex: int = -1) -> bool:
 		
 		# Remove socket tiles
 		#floor_layer.set_cell(patternSocket.p, -1)
-		
-		floor_layer.set_cell(layerTileSocket.p, -1)
+		#floor_layer.set_cell(layerTileSocket.p, -1)
 		
 		patternSockets.append_array(patternSocketsToAdd)
 		return true
@@ -175,6 +177,7 @@ func check_pattern_placement_for_collision(pattern: TileMapPattern, p: Vector2i)
 				return true
 	return false
 
+# Given a socket type (top left), get the matching opposite socket in a pattern (bottom right)
 func get_inverse_pattern_socket_type(type: Vector2i) -> Vector2i:
 	if type == socket_tile_top_left: return socket_tile_bottom_right
 	if type == socket_tile_top_right: return socket_tile_bottom_left
@@ -199,11 +202,11 @@ func pick_pattern(id: int = -1) -> TileMapPattern:
 		id = randi_range(0, tile_set.get_patterns_count() - 1)
 	return tile_set.get_pattern(id)
 
-
-func _on_timer_timeout() -> void:
-	var success = false
-	while success == false:
-		var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
-		var randomPatternIndex = randi_range(0, 6)
-		
-		success = generate_pattern(randomPatternIndex, randomSocketIndex)
+# Not used
+#func _on_timer_timeout() -> void:
+	#var success = false
+	#while success == false:
+		#var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
+		#var randomPatternIndex = randi_range(0, 6)
+		#
+		#success = generate_pattern(randomPatternIndex, randomSocketIndex)

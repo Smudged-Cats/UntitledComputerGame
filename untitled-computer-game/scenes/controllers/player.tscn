@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://i8dbxb8o0ykw" path="res://scenes/controllers/game_camera.gd" id="2_bqoay"]
 [ext_resource type="PackedScene" uid="uid://tptn3cx4kksl" path="res://scenes/characters/blue_character.tscn" id="2_hlsme"]
 [ext_resource type="PackedScene" uid="uid://bm7dmi8pto8pk" path="res://scenes/ui/hud.tscn" id="3_uoc7w"]
+[ext_resource type="PackedScene" uid="uid://46mfe4xwqvlu" path="res://tutorial.tscn" id="5_xxdfd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uoc7w"]
 radius = 51.0
@@ -47,6 +48,8 @@ max_value = 1.0
 step = 0.01
 fill_mode = 1
 texture_progress = SubResource("GradientTexture2D_bqoay")
+
+[node name="Tutorial" parent="." unique_id=1571412551 instance=ExtResource("5_xxdfd")]
 
 [connection signal="damaged" from="Character" to="Camera2D" method="_on_character_damaged"]
 [connection signal="health_changed" from="Character" to="Camera2D/HUD" method="_on_character_health_changed"]
