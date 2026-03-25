@@ -33,6 +33,9 @@ var ranged3DModel = preload("res://electricity_blaster.tscn")
 @onready 
 var modifier3DModel = preload("res://folder_modifier.tscn")
 
+@onready
+var bomb3DModel = preload("res://usb_item.tscn")
+
 #@onready
 #var playerCharacter = get_parent().get_node("Player").get_node("Character")
 
@@ -61,7 +64,9 @@ func _ready() -> void:
 			{"fireRate":0.3,"projectileCount":1,"spread":0.35},
 			{"damage":1.0}
 			)
-
+	elif (itemType == "Bomb"):
+		setWeaponType("Bomb")
+		item = bombStats()
 
 
 
@@ -110,6 +115,10 @@ func ranGun() -> WeaponStats:
 
 func ranMelee() -> MeleeStats:
 	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5))
+	
+func bombStats() -> MeleeStats:
+		return MeleeStats.new(0, 0)
+
 
 func setWeaponType(type: String):
 	self.itemType = type
@@ -123,4 +132,7 @@ func setWeaponType(type: String):
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if type == "Modifier":
 		var newModel = modifier3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+	if type == "Bomb":
+		var newModel = bomb3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)

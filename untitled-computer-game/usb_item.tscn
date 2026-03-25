@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://drnhvnfqcc03o"]
+
+[ext_resource type="PackedScene" uid="uid://k1qffbanmjon" path="res://art/3D Assets/USBItem.fbx" id="1_8tj0a"]
+
+[node name="USBItem" unique_id=385560726 instance=ExtResource("1_8tj0a")]
+
+[node name="Cube" parent="." index="0" unique_id=829338005]
+transform = Transform3D(3.9084978, 0, 0, 0, -4.6592925e-07, 2.891122, 0, -3.9084976, -3.4464864e-07, -0.19277327, -0.23965448, -0.18141659)
+
+[node name="Eyes" parent="." index="1" unique_id=148200410]
+transform = Transform3D(1.18729346e-07, 2.9346032e-07, 4.3726716, 0, -1.9434998, 6.60255e-07, 1.9919479, -2.7618793e-14, -5.212631e-07, -0.059865184, 0.78498256, -0.27440548)
+
+[node name="Head" parent="." index="2" unique_id=788779430]
+transform = Transform3D(5.2510194e-07, 1.1356832, -7.876528e-07, 0, 6.769199e-08, 8.809749, 8.809749, -1.01537985e-07, 0, -0.08424186, 0.72838753, -0.19304864)
+
+[node name="LeftAntenna" parent="." index="3" unique_id=796573923]
+transform = Transform3D(0.6664574, 0.11553889, -0.11245676, 0.041612577, 0.36929268, 1.2916873, 0.0649584, -1.421971, 0.32631987, -0.07547708, 0.95507026, -0.30469537)
+
+[node name="Mouth" parent="." index="4" unique_id=2043687572]
+transform = Transform3D(9.143993e-08, 2.3164378e-07, 0.28196877, 0, -1.5341074, 4.25761e-08, 1.5341074, -2.1800978e-14, -3.3613297e-08, -0.060443353, 0.66286355, -0.18022121)
+
+[node name="Rigth Antenna" parent="." index="5" unique_id=1154486952]
+transform = Transform3D(-1.1110826, 0.06898556, -0.02693963, -0.0059271567, 0.43859914, 1.145278, 0.06053812, 1.3090644, -0.38230315, -0.07460849, 0.9514625, -0.048704997)

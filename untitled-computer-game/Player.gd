@@ -203,6 +203,14 @@ func pickup_item() -> void:
 		modList.append(item.item)
 		print("Applied modifications\n",_weapon.weaponMuls.stats,"\n",_weapon.weaponMuls.projectileStats.stats)
 		
+	elif item.itemType == "Bomb":
+		var meleeStats = item.item
+		inventory.set(selectedItem, meleeStats)
+		selectWeapon(selectedItem)
+
+		
+		
+		
 	# remove the dropped item from the world
 	item.queue_free()
 	updateInventorySprites()
@@ -229,7 +237,11 @@ func drop_item() -> void:
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
 	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
-	if droppedWeapon.stats.has("damage"):
+	if droppedWeapon.stats.has("damage") && droppedWeapon.stats["damage"] == 0:
+		newDroppedItem.itemType = "Bomb"
+		newDroppedItem.setWeaponType("Bomb")
+		_character.melee.baseMelee = null
+	elif droppedWeapon.stats.has("damage"):
 		newDroppedItem.itemType = "Melee"
 		newDroppedItem.setWeaponType("Melee")
 		_character.melee.baseMelee = null
@@ -237,6 +249,9 @@ func drop_item() -> void:
 		newDroppedItem.itemType = "Weapon"
 		newDroppedItem.setWeaponType("Weapon")
 		_weapon.baseWeapon = null
+
+
+
 	newDroppedItem.global_position = _character.global_position
 	newDroppedItem.item = droppedWeapon
 	inventory.set(selectedItem,null)
@@ -290,3 +305,22 @@ func _on_character_killed() -> void:
 func addMod():
 	modList.append(Modifier.new({"fireRate":0.3},{"damage":1.0}))
 	modList.get(modList.size() - 1).applyBoost(self)
+	
+func activateBombItem() -> void:
+	for item in inventory:
+		if item != null:
+			if item.stats.has("damage"):
+				if item.stats["damage"] == 0:
+					$"../ObjectivePoint/Timer/Label".visible = true
+					$"../ObjectivePoint/Timer".start()
+					var map_node = get_parent()
+					var tilemap_instance = map_node.get_node_or_null("TileMapScene")
+					
+					tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)
+					tilemap_instance.toggle_gate_state(false, [Vector2i(-3, 9), Vector2i(-3, 8)] as Array[Vector2i], false)
+						
+					_character.melee.baseMelee = null
+					inventory.set(selectedItem, null)
+					updateInventorySprites()
+				
+		

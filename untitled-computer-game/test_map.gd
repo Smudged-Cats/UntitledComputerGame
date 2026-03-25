@@ -6,9 +6,8 @@ extends Node2D
 
 @onready var tilemap_instance = get_node_or_null("TileMapScene")
 
+@onready var onObjective = false
 
-var objectiveStarted = false
-var hasCreatedSpawner = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,27 +33,19 @@ func _process(delta: float) -> void:
 	var minutesLeft: int = floor(timeLeft / 60.0)
 	var secondsLeft: int = fmod(timeLeft, 60.0)
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
-	
-	
-	if timeLeft <= 0 and objectiveStarted:
-		tilemap_instance.toggle_gate_state(true, [Vector2i(1, 12), Vector2i(2, 12)] as Array[Vector2i], true)
-		print("Explosion")
-	elif objectiveStarted and timeLeft > 0 and !hasCreatedSpawner:
+	if onObjective and Input.is_action_pressed("interact"):
+		get_node("Player").activateBombItem()
+		tilemap_instance.changeUSBtile(Vector2(-4, 13))
 		var newSpawner = enemySpawner.instantiate()
 		add_child(newSpawner)
-		newSpawner.global_position = Vector2(200,100)
-		hasCreatedSpawner = true
-		
-		
-		tilemap_instance.changeUSBtile(Vector2(-4, 13))
+
 		
 
 	$ObjectivePoint/Timer/Label.text = timeString
 func _on_objective_point_body_entered(body: Node2D) -> void:
-	$Bomb.onObjective = true
-
+	onObjective = true
 func _on_objective_point_body_exited(body: Node2D) -> void:
-	$Bomb.onObjective = false
+	onObjective = false
 	
 func spawnEnemiesInRoom(room: Room):
 	var numberRoomEnemies = randi_range(1,100)
