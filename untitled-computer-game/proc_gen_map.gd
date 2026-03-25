@@ -20,7 +20,7 @@ func spawnEnemiesInRoom(room: Room):
 	var numberRoomEnemies = randi_range(1,10)
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
-		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):
+		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) > 1):
 			var newEnemy = enemyTSCN.instantiate()
 			var pixelPos = $Region1Tiles/Tiles.map_to_local(randomLocation)
 			newEnemy.position = pixelPos
@@ -31,7 +31,7 @@ func spawnRoomLoot(room: Room):
 	var randomLootNumber = randi_range(1,5)
 	for i in range(randomLootNumber):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
-		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):
+		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) > 1):
 			var newDroppedItem = droppedItem.instantiate()
 			newDroppedItem.setWeaponType(weaponTypes[randi_range(0,2)])
 			var pixelPos = $Region1Tiles/Tiles.map_to_local(randomLocation)

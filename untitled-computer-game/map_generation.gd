@@ -54,7 +54,7 @@ func generate_rooms(n: int) -> void:
 		while success == false or isRoom == false:
 			isRoom = false
 			success = false
-			var randomPatternIndex = randi_range(0, 6)
+			var randomPatternIndex = randi_range(0, 7)
 			var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
 			success = generate_pattern(randomPatternIndex, randomSocketIndex)
 			if randomPatternIndex == 0: isRoom = true
@@ -134,8 +134,8 @@ func generate_pattern(id: int = -1, layerTileSocketIndex: int = -1) -> bool:
 			patternSocketsToAdd[j].p += patternP
 		
 		# Remove socket tiles
-		#floor_layer.set_cell(patternSocket.p, -1)
-		#floor_layer.set_cell(layerTileSocket.p, -1)
+		floor_layer.set_cell(patternSocket.p, 1, Vector2i(0,0))
+		floor_layer.set_cell(layerTileSocket.p, 5, Vector2i(0,0))
 		
 		patternSockets.append_array(patternSocketsToAdd)
 		return true
