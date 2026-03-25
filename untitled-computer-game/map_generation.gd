@@ -173,8 +173,18 @@ func check_pattern_placement_for_collision(pattern: TileMapPattern, p: Vector2i)
 			var patternTileId = pattern.get_cell_source_id(Vector2i(x, y))
 			var layerTileId = floor_layer.get_cell_source_id(Vector2i(p.x + x, p.y + y))
 			
-			if (patternTileId != -1 and patternTileId != socket_tiles_atlas_id) and (layerTileId != -1 and layerTileId != socket_tiles_atlas_id):
+			var patternTileisEmpty = patternTileId == -1
+			var layerTileIsEmpty = layerTileId == -1
+			
+			var patternTileIsSocket = patternTileId == socket_tiles_atlas_id
+			var layerTileIsSocket = layerTileId == socket_tiles_atlas_id
+			
+			if (patternTileId == 1 and layerTileId == 1):
+				continue
+				
+			if (not patternTileisEmpty and not patternTileIsSocket) and (not layerTileIsEmpty and not layerTileIsSocket):
 				return true
+	
 	return false
 
 # Given a socket type (top left), get the matching opposite socket in a pattern (bottom right)
