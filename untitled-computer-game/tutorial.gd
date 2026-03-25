@@ -1,19 +1,22 @@
 extends CanvasLayer
 
+static var tutorialMessageScene = preload("res://tutorial_message.tscn")
 
+var click = false
+var currentMessage = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	display_message("Welcome to Untitled Computer Game!")
-	wait(2)
+	print("Starting tutorial")
+	currentMessage = add_message("Welcome to Untitled Computer Game!")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-# wait n seconds
-func wait(n) -> void:
-	await get_tree().create_timer(n).timeout
-
-func display_message(message: string):
-	
+func add_message(newMsg: String) -> TutorialMessage:
+	var msgScene = tutorialMessageScene.instantiate()
+	$Control.add_child(msgScene)
+	msgScene.message = newMsg
+	print(msgScene.message)
+	return msgScene

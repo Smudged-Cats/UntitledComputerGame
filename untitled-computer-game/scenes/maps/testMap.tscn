@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x877k"]
 size = Vector2(81.28537, 82.33595)
 
-[node name="Node2D" type="Node2D" unique_id=631044804]
+[node name="Node2D2" type="Node2D" unique_id=631044804]
 y_sort_enabled = true
 script = ExtResource("1_il6hr")
 

@@ -1,8 +1,48 @@
 [gd_scene format=3 uid="uid://c5pc3q0cyunt0"]
 
-[node name="RichTextLabel" type="RichTextLabel" unique_id=606281390]
-offset_right = 221.0
-offset_bottom = 40.0
-text = "MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE MESSAGE "
-fit_content = true
-scroll_active = false
+[ext_resource type="Script" uid="uid://6skt3fodhguu" path="res://tutorial_message.gd" id="1_kwdf2"]
+
+[sub_resource type="SystemFont" id="SystemFont_kwdf2"]
+font_names = PackedStringArray("Arial")
+font_italic = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_lwk3s"]
+font = SubResource("SystemFont_kwdf2")
+
+[node name="Label" type="Label" unique_id=2124662213]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -280.0
+offset_right = 200.0
+offset_bottom = -230.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Untitled Computer Game Message Something Something"
+label_settings = SubResource("LabelSettings_lwk3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("1_kwdf2")
+
+[node name="Prompt" type="Label" parent="." unique_id=973620002]
+self_modulate = Color(0.65, 0.65, 0.65, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Click to continue"
+label_settings = SubResource("LabelSettings_lwk3s")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
