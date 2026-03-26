@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="6_2morg"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="7_q41uj"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_o6k6t"]
+[ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="11_2morg"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="11_y1omr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui48y"]
@@ -168,3 +169,6 @@ tile_set = SubResource("TileSet_847ud")
 [node name="Player" parent="." unique_id=851249208 instance=ExtResource("11_y1omr")]
 z_index = 2
 y_sort_enabled = true
+
+[node name="Area2D" parent="." unique_id=1104612395 instance=ExtResource("11_2morg")]
+itemType = "Weapon"

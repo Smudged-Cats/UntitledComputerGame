@@ -22,7 +22,7 @@ var patternsGenerated = []
 
 # Entry point
 func _ready():
-	generate_rooms(8)
+	generate_rooms(30)
 	#generate_patterns(20)
 	#generate_pattern(0)
 	
@@ -58,6 +58,16 @@ func generate_rooms(n: int) -> void:
 			var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
 			success = generate_pattern(randomPatternIndex, randomSocketIndex)
 			if randomPatternIndex == 0: isRoom = true
+	
+	# Remove any unconnected sockets
+	for socket in patternSockets:
+		if floor_layer.get_cell_source_id(socket.p) != 0: continue
+		floor_layer.set_cell(socket.p, 1, Vector2i.ZERO)
+		
+		if socket.type == socket_tile_bottom_left:
+			floor_layer.set_cell(socket.p + Vector2i.RIGHT, 1, Vector2i.ZERO)
+		elif socket.type == socket_tile_bottom_right:
+			floor_layer.set_cell(socket.p + Vector2i.DOWN, 1, Vector2i.ZERO)
 		
 # Generate n patterns. No other conditions
 func generate_patterns(n: int) -> void:
@@ -130,11 +140,11 @@ func generate_pattern(id: int = -1, layerTileSocketIndex: int = -1) -> bool:
 		#print("Placing at: " + str(patternP))
 		
 		place_pattern(pattern, patternP)
+		
 		for j in (patternSocketsToAdd.size()):
 			patternSocketsToAdd[j].p += patternP
 		
-		# Remove socket tiles
-		floor_layer.set_cell(patternSocket.p, 1, Vector2i(0,0))
+		# Remove connected socket tile
 		floor_layer.set_cell(layerTileSocket.p, 5, Vector2i(0,0))
 		
 		patternSockets.append_array(patternSocketsToAdd)

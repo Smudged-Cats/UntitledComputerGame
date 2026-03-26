@@ -163,3 +163,12 @@ func takeDamage(damage: int, sourcePosition: Vector2, enemySpeed) -> void:
 	newNumberScene.damage = damage
 	newNumberScene.global_position = global_position
 	get_tree().get_root().add_child(newNumberScene)
+
+
+func _on_cullcheck_timer_timeout() -> void:
+	if Player.instance == null: return
+	#var difference = (Player.instance._camera.position - self.position)
+	#if difference.length() <= 500:
+		#$SubViewportContainer.visible = true
+	#else:
+		#$SubViewportContainer.visible = false

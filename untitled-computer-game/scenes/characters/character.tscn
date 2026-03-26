@@ -37,3 +37,9 @@ size = 4.0
 
 [node name="ModelRoot" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=863311457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3841858e-07, 4.7683716e-07)
+
+[node name="Timer" type="Timer" parent="SubViewportContainer" unique_id=1991251878]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="SubViewportContainer/Timer" to="." method="_on_cullcheck_timer_timeout"]

@@ -16,8 +16,12 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="UntitledComputerGame"
 run/main_scene="uid://bgrymso8rttja"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://art/icon.svg"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
@@ -25,6 +29,7 @@ window/size/viewport_width=1600
 window/size/viewport_height=900
 window/size/resizable=false
 window/size/borderless=true
+window/vsync/vsync_mode=0
 
 [dotnet]
 
