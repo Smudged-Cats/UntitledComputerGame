@@ -7,10 +7,8 @@ static var instance: Player
 var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 
-@onready 
 var gunSprite = preload("res://art/tiles/pixil-frame-0.png")
 
-@onready 
 var swordSprite = preload("res://art/tiles/pixil-frame-0_1.png")
 
 var _character: Character
@@ -20,7 +18,7 @@ var _hud: Hud
 var modList: Array[Modifier]
 
 #Adjust the the updatedSprites so that it works with the 3 null list
-@onready var inventory = [null, null, null]
+var inventory = [null, null, null]
 const MAX_ITEMS:int = 3
 var selectedItem:int = 0
 
@@ -236,7 +234,7 @@ func drop_item() -> void:
 	
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
-	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
+	get_parent().add_child(newDroppedItem)
 	if droppedWeapon.stats.has("damage") && droppedWeapon.stats["damage"] == 0:
 		newDroppedItem.itemType = "Bomb"
 		newDroppedItem.setWeaponType("Bomb")

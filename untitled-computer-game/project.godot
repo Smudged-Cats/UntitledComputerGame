@@ -19,17 +19,12 @@ run/main_scene="uid://bgrymso8rttja"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://art/icon.svg"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
 window/size/resizable=false
 window/size/borderless=true
-window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -160,12 +155,15 @@ enter={
 
 [physics]
 
+2d/run_on_separate_thread=true
+3d/run_on_separate_thread=true
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
 rendering_device/driver.windows="d3d12"
+driver/threads/thread_model=2
 environment/defaults/default_clear_color=Color(0.23753911, 0.23753914, 0.23753911, 0)
 environment/size/viewport_height=648
 environment/size/viewport_width=1152

@@ -18,23 +18,17 @@ var pickedUp = false
 @onready 
 var canPickup = false
 
-@onready 
-var meleePlaceholderSprite = preload("res://art/tiles/pixil-frame-0_1.png")
+static var meleePlaceholderSprite = preload("res://art/tiles/pixil-frame-0_1.png")
 
-@onready 
-var rangedPlaceholderSprite = preload("res://art/tiles/pixil-frame-0.png")
+static var rangedPlaceholderSprite = preload("res://art/tiles/pixil-frame-0.png")
 
-@onready
-var melee3DModel = preload("res://rgb_sword.tscn")
+static var melee3DModel = preload("res://rgb_sword.tscn")
 
-@onready
-var ranged3DModel = preload("res://electricity_blaster.tscn")
+static var ranged3DModel = preload("res://electricity_blaster.tscn")
 
-@onready 
-var modifier3DModel = preload("res://folder_modifier.tscn")
+static var modifier3DModel = preload("res://folder_modifier.tscn")
 
-@onready
-var bomb3DModel = preload("res://usb_item.tscn")
+static var bomb3DModel = preload("res://usb_item.tscn")
 
 #@onready
 #var playerCharacter = get_parent().get_node("Player").get_node("Character")

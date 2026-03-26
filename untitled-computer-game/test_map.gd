@@ -11,19 +11,25 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawnEnemiesInRoom(
-		Room.new(
-			Vector2i(-2,6), # position
-			Vector2i(8, 6), # size
-			false)
-		)
-	spawnRoomLoot(
-		Room.new(
-			Vector2i(-2,6), # position
-			Vector2i(8, 6),# size
-			false 
-			)
-		)
+	
+	for i in 300:
+		var newEnemy = enemyTSCN.instantiate()
+		newEnemy.position = Vector2i(500+i*10,0)
+		add_child(newEnemy)
+	
+	#spawnEnemiesInRoom(
+		#Room.new(
+			#Vector2i(-2,6), # position
+			#Vector2i(8, 6), # size
+			#false)
+		#)
+	#spawnRoomLoot(
+		#Room.new(
+			#Vector2i(-2,6), # position
+			#Vector2i(8, 6),# size
+			#false 
+			#)
+		#)
 	$ObjectivePoint/Timer/Label.visible = false
 	
 	

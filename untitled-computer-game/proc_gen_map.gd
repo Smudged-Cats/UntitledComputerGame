@@ -25,8 +25,8 @@ func spawnEnemiesInRoom(room: Room):
 			var newEnemy = enemyTSCN.instantiate()
 			var pixelPos = $Region1Tiles/Tiles.map_to_local(randomLocation)
 			newEnemy.position = pixelPos
-			add_child(newEnemy)
-		
+			add_child.call_deferred(newEnemy)
+
 func spawnRoomLoot(room: Room):
 	var weaponTypes = ["Weapon", "Melee", "Modifier"]
 	var randomLootNumber = randi_range(1,5)
@@ -37,6 +37,6 @@ func spawnRoomLoot(room: Room):
 			newDroppedItem.setWeaponType(weaponTypes[randi_range(0,2)])
 			var pixelPos = $Region1Tiles/Tiles.map_to_local(randomLocation)
 			newDroppedItem.position = pixelPos
-			add_child(newDroppedItem)
+			add_child.call_deferred(newDroppedItem)
 	
 	
