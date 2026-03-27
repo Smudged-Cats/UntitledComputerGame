@@ -10,11 +10,13 @@ static var curve = preload("res://resources/message_popup_curve.tres") # asset r
 
 # Flashing variables
 var text_alpha = 0 # The desired value we want the alpha channel of the prompt to be
-var flashing = true
+var flashing = false
 var flash_direction = 1
 
 var message = "":
 	set = on_message_set # Call this function to set the message
+
+var canSkip = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,7 +28,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	# Listen for input
-	if Input.is_action_just_pressed("next message"):
+	if Input.is_action_just_pressed("next message") and canSkip:
 		remove_message()
 	
 	# Ease in
@@ -38,7 +40,7 @@ func _process(delta: float) -> void:
 			easing_in = false
 
 	# Flash the "next message" prompt
-	if flashing:		
+	if flashing:
 		text_alpha += flash_direction*delta
 		if text_alpha <= 0:
 			flash_direction = 1
@@ -52,3 +54,6 @@ func remove_message() -> void:
 # TODO: Maybe some animations here would be cool
 func on_message_set(newMsg) -> void:
 	text = newMsg
+	
+	if canSkip:
+		flashing = true

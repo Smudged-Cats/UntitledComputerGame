@@ -4,12 +4,14 @@ class_name Player
 # Singleton class, because there can only be one player
 static var instance: Player
 
-var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
-var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
+signal picked_up_item()
 
-var gunSprite = preload("res://art/tiles/pixil-frame-0.png")
+static var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
+static var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 
-var swordSprite = preload("res://art/tiles/pixil-frame-0_1.png")
+static var gunSprite = preload("res://art/tiles/pixil-frame-0.png")
+
+static var swordSprite = preload("res://art/tiles/pixil-frame-0_1.png")
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -206,6 +208,7 @@ func pickup_item() -> void:
 		inventory.set(selectedItem, meleeStats)
 		selectWeapon(selectedItem)
 
+	emit_signal("picked_up_item")
 	
 	# remove the dropped item from the world
 	item.queue_free.call_deferred()
