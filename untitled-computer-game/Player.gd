@@ -28,7 +28,7 @@ var itemsInProximity = {}
 func _ready() -> void:
 	if instance:
 		push_error("More than one player instance detected")
-		queue_free()
+		queue_free.call_deferred()
 	
 	instance = self
 	_camera = $Camera2D
@@ -206,11 +206,9 @@ func pickup_item() -> void:
 		inventory.set(selectedItem, meleeStats)
 		selectWeapon(selectedItem)
 
-		
-		
-		
+	
 	# remove the dropped item from the world
-	item.queue_free()
+	item.queue_free.call_deferred()
 	updateInventorySprites()
 	
 
@@ -298,7 +296,7 @@ func show_death_screen() -> void:
 
 func _on_character_killed() -> void:
 	show_death_screen()
-	_character.queue_free()
+	_character.queue_free.call_deferred()
 
 func addMod():
 	modList.append(Modifier.new({"fireRate":0.3},{"damage":1.0}))
