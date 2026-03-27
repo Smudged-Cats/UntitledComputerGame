@@ -54,22 +54,17 @@ func _ready() -> void:
 		item = ranMelee()
 		
 	elif (itemType == "Modifier"):
-		item = Modifier.new(
-			{"fireRate":0.3,"projectileCount":1,"spread":0.35},
-			{"damage":1.0}
-			)
+		setWeaponType("Modifier")
+		item = ranMod()
 	elif (itemType == "Bomb"):
 		setWeaponType("Bomb")
 		item = bombStats()
-
 
 
 func _process(delta: float) -> void:
 	$SubViewportContainer/SubViewport/ModelRoot.rotate_y(1*delta)
 	$SubViewportContainer/SubViewport/ModelRoot.global_position.z = sin(t)
 	t+= delta
-
-
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -113,6 +108,30 @@ func ranMelee() -> MeleeStats:
 func bombStats() -> MeleeStats:
 		return MeleeStats.new(0, 0)
 
+func ranMod() -> Modifier:
+	var weaponStats: WeaponStats = WeaponStats.new(
+		0,
+		0,
+		null
+	)
+	
+	var projectileStats: ProjectileStats = ProjectileStats.new(
+		0,
+		0,
+	)
+	return Modifier.new(genModDict(weaponStats.stats),genModDict(projectileStats.stats))
+	'''
+	return Modifier.new(
+			{"fireRate":0.3,"projectileCount":1,"spread":0.35},
+			{"damage":1.0}
+			)
+	'''
+
+func genModDict(itemStats:Dictionary) -> Dictionary:
+	var itemDict: Dictionary = {}
+	for stat in itemStats.keys():
+		itemDict[stat] = randf_range(1,10)
+	return itemDict
 
 func setWeaponType(type: String):
 	self.itemType = type

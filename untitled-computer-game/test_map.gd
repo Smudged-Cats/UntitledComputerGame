@@ -12,10 +12,10 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	for i in 200:
-		var newEnemy = enemyTSCN.instantiate()
-		newEnemy.position = Vector2i(500+i*10,0)
-		add_child(newEnemy)
+	#for i in 300:
+		#var newEnemy = enemyTSCN.instantiate()
+		#newEnemy.position = Vector2i(500+i*10,0)
+		#add_child(newEnemy)
 	
 	#spawnEnemiesInRoom(
 		#Room.new(

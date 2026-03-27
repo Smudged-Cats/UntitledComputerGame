@@ -46,7 +46,12 @@ func generate_rooms(n: int) -> void:
 	
 	if n <= 0: return
 	
-	generate_pattern(0)
+	var rootRoom = Room.new(Vector2i(6,-7), Vector2i(13,13), true)
+	patternSockets.append(PatternSocket.new(Vector2i(6,-2), socket_tile_top_left))
+	patternSockets.append(PatternSocket.new(Vector2i(12,5), socket_tile_bottom_left))
+	patternSockets.append(PatternSocket.new(Vector2i(12,-7), socket_tile_top_right))
+	patternSockets.append(PatternSocket.new(Vector2i(18,-2), socket_tile_bottom_right))
+
 	
 	for i in (n - 1):
 		var success = false
@@ -68,6 +73,11 @@ func generate_rooms(n: int) -> void:
 			floor_layer.set_cell(socket.p + Vector2i.RIGHT, 1, Vector2i.ZERO)
 		elif socket.type == socket_tile_bottom_right:
 			floor_layer.set_cell(socket.p + Vector2i.DOWN, 1, Vector2i.ZERO)
+		if socket.type == socket_tile_top_right:
+			floor_layer.set_cell(socket.p + Vector2i.RIGHT, 1, Vector2i.ZERO)
+		elif socket.type == socket_tile_top_left:
+			floor_layer.set_cell(socket.p + Vector2i.DOWN, 1, Vector2i.ZERO)
+		
 		
 # Generate n patterns. No other conditions
 func generate_patterns(n: int) -> void:

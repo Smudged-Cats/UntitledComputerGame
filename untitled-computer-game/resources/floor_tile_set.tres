@@ -41,7 +41,7 @@ resource_name = "Barrier"
 texture = ExtResource("2_rvk2a")
 texture_region_size = Vector2i(128, 64)
 0:0/0 = 0
-0:0/0/modulate = Color(1, 1, 1, 0.011764706)
+0:0/0/modulate = Color(1, 1, 1, 0.41960785)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, 64, 0, 0, 32, -64, 0)
 0:1/0 = 0
 

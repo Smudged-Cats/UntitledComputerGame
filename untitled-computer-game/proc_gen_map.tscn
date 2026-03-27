@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/TileTops/Region1TileTop1.png" id="4_udskl"]
 [ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="5_y1omr"]
 [ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="6_2morg"]
+[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTiletop.png" id="7_2morg"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="7_q41uj"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_o6k6t"]
 [ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="11_2morg"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="11_y1omr"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui48y"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q41uj"]
 texture = ExtResource("2_g05o0")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -37,28 +38,37 @@ tile_shape = 1
 tile_size = Vector2i(128, 64)
 custom_data_layer_0/name = "show_text"
 custom_data_layer_0/type = 1
-sources/1 = SubResource("TileSetAtlasSource_ui48y")
+sources/1 = SubResource("TileSetAtlasSource_q41uj")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyb07"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6k6t"]
 texture = ExtResource("4_udskl")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -29)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgkgg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui48y"]
 texture = ExtResource("5_y1omr")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, -29)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nc4n3"]
+texture = ExtResource("7_2morg")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -29)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -29)
+
 [sub_resource type="TileSet" id="TileSet_mtlp5"]
 tile_shape = 1
 tile_size = Vector2i(128, 64)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_gyb07")
-sources/1 = SubResource("TileSetAtlasSource_cgkgg")
+sources/0 = SubResource("TileSetAtlasSource_o6k6t")
+sources/1 = SubResource("TileSetAtlasSource_ui48y")
+sources/2 = SubResource("TileSetAtlasSource_nc4n3")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldj7o"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyb07"]
 texture = ExtResource("6_2morg")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -70,14 +80,14 @@ texture_region_size = Vector2i(128, 128)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3lkvx"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a43d2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgkgg"]
 texture = SubResource("CompressedTexture2D_3lkvx")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 31)
 0:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqboy"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtlp5"]
 texture = ExtResource("7_q41uj")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -101,7 +111,7 @@ texture_region_size = Vector2i(128, 128)
 2:1/0 = 0
 3:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_emd7t"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldj7o"]
 texture = ExtResource("8_o6k6t")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -127,10 +137,13 @@ tile_layout = 5
 tile_size = Vector2i(128, 64)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
-sources/2 = SubResource("TileSetAtlasSource_ldj7o")
-sources/3 = SubResource("TileSetAtlasSource_a43d2")
-sources/6 = SubResource("TileSetAtlasSource_wqboy")
-sources/7 = SubResource("TileSetAtlasSource_emd7t")
+sources/2 = SubResource("TileSetAtlasSource_gyb07")
+sources/3 = SubResource("TileSetAtlasSource_cgkgg")
+sources/6 = SubResource("TileSetAtlasSource_mtlp5")
+sources/7 = SubResource("TileSetAtlasSource_ldj7o")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2morg"]
+size = Vector2(81.28537, 82.33595)
 
 [node name="Node2D" type="Node2D" unique_id=1977402749]
 script = ExtResource("1_udskl")
@@ -148,6 +161,7 @@ tile_set = SubResource("TileSet_nc4n3")
 
 [node name="Tiles" type="TileMapLayer" parent="Region1Tiles" unique_id=1827245817]
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAJAP3/BQACAAAAAAAJAP7/BQACAAAAAAAJAP//BQACAAAAAAAJAAEABQACAAAAAAAJAAIABQACAAAAAAAKAPz/BQACAAAAAAAKAP3/BQABAAAAAAAKAP7/BQABAAAAAAAKAP//BQABAAAAAAAKAAAABQABAAAAAAAKAAEABQABAAAAAAAKAAIABQABAAAAAAAKAAMABQACAAAAAAALAPz/BQACAAAAAAALAP3/BQABAAAAAAALAP7/BQABAAAAAAALAP//BQABAAAAAAALAAAABQABAAAAAAALAAEABQABAAAAAAALAAIABQABAAAAAAALAAMABQACAAAAAAAMAPz/BQACAAAAAAAMAP3/BQABAAAAAAAMAP7/BQABAAAAAAAMAP//BQABAAAAAAAMAAAABQABAAAAAAAMAAEABQABAAAAAAAMAAIABQABAAAAAAAMAAMABQACAAAAAAANAP3/BQABAAAAAAANAP7/BQABAAAAAAANAP//BQABAAAAAAANAAAABQABAAAAAAANAAEABQABAAAAAAANAAIABQABAAAAAAANAAMABQACAAAAAAAOAPz/BQACAAAAAAAOAP3/BQABAAAAAAAOAP7/BQABAAAAAAAOAP//BQABAAAAAAAOAAAABQABAAAAAAAOAAEABQABAAAAAAAOAAIABQABAAAAAAAPAPz/BQACAAAAAAAPAP3/BQABAAAAAAAPAP7/BQABAAAAAAAPAP//BQABAAAAAAAPAAAABQABAAAAAAAPAAEABQABAAAAAAAPAAIABQABAAAAAAAPAAMABQACAAAAAAAQAP3/BQACAAAAAAAQAP7/BQACAAAAAAAQAP//BQACAAAAAAAQAAAABQACAAAAAAAQAAEABQACAAAAAAAQAAIABQACAAAAAAAOAAMABQACAAAAAAAQAAMABQACAAAAAAAQAPz/BQACAAAAAAANAPz/BQACAAAAAAAJAPz/BQACAAAAAAAJAAAABQACAAAAAAAJAAMABQACAAAAAAAJAAQABQACAAAAAAAKAAQABQACAAAAAAALAAQABQACAAAAAAAMAAQABQACAAAAAAANAAQABQACAAAAAAAOAAQABQACAAAAAAAPAAQABQACAAAAAAAQAAQABQACAAAAAAARAAQABQACAAAAAAARAAMABQACAAAAAAARAAIABQACAAAAAAARAAEABQACAAAAAAARAAAABQACAAAAAAARAP//BQACAAAAAAARAP7/BQACAAAAAAARAP3/BQACAAAAAAARAPz/BQACAAAAAAARAPv/BQACAAAAAAAQAPv/BQACAAAAAAAPAPv/BQACAAAAAAAOAPv/BQACAAAAAAANAPv/BQACAAAAAAAMAPv/BQACAAAAAAALAPv/BQACAAAAAAAKAPv/BQACAAAAAAAJAPv/BQACAAAAAAAIAPv/BQACAAAAAAAIAPz/BQACAAAAAAAIAP3/BQACAAAAAAAIAP7/BQACAAAAAAAIAP//BQACAAAAAAAIAAAABQACAAAAAAAIAAEABQACAAAAAAAIAAIABQACAAAAAAAIAAMABQACAAAAAAAIAAQABQACAAAAAAAHAAQABQACAAAAAAAHAAMABQACAAAAAAAHAAIABQACAAAAAAAHAAEABQACAAAAAAAHAAAABQACAAAAAAAHAP//BQACAAAAAAAHAP7/BQACAAAAAAAHAP3/BQACAAAAAAAHAPz/BQACAAAAAAAHAPv/BQACAAAAAAAIAPr/BQACAAAAAAAJAPr/BQACAAAAAAAKAPr/BQACAAAAAAALAPr/BQACAAAAAAAMAPr/BQACAAAAAAANAPr/BQACAAAAAAAOAPr/BQACAAAAAAAPAPr/BQACAAAAAAAQAPr/BQACAAAAAAARAPr/BQACAAAAAAAMAAUAAAAAAAEAAAAMAPn/AAABAAAAAAAGAP7/AAAAAAAAAAASAP7/AAABAAEAAAASAP//BQAAAAAAAAAOAAUAAQAAAAAAAAAPAAUAAQAAAAAAAAAQAAUAAQAAAAAAAAARAAUAAQAAAAAAAAASAAQAAQAAAAAAAAASAAMAAQAAAAAAAAASAAIAAQAAAAAAAAASAAEAAQAAAAAAAAASAAAAAQAAAAAAAAASAP3/AQAAAAAAAAASAPz/AQAAAAAAAAASAPv/AQAAAAAAAAASAPr/AQAAAAAAAAARAPn/AQAAAAAAAAAQAPn/AQAAAAAAAAAPAPn/AQAAAAAAAAAOAPn/AQAAAAAAAAALAPn/AQAAAAAAAAAKAPn/AQAAAAAAAAAJAPn/AQAAAAAAAAAIAPn/AQAAAAAAAAAHAPn/AQAAAAAAAAAGAP3/AQAAAAAAAAAGAPz/AQAAAAAAAAAGAPv/AQAAAAAAAAAGAAAAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAIAAQAAAAAAAAAGAAMAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAKAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAPr/BQACAAAAAAAGAPr/AQAAAAAAAAANAAUABQAAAAAAAAA=")
 tile_set = ExtResource("3_qm4jc")
 
 [node name="TemplateTiles" type="TileMapLayer" parent="Region1Tiles" unique_id=1367277586]
@@ -158,6 +172,7 @@ tile_set = ExtResource("3_qm4jc")
 
 [node name="TileTop" type="TileMapLayer" parent="Region1Tiles" unique_id=173517622]
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAGAAsAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_mtlp5")
 
 [node name="GateTiles" type="TileMapLayer" parent="Region1Tiles" unique_id=941052323]
@@ -169,6 +184,33 @@ tile_set = SubResource("TileSet_847ud")
 [node name="Player" parent="." unique_id=851249208 instance=ExtResource("11_y1omr")]
 z_index = 2
 y_sort_enabled = true
+position = Vector2(1022, 310)
 
 [node name="Area2D" parent="." unique_id=1104612395 instance=ExtResource("11_2morg")]
-itemType = "Weapon"
+position = Vector2(776, 381)
+itemType = "Bomb"
+
+[node name="ObjectivePoint" type="Area2D" parent="." unique_id=22951024]
+position = Vector2(1275, -64)
+collision_mask = 2
+
+[node name="ObjectiveCanInteract" type="CollisionShape2D" parent="ObjectivePoint" unique_id=141148704]
+position = Vector2(-382.4873, 444.31702)
+rotation = -2.6406832
+scale = Vector2(0.99999976, 0.9999999)
+skew = 0.64577186
+shape = SubResource("RectangleShape2D_2morg")
+
+[node name="Timer" type="Timer" parent="ObjectivePoint" unique_id=266391635]
+wait_time = 30.0
+one_shot = true
+
+[node name="Label" type="Label" parent="ObjectivePoint/Timer" unique_id=1203407168]
+offset_left = 878.0
+offset_top = 317.0
+offset_right = 918.0
+offset_bottom = 340.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
+[connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]

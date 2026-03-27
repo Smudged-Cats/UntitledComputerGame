@@ -56,6 +56,7 @@ offset_left = -404.0
 offset_top = 392.0
 offset_right = -364.0
 offset_bottom = 415.0
+metadata/_edit_use_anchors_ = true
 
 [node name="SwordTest" parent="." unique_id=1104612395 instance=ExtResource("5_il6hr")]
 z_index = 2
