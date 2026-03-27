@@ -13,7 +13,7 @@ func _ready() -> void:
 	currentMessage = add_message("Welcome to Untitled Computer Game!", true)
 	await wait_until_message_is_null()
 	
-	currentMessage = add_message("Move around using the W S A D, or arrow keys.", true)
+	currentMessage = add_message("Move around using the W A S D, or arrow keys.", true)
 	await wait_until_message_is_null()
 	
 	currentMessage = add_message("Pick up a weapon by pressing [E] near it")
