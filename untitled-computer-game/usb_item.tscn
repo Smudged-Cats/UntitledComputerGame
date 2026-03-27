@@ -2,6 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://k1qffbanmjon" path="res://art/3D Assets/USBItem.fbx" id="1_8tj0a"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8tj0a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr41g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nsbmt"]
+
 [node name="USBItem" unique_id=385560726 instance=ExtResource("1_8tj0a")]
 
 [node name="Cube" parent="." index="0" unique_id=829338005]
@@ -9,6 +15,9 @@ transform = Transform3D(3.9084978, 0, 0, 0, -4.6592925e-07, 2.891122, 0, -3.9084
 
 [node name="Eyes" parent="." index="1" unique_id=148200410]
 transform = Transform3D(1.18729346e-07, 2.9346032e-07, 4.3726716, 0, -1.9434998, 6.60255e-07, 1.9919479, -2.7618793e-14, -5.212631e-07, -0.059865184, 0.78498256, -0.27440548)
+material_override = SubResource("StandardMaterial3D_8tj0a")
+surface_material_override/0 = SubResource("StandardMaterial3D_cr41g")
+surface_material_override/1 = SubResource("StandardMaterial3D_nsbmt")
 
 [node name="Head" parent="." index="2" unique_id=788779430]
 transform = Transform3D(5.2510194e-07, 1.1356832, -7.876528e-07, 0, 6.769199e-08, 8.809749, 8.809749, -1.01537985e-07, 0, -0.08424186, 0.72838753, -0.19304864)
