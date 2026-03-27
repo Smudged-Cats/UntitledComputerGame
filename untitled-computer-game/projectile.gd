@@ -1,5 +1,6 @@
 extends Area2D
 
+var killTimer: float
 var stats: ProjectileStats
 var dir: Vector2
 
@@ -19,6 +20,9 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 		stats.stats["speed"] * statMuls.stats["speed"],
 		stats.stats["shotHealth"] * statMuls.stats["shotHealth"]
 	)
+	killTimer = 5.0
+	if (self.stats.stats["speed"] > 2000):
+		self.stats.stats["speed"] = 2000
 	dir = d.normalized()
 	position = pos
 
@@ -26,6 +30,9 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 # projectiles sort of "stretch" and "compress depending on where the player is
 # moving relative to the projectile
 func _physics_process(delta: float) -> void:
+	killTimer -= delta
+	if (killTimer <= 0):
+		queue_free()
 	position += dir * stats.stats["speed"] * delta
 	#print(dir)
 	
