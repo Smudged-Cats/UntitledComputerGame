@@ -22,7 +22,7 @@ var patternsGenerated = []
 
 # Entry point
 func _ready():
-	generate_rooms(30)
+	generate_rooms(10)
 	#generate_patterns(20)
 	#generate_pattern(0)
 	
@@ -57,7 +57,7 @@ func generate_rooms(n: int) -> void:
 			var randomPatternIndex = randi_range(0, 7)
 			var randomSocketIndex = randi_range(0, patternSockets.size() - 1)
 			success = generate_pattern(randomPatternIndex, randomSocketIndex)
-			if randomPatternIndex == 0: isRoom = true
+			if randomPatternIndex == 0 or randomPatternIndex == 7: isRoom = true
 	
 	# Remove any unconnected sockets
 	for socket in patternSockets:

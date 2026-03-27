@@ -33,7 +33,7 @@ func die() -> void:
 		newDroppedItem.position = _character.global_position
 		get_parent().add_child(newDroppedItem)
 		
-	queue_free()
+	queue_free.call_deferred()
 
 func chase_enemy(delta: float = 1) -> void:
 	
