@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b7e473304077n"]
+
+[ext_resource type="PackedScene" uid="uid://cyv5cv1alrrw0" path="res://art/3D Assets/ElectricSythe.fbx" id="1_fj38u"]
+
+[node name="ElectricSythe" unique_id=1801299516 instance=ExtResource("1_fj38u")]
+
+[node name="Cube" parent="." index="0" unique_id=1528417392]
+transform = Transform3D(0, 2.640796e-06, 5.212377, 11.538134, 0, 1.5534094e-07, 3.4386318e-07, 5.212377, -2.485455e-06, -0.049511567, 0.004323721, -0.032597914)
+
+[node name="Cube_005" parent="." index="1" unique_id=184059865]
+transform = Transform3D(2.717146, -4.3584413e-07, 2.446298, -2.446298, -4.3584413e-07, 2.717146, 0, -3.6561255, -4.3584413e-07, 0.031666767, 1.1419868, -0.07972706)
+
+[node name="Cylinder" parent="." index="2" unique_id=671414289]
+transform = Transform3D(3.7604833, 0, 0, 0, -4.4828454e-07, 6.2957044, 0, -3.7604825, -7.505066e-07, -0.024651464, -0.16311148, -0.39046502)

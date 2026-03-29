@@ -22,9 +22,17 @@ static var meleePlaceholderSprite = preload("res://art/tiles/pixil-frame-0_1.png
 
 static var rangedPlaceholderSprite = preload("res://art/tiles/pixil-frame-0.png")
 
-static var melee3DModel = preload("res://rgb_sword.tscn")
+static var RGBSword3DModel = preload("res://rgb_sword.tscn")
+static var fireSword3DModel = preload("res://flaming_sword.tscn")
+static var electricSythe3DModel = preload("res://electric_sythe.tscn")
+static var circuitboardBlasterHammer3DModel = preload("res://green_hammer.tscn")
 
-static var ranged3DModel = preload("res://electricity_blaster.tscn")
+
+static var electricBlaster3DModel = preload("res://electricity_blaster.tscn")
+static var circuitboardBlaster3DModel = preload("res://cd_thommy_gun.tscn")
+
+
+
 
 static var modifier3DModel = preload("res://folder_modifier.tscn")
 
@@ -47,18 +55,18 @@ func _ready() -> void:
 	
 	
 	if (itemType == "Weapon"):
-		setWeaponType("Weapon")
 		item = ranGun()
+		setWeaponType("Weapon")
 	elif (itemType == "Melee"):
-		setWeaponType("Melee")
 		item = ranMelee()
+		setWeaponType("Melee")
 		
 	elif (itemType == "Modifier"):
-		setWeaponType("Modifier")
 		item = ranMod()
+		setWeaponType("Modifier")
 	elif (itemType == "Bomb"):
-		setWeaponType("Bomb")
 		item = bombStats()
+		setWeaponType("Bomb")
 
 
 func _process(delta: float) -> void:
@@ -85,34 +93,38 @@ func ranGun() -> WeaponStats:
 		weaponToGive = WeaponStats.new(
 			randf_range(0.07,0.2),
 			0.02,
-			ProjectileStats.new(randf_range(8,20),700)
+			ProjectileStats.new(randf_range(8,20),700),
+			randi_range(0,1)
 		)
 	elif (ranWeapon == 2):
 		weaponToGive = WeaponStats.new(
 			randf_range(0.3,0.55),
 			randf_range(0.1,0.3),
 			ProjectileStats.new(6,700),
+			randi_range(0,1),
 			randi_range(5,8)
 		)
 	elif (ranWeapon == 3):
 		weaponToGive = WeaponStats.new(
 			randf_range(0.8,1.3),
 			0.001,
-			ProjectileStats.new(randi_range(65,90),1000,3)
+			ProjectileStats.new(randi_range(65,90),1000,3),
+			randi_range(0,1)
 		)
 	return weaponToGive
 
 func ranMelee() -> MeleeStats:
-	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5))
+	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), randi_range(0,3))
 	
 func bombStats() -> MeleeStats:
-		return MeleeStats.new(0, 0)
+		return MeleeStats.new(0, 0, -1)
 
 func ranMod() -> Modifier:
 	var weaponStats: WeaponStats = WeaponStats.new(
 		0,
 		0,
-		null
+		null,
+		-1
 	)
 	
 	var projectileStats: ProjectileStats = ProjectileStats.new(
@@ -138,14 +150,41 @@ func setWeaponType(type: String):
 	if not is_node_ready():
 		await ready 
 	if type == "Melee":
-		var newModel = melee3DModel.instantiate()
-		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+		setMeleeModel(item)
 	if type == "Weapon":
-		var newModel = ranged3DModel.instantiate()
-		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+		setRangedModel(item)
 	if type == "Modifier":
 		var newModel = modifier3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if type == "Bomb":
 		var newModel = bomb3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+
+
+func setMeleeModel(item):
+	if item.stats["3DModel"] == 0:
+		var newModel = RGBSword3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+	if item.stats["3DModel"] == 1:
+		var newModel = fireSword3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+	if item.stats["3DModel"] == 2:
+		var newModel = electricSythe3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+	if item.stats["3DModel"] == 3:
+		var newModel = circuitboardBlasterHammer3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+		
+func setRangedModel(item):
+	if item.stats["3DModel"] == 0:
+		var newModel = circuitboardBlaster3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+	if item.stats["3DModel"] == 1:
+		var newModel = electricBlaster3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+
+		
+		
+		
+		
+		

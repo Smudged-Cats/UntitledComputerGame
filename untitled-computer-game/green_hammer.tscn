@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://w5hf6vigevnx"]
+
+[ext_resource type="PackedScene" uid="uid://pwr5ih8xcmot" path="res://art/3D Assets/GreenHammer.fbx" id="1_42en6"]
+
+[node name="GreenHammer" unique_id=1138771671 instance=ExtResource("1_42en6")]
+
+[node name="Handle" parent="." index="0" unique_id=1487915262]
+transform = Transform3D(2.6453216, 0, 0, 0, -3.153469e-07, 23.271885, 0, -2.6453214, -2.7742249e-06, 0.009264797, 0.072001845, -0.0029493682)
+
+[node name="Head" parent="." index="1" unique_id=1852031657]
+transform = Transform3D(1.8056265, 0, 0, 0, -2.5000728e-07, 0.8826299, 0, -2.0972128, -1.0521769e-07, 0.011050254, 0.7249115, -0.0073935837)
+
+[node name="Spikes" parent="." index="2" unique_id=1710157575]
+transform = Transform3D(1.3351466e-07, -9.7913706e-08, -3.4621508, -3.979047e-15, 2.2400043, -1.5133544e-07, 2.2400043, 1.1937141e-14, 2.0636027e-07, -0.484334, 0.7164623, -0.0087311305)

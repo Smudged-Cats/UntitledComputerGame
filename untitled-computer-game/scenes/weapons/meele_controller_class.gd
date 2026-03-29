@@ -10,7 +10,7 @@ var attackCooldown: Cooldown
 func _init(attacker:Character, baseMelee:MeleeStats = null):
 	self.attacker = attacker
 	self.baseMelee = baseMelee
-	meleeMuls = MeleeStats.new(1.0,1.0)
+	meleeMuls = MeleeStats.new(1.0,1.0,-1)
 	attackCooldown = Cooldown.new(1.0)
 	add_child(attackCooldown)
 

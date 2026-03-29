@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b8b2by8qwyou4"]
+
+[ext_resource type="PackedScene" uid="uid://hyr4b6wsm0qh" path="res://art/3D Assets/FlamingSword.fbx" id="1_pgowj"]
+
+[node name="FlamingSword" unique_id=1711499904 instance=ExtResource("1_pgowj")]
+
+[node name="CrossGuard" parent="." index="0" unique_id=1194734376]
+transform = Transform3D(7.0027122, 0, 0, 0, -8.3478835e-07, 7.0027113, 0, -7.0027113, -8.3478835e-07, 0.028920054, 0.29986846, -0.01435414)
+
+[node name="Cube_001" parent="." index="1" unique_id=889166765]
+transform = Transform3D(4.967448, 0, 0, 0, -7.682568e-07, 24.415154, 0, -6.444605, -2.9105133e-06, 0.028635576, 1.3050145, 0.011749595)
+
+[node name="Handle" parent="." index="2" unique_id=1431811368]
+transform = Transform3D(3.7213006, 0, 0, 0, -4.436136e-07, 10.9551325, 0, -3.7213001, -1.3059537e-06, 0.029358193, 0.0864588, -0.004403293)

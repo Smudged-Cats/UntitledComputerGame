@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://xqwyyht1sg0i"]
+
+[ext_resource type="PackedScene" uid="uid://dxsvuebhp7nlf" path="res://art/3D Assets/CDThommyGun.fbx" id="1_nh34i"]
+
+[node name="CDThommyGun" unique_id=668614917 instance=ExtResource("1_nh34i")]
+
+[node name="CD_Drum" parent="." index="0" unique_id=1872344386]
+transform = Transform3D(7.365763e-07, 5.401723e-07, 11.001466, 2.1951684e-14, 12.357699, -4.8088936e-07, -12.357699, 6.5855057e-14, 6.5573846e-07, -0.2225242, -0.14657657, 0.025060296)
+
+[node name="Cube_002" parent="." index="1" unique_id=297618133]
+transform = Transform3D(4.0964055, -4.0964055, 2.5192892e-07, 4.0964065, 4.0964046, -2.5192887e-07, -1.0290778e-14, 2.5322845e-07, 8.150764, 0.3123457, 0.2342028, 0.111105114)
+
+[node name="Grip" parent="." index="2" unique_id=967186663]
+transform = Transform3D(8.150764, 0, 0, 0, -9.716468e-07, 8.150764, 0, -8.150764, -9.716468e-07, 1.3571877, -0.333848, 0.019546062)
+
+[node name="Main" parent="." index="3" unique_id=1399328468]
+transform = Transform3D(9.108455, 0, 0, 0, -6.673313e-07, 4.950687, 0, -5.59798, -5.9016793e-07, 0.92081314, 0.12240134, 0.020672003)
+
+[node name="Trigger&Guard" parent="." index="4" unique_id=631360285]
+transform = Transform3D(8.327358e-07, 4.6569963, 5.5534123e-08, -4.6569963, 8.327358e-07, 6.204365e-15, -2.068122e-15, -5.5534123e-08, 4.6569967, 0.5774386, -0.031112144, 0.01864218)

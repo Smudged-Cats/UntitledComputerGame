@@ -235,6 +235,10 @@ func drop_item() -> void:
 	
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
+	
+	newDroppedItem.global_position = _character.global_position
+	newDroppedItem.item = droppedWeapon
+	
 	get_parent().add_child(newDroppedItem)
 	if droppedWeapon.stats.has("damage") && droppedWeapon.stats["damage"] == 0:
 		newDroppedItem.itemType = "Bomb"
@@ -249,10 +253,6 @@ func drop_item() -> void:
 		newDroppedItem.setWeaponType("Weapon")
 		_weapon.baseWeapon = null
 
-
-
-	newDroppedItem.global_position = _character.global_position
-	newDroppedItem.item = droppedWeapon
 	inventory.set(selectedItem,null)
 	updateInventorySprites()
 	
