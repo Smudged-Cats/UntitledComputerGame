@@ -11,16 +11,21 @@ func _ready() -> void:
 		$TutorialButton.visible = false
 		$QuitButton.set_position(Vector2(622, 300))
 	
+func _init(tutorialCom: bool = false) -> void:
+	tutorialCompleted = tutorialCom
 
 func _on_start_button_pressed() -> void:
 	if tutorialCompleted:
 		get_tree().change_scene_to_file("res://proc_gen_map.tscn")
+		queue_free()
 	else:
 		get_tree().change_scene_to_file("res://scenes/maps/testMap.tscn")
-
+		queue_free()
+		
 func _on_tutorial_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/maps/testMap.tscn")
-
+	queue_free()
+	
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 	

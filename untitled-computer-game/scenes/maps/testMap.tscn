@@ -57,7 +57,7 @@ skew = 0.64577186
 shape = SubResource("RectangleShape2D_x877k")
 
 [node name="Timer" type="Timer" parent="ObjectivePoint" unique_id=552523670]
-wait_time = 30.0
+wait_time = 2.0
 one_shot = true
 
 [node name="Label" type="Label" parent="ObjectivePoint/Timer" unique_id=1767423109]
@@ -82,8 +82,10 @@ z_index = 2
 position = Vector2(194, 16)
 itemType = "Weapon"
 
-[node name="Background" type="Sprite2D" parent="." unique_id=625436760]
-z_index = -1
+[node name="Background" type="Sprite2D" parent="." unique_id=1462092099]
+z_index = -999
+position = Vector2(-247.99994, 251.99998)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("5_x877k")
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]

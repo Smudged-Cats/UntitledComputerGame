@@ -3,7 +3,7 @@ extends Node2D
 @onready var enemySpawner = preload("res://scenes/enemySpawner.tscn")
 @onready var enemyTSCN = preload("res://scenes/controllers/enemy.tscn")
 @onready var droppedItem = preload("res://scenes/weapons/droppedItem.tscn")
-
+@onready var startMenu = preload("res://start_menu.tscn")
 @onready var tilemap_instance = get_node_or_null("TileMapScene")
 
 @onready var onObjective = false
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	var minutesLeft: int = floor(timeLeft / 60.0)
 	var secondsLeft: int = fmod(timeLeft, 60.0)
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
-	if onObjective and Input.is_action_pressed("interact"):
+	if onObjective and Input.is_action_just_pressed("interact"):
 		get_node("Player").activateBombItem()
 		tilemap_instance.toggle_gate_state(false, [Vector2i(-3, 9), Vector2i(-3, 8)] as Array[Vector2i], false)
 		tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)
@@ -48,7 +48,15 @@ func _process(delta: float) -> void:
 		var newSpawner = enemySpawner.instantiate()
 		add_child(newSpawner)
 
-	
+	if timeLeft < 1 and timeLeft > 0:
+		var menuScene = load("res://start_menu.tscn")
+		var newMenuScene = menuScene.instantiate()
+		newMenuScene._init(true)
+		get_tree().root.add_child(newMenuScene)
+		queue_free()
+		
+	get_node("Background").global_position = get_node("Player").get_node("Camera2D").global_position
+		
 
 	$ObjectivePoint/Timer/Label.text = timeString
 func _on_objective_point_body_entered(body: Node2D) -> void:
