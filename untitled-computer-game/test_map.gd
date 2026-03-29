@@ -45,10 +45,14 @@ func _process(delta: float) -> void:
 		tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)
 
 		tilemap_instance.changeUSBtile(Vector2(-4, 13))
-		var newSpawner = enemySpawner.instantiate()
-		add_child(newSpawner)
+		
+		for i in range(5):
+			var tutorialRoom = Room.new(Vector2i(-4,4), Vector2i(8,8), 1)
+			spawnEnemiesInRoom(tutorialRoom)
+			await get_tree().create_timer(10).timeout
 
 	if timeLeft < 1 and timeLeft > 0:
+		
 		var menuScene = load("res://start_menu.tscn")
 		var newMenuScene = menuScene.instantiate()
 		newMenuScene._init(true)
@@ -65,7 +69,7 @@ func _on_objective_point_body_exited(body: Node2D) -> void:
 	onObjective = false
 	
 func spawnEnemiesInRoom(room: Room):
-	var numberRoomEnemies = randi_range(1,100)
+	var numberRoomEnemies = 5
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($TileMapScene/Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):

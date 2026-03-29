@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dxwecqqgrr0ym" path="res://art/tiles/FloorTiles/Region2Tile1.png" id="4_yvdyx"]
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/TileTops/Region1TileTop1.png" id="5_qy0jw"]
 [ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="6_mcl5i"]
-[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTileTop.png" id="7_njmx3"]
+[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTiletop.png" id="7_njmx3"]
 [ext_resource type="Texture2D" uid="uid://dr1pw6xpo80qv" path="res://art/tiles/WallTiles/Region2GatesOff.png" id="8_r3y0c"]
 [ext_resource type="Texture2D" uid="uid://bqoe3tqxkb2r0" path="res://art/tiles/WallTiles/Region2GatesOn.png" id="9_qy0jw"]
 [ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="11_nm8jx"]

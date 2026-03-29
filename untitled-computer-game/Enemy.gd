@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 
 func die() -> void:
 	var chanceOfLoot = randi_range(1,10)
-	chanceOfLoot = 1
 	var weaponTypes = ["Weapon", "Melee", "Modifier"]
 	if chanceOfLoot == 1:
 		var newDroppedItem = lootScene.instantiate()

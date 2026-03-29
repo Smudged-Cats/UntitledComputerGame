@@ -36,17 +36,28 @@ func _process(float) -> void:
 	var minutesLeft: int = floor(timeLeft / 60.0)
 	var secondsLeft: int = fmod(timeLeft, 60.0)
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
-	if onObjective and Input.is_action_pressed("interact"):
+	if onObjective and Input.is_action_just_pressed("interact"):
 		get_node("Player").activateBombItem()
 		changeUSBtile(Vector2(6, 11))
-		var newSpawner = enemySpawner.instantiate()
-		add_child(newSpawner)
+		await get_tree().create_timer(randi_range(10,15)).timeout
+		for i in range(10):
+			var baseRoom = Room.new(Vector2i(7,-6), Vector2i(12,12), 1)
+			spawnEnemiesInRoom(baseRoom)
+			await get_tree().create_timer(randi_range(10,15)).timeout
 	$ObjectivePoint/Timer/Label.text = timeString
+	if timeLeft < 1 and timeLeft > 0:
+		var menuScene = load("res://start_menu.tscn")
+		var newMenuScene = menuScene.instantiate()
+		newMenuScene._init(true)
+		get_tree().root.add_child(newMenuScene)
+		queue_free()
+	get_node("Background").global_position = get_node("Player").get_node("Camera2D").global_position
+
 
 
 	
 func spawnEnemiesInRoom(room: Room):
-	var numberRoomEnemies = randi_range(1,4)
+	var numberRoomEnemies = randi_range(1,12)
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) > 1):

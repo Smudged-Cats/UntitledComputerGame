@@ -33,6 +33,15 @@ func _ready() -> void:
 	
 	currentMessage = add_message("When holding a ranged weapon, right click to shoot in the direction of your mouse", true)
 	await wait_until_message_is_null()
+	
+	currentMessage = add_message("On every map, can be found a pink USB stick, press [E] to pick it up", true)
+	await Player.instance.picked_up_item
+	
+	currentMessage = add_message("At the center of the floor is a USB port, press [E] while hold the USB stick to plug it in", true)
+	await wait_until_message_is_null()
+	
+	currentMessage = add_message("Plug in the USB stick, and survive until the timer runs out to complete the level!", true)
+	await wait_until_message_is_null()
 
 # Wait until message is removed
 func wait_until_message_is_null():
