@@ -9,7 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTileTop.png" id="6_8qvsh"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="6_fqd2q"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="7_ltadu"]
-[ext_resource type="Texture2D" uid="uid://c6omr1l6ix4f3" path="res://art/tiles/barrierTile.png" id="9_256qa"]
+[ext_resource type="Texture2D" uid="uid://bgi2vtj0oyrgo" path="res://art/tiles/barrierTile.png" id="9_256qa"]
+[ext_resource type="Texture2D" uid="uid://dxwecqqgrr0ym" path="res://art/tiles/FloorTiles/Region2Tile1.png" id="11_fqd2q"]
+[ext_resource type="Texture2D" uid="uid://dr1pw6xpo80qv" path="res://art/tiles/WallTiles/Region2GatesOff.png" id="12_ltadu"]
+[ext_resource type="Texture2D" uid="uid://bqoe3tqxkb2r0" path="res://art/tiles/WallTiles/Region2GatesOn.png" id="13_ir4s8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfv8e"]
 texture = ExtResource("2_8qvsh")
@@ -114,11 +117,11 @@ texture_region_size = Vector2i(128, 128)
 0:0/0/y_sort_origin = 6
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -8, -64, 0, 0, 32, 16, 24)
 1:0/0 = 0
-1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/texture_origin = Vector2i(0, 31)
 1:0/0/y_sort_origin = 6
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -8, -64, 0, 0, 32, 16, 24)
 2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, 32)
+2:0/0/texture_origin = Vector2i(0, 31)
 2:0/0/y_sort_origin = 6
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, 0, 48, -8, -16, 24, 0, 32)
 3:0/0 = 0
@@ -175,6 +178,54 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_8qvsh")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1tpq"]
+texture = ExtResource("11_fqd2q")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -29)
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sivc6"]
+tile_shape = 1
+tile_size = Vector2i(128, 64)
+sources/0 = SubResource("TileSetAtlasSource_v1tpq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_meilo"]
+texture = ExtResource("12_ltadu")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(1, 31)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 31)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(1, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4sytb"]
+texture = ExtResource("13_ir4s8")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, -64, 0, 0, 32, 64, 0)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(1, 31)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.2, -6.3999996, -64, 0, 0, 32, 12.800003, 25.600002)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 31)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(51.200005, -6.3999996, -12.799999, 25.600002, 0, 32, 64, 0)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(1, 32)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(51.200005, -6.3999996, -12.799999, 25.600002, 0, 32, 64, 0)
+
+[sub_resource type="TileSet" id="TileSet_swnbo"]
+tile_shape = 1
+tile_size = Vector2i(128, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_meilo")
+sources/1 = SubResource("TileSetAtlasSource_4sytb")
+
 [node name="TileMapScene" type="Node2D" unique_id=2093191107]
 y_sort_enabled = true
 script = ExtResource("1_256qa")
@@ -199,9 +250,22 @@ tile_set = SubResource("TileSet_4sytb")
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1
-tile_map_data = PackedByteArray("AAD9/wgABwADAAAAAAABAAUABgAAAAAAAAACAAUABgABAAAAAAD9/wkABwACAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/wgABwADAAAAAAABAAUABgAAAAAAAAACAAUABgABAAAAAAD9/wkABwACAAAAAAABAAkABgACAAAAAAABAAgABgADAAAAAAA=")
 tile_set = SubResource("TileSet_vr13i")
 
 [node name="BarrierTiles" type="TileMapLayer" parent="Region1Tiles" unique_id=375717924]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_pfv8e")
+
+[node name="Region2Tiles" type="Node2D" parent="." unique_id=1451361513]
+
+[node name="Tiles" type="TileMapLayer" parent="Region2Tiles" unique_id=625520478]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD//w8AAAAAAAAAAAD//xAAAAAAAAAAAAD+/xEAAAAAAAAAAAD//xIAAAAAAAAAAAD+/xMAAAAAAAAAAAD//xMAAAAAAAAAAAAAABIAAAAAAAAAAAD//xEAAAAAAAAAAAAAABAAAAAAAAAAAAD+/w8AAAAAAAAAAAD+/xAAAAAAAAAAAAD+/xIAAAAAAAAAAAD//xQAAAAAAAAAAAAAABEAAAAAAAAAAAD//w4AAAAAAAAAAAD9/xEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_sivc6")
+
+[node name="GateTiles" type="TileMapLayer" parent="Region2Tiles" unique_id=1671313740]
+z_index = 2
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD//w4AAAAAAAAAAAD//w8AAAABAAAAAAD+/xAAAQAAAAAAAAD+/xEAAQABAAAAAAD//xIAAQADAAAAAAD+/xMAAQACAAAAAAAAABIAAAACAAAAAAAAABEAAAADAAAAAAA=")
+tile_set = SubResource("TileSet_swnbo")

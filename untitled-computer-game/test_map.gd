@@ -41,11 +41,14 @@ func _process(delta: float) -> void:
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 	if onObjective and Input.is_action_pressed("interact"):
 		get_node("Player").activateBombItem()
+		tilemap_instance.toggle_gate_state(false, [Vector2i(-3, 9), Vector2i(-3, 8)] as Array[Vector2i], false)
+		tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)
+
 		tilemap_instance.changeUSBtile(Vector2(-4, 13))
 		var newSpawner = enemySpawner.instantiate()
 		add_child(newSpawner)
 
-		
+	
 
 	$ObjectivePoint/Timer/Label.text = timeString
 func _on_objective_point_body_entered(body: Node2D) -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1inlu57s70cl"
-path="res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"
+uid="uid://dxwecqqgrr0ym"
+path="res://.godot/imported/Region2Tile1.png-418fffdf9c01ba442680e2a8c62a059a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/TileTops/USBTileTop.png"
-dest_files=["res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"]
+source_file="res://art/tiles/FloorTiles/Region2Tile1.png"
+dest_files=["res://.godot/imported/Region2Tile1.png-418fffdf9c01ba442680e2a8c62a059a.ctex"]
 
 [params]
 
