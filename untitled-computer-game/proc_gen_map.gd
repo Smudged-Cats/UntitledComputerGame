@@ -56,6 +56,7 @@ func _process(float) -> void:
 		var newMenuScene = menuScene.instantiate()
 		newMenuScene._init(true)
 		get_tree().root.add_child(newMenuScene)
+		get_node("Player").reparent(newMenuScene)
 		queue_free()
 
 

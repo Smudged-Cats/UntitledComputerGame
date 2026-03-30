@@ -17,10 +17,17 @@ func _init(tutorialCom: bool = false) -> void:
 func _on_start_button_pressed() -> void:
 	if tutorialCompleted:
 		
-		var gameScene = load("res://proc_gen_map.tscn")
-		var newGameScene = gameScene.instantiate()
-		get_tree().root.add_child(newGameScene)
-		Player.instance.reparent(newGameScene)
+		if Player.instance.playerLevel == 1:
+			var gameScene = load("res://proc_gen_map.tscn")
+			var newGameScene = gameScene.instantiate()
+			get_tree().root.add_child(newGameScene)
+			Player.instance.reparent(newGameScene)
+			
+		if Player.instance.playerLevel == 2:
+			var gameScene = load("res://proc_gen_map2.tscn")
+			var newGameScene = gameScene.instantiate()
+			get_tree().root.add_child(newGameScene)
+			Player.instance.reparent(newGameScene)
 		
 		#get_tree().change_scene_to_file("res://proc_gen_map.tscn")
 		queue_free()
