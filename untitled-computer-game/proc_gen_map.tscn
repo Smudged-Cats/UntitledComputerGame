@@ -197,7 +197,7 @@ skew = 0.64577186
 shape = SubResource("RectangleShape2D_2morg")
 
 [node name="Timer" type="Timer" parent="ObjectivePoint" unique_id=266391635]
-wait_time = 2.0
+wait_time = 30.0
 one_shot = true
 
 [node name="Label" type="Label" parent="ObjectivePoint/Timer" unique_id=1203407168]

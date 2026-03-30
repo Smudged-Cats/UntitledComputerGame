@@ -12,6 +12,7 @@ var tileSet = $Region1Tiles
 @onready var gates: TileMapLayer = $Region1Tiles/GateTiles
 @onready var tiletops: TileMapLayer = $Region1Tiles/TileTop
 
+@onready var enemySpawnSprite = preload("res://art/PewPew.png")
 
 @onready
 var onObjective = false
@@ -48,7 +49,7 @@ func _process(float) -> void:
 		for i in range(10):
 			var baseRoom = Room.new(Vector2i(7,-6), Vector2i(12,12), 1)
 			spawnEnemiesInRoom(baseRoom)
-			await get_tree().create_timer(randi_range(10,15)).timeout
+			await get_tree().create_timer(randi_range(5,10)).timeout
 	$ObjectivePoint/Timer/Label.text = timeString
 	if timeLeft < 1 and timeLeft > 0:
 		get_node("Player").playerLevel += 1
@@ -67,10 +68,19 @@ func spawnEnemiesInRoom(room: Room):
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) > 1):
-			var newEnemy = enemyTSCN.instantiate()
-			var pixelPos = $Region1Tiles/Tiles.map_to_local(randomLocation)
-			newEnemy.position = pixelPos
-			add_child.call_deferred(newEnemy)
+			spawnEnemy(randomLocation)
+			
+func spawnEnemy(ranLoc: Vector2i) -> void:
+		var newEnemy = enemyTSCN.instantiate()
+		var pixelPos = $Region1Tiles/Tiles.map_to_local(ranLoc)
+		var sprite = Sprite2D.new()
+		sprite.texture = enemySpawnSprite
+		add_child(sprite)
+		sprite.position = pixelPos
+		await get_tree().create_timer(2).timeout
+		newEnemy.position = pixelPos
+		add_child.call_deferred(newEnemy)
+		sprite.queue_free()
 
 func spawnRoomLoot(room: Room):
 	var weaponTypes = ["Weapon", "Melee", "Modifier"]
