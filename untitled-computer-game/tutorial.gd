@@ -19,10 +19,13 @@ func _ready() -> void:
 	currentMessage = add_message("Pick up a weapon by pressing [E] near it")
 	await Player.instance.picked_up_item
 	
-	currentMessage = add_message("You can drop a weapon whenever by pressing [Q]", true)
+	currentMessage = add_message("You can switch between weapons in your inventory by using the number keys", true)
+	await wait_until_message_is_null()
+
+	currentMessage = add_message("You can also drop a weapon whenever by pressing [Q]", true)
 	await wait_until_message_is_null()
 	
-	currentMessage = add_message("Modifiers (folders) apply permanent boosts to your stats and cannot be dropped", true)
+	currentMessage = add_message("Modifiers (folders) apply permanent boosts to your stats and can be dropped by pressing [P] in the reverse order that you pick them up.", true)
 	await wait_until_message_is_null()
 	
 	currentMessage = add_message("When holding a melee weapon, hold left click to charge an attack", true)
