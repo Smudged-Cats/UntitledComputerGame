@@ -279,6 +279,9 @@ func updateInventorySprites() -> void:
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = swordSprite
 		elif inventory[inventoryCurrentSize - 1 - i] != null and inventory[inventoryCurrentSize - 1 - i].stats.has("fireRate"):
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = gunSprite
+		else:
+			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = null
+	'''
 	if inventoryCurrentSize == 2:
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
 	elif inventoryCurrentSize == 1:
@@ -288,22 +291,16 @@ func updateInventorySprites() -> void:
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot2").texture = null
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot1").texture = null
-
-
+		'''
 
 
 func show_death_screen() -> void:
 	var newDeathScreen = deathScreenScene.instantiate()
 	add_child(newDeathScreen)
 
-
 func _on_character_killed() -> void:
 	show_death_screen()
 	_character.queue_free.call_deferred()
-
-func addMod():
-	modList.append(Modifier.new({"fireRate":0.3},{"damage":1.0}))
-	modList.get(modList.size() - 1).applyBoost(self)
 	
 func activateBombItem() -> void:
 	for item in inventory:
