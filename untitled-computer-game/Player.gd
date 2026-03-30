@@ -49,6 +49,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	if Engine.time_scale == 0:
+		listen_for_pause()
+		return
+	
 	if _character.health > 0:
 		
 		if len(inventory) > 0 and inventory[len(inventory)-1] is WeaponStats:
@@ -344,7 +348,7 @@ func _on_character_killed() -> void:
 func activateBombItem() -> void:
 	for item in range(inventory.size()):
 		print(item)
-		if item != null:
+		if inventory[item] != null:
 			if inventory[item].stats.has("damage"):
 				if inventory[item].stats["damage"] == 0:
 					$"../ObjectivePoint/Timer/Label".visible = true
