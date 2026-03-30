@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	#Prevent friendly fire
 	if(body is Character):
-		if (body.characterName != source):
+		if (body.characterName != source and body.health > 0):
 			body.takeDamage(stats.stats["damage"], body.global_position + self.global_position, 0)
 			
 			#Trying to simulate piercing shots by giving the shots

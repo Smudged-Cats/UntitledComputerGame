@@ -22,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 		#if body != attacker:
 		
 		# To prevent enemies from hitting their own kind
-		if body.characterName != attacker.characterName:
+		if body.characterName != attacker.characterName and body.health > 0:
 			body.get_parent().registerHit()
 			body.takeDamage(damage, self.attacker.global_position, attacker.dashWindup)
 			

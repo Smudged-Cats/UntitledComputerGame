@@ -26,7 +26,8 @@ func _on_fade_timer_timeout() -> void:
 
 func _on_texture_button_pressed() -> void:
 	get_tree().reload_current_scene()
-
+	Player.instance._character.reset()
+	self.queue_free()
 
 func _on_spectate_button_pressed() -> void:
 	var newSpectator = spectatorScene.instantiate()
@@ -34,7 +35,6 @@ func _on_spectate_button_pressed() -> void:
 	Player.instance.queue_free()
 	#newSpectator.make_current()
 	queue_free()
-	
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

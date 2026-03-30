@@ -46,22 +46,25 @@ func _ready() -> void:
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
-	if len(inventory) > 0 and inventory[len(inventory)-1] is WeaponStats:
-		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[len(inventory)-1].stats["ammo"]) + "/20"
-		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = true
-	else:
-		$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = false
-	if !is_instance_valid(_character): return
+	
+	if _character.health > 0:
 		
-	move_character()
-	face_to_mouse(delta)
-	listen_for_attack()
-	listenForShot()
-	listForAbility()
-	listen_for_pickup_item()
-	listen_for_drop_item()
-	listen_for_drop_mod()
-	listenForNum()
+		if len(inventory) > 0 and inventory[len(inventory)-1] is WeaponStats:
+			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[len(inventory)-1].stats["ammo"]) + "/20"
+			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = true
+		else:
+			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = false
+		if !is_instance_valid(_character): return
+			
+		move_character()
+		face_to_mouse(delta)
+		listen_for_attack()
+		listenForShot()
+		listForAbility()
+		listen_for_pickup_item()
+		listen_for_drop_item()
+		listen_for_drop_mod()
+		listenForNum()
 	_camera.update_camera_position(delta)
 	
 	if Input.is_action_just_pressed("kill me"):
@@ -272,7 +275,7 @@ func drop_item() -> void:
 		newDroppedItem.setWeaponType("Weapon")
 		_weapon.baseWeapon = null
 
-	inventory.set(selectedItem,null)
+	inventory.set(selectedItem, null)
 	updateInventorySprites()
 	
 func dropMod() -> void:
@@ -319,7 +322,6 @@ func show_death_screen() -> void:
 
 func _on_character_killed() -> void:
 	show_death_screen()
-	_character.queue_free.call_deferred()
 	
 func activateBombItem() -> void:
 	for item in inventory:

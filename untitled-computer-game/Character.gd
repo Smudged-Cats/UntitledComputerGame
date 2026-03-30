@@ -74,6 +74,8 @@ func _physics_process(delta: float) -> void:
 	
 	if !is_instance_valid(self): return
 	
+	if health == 0: return
+	
 	# update stamina
 	stamina += 10 * delta
 	
@@ -164,6 +166,10 @@ func takeDamage(damage: int, sourcePosition: Vector2, enemySpeed) -> void:
 	newNumberScene.global_position = global_position
 	get_tree().get_root().add_child(newNumberScene)
 
+func reset() -> void:
+	health = maxHealth
+	stamina = maxStamina
+	position = Vector2.ZERO
 
 func _on_cullcheck_timer_timeout() -> void:
 	if Player.instance == null: return

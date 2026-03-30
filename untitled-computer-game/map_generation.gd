@@ -245,6 +245,7 @@ func pick_pattern(id: int = -1) -> TileMapPattern:
 func place_player():
 	var local_pos = floor_layer.map_to_local(Vector2i(9,-4))
 	Player.instance.global_position = floor_layer.to_global(local_pos)
+	Player.instance._character.position = Vector2.ZERO
 
 # Not used
 #func _on_timer_timeout() -> void:
