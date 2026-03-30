@@ -18,6 +18,7 @@ var pickedUp = false
 @onready 
 var canPickup = false
 
+static var usbSprite = preload("res://art/largerUSB.png")
 
 static var meleeLegendarySprite = preload("res://art/weapon sprites/legendary.png")
 
@@ -44,7 +45,6 @@ static var RGBSword3DModel = preload("res://rgb_sword.tscn")
 static var fireSword3DModel = preload("res://flaming_sword.tscn")
 static var electricSythe3DModel = preload("res://electric_sythe.tscn")
 static var circuitboardBlasterHammer3DModel = preload("res://green_hammer.tscn")
-
 
 static var electricBlaster3DModel = preload("res://electricity_blaster.tscn")
 static var circuitboardBlaster3DModel = preload("res://cd_thommy_gun.tscn")
@@ -181,6 +181,7 @@ func setWeaponType(type: String):
 		var newModel = modifier3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if type == "Bomb":
+		item.stats["Sprite"] = usbSprite
 		var newModel = bomb3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 
