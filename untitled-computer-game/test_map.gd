@@ -8,6 +8,9 @@ extends Node2D
 
 @onready var onObjective = false
 
+@onready var enemySpawnSprite = preload("res://art/AntiBugSymbol.png")
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -78,10 +81,21 @@ func spawnEnemiesInRoom(room: Room):
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($TileMapScene/Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):
-			var newEnemy = enemyTSCN.instantiate()
-			var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(randomLocation)
-			newEnemy.position = pixelPos
-			add_child(newEnemy)
+			spawnEnemy(randomLocation)
+			
+func spawnEnemy(ranLoc: Vector2i) -> void:
+		var newEnemy = enemyTSCN.instantiate()
+		var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(ranLoc)
+		var sprite = Sprite2D.new()
+		sprite.scale = Vector2(2, 2)
+		sprite.texture = enemySpawnSprite
+		add_child(sprite)
+		sprite.position = pixelPos
+		spriteFading(sprite)
+		await get_tree().create_timer(3).timeout
+		newEnemy.position = pixelPos
+		add_child.call_deferred(newEnemy)
+		sprite.queue_free()
 		
 func spawnRoomLoot(room: Room):
 	var weaponTypes = ["Weapon", "Melee", "Modifier"]
@@ -94,5 +108,13 @@ func spawnRoomLoot(room: Room):
 			var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(randomLocation)
 			newDroppedItem.position = pixelPos
 			add_child(newDroppedItem)
+			
+func spriteFading(sprite: Sprite2D) -> void:
+	var tween = get_tree().create_tween()
+	
+	tween.set_loops()
+	
+	tween.tween_property(sprite, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(sprite, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
 	
 	
