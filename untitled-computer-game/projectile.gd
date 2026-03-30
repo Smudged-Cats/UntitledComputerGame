@@ -54,7 +54,7 @@ func _on_body_entered(body: Node2D) -> void:
 			position += 5*dir
 	
 	#Despawn if hitting a wall
-	if (body is StaticBody2D):
+	if (body is TileMapLayer):
 		#richocet(body)
 		queue_free()
 

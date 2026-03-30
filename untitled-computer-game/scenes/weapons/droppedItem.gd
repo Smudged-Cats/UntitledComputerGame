@@ -132,17 +132,14 @@ func ranMod() -> Modifier:
 		0,
 	)
 	return Modifier.new(genModDict(weaponStats.stats),genModDict(projectileStats.stats))
-	'''
-	return Modifier.new(
-			{"fireRate":0.3,"projectileCount":1,"spread":0.35},
-			{"damage":1.0}
-			)
-	'''
+	
 
 func genModDict(itemStats:Dictionary) -> Dictionary:
 	var itemDict: Dictionary = {}
 	for stat in itemStats.keys():
-		itemDict[stat] = randf_range(1,10)
+		itemDict[stat] = randi_range(-1,5);
+		if (itemDict[stat] <= 0):
+			itemDict[stat] = 0
 	return itemDict
 
 func setWeaponType(type: String):
