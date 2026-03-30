@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1inlu57s70cl"
-path="res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"
+uid="uid://cjkkghgx8fms7"
+path="res://.godot/imported/Region3TilesSpriteSheet.png-9c8cf7b06ce39b07202aea562e403db0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/TileTops/USBTileTop.png"
-dest_files=["res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"]
+source_file="res://art/tiles/FloorTiles/Region3TilesSpriteSheet.png"
+dest_files=["res://.godot/imported/Region3TilesSpriteSheet.png-9c8cf7b06ce39b07202aea562e403db0.ctex"]
 
 [params]
 

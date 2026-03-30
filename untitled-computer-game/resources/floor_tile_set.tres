@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b2jat2arcse2w" path="res://art/tiles/FloorTiles/iso_floor_tile.png" id="1_t1k81"]
 [ext_resource type="Texture2D" uid="uid://ejh5yfjmi8hd" path="res://art/tiles/FloorTiles/Region1TileSpriteSheet.png" id="2_22vhp"]
 [ext_resource type="Texture2D" uid="uid://bgi2vtj0oyrgo" path="res://art/tiles/barrierTile.png" id="2_rvk2a"]
+[ext_resource type="Texture2D" uid="uid://iuh1l8i6pbhy" path="res://art/tiles/FloorTiles/Region1TilesWithTops.png" id="3_g56aj"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_rvk2a"]
 tile_data = PackedInt32Array(65536, 1, 0, 131072, 1, 0, 196608, 0, 0, 327680, 1, 0, 393216, 1, 0, 1, 1, 0, 65537, 65541, 0, 131073, 65541, 0, 196609, 65541, 0, 262145, 65541, 0, 327681, 65541, 0, 393217, 65541, 0, 458753, 1, 0, 2, 1, 0, 65538, 65541, 0, 131074, 65541, 0, 196610, 65541, 0, 262146, 65541, 0, 327682, 65541, 0, 393218, 65541, 0, 458754, 1, 0, 3, 65536, 0, 65539, 65541, 0, 131075, 65541, 0, 196611, 65541, 0, 262147, 65541, 0, 327683, 65541, 0, 393219, 65541, 0, 458755, 0, 1, 65540, 65541, 0, 131076, 65541, 0, 196612, 65541, 0, 262148, 65541, 0, 327684, 65541, 0, 393220, 65541, 0, 458756, 5, 0, 5, 1, 0, 65541, 65541, 0, 131077, 65541, 0, 196613, 65541, 0, 262149, 65541, 0, 327685, 65541, 0, 393221, 65541, 0, 458757, 1, 0, 6, 1, 0, 65542, 65541, 0, 131078, 65541, 0, 196614, 65541, 0, 262150, 65541, 0, 327686, 65541, 0, 393222, 65541, 0, 458758, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 65536, 1, 262151, 5, 0, 327687, 1, 0, 393223, 1, 0)
@@ -51,6 +52,19 @@ texture_region_size = Vector2i(128, 64)
 texture = SubResource("CompressedTexture2D_bmcly")
 texture_region_size = Vector2i(64, 32)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iyed4"]
+texture = ExtResource("3_g56aj")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -29)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -29)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -29)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sivc6"]
 texture = ExtResource("2_22vhp")
 texture_region_size = Vector2i(128, 128)
@@ -74,6 +88,7 @@ sources/0 = SubResource("TileSetAtlasSource_ir4s8")
 sources/5 = SubResource("TileSetAtlasSource_sivc6")
 sources/1 = SubResource("TileSetAtlasSource_g56aj")
 sources/3 = SubResource("TileSetAtlasSource_v1tpq")
+sources/4 = SubResource("TileSetAtlasSource_iyed4")
 pattern_0 = SubResource("TileMapPattern_rvk2a")
 pattern_1 = SubResource("TileMapPattern_g56aj")
 pattern_2 = SubResource("TileMapPattern_iyed4")

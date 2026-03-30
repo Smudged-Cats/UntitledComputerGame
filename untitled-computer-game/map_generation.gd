@@ -30,7 +30,6 @@ func _ready():
 		tile_set = preload("res://resources/floor_tile_set.tres")
 	if playerLevel == 2:
 		tile_set = preload("res://resources/floor_tile_set2.tres")
-	
 
 	generate_rooms(10)
 	place_player()
