@@ -42,8 +42,8 @@ func _ready() -> void:
 	
 	#Setting the characterName to be the player for the projectile source
 	_character.characterName = "Player"
-	_weapon = WeaponController.new(_character.characterName)
-	add_child(_weapon)
+	_weapon = _character.weapon
+	_weapon.holder = _character.characterName
 	
 	print("Started player")
 
