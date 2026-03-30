@@ -254,7 +254,7 @@ func place_USB():
 		var map_pos = Vector2i(randi_range(-5000,5000),randi_range(-5000,5000))
 		var local_pos = floor_layer.map_to_local(map_pos)
 		get_parent().get_node("USB").global_position = floor_layer.to_global(local_pos)
-		if floor_layer.get_cell_source_id(map_pos) > 1:
+		if floor_layer.get_cell_source_id(map_pos) > 1 and ((floor_layer.to_global(local_pos) - Player.instance.global_position).length() > 1000):
 			break
  	
 
