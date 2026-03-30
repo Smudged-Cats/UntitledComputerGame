@@ -3,7 +3,6 @@ extends Node2D
 @onready var floor_layer = $Tiles
 
 static var tile_set
-var tile_set2 = preload("res://resources/floor_tile_set2.tres")
 
 
 @onready var playerLevel = Player.instance.playerLevel
@@ -30,6 +29,9 @@ func _ready():
 		tile_set = preload("res://resources/floor_tile_set.tres")
 	if playerLevel == 2:
 		tile_set = preload("res://resources/floor_tile_set2.tres")
+	if playerLevel == 3:
+		tile_set = preload("res://resources/floor_tile_set3.tres")
+
 
 	generate_rooms(10)
 	place_player()
