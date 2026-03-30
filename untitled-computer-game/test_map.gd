@@ -11,7 +11,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 	#for i in 300:
 		#var newEnemy = enemyTSCN.instantiate()
 		#newEnemy.position = Vector2i(500+i*10,0)
@@ -29,9 +29,7 @@ func _ready() -> void:
 			#Vector2i(8, 6),# size
 			#false 
 			#)
-		#)
-	$ObjectivePoint/Timer/Label.visible = false
-	
+		#)	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,10 +38,22 @@ func _process(delta: float) -> void:
 		get_node("Background").scale = Vector2.ONE * 2.5 / SpectatorCamera.instance.zoom.x
 	else:
 		get_node("Background").global_position = Player.instance._camera.global_position
-	var timeLeft = $ObjectivePoint/Timer.time_left
-	var minutesLeft: int = floor(timeLeft / 60.0)
-	var secondsLeft: int = fmod(timeLeft, 60.0)
-	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
+		var timeLeft = $ObjectivePoint/Timer.time_left
+		var minutesLeft: int = floor(timeLeft / 60.0)
+		var secondsLeft: int = fmod(timeLeft, 60.0)
+		var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
+		get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").text = str("SURVIVE: " + timeString)
+		if timeLeft < 1 and timeLeft > 0:
+			get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
+			get_node("Player").playerLevel += 1
+			var menuScene = load("res://start_menu.tscn")
+			var newMenuScene = menuScene.instantiate()
+			newMenuScene._init(true)
+			get_tree().root.add_child(newMenuScene)
+			get_node("Player").get_node("Tutorial2").queue_free()
+			get_node("Player").reparent(newMenuScene)
+			queue_free()
+
 	if onObjective and Input.is_action_just_pressed("interact"):
 		if get_node("Player").activateBombItem():
 			tilemap_instance.changeUSBtile(Vector2(-4, 13))
@@ -56,19 +66,8 @@ func _process(delta: float) -> void:
 				spawnEnemiesInRoom(tutorialRoom)
 				await get_tree().create_timer(10).timeout
 
-	if timeLeft < 1 and timeLeft > 0:
-		get_node("Player").playerLevel += 1
-		var menuScene = load("res://start_menu.tscn")
-		var newMenuScene = menuScene.instantiate()
-		newMenuScene._init(true)
-		get_tree().root.add_child(newMenuScene)
-		get_node("Player").get_node("Tutorial2").queue_free()
-		get_node("Player").reparent(newMenuScene)
-		queue_free()
 		
 		
-
-	$ObjectivePoint/Timer/Label.text = timeString
 func _on_objective_point_body_entered(body: Node2D) -> void:
 	onObjective = true
 func _on_objective_point_body_exited(body: Node2D) -> void:

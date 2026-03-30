@@ -59,6 +59,15 @@ offset_bottom = 192.0
 theme_override_font_sizes/font_size = 56
 text = "0/50"
 
+[node name="SurvivePrompt" type="Label" parent="PlayerStatus" unique_id=1282412441]
+layout_mode = 0
+offset_left = 649.0
+offset_top = 37.0
+offset_right = 1017.0
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 56
+text = "SURVIVE: 0:00"
+
 [node name="WeaponStats" type="Label" parent="PlayerStatus" unique_id=288522607]
 layout_mode = 0
 offset_left = 1381.0

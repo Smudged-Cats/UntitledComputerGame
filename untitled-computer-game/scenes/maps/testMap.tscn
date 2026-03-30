@@ -23,6 +23,7 @@ script = ExtResource("1_il6hr")
 y_sort_enabled = true
 
 [node name="Signs" parent="TileMapScene/Region1Tiles" index="0" unique_id=264127295]
+visible = false
 tile_map_data = PackedByteArray("AAD///7/AQABAAAAAAD///3/AQADAAAAAAA=")
 
 [node name="Tiles" parent="TileMapScene/Region1Tiles" index="1" unique_id=1878556538]
@@ -66,13 +67,6 @@ shape = SubResource("RectangleShape2D_x877k")
 [node name="Timer" type="Timer" parent="ObjectivePoint" unique_id=552523670]
 wait_time = 30.0
 one_shot = true
-
-[node name="Label" type="Label" parent="ObjectivePoint/Timer" unique_id=1767423109]
-offset_left = -404.0
-offset_top = 392.0
-offset_right = -364.0
-offset_bottom = 415.0
-metadata/_edit_use_anchors_ = true
 
 [node name="SwordTest" parent="." unique_id=1104612395 instance=ExtResource("5_il6hr")]
 z_index = 2
