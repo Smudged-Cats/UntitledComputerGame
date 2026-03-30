@@ -13,6 +13,8 @@ static var gunSprite = preload("res://art/tiles/pixil-frame-0.png")
 
 static var swordSprite = preload("res://art/tiles/pixil-frame-0_1.png")
 
+@onready var playerLevel = 0
+
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
 var _camera: Camera2D

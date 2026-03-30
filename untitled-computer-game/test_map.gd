@@ -35,6 +35,7 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	get_node("Background").global_position = get_node("Player").get_node("Camera2D").global_position
 	var timeLeft = $ObjectivePoint/Timer.time_left
 	var minutesLeft: int = floor(timeLeft / 60.0)
 	var secondsLeft: int = fmod(timeLeft, 60.0)
@@ -52,14 +53,14 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(10).timeout
 
 	if timeLeft < 1 and timeLeft > 0:
-		
+		get_node("Player").playerLevel += 1
 		var menuScene = load("res://start_menu.tscn")
 		var newMenuScene = menuScene.instantiate()
 		newMenuScene._init(true)
 		get_tree().root.add_child(newMenuScene)
+		get_node("Player").reparent(newMenuScene)
 		queue_free()
 		
-	get_node("Background").global_position = get_node("Player").get_node("Camera2D").global_position
 		
 
 	$ObjectivePoint/Timer/Label.text = timeString

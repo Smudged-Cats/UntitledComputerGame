@@ -32,6 +32,7 @@ func _ready() -> void:
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 	
 func _process(float) -> void:
+	get_node("Background").global_position = get_node("Player").get_node("Camera2D").global_position
 	var timeLeft = $ObjectivePoint/Timer.time_left
 	var minutesLeft: int = floor(timeLeft / 60.0)
 	var secondsLeft: int = fmod(timeLeft, 60.0)
@@ -46,12 +47,12 @@ func _process(float) -> void:
 			await get_tree().create_timer(randi_range(10,15)).timeout
 	$ObjectivePoint/Timer/Label.text = timeString
 	if timeLeft < 1 and timeLeft > 0:
+		get_node("Player").playerLevel += 1
 		var menuScene = load("res://start_menu.tscn")
 		var newMenuScene = menuScene.instantiate()
 		newMenuScene._init(true)
 		get_tree().root.add_child(newMenuScene)
 		queue_free()
-	get_node("Background").global_position = get_node("Player").get_node("Camera2D").global_position
 
 
 

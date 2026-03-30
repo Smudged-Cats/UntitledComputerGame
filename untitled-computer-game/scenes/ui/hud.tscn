@@ -73,11 +73,11 @@ offset_bottom = 559.0
 theme_override_constants/v_separation = 112
 
 [node name="Slot1" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=573055214]
-position = Vector2(66.25, 48.25)
+position = Vector2(64.25, 52.25)
 scale = Vector2(0.207, 0.207)
 
 [node name="Slot2" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=1614141506]
-position = Vector2(74.00003, 140)
+position = Vector2(62.00004, 140)
 scale = Vector2(0.17, 0.17)
 
 [node name="Slot3" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=747462911]
