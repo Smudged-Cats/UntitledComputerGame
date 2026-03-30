@@ -5,6 +5,10 @@ extends CanvasLayer
 var tutorialCompleted = false
 
 func _ready() -> void:
+	
+	if Player.instance and Player.instance.playerLevel > 1:
+		$StartButton.text = "Next level"
+	
 	_on_start_button_mouse_entered()
 	if !tutorialCompleted:
 		$TutorialButton.disabled = true

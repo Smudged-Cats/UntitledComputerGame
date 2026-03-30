@@ -18,21 +18,25 @@ func _init(weaponBoost:Dictionary,projectileBoost:Dictionary,meleeBoost:Dictiona
 func applyBoost(entity:Node2D):
 	if (entity is Player):
 		for key in weaponKeyList:
-			entity._weapon.weaponMuls.stats[key] += weaponBoost[key]
+			if (key != "3DModel" && key != "Sprite"):
+				entity._weapon.weaponMuls.stats[key] += weaponBoost[key]
 			
 		for key in projectileKeyList:
 			entity._weapon.weaponMuls.projectileStats.stats[key] += projectileBoost[key]
 			
 		for key in meleeBoostKeys:
-			entity._character.melee.meleeMuls.stats[key] += meleeBoost[key]
+			if (key != "3DModel" && key != "Sprite"):
+				entity._character.melee.meleeMuls.stats[key] += meleeBoost[key]
 
 func removeBoost(entity:Node2D):
 	if (entity is Player):
 		for key in weaponKeyList:
-			entity._weapon.weaponMuls.stats[key] -= weaponBoost[key]
+			if (key != "3DModel" && key != "Sprite"):
+				entity._weapon.weaponMuls.stats[key] -= weaponBoost[key]
 			
 		for key in projectileKeyList:
 			entity._weapon.weaponMuls.projectileStats.stats[key] -= projectileBoost[key]
 			
 		for key in meleeBoostKeys:
-			entity._character.melee.meleeMuls.stats[key] -= meleeBoost[key]
+			if (key != "3DModel" && key != "Sprite"):
+				entity._character.melee.meleeMuls.stats[key] -= meleeBoost[key]
