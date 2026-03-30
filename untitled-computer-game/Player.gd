@@ -242,6 +242,9 @@ func pickup_item() -> void:
 
 func drop_item() -> void:
 	
+	if _character.isWindingUpAttack: return
+
+	
 	if len(inventory) == 0 || inventory[selectedItem] == null: return
 
 	var droppedWeapon = inventory.get(selectedItem)

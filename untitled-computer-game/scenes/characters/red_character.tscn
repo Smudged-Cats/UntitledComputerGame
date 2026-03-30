@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://4hkhphah4rub" path="res://ram_enemy.tscn" id="2_xe1ti"]
 
 [node name="Character" unique_id=452893723 instance=ExtResource("1_x1206")]
+collision_layer = 4
+collision_mask = 5
 
 [node name="RamEnemy" parent="SubViewportContainer/SubViewport/ModelRoot" parent_id_path=PackedInt32Array(863311457) index="0" unique_id=1292831314 instance=ExtResource("2_xe1ti")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
