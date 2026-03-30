@@ -18,12 +18,12 @@ var stats: Dictionary = {
 
 var projectileStats: ProjectileStats
 
-func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, Model:int, projectileCount: int = 1, ammo: int = randi_range(5,16)):
+func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, Model:int, projectileCount: int = 1, ammo: int = randi_range(5,50)):
 	stats["fireRate"] = fireRate
 	stats["projectileCount"] = projectileCount
 	stats["spread"] = spread
 	#print(stats["fireRate"])
-	stats["ammo"] = ammo
+	stats["ammo"] = float(ammo)
 	stats["3DModel"] = Model
 	self.projectileStats = projectileStats
 
