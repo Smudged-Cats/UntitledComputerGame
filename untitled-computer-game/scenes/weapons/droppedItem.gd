@@ -18,9 +18,27 @@ var pickedUp = false
 @onready 
 var canPickup = false
 
-static var meleePlaceholderSprite = preload("res://art/tiles/pixil-frame-0_1.png")
 
-static var rangedPlaceholderSprite = preload("res://art/tiles/pixil-frame-0.png")
+static var meleeLegendarySprite = preload("res://art/weapon sprites/legendary.png")
+
+# Blue area weapons sprites7
+static var blueRanged1Sprite = preload("res://art/weapon sprites/blue/blue_range1.png")
+static var blueRanged2Sprite = preload("res://art/weapon sprites/blue/blue_range2.png")
+static var blueMelee1Sprite = preload("res://art/weapon sprites/blue/blue_melee1.png")
+#static var blueMelee2Sprite = preload("")
+
+# Red area weapons sprites
+static var redRanged1Sprite = preload("res://art/weapon sprites/red/red_range1.png")
+static var redRanged2Sprite = preload("res://art/weapon sprites/red/red_range2.png")
+static var redMelee1Sprite = preload("res://art/weapon sprites/red/red_melee1.png")
+#static var redMelee2Sprite = preload("")
+
+# Green area weapons sprites
+static var greenRanged1Sprite = preload("res://art/weapon sprites/green/green_range1.png")
+static var greenRanged2Sprite = preload("res://art/weapon sprites/green/green_range2.png")
+static var greenMelee1Sprite = preload("res://art/weapon sprites/green/green_melee1.png")
+static var greenMelee2Sprite = preload("res://art/weapon sprites/green/green_melee2.png")
+
 
 static var RGBSword3DModel = preload("res://rgb_sword.tscn")
 static var fireSword3DModel = preload("res://flaming_sword.tscn")
@@ -158,25 +176,35 @@ func setWeaponType(type: String):
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 
 
+# for now, this also sets the sprite, but this should be moved elsewhere when
+# a weapon list has been created with established numbers for each weapon
 func setMeleeModel(item):
 	if item.stats["3DModel"] == 0:
+		item.stats["Sprite"] = meleeLegendarySprite
 		var newModel = RGBSword3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if item.stats["3DModel"] == 1:
+		item.stats["Sprite"] = redMelee1Sprite
 		var newModel = fireSword3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if item.stats["3DModel"] == 2:
+		item.stats["Sprite"] = blueMelee1Sprite
 		var newModel = electricSythe3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if item.stats["3DModel"] == 3:
+		item.stats["Sprite"] = greenMelee2Sprite
 		var newModel = circuitboardBlasterHammer3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 		
+# for now, this also sets the sprite, but this should be moved elsewhere when
+# a weapon list has been created with established numbers for each weapon
 func setRangedModel(item):
 	if item.stats["3DModel"] == 0:
+		item.stats["Sprite"] = greenRanged2Sprite
 		var newModel = circuitboardBlaster3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if item.stats["3DModel"] == 1:
+		item.stats["Sprite"] = blueRanged1Sprite
 		var newModel = electricBlaster3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 

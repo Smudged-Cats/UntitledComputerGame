@@ -7,7 +7,8 @@ var stats: Dictionary = {
 	"projectileCount": 0,
 	"spread":0,
 	"ammo": 0,
-	"3DModel": 0
+	"3DModel": 0,
+	"Sprite" : null
 }
 
 # 3D Model will be an int corresponding to the model / type of melee weapon.
@@ -25,3 +26,7 @@ func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, Model
 	stats["ammo"] = ammo
 	stats["3DModel"] = Model
 	self.projectileStats = projectileStats
+
+#Get the sprite
+func getSprite() -> CompressedTexture2D:
+	return stats["Sprite"]

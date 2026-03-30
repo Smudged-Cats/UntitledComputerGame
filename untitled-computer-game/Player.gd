@@ -9,9 +9,9 @@ signal picked_up_item()
 static var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 static var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 
-static var gunSprite = preload("res://art/tiles/pixil-frame-0.png")
+static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
-static var swordSprite = preload("res://art/tiles/pixil-frame-0_1.png")
+static var swordSprite = preload("res://art/weapon sprites/legendary.png")
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -276,9 +276,9 @@ func updateInventorySprites() -> void:
 	var inventoryCurrentSize = inventory.size()
 	for i in range(inventoryCurrentSize):
 		if inventory[inventoryCurrentSize - 1 - i] != null and inventory[inventoryCurrentSize - 1 - i].stats.has("damage"):
-			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = swordSprite
+			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = inventory[inventoryCurrentSize - 1 - i].getSprite()
 		elif inventory[inventoryCurrentSize - 1 - i] != null and inventory[inventoryCurrentSize - 1 - i].stats.has("fireRate"):
-			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = gunSprite
+			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = inventory[inventoryCurrentSize - 1 - i].getSprite()
 		else:
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = null
 	'''

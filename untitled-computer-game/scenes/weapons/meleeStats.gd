@@ -5,7 +5,8 @@ var stats: Dictionary = {
 	
 	"damage": 0.0,
 	"attackCooldown": 0,
-	"3DModel": 0
+	"3DModel": 0,
+	"Sprite": null
 }
 
 # 3D Model will be an int corresponding to the model / type of melee weapon.
@@ -20,3 +21,7 @@ func _init( damage:float, attackCooldown: float, Model:int):
 	stats["damage"] = damage
 	stats["attackCooldown"] = attackCooldown
 	stats["3DModel"] = Model
+
+#Get the sprite
+func getSprite() -> CompressedTexture2D:
+	return stats["Sprite"]
