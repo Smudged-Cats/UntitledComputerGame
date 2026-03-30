@@ -32,6 +32,7 @@ func _ready():
 	
 
 	generate_rooms(10)
+	place_player()
 	#generate_patterns(20)
 	#generate_pattern(0)
 	
@@ -86,7 +87,6 @@ func generate_rooms(n: int) -> void:
 			floor_layer.set_cell(socket.p + Vector2i.RIGHT, 1, Vector2i.ZERO)
 		elif socket.type == socket_tile_top_left:
 			floor_layer.set_cell(socket.p + Vector2i.DOWN, 1, Vector2i.ZERO)
-		
 		
 # Generate n patterns. No other conditions
 func generate_patterns(n: int) -> void:
@@ -240,6 +240,13 @@ func pick_pattern(id: int = -1) -> TileMapPattern:
 	if id < 0 or id >= tile_set.get_patterns_count(): 
 		id = randi_range(0, tile_set.get_patterns_count() - 1)
 	return tile_set.get_pattern(id)
+	
+func place_player():
+	while true:
+		var p = Vector2i(randi_range(-500, 500), randi_range(-500, 500)) # Get a random pixel position
+		if floor_layer.get_cell_source_id( floor_layer.map_to_local(p) ) == 5:
+			Player.instance.global_position = p
+			break
 
 # Not used
 #func _on_timer_timeout() -> void:

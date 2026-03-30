@@ -1,4 +1,7 @@
+class_name SpectatorCamera
 extends Camera2D
+
+static var instance: SpectatorCamera
 
 var mouse_down = false
 var mouse_origin = Vector2.ZERO
@@ -6,6 +9,14 @@ var mouse_origin = Vector2.ZERO
 var camera_offset = Vector2.ZERO
 var target_position = Vector2.ZERO
 var target_zoom: float = 1
+
+func _ready() -> void:
+	if instance:
+		push_error("More than one spectator camera instance detected")
+		queue_free.call_deferred()
+	
+	instance = self
+		
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("spectator move"):

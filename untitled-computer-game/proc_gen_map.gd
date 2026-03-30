@@ -32,7 +32,11 @@ func _ready() -> void:
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 	
 func _process(float) -> void:
-	get_node("Background").global_position = get_node("Player").get_node("Camera2D").global_position
+	if Player.instance == null:
+		get_node("Background").global_position = SpectatorCamera.instance.global_position
+		get_node("Background").scale = Vector2.ONE * 2.5 / SpectatorCamera.instance.zoom.x
+	else:
+		get_node("Background").global_position = Player.instance._camera.global_position
 	var timeLeft = $ObjectivePoint/Timer.time_left
 	var minutesLeft: int = floor(timeLeft / 60.0)
 	var secondsLeft: int = fmod(timeLeft, 60.0)
