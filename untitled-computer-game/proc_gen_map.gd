@@ -12,7 +12,7 @@ var tileSet = $Region1Tiles
 @onready var gates: TileMapLayer = $Region1Tiles/GateTiles
 @onready var tiletops: TileMapLayer = $Region1Tiles/TileTop
 
-@onready var enemySpawnSprite = preload("res://art/PewPew.png")
+@onready var enemySpawnSprite = preload("res://art/AntiBugSymbol.png")
 
 @onready
 var onObjective = false
@@ -74,10 +74,12 @@ func spawnEnemy(ranLoc: Vector2i) -> void:
 		var newEnemy = enemyTSCN.instantiate()
 		var pixelPos = $Region1Tiles/Tiles.map_to_local(ranLoc)
 		var sprite = Sprite2D.new()
+		sprite.scale = Vector2(2, 2)
 		sprite.texture = enemySpawnSprite
 		add_child(sprite)
 		sprite.position = pixelPos
-		await get_tree().create_timer(2).timeout
+		spriteFading(sprite)
+		await get_tree().create_timer(3).timeout
 		newEnemy.position = pixelPos
 		add_child.call_deferred(newEnemy)
 		sprite.queue_free()
@@ -122,3 +124,11 @@ func toggle_gate_state(closed: bool, gateLoc: Array[Vector2i], left: bool) -> vo
 func changeUSBtile(pos: Vector2i) -> void:
 	var usbSource = 2
 	tiletops.set_cell(pos, usbSource, Vector2i(1, 0))
+	
+func spriteFading(sprite: Sprite2D) -> void:
+	var tween = get_tree().create_tween()
+	
+	tween.set_loops()
+	
+	tween.tween_property(sprite, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(sprite, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
