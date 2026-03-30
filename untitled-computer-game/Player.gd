@@ -99,6 +99,9 @@ func selectWeapon(selectIndex:int) -> void:
 	
 	var currItem = inventory[selectIndex]
 	selectedItem = selectIndex
+	#Make stats invisible
+	$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = false
+	#Make all arrows invisible
 	$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = false
 	$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow2").visible = false
 	$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow3").visible = false
@@ -109,20 +112,23 @@ func selectWeapon(selectIndex:int) -> void:
 		elif (currItem is MeleeStats):
 			_weapon.baseWeapon = null
 			_character.melee.baseMelee = currItem
-		# set the arrow to the right item
-		print("the index selected is")
-		print(selectIndex)
-		
 	else:
 		_weapon.baseWeapon = null
 		_character.melee.baseMelee = null
+	# Make the arrow point to the right item
 	match selectIndex:
 		0:
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow3").visible = true
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
 		1:
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow2").visible = true
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
 		2:
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = true
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
 		
 			
 			
