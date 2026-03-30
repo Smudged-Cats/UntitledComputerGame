@@ -102,7 +102,7 @@ z_index = 2
 y_sort_enabled = true
 tile_set = SubResource("TileSet_3sig6")
 
-[node name="Area2D" parent="." unique_id=1104612395 instance=ExtResource("12_3sig6")]
+[node name="USB" parent="." unique_id=1104612395 instance=ExtResource("12_3sig6")]
 position = Vector2(656, 369)
 itemType = "Bomb"
 
