@@ -89,6 +89,20 @@ func selectWeapon(selectIndex:int) -> void:
 		elif (currItem is MeleeStats):
 			_weapon.baseWeapon = null
 			_character.melee.baseMelee = currItem
+		# set the arrow to the right item
+		print("the index selected is")
+		print(selectIndex)
+		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = false
+		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow2").visible = false
+		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow3").visible = false
+		match selectIndex:
+			0:
+				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = true
+			1:
+				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow2").visible = true
+			2:
+				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow3").visible = true
+		
 			
 			
 func face_to_mouse(delta: float = 1) -> void:

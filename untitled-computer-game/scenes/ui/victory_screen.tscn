@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ki3vma6h0ym0"]
+
+[ext_resource type="Script" uid="uid://o4c3o46d3p0q" path="res://scenes/ui/victory_screen.gd" id="1_dtet5"]
+
+[node name="VictoryScreen" type="CanvasLayer" unique_id=316635701]
+script = ExtResource("1_dtet5")
+
+[node name="Label" type="Label" parent="." unique_id=1685481453]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.57975656, 0.5421837, 0.2136161, 1)
+theme_override_font_sizes/font_size = 64
+text = "W Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextLevel" type="Button" parent="." unique_id=2014121261]
+anchors_preset = -1
+anchor_left = 0.441
+anchor_top = 0.568
+anchor_right = 0.441
+anchor_bottom = 0.568
+offset_left = -1.6000366
+offset_top = -2.2000122
+offset_right = 205.39996
+offset_bottom = 56.799988
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Next Level"
+flat = true
+
+[node name="MainMenu" type="Button" parent="." unique_id=1486574129]
+anchors_preset = -1
+anchor_left = 0.44000003
+anchor_top = 0.67600006
+anchor_right = 0.44000003
+anchor_bottom = 0.67600006
+offset_left = -6.1035156e-05
+offset_top = -0.4000244
+offset_right = 206.99994
+offset_bottom = 58.599976
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+flat = true
+
+[connection signal="pressed" from="NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
