@@ -5,6 +5,7 @@ extends Node2D
 static var tile_set
 var tile_set2 = preload("res://resources/floor_tile_set2.tres")
 
+
 @onready var playerLevel = Player.instance.playerLevel
 
 var socket_tiles_atlas_id = 0
