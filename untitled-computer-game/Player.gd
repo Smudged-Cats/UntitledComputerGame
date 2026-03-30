@@ -8,6 +8,7 @@ signal picked_up_item()
 
 static var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 static var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
+static var pauseScreenScene = preload("res://scenes/ui/pause_screen.tscn")
 
 static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
@@ -30,6 +31,7 @@ var selectedItem:int = 0
 var itemsInProximity = {}
 
 func _ready() -> void:
+	Engine.time_scale = 1
 	if instance:
 		push_error("More than one player instance detected")
 		queue_free.call_deferred()
@@ -82,10 +84,13 @@ func listenForNum() -> void:
 		selectWeapon(2)
 	
 func listen_for_pause() -> void:
+	var pauseScene = pauseScreenScene.instantiate()
 	if Input.is_action_just_pressed("pause"):
 		if Engine.time_scale == 0:
 			Engine.time_scale = 1
+			get_node("CanvasLayer").queue_free()
 		else:
+			add_child(pauseScene)
 			Engine.time_scale = 0
 
 func selectWeapon(selectIndex:int) -> void:
