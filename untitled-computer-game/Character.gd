@@ -57,6 +57,7 @@ var move_dir: Vector2 = Vector2.ZERO
 #var attackCooldown: Cooldown = Cooldown.new(0.3)
 
 var melee: MeleeController
+var weapon: WeaponController
 
 func _ready() -> void:
 	
@@ -64,6 +65,8 @@ func _ready() -> void:
 	self.id = newCharacterId
 	newCharacterId += 1
 	melee = MeleeController.new(self)
+	weapon = WeaponController.new()
+	add_child(weapon)
 	add_child(melee)
 	#Created a cooldown for attacks
 	#add_child(attackCooldown)

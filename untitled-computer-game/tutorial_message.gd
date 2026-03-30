@@ -28,7 +28,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	# Listen for input
-	if Input.is_action_just_pressed("next message") and canSkip:
+	if Input.is_action_just_pressed("space") and canSkip:
 		remove_message()
 	
 	# Ease in

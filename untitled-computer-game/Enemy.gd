@@ -7,10 +7,22 @@ class_name Enemy
 
 var _character: Character
 var currentTarget: Character# = Player.instance._character
+var _weapon: WeaponController
 
 func _ready() -> void:
 	_character = get_node("Character")
+	_character.characterName = "Enemy"
 	_character.melee.baseMelee = MeleeStats.new(50,0.3, -1)
+	_weapon = _character.weapon
+	_weapon.holder = _character.characterName
+	
+	_weapon.setWeapon(DroppedItem.new().ranGun())
+	_weapon.weaponMuls.projectileStats.stats["damage"] -= 0.6
+	_weapon.weaponMuls.projectileStats.stats["speed"] -= 0.1
+	
+	if (_weapon.baseWeapon.stats["fireRate"] >= 1):
+		_weapon.weaponMuls.stats["fireRate"] -= 0.4
+	
 	z_index = 1
 	
 	if Player.instance:
@@ -48,6 +60,8 @@ func chase_enemy(delta: float = 1) -> void:
 				_character.melee.attack()
 			_character.set_move_dir(threatDirectionToIso)
 			_character.look_in_direction(threatDirection, delta)
+			if (difference.length() > 5 && difference.length() <= 130):
+				_weapon.shoot(threatDirection,_character.global_position)
 	else:
 		_character.set_move_dir(Vector2.ZERO)
 	

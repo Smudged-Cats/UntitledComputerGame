@@ -57,7 +57,7 @@ offset_top = 115.0
 offset_right = 244.0
 offset_bottom = 192.0
 theme_override_font_sizes/font_size = 56
-text = "0/20"
+text = "0/50"
 
 [node name="PlayerInventory" type="Control" parent="." unique_id=1536865170]
 layout_mode = 3
