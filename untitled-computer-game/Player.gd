@@ -341,19 +341,19 @@ func show_death_screen() -> void:
 func _on_character_killed() -> void:
 	show_death_screen()
 	
-func activateBombItem() -> void:
-	for item in range(inventory.size()):
-		print(item)
+func activateBombItem() -> bool:
+	for item in inventory:
 		if item != null:
-			if inventory[item].stats.has("damage"):
-				if inventory[item].stats["damage"] == 0:
+			if item.stats.has("damage"):
+				if item.stats["damage"] == 0:
 					$"../ObjectivePoint/Timer/Label".visible = true
 					$"../ObjectivePoint/Timer".start()
 					
 					
 					_character.melee.baseMelee = null
-					inventory.set(item, null)
+					inventory.set(inventory.find(item), null)
 					updateInventorySprites()
-					break
+					return true
+	return false
 				
 		

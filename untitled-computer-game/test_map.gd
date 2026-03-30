@@ -45,16 +45,16 @@ func _process(delta: float) -> void:
 	var secondsLeft: int = fmod(timeLeft, 60.0)
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 	if onObjective and Input.is_action_just_pressed("interact"):
-		get_node("Player").activateBombItem()
-		tilemap_instance.toggle_gate_state(false, [Vector2i(-3, 9), Vector2i(-3, 8)] as Array[Vector2i], false)
-		tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)
+		if get_node("Player").activateBombItem():
+			tilemap_instance.changeUSBtile(Vector2(-4, 13))
+			tilemap_instance.toggle_gate_state(false, [Vector2i(-3, 9), Vector2i(-3, 8)] as Array[Vector2i], false)
+			tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)
 
-		tilemap_instance.changeUSBtile(Vector2(-4, 13))
 		
-		for i in range(5):
-			var tutorialRoom = Room.new(Vector2i(-4,4), Vector2i(8,8), 1)
-			spawnEnemiesInRoom(tutorialRoom)
-			await get_tree().create_timer(10).timeout
+			for i in range(5):
+				var tutorialRoom = Room.new(Vector2i(-4,4), Vector2i(8,8), 1)
+				spawnEnemiesInRoom(tutorialRoom)
+				await get_tree().create_timer(10).timeout
 
 	if timeLeft < 1 and timeLeft > 0:
 		get_node("Player").playerLevel += 1

@@ -43,13 +43,13 @@ func _process(float) -> void:
 	var secondsLeft: int = fmod(timeLeft, 60.0)
 	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 	if onObjective and Input.is_action_just_pressed("interact"):
-		get_node("Player").activateBombItem()
-		changeUSBtile(Vector2(6, 11))
-		await get_tree().create_timer(randi_range(10,15)).timeout
-		for i in range(10):
-			var baseRoom = Room.new(Vector2i(7,-6), Vector2i(12,12), 1)
-			spawnEnemiesInRoom(baseRoom)
+		if get_node("Player").activateBombItem():
+			changeUSBtile(Vector2(6, 11))
 			await get_tree().create_timer(randi_range(5,10)).timeout
+			for i in range(10):
+				var baseRoom = Room.new(Vector2i(7,-6), Vector2i(12,12), 1)
+				spawnEnemiesInRoom(baseRoom)
+				await get_tree().create_timer(randi_range(5,10)).timeout
 	$ObjectivePoint/Timer/Label.text = timeString
 	if timeLeft < 1 and timeLeft > 0:
 		get_node("Player").playerLevel += 1
