@@ -59,6 +59,15 @@ offset_bottom = 192.0
 theme_override_font_sizes/font_size = 56
 text = "0/50"
 
+[node name="WeaponStats" type="Label" parent="PlayerStatus" unique_id=288522607]
+layout_mode = 0
+offset_left = 1381.0
+offset_top = 153.0
+offset_right = 1572.0
+offset_bottom = 299.0
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 3
+
 [node name="PlayerInventory" type="Control" parent="." unique_id=1536865170]
 layout_mode = 3
 anchors_preset = 0

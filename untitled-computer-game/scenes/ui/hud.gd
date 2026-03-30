@@ -13,6 +13,7 @@ func _ready() -> void:
 	$PlayerInventory/GridContainer/Arrow1.visible = false
 	$PlayerInventory/GridContainer/Arrow2.visible = false
 	$PlayerInventory/GridContainer/Arrow3.visible = false
+	$PlayerStatus/WeaponStats.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
