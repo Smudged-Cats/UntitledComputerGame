@@ -1,15 +1,24 @@
+class_name DeathScreen
 extends CanvasLayer
 
-@onready var spectatorScene = preload("res://scenes/controllers/spectator.tscn")
+static var instance: DeathScreen
+
+static var spectatorScene = preload("res://scenes/controllers/spectator.tscn")
 
 var tFade: float = 0
 var fading = false
 
 @onready var btns = [$DeathScreen/RestartButton/Label, $DeathScreen/SpectateButton/Label, $MenuButton, $QuitButton]
-@onready var btnLoc = 0
+var btnLoc = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	if instance:
+		push_error("More than one death screen instance detected")
+		queue_free.call_deferred()
+	instance = self
+	
 	_on_restart_button_mouse_entered()
 
 
