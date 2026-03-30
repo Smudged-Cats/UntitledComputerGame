@@ -82,6 +82,9 @@ func listenForNum() -> void:
 	
 
 func selectWeapon(selectIndex:int) -> void:
+	
+	if _character.isWindingUpAttack: return
+	
 	var currItem = inventory[selectIndex]
 	selectedItem = selectIndex
 	$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = false

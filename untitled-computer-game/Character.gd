@@ -42,6 +42,8 @@ var id = 0
 var acceleration: float = 25.0
 var deceleration: float = 25.0
 
+var dashing = false
+
 var dashWindup: float = 0.0
 var meleeWindup: float = 0.0
 var isWindingUpAttack: bool = false
@@ -101,6 +103,7 @@ func _physics_process(delta: float) -> void:
 	#self.z_index = self.global_position.y
 
 func look_in_direction(dir: Vector2, delta: float = 1) -> void:
+	if dashing: return
 	$SubViewportContainer/SubViewport/ModelRoot.rotation.y = 90 + -global_position.direction_to(dir + self.global_position).angle()
 
 func set_move_dir(dir: Vector2) -> void:
@@ -146,11 +149,16 @@ func attack() -> void:
 		attackCooldown.startTimer()
 '''
 func dash() -> void:
+	if dashing: return
 	var mouseDirection: Vector2 = (get_global_mouse_position() - self.global_position).normalized()
 	if stamina >= 20:
 		self.velocity.x = mouseDirection.x * (400 + dashWindup * 500)
 		self.velocity.y = mouseDirection.y * (400 + dashWindup * 500)
 		stamina -= 20
+		look_in_direction(mouseDirection)
+		dashing = true
+		await get_tree().create_timer(0.5).timeout
+		dashing = false
 
 
 func takeDamage(damage: int, sourcePosition: Vector2, enemySpeed) -> void:
