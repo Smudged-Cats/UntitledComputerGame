@@ -333,5 +333,6 @@ func activateBombItem() -> void:
 					_character.melee.baseMelee = null
 					inventory.set(item, null)
 					updateInventorySprites()
+					break
 				
 		
