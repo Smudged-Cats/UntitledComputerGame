@@ -14,7 +14,7 @@ static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
 static var swordSprite = preload("res://art/weapon sprites/legendary.png")
 
-@onready var playerLevel = 2
+@onready var playerLevel = 0
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -182,7 +182,7 @@ func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
 	
 func listenForShot() -> void:
-	if Input.is_action_pressed("shoot") and _weapon.baseWeapon != null:
+	if Input.is_action_pressed("debug_spawn_hitbox") and _weapon.baseWeapon != null:
 		var mousePos: Vector2 = get_global_mouse_position() - _character.global_position
 		_weapon.shoot(
 			mousePos, 
