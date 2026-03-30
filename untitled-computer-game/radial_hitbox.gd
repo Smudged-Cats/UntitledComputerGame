@@ -25,6 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.characterName != attacker.characterName and body.health > 0:
 			body.get_parent().registerHit()
 			body.takeDamage(damage, self.attacker.global_position, attacker.dashWindup)
+			attacker.health += 5
 			
 
 func set_attacker(char: Character) -> void:

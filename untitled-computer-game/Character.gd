@@ -75,7 +75,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	if !is_instance_valid(self): return
-	
 	if health == 0: return
 	
 	# update stamina
