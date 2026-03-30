@@ -51,8 +51,8 @@ func _physics_process(delta: float) -> void:
 	
 	if _character.health > 0:
 		
-		if len(inventory) > 0 and inventory[len(inventory)-1] is WeaponStats:
-			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[len(inventory)-1].stats["ammo"]) + "/20"
+		if inventory[selectedItem] is WeaponStats:
+			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[selectedItem].stats["ammo"]) + "/20"
 			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = true
 		else:
 			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = false
