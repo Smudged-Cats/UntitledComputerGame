@@ -64,7 +64,7 @@ skew = 0.64577186
 shape = SubResource("RectangleShape2D_x877k")
 
 [node name="Timer" type="Timer" parent="ObjectivePoint" unique_id=552523670]
-wait_time = 5.0
+wait_time = 30.0
 one_shot = true
 
 [node name="Label" type="Label" parent="ObjectivePoint/Timer" unique_id=1767423109]
@@ -103,7 +103,7 @@ itemType = "Modifier"
 position = Vector2(-1769, 94)
 
 [node name="Enemy2" parent="." unique_id=291519566 instance=ExtResource("8_uqqtp")]
-position = Vector2(-2131, -80)
+position = Vector2(-2130, -80)
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
