@@ -91,6 +91,10 @@ position = Vector2(-247.99994, 251.99998)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("5_x877k")
 
+[node name="Area2D" parent="." unique_id=1373875173 instance=ExtResource("5_il6hr")]
+position = Vector2(-112, 69)
+itemType = "Modifier"
+
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
 
