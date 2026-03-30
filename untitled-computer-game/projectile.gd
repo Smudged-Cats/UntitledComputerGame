@@ -35,7 +35,6 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	position += dir * stats.stats["speed"] * delta
 	#print(dir)
-	
 
 func _on_body_entered(body: Node2D) -> void:
 	#Prevent friendly fire
