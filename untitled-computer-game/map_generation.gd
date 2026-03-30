@@ -247,6 +247,7 @@ func place_player():
 	var local_pos = floor_layer.map_to_local(Vector2i(9,-4))
 	Player.instance.global_position = floor_layer.to_global(local_pos)
 	Player.instance._character.position = Vector2.ZERO
+	Player.instance._character.reset()
 	
 func place_USB():
 	while true:
