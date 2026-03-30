@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bm7dmi8pto8pk"]
 
 [ext_resource type="Script" uid="uid://4ispow26ftfa" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
+[ext_resource type="Texture2D" uid="uid://wvhyypts6llt" path="res://scenes/ui/arrow.png" id="2_hqnrr"]
 
 [sub_resource type="Gradient" id="Gradient_0mwgc"]
 offsets = PackedFloat32Array(0.1, 0.15566038, 1)
@@ -83,3 +84,21 @@ scale = Vector2(0.17, 0.17)
 [node name="Slot3" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=747462911]
 position = Vector2(62.499992, 234)
 scale = Vector2(0.194, 0.17600006)
+
+[node name="Arrow1" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=397656107]
+position = Vector2(159.00002, 51.99999)
+rotation = 0.28858864
+scale = Vector2(0.29149997, 0.26743865)
+texture = ExtResource("2_hqnrr")
+
+[node name="Arrow2" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=383589007]
+position = Vector2(166.00002, 150)
+rotation = 0.28858864
+scale = Vector2(0.29149997, 0.26743865)
+texture = ExtResource("2_hqnrr")
+
+[node name="Arrow3" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=774559255]
+position = Vector2(166.00002, 243)
+rotation = 0.28858864
+scale = Vector2(0.29149997, 0.26743865)
+texture = ExtResource("2_hqnrr")

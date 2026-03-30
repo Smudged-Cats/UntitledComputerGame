@@ -10,6 +10,9 @@ var staminaBar: TextureProgressBar = self.get_node("PlayerStatus").get_node("Sta
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$PlayerStatus/AmmoCount.visible = false
+	$PlayerInventory/GridContainer/Arrow1.visible = false
+	$PlayerInventory/GridContainer/Arrow2.visible = false
+	$PlayerInventory/GridContainer/Arrow3.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
