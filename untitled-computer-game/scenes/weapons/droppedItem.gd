@@ -149,8 +149,17 @@ func ranMod() -> Modifier:
 		0,
 		0,
 	)
-	return Modifier.new(genModDict(weaponStats.stats),genModDict(projectileStats.stats))
 	
+	var meleeStats: MeleeStats = MeleeStats.new(
+		0,
+		0,
+		-1
+	)
+	return Modifier.new(
+		genModDict(weaponStats.stats),
+		genModDict(projectileStats.stats),
+		genModDict(meleeStats.stats)
+	)	
 
 func genModDict(itemStats:Dictionary) -> Dictionary:
 	var itemDict: Dictionary = {}

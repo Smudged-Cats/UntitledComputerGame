@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ejh5yfjmi8hd" path="res://art/tiles/FloorTiles/Region1TileSpriteSheet.png" id="3_tv0ut"]
 [ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="4_pfv8e"]
 [ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="5_h03qd"]
-[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTileTop.png" id="6_8qvsh"]
+[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTiletop.png" id="6_8qvsh"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="6_fqd2q"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="7_ltadu"]
 [ext_resource type="Texture2D" uid="uid://bgi2vtj0oyrgo" path="res://art/tiles/barrierTile.png" id="9_256qa"]

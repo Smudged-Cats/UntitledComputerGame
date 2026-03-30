@@ -2,7 +2,10 @@ extends Node2D
 
 @onready var floor_layer = $Tiles
 
-var tile_set = preload("res://resources/floor_tile_set.tres")
+static var tile_set
+var tile_set2 = preload("res://resources/floor_tile_set2.tres")
+
+@onready var playerLevel = Player.instance.playerLevel
 
 var socket_tiles_atlas_id = 0
 var socket_tile_top_left = Vector2i(0, 0)
@@ -22,6 +25,12 @@ var patternsGenerated = []
 
 # Entry point
 func _ready():
+	if playerLevel == 1:
+		tile_set = preload("res://resources/floor_tile_set.tres")
+	if playerLevel == 2:
+		tile_set = preload("res://resources/floor_tile_set2.tres")
+	
+
 	generate_rooms(10)
 	#generate_patterns(20)
 	#generate_pattern(0)

@@ -13,6 +13,8 @@ static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
 static var swordSprite = preload("res://art/weapon sprites/legendary.png")
 
+@onready var playerLevel = 0
+
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
 var _camera: Camera2D
