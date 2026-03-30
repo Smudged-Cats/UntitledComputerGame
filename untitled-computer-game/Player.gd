@@ -9,9 +9,9 @@ signal picked_up_item()
 static var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 static var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 
-static var gunSprite = preload("res://art/tiles/pixil-frame-0.png")
+static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
-static var swordSprite = preload("res://art/tiles/pixil-frame-0_1.png")
+static var swordSprite = preload("res://art/weapon sprites/legendary.png")
 
 @onready var playerLevel = 0
 
@@ -278,9 +278,12 @@ func updateInventorySprites() -> void:
 	var inventoryCurrentSize = inventory.size()
 	for i in range(inventoryCurrentSize):
 		if inventory[inventoryCurrentSize - 1 - i] != null and inventory[inventoryCurrentSize - 1 - i].stats.has("damage"):
-			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = swordSprite
+			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = inventory[inventoryCurrentSize - 1 - i].getSprite()
 		elif inventory[inventoryCurrentSize - 1 - i] != null and inventory[inventoryCurrentSize - 1 - i].stats.has("fireRate"):
-			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = gunSprite
+			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = inventory[inventoryCurrentSize - 1 - i].getSprite()
+		else:
+			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = null
+	'''
 	if inventoryCurrentSize == 2:
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
 	elif inventoryCurrentSize == 1:
@@ -290,22 +293,16 @@ func updateInventorySprites() -> void:
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot2").texture = null
 		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot1").texture = null
-
-
+		'''
 
 
 func show_death_screen() -> void:
 	var newDeathScreen = deathScreenScene.instantiate()
 	add_child(newDeathScreen)
 
-
 func _on_character_killed() -> void:
 	show_death_screen()
 	_character.queue_free.call_deferred()
-
-func addMod():
-	modList.append(Modifier.new({"fireRate":0.3},{"damage":1.0}))
-	modList.get(modList.size() - 1).applyBoost(self)
 	
 func activateBombItem() -> void:
 	for item in inventory:

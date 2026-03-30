@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs7rneddktlcr"
-path="res://.godot/imported/pixil-frame-0.png-7faa48d0f1cbdd87395672190002d212.ctex"
+uid="uid://cd4dp18prcg1y"
+path="res://.godot/imported/legendary.png-88e86959e1cf0f630bc2487a8ca12267.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/pixil-frame-0.png"
-dest_files=["res://.godot/imported/pixil-frame-0.png-7faa48d0f1cbdd87395672190002d212.ctex"]
+source_file="res://art/weapon sprites/legendary.png"
+dest_files=["res://.godot/imported/legendary.png-88e86959e1cf0f630bc2487a8ca12267.ctex"]
 
 [params]
 

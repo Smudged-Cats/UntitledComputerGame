@@ -1,0 +1,97 @@
+[gd_scene format=4 uid="uid://bgrymso8rttja"]
+
+[ext_resource type="Script" uid="uid://bd6q56k024f3r" path="res://test_map.gd" id="1_il6hr"]
+[ext_resource type="PackedScene" uid="uid://bi2rcccjtm42m" path="res://scenes/controllers/player.tscn" id="4_uqqtp"]
+[ext_resource type="PackedScene" uid="uid://46mfe4xwqvlu" path="res://tutorial.tscn" id="4_x877k"]
+[ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="5_il6hr"]
+[ext_resource type="Texture2D" uid="uid://dro1agq2q6jr2" path="res://art/Region1Background.png" id="5_x877k"]
+[ext_resource type="PackedScene" uid="uid://cb1a4nl8n8lc2" path="res://tile_map_scene.tscn" id="12_xywiv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x877k"]
+size = Vector2(81.28537, 82.33595)
+
+[node name="Node2D" type="Node2D" unique_id=631044804]
+y_sort_enabled = true
+script = ExtResource("1_il6hr")
+
+[node name="TileMapScene" parent="." unique_id=2093191107 instance=ExtResource("12_xywiv")]
+
+[node name="Region1Tiles" parent="TileMapScene" index="0" unique_id=1644150485]
+y_sort_enabled = true
+
+[node name="Signs" parent="TileMapScene/Region1Tiles" index="0" unique_id=264127295]
+tile_map_data = PackedByteArray("AAD///7/AQABAAAAAAD///3/AQADAAAAAAA=")
+
+[node name="Tiles" parent="TileMapScene/Region1Tiles" index="1" unique_id=1878556538]
+tile_map_data = PackedByteArray("AAD//wsAAAAAAAAAAAD//woAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/wgAAAAAAAAAAAD9/wcAAAAAAAAAAAD9/wYAAAAAAAAAAAD8/wUAAAAAAAAAAAD8/wQAAAAAAAAAAAD7/wUAAAAAAAAAAAD7/wYAAAAAAAAAAAD6/wcAAAAAAAAAAAD6/wgAAAAAAAAAAAD5/wkAAAAAAAAAAAD5/woAAAAAAAAAAAD5/wsAAAAAAAAAAAD6/wwAAAAAAAAAAAD6/w0AAAAAAAAAAAD7/w4AAAAAAAAAAAD7/w8AAAAAAAAAAAD8/xAAAAAAAAAAAAD8/xEAAAAAAAAAAAD9/xAAAAAAAAAAAAD8/w8AAAAAAAAAAAD9/w8AAAAAAAAAAAD+/w4AAAAAAAAAAAD+/w0AAAAAAAAAAAD//wwAAAAAAAAAAAD+/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD+/wsAAAAAAAAAAAD+/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD8/wsAAAAAAAAAAAD8/w0AAAAAAAAAAAD8/w4AAAAAAAAAAAD7/w0AAAAAAAAAAAD8/wwAAAAAAAAAAAD7/wsAAAAAAAAAAAD7/woAAAAAAAAAAAD6/wkAAAAAAAAAAAD6/woAAAAAAAAAAAD6/wsAAAAAAAAAAAD7/wgAAAAAAAAAAAD7/wwAAAAAAAAAAAD7/wkAAAAAAAAAAAD8/woAAAAAAAAAAAD7/wcAAAAAAAAAAAD8/wcAAAAAAAAAAAD9/wgAAAAAAAAAAAD8/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD9/wkAAAAAAAAAAAD8/wYAAAAAAAAAAAD8/wgAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wUAAAAAAAAAAAD//wQAAAAAAAAAAAD//wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD//wUAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AAAAAAAAAAD///3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////AAAAAAAAAAD6/wUAAAAAAAAAAAD6/wYAAAAAAAAAAAD6/wQAAAAAAAAAAAD5/wMAAAAAAAAAAAD5/wQAAAAAAAAAAAD4/wMAAAAAAAAAAAD5/wUAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD6////AAAAAAAAAAD7/wAAAAAAAAAAAAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7//3/AAAAAAAAAAD8//7/AAAAAAAAAAD8//z/AAAAAAAAAAD8//3/AAAAAAAAAAD8//v/AAAAAAAAAAD9//z/AAAAAAAAAAD9//3/AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD9////AAAAAAAAAAD6/w4AAAACAAAAAAD5/w8AAAACAAAAAAD5/xAAAAACAAAAAAD4/xEAAAACAAAAAAD5/xIAAAACAAAAAAD5/xEAAAACAAAAAAD6/xAAAAACAAAAAAD6/w8AAAACAAAAAAA=")
+
+[node name="GateTiles" parent="TileMapScene/Region1Tiles" index="3" unique_id=1349226113]
+tile_map_data = PackedByteArray("AAD9/wgABwADAAAAAAABAAUABgAAAAAAAAACAAUABgABAAAAAAD9/wkABwACAAAAAAABAAwABgAAAAAAAAACAAwABgABAAAAAAA=")
+
+[node name="BarrierTiles" parent="TileMapScene/Region1Tiles" index="4" unique_id=375717924]
+tile_map_data = PackedByteArray("AAD4/wsAAAAAAAAAAAD5/wwAAAAAAAAAAAD5/w0AAAAAAAAAAAD7/xAAAAAAAAAAAAD7/xEAAAAAAAAAAAD8/xIAAAAAAAAAAAD8/xMAAAAAAAAAAAD9/xIAAAAAAAAAAAD9/xEAAAAAAAAAAAD+/xAAAAAAAAAAAAD+/w8AAAAAAAAAAAD//w4AAAAAAAAAAAD//w0AAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAoAAAAAAAAAAAD//wkAAAAAAAAAAAD//wgAAAAAAAAAAAD//wcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAQAAAAAAAAAAAABAAMAAAAAAAAAAAACAAIAAAAAAAAAAAACAAEAAAAAAAAAAAACAAAAAAAAAAAAAAABAP//AAAAAAAAAAABAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAPz/AAAAAAAAAAD///v/AAAAAAAAAAD///z/AAAAAAAAAAD+//3/AAAAAAAAAAD+//z/AAAAAAAAAAD9//v/AAAAAAAAAAD9//r/AAAAAAAAAAD8//n/AAAAAAAAAAD8//r/AAAAAAAAAAD7//v/AAAAAAAAAAD7//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//7/AAAAAAAAAAD5////AAAAAAAAAAD5/wAAAAAAAAAAAAD4/wEAAAAAAAAAAAD4/wIAAAAAAAAAAAD3/wMAAAAAAAAAAAD4/wQAAAAAAAAAAAD4/wUAAAAAAAAAAAD5/wYAAAAAAAAAAAD5/wcAAAAAAAAAAAD5/wgAAAAAAAAAAAD4/wkAAAAAAAAAAAD4/woAAAAAAAAAAAD6/wMAAAAAAAAAAAD7/wIAAAAAAAAAAAD7/wMAAAAAAAAAAAD7/wQAAAAAAAAAAAD7/wEAAAAAAAAAAAD8/wAAAAAAAAAAAAD8////AAAAAAAAAAD9/wAAAAAAAAAAAAD8/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD9/wUAAAAAAAAAAAD9/wQAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wIAAAAAAAAAAAA=")
+
+[node name="Region2Tiles" parent="TileMapScene" index="1" unique_id=1451361513]
+visible = false
+
+[node name="Tiles" parent="TileMapScene/Region2Tiles" index="0" unique_id=625520478]
+tile_map_data = PackedByteArray()
+
+[node name="GateTiles" parent="TileMapScene/Region2Tiles" index="1" unique_id=1671313740]
+tile_map_data = PackedByteArray()
+
+[node name="Player" parent="." unique_id=1093490169 groups=["characters"] instance=ExtResource("4_uqqtp")]
+z_index = 2
+y_sort_enabled = true
+
+[node name="Tutorial2" parent="Player" unique_id=241826499 instance=ExtResource("4_x877k")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1171605171]
+transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
+
+[node name="ObjectivePoint" type="Area2D" parent="." unique_id=1751914243]
+collision_mask = 2
+
+[node name="ObjectiveCanInteract" type="CollisionShape2D" parent="ObjectivePoint" unique_id=1027381031]
+position = Vector2(-382.4873, 444.31702)
+rotation = -2.6406832
+scale = Vector2(0.99999976, 0.9999999)
+skew = 0.64577186
+shape = SubResource("RectangleShape2D_x877k")
+
+[node name="Timer" type="Timer" parent="ObjectivePoint" unique_id=552523670]
+wait_time = 60.0
+one_shot = true
+
+[node name="Label" type="Label" parent="ObjectivePoint/Timer" unique_id=1767423109]
+offset_left = -404.0
+offset_top = 392.0
+offset_right = -364.0
+offset_bottom = 415.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SwordTest" parent="." unique_id=1104612395 instance=ExtResource("5_il6hr")]
+z_index = 2
+position = Vector2(262, 54)
+itemType = "Melee"
+
+[node name="USBStick" parent="." unique_id=337984885 instance=ExtResource("5_il6hr")]
+z_index = 2
+position = Vector2(-379, -103)
+itemType = "Bomb"
+
+[node name="GunTest" parent="." unique_id=172808262 instance=ExtResource("5_il6hr")]
+z_index = 2
+position = Vector2(194, 16)
+itemType = "Weapon"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1462092099]
+z_index = -999
+position = Vector2(-247.99994, 251.99998)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_x877k")
+
+[connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
+[connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
+
+[editable path="TileMapScene"]
