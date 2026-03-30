@@ -17,7 +17,7 @@ var baseProjectile = preload("res://scenes/weapons/Projectile.tscn")
 func _init(holder:String = "", b:WeaponStats =null):
 	self.holder = holder
 	baseWeapon = b
-	weaponMuls = WeaponStats.new(1,1,ProjectileStats.new(1,1,1),1)
+	weaponMuls = WeaponStats.new(1,1,ProjectileStats.new(1,1,1),-1,1,1)
 	fireRateTimer = Cooldown.new(1.0)
 	
 	#For some reason, the Cooldown needs to be added as a child
