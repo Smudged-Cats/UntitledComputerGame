@@ -23,7 +23,7 @@ func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, Model
 	stats["projectileCount"] = projectileCount
 	stats["spread"] = spread
 	#print(stats["fireRate"])
-	stats["ammo"] = ammo
+	stats["ammo"] = float(ammo)
 	stats["3DModel"] = Model
 	self.projectileStats = projectileStats
 
