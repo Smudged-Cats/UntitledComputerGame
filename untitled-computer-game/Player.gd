@@ -65,6 +65,7 @@ func _physics_process(delta: float) -> void:
 		listen_for_drop_item()
 		listen_for_drop_mod()
 		listenForNum()
+		listen_for_pause()
 	_camera.update_camera_position(delta)
 	
 	if Input.is_action_just_pressed("kill me"):
@@ -80,6 +81,12 @@ func listenForNum() -> void:
 	elif (Input.is_action_just_pressed("3")):
 		selectWeapon(2)
 	
+func listen_for_pause() -> void:
+	if Input.is_action_just_pressed("pause"):
+		if Engine.time_scale == 0:
+			Engine.time_scale = 1
+		else:
+			Engine.time_scale = 0
 
 func selectWeapon(selectIndex:int) -> void:
 	
