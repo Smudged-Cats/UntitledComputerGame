@@ -244,8 +244,8 @@ func pick_pattern(id: int = -1) -> TileMapPattern:
 func place_player():
 	while true:
 		var p = Vector2i(randi_range(-500, 500), randi_range(-500, 500)) # Get a random pixel position
-		if floor_layer.get_cell_source_id( floor_layer.map_to_local(p) ) == 5:
-			Player.instance.global_position = p
+		if floor_layer.get_cell_source_id( p ) == 5:
+			Player.instance.global_position = floor_layer.map_to_local(p)
 			break
 
 # Not used
