@@ -8,10 +8,13 @@ extends Node2D
 
 @onready var onObjective = false
 
+@onready var enemySpawnSprite = preload("res://art/AntiBugSymbol.png")
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 	#for i in 300:
 		#var newEnemy = enemyTSCN.instantiate()
 		#newEnemy.position = Vector2i(500+i*10,0)
@@ -29,9 +32,7 @@ func _ready() -> void:
 			#Vector2i(8, 6),# size
 			#false 
 			#)
-		#)
-	$ObjectivePoint/Timer/Label.visible = false
-	
+		#)	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,10 +41,22 @@ func _process(delta: float) -> void:
 		get_node("Background").scale = Vector2.ONE * 2.5 / SpectatorCamera.instance.zoom.x
 	else:
 		get_node("Background").global_position = Player.instance._camera.global_position
-	var timeLeft = $ObjectivePoint/Timer.time_left
-	var minutesLeft: int = floor(timeLeft / 60.0)
-	var secondsLeft: int = fmod(timeLeft, 60.0)
-	var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
+		var timeLeft = $ObjectivePoint/Timer.time_left
+		var minutesLeft: int = floor(timeLeft / 60.0)
+		var secondsLeft: int = fmod(timeLeft, 60.0)
+		var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
+		get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").text = str("SURVIVE: " + timeString)
+		if timeLeft < 1 and timeLeft > 0:
+			get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
+			get_node("Player").playerLevel += 1
+			var menuScene = load("res://start_menu.tscn")
+			var newMenuScene = menuScene.instantiate()
+			newMenuScene._init(true)
+			get_tree().root.add_child(newMenuScene)
+			get_node("Player").get_node("Tutorial2").queue_free()
+			get_node("Player").reparent(newMenuScene)
+			queue_free()
+
 	if onObjective and Input.is_action_just_pressed("interact"):
 		if get_node("Player").activateBombItem():
 			tilemap_instance.changeUSBtile(Vector2(-4, 13))
@@ -56,19 +69,8 @@ func _process(delta: float) -> void:
 				spawnEnemiesInRoom(tutorialRoom)
 				await get_tree().create_timer(10).timeout
 
-	if timeLeft < 1 and timeLeft > 0:
-		get_node("Player").playerLevel += 1
-		var menuScene = load("res://start_menu.tscn")
-		var newMenuScene = menuScene.instantiate()
-		newMenuScene._init(true)
-		get_tree().root.add_child(newMenuScene)
-		get_node("Player").get_node("Tutorial2").queue_free()
-		get_node("Player").reparent(newMenuScene)
-		queue_free()
 		
 		
-
-	$ObjectivePoint/Timer/Label.text = timeString
 func _on_objective_point_body_entered(body: Node2D) -> void:
 	onObjective = true
 func _on_objective_point_body_exited(body: Node2D) -> void:
@@ -79,10 +81,21 @@ func spawnEnemiesInRoom(room: Room):
 	for i in range(numberRoomEnemies):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($TileMapScene/Region1Tiles/Tiles.get_cell_source_id(randomLocation) != -1):
-			var newEnemy = enemyTSCN.instantiate()
-			var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(randomLocation)
-			newEnemy.position = pixelPos
-			add_child(newEnemy)
+			spawnEnemy(randomLocation)
+			
+func spawnEnemy(ranLoc: Vector2i) -> void:
+		var newEnemy = enemyTSCN.instantiate()
+		var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(ranLoc)
+		var sprite = Sprite2D.new()
+		sprite.scale = Vector2(2, 2)
+		sprite.texture = enemySpawnSprite
+		add_child(sprite)
+		sprite.position = pixelPos
+		spriteFading(sprite)
+		await get_tree().create_timer(3).timeout
+		newEnemy.position = pixelPos
+		add_child.call_deferred(newEnemy)
+		sprite.queue_free()
 		
 func spawnRoomLoot(room: Room):
 	var weaponTypes = ["Weapon", "Melee", "Modifier"]
@@ -95,5 +108,13 @@ func spawnRoomLoot(room: Room):
 			var pixelPos = $TileMapScene/Region1Tiles/Tiles.map_to_local(randomLocation)
 			newDroppedItem.position = pixelPos
 			add_child(newDroppedItem)
+			
+func spriteFading(sprite: Sprite2D) -> void:
+	var tween = get_tree().create_tween()
+	
+	tween.set_loops()
+	
+	tween.tween_property(sprite, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(sprite, "modulate:a", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
 	
 	

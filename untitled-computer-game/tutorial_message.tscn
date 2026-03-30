@@ -26,6 +26,7 @@ offset_bottom = -230.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(200, 25)
+theme_override_font_sizes/font_size = 25
 text = "Untitled Computer Game Message Something Something"
 label_settings = SubResource("LabelSettings_lwk3s")
 horizontal_alignment = 1

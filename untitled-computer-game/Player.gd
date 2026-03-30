@@ -116,19 +116,20 @@ func selectWeapon(selectIndex:int) -> void:
 		_weapon.baseWeapon = null
 		_character.melee.baseMelee = null
 	# Make the arrow point to the right item
-	match selectIndex:
-		0:
-			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow3").visible = true
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
-		1:
-			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow2").visible = true
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
-		2:
-			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = true
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
+	if (currItem != null):
+		match selectIndex:
+			0:
+				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow3").visible = true
+				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
+				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
+			1:
+				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow2").visible = true
+				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
+				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
+			2:
+				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = true
+				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
+				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
 		
 			
 			
@@ -352,7 +353,7 @@ func activateBombItem() -> bool:
 		if item != null:
 			if item.stats.has("damage"):
 				if item.stats["damage"] == 0:
-					$"../ObjectivePoint/Timer/Label".visible = true
+					get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = true
 					$"../ObjectivePoint/Timer".start()
 					
 					
