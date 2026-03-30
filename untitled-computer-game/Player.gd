@@ -338,6 +338,7 @@ func _on_character_killed() -> void:
 	
 func activateBombItem() -> void:
 	for item in range(inventory.size()):
+		print(item)
 		if item != null:
 			if inventory[item].stats.has("damage"):
 				if inventory[item].stats["damage"] == 0:
