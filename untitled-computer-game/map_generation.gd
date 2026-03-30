@@ -34,6 +34,7 @@ func _ready():
 
 	generate_rooms(10)
 	place_player()
+	place_USB()
 	#generate_patterns(20)
 	#generate_pattern(0)
 	
@@ -246,6 +247,15 @@ func place_player():
 	var local_pos = floor_layer.map_to_local(Vector2i(9,-4))
 	Player.instance.global_position = floor_layer.to_global(local_pos)
 	Player.instance._character.position = Vector2.ZERO
+	
+func place_USB():
+	while true:
+		var map_pos = Vector2i(randi_range(-500,500),randi_range(-500,500))
+		var local_pos = floor_layer.map_to_local(map_pos)
+		get_parent().get_node("USB").global_position = floor_layer.to_global(local_pos)
+		if floor_layer.get_cell_source_id(map_pos) > 1:
+			break
+ 	
 
 # Not used
 #func _on_timer_timeout() -> void:
