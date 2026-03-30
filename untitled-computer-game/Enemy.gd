@@ -6,12 +6,15 @@ class_name Enemy
 @onready var lootScene = preload("res://scenes/weapons/droppedItem.tscn")
 
 var _character: Character
-var currentTarget: Character = Player.instance._character
+var currentTarget: Character# = Player.instance._character
 
 func _ready() -> void:
 	_character = get_node("Character")
 	_character.melee.baseMelee = MeleeStats.new(50,0.3, -1)
 	z_index = 1
+	
+	if Player.instance:
+		currentTarget = Player.instance._character
 
 func _physics_process(delta: float) -> void:
 	if !is_instance_valid(_character): return
