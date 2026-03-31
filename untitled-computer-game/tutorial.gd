@@ -34,11 +34,14 @@ func _ready() -> void:
 	currentMessage = add_message("Release to perform the attack. The longer you hold the attack, the stronger it will be", true)
 	await wait_until_message_is_null()
 	
-	currentMessage = add_message("When holding a ranged weapon, right click to shoot in the direction of your mouse", true)
+	currentMessage = add_message("When holding a ranged weapon, use the [LMB] to shoot in the direction of your cursor", true)
 	await wait_until_message_is_null()
 	
 	currentMessage = add_message("On every map, can be found a pink USB stick, press [E] to pick it up", true)
 	await Player.instance.picked_up_item
+	
+	currentMessage = add_message("Holding [Shift] charges up your dash ability, upon release you gain a brief speed boost", true)
+	await wait_until_message_is_null()
 	
 	currentMessage = add_message("At the center of the floor is a USB port, press [E] with the USB stick to plug it in", true)
 	await wait_until_message_is_null()
