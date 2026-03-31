@@ -18,7 +18,8 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 	self.stats = ProjectileStats.new(
 		stats.stats["damage"] * statMuls.stats["damage"],
 		stats.stats["speed"] * statMuls.stats["speed"],
-		stats.stats["shotHealth"] * statMuls.stats["shotHealth"]
+		stats.stats["shotHealth"] * statMuls.stats["shotHealth"],
+		stats.stats["knockback"] * statMuls.stats["knockback"] - 650
 	)
 	killTimer = 5.0
 	if (self.stats.stats["speed"] > 2000):
@@ -40,7 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 	#Prevent friendly fire
 	if(body is Character):
 		if (body.characterName != source and body.health > 0):
-			body.takeDamage(stats.stats["damage"], self.global_position, 0)
+			body.takeDamage(stats.stats["damage"], self.global_position, stats.stats["knockback"])
 			
 			#Trying to simulate piercing shots by giving the shots
 			# health

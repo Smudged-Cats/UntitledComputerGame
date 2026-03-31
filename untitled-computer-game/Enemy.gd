@@ -18,7 +18,8 @@ func _ready() -> void:
 	
 	_weapon.setWeapon(DroppedItem.new().ranGun())
 	_weapon.weaponMuls.projectileStats.stats["damage"] -= 0.6
-	_weapon.weaponMuls.projectileStats.stats["speed"] -= 0.1
+	_weapon.weaponMuls.projectileStats.stats["speed"] -= 0.3
+	_weapon.weaponMuls.stats["ammo"] += 50
 	
 	if (_weapon.baseWeapon.stats["fireRate"] >= 1):
 		_weapon.weaponMuls.stats["fireRate"] -= 0.4
