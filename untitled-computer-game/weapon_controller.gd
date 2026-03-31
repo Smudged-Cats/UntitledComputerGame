@@ -12,6 +12,7 @@ var baseWeapon: WeaponStats
 var weaponMuls: WeaponStats
 var baseProjectile = preload("res://scenes/weapons/Projectile.tscn")
 
+
 #I'm not sure if it makes more sense that have the defaultFireRate be 
 # of type float, or of type Cooldown2
 func _init(holder:String = "", b:WeaponStats =null):

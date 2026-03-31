@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1inlu57s70cl"
-path="res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"
+uid="uid://ba4fo0f8pq418"
+path="res://.godot/imported/BulletGif.png-54274d115031d0c7f565b4ab39eb7fd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/TileTops/USBTileTop.png"
-dest_files=["res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"]
+source_file="res://art/weapon sprites/blue/BulletGif.png"
+dest_files=["res://.godot/imported/BulletGif.png-54274d115031d0c7f565b4ab39eb7fd7.ctex"]
 
 [params]
 

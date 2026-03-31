@@ -1,7 +1,50 @@
 [gd_scene format=3 uid="uid://3q32jaqifpga"]
 
 [ext_resource type="Script" uid="uid://c4mhvwl8ckysu" path="res://projectile.gd" id="1_s52oo"]
-[ext_resource type="Texture2D" uid="uid://cgolv1ghso7bl" path="res://art/PewPew.png" id="2_s52oo"]
+[ext_resource type="Texture2D" uid="uid://ba4fo0f8pq418" path="res://art/weapon sprites/blue/BulletGif.png" id="2_s52oo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtdpv"]
+atlas = ExtResource("2_s52oo")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1wvs"]
+atlas = ExtResource("2_s52oo")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v55ij"]
+atlas = ExtResource("2_s52oo")
+region = Rect2(50, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq0wo"]
+atlas = ExtResource("2_s52oo")
+region = Rect2(75, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no5pg"]
+atlas = ExtResource("2_s52oo")
+region = Rect2(100, 0, 25, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_few8n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtdpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1wvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v55ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq0wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no5pg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1wvs"]
 size = Vector2(18, 22)
@@ -11,10 +54,11 @@ collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_s52oo")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=172769182]
-position = Vector2(0.13085866, -0.8398435)
-scale = Vector2(0.93991804, 1.062872)
-texture = ExtResource("2_s52oo")
+[node name="BlueIcon" type="AnimatedSprite2D" parent="." unique_id=1103030883]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_few8n")
+autoplay = "default"
+frame_progress = 0.5255901
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=816339398]
 shape = SubResource("RectangleShape2D_m1wvs")
