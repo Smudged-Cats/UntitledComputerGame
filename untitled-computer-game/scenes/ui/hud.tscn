@@ -105,17 +105,17 @@ scale = Vector2(0.194, 0.17600006)
 [node name="Arrow1" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=397656107]
 position = Vector2(161.00002, 239)
 rotation = 0.28858864
-scale = Vector2(0.29149997, 0.26743865)
+scale = Vector2(0.151, 0.139)
 texture = ExtResource("2_hqnrr")
 
 [node name="Arrow2" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=383589007]
 position = Vector2(166.00002, 150)
 rotation = 0.28858864
-scale = Vector2(0.29149997, 0.26743865)
+scale = Vector2(0.151, 0.139)
 texture = ExtResource("2_hqnrr")
 
 [node name="Arrow3" type="Sprite2D" parent="PlayerInventory/GridContainer" unique_id=774559255]
 position = Vector2(166.00002, 60.99994)
 rotation = 0.28858864
-scale = Vector2(0.29149997, 0.26743865)
+scale = Vector2(0.151, 0.139)
 texture = ExtResource("2_hqnrr")

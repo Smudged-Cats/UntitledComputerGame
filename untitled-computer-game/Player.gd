@@ -306,6 +306,7 @@ func drop_item() -> void:
 		_weapon.baseWeapon = null
 
 	inventory.set(selectedItem, null)
+	get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("WeaponStats").visible = false
 	updateInventorySprites()
 	
 func dropMod() -> void:
