@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/TileTops/Region1TileTop1.png" id="4_udskl"]
 [ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="5_y1omr"]
 [ext_resource type="Texture2D" uid="uid://cq6oq67fbi144" path="res://art/tiles/WallTiles/WallSpriteSheet.png" id="6_2morg"]
-[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTiletop.png" id="7_2morg"]
+[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTileTop.png" id="7_2morg"]
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="7_q41uj"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_o6k6t"]
 [ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="11_2morg"]
@@ -179,6 +179,7 @@ tile_set = SubResource("TileSet_mtlp5")
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1
+tile_map_data = PackedByteArray("AAAMAAQABwAAAAAAAAANAAQABwABAAAAAAAMAPn/BwAAAAAAAAARAP//BwACAAAAAAARAP7/BwADAAAAAAAGAP//BwACAAAAAAAGAP7/BwADAAAAAAANAPn/BwABAAAAAAA=")
 tile_set = SubResource("TileSet_847ud")
 
 [node name="USB" parent="." unique_id=1104612395 instance=ExtResource("11_2morg")]

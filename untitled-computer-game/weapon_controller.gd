@@ -26,7 +26,7 @@ func _init(holder:String = "", b:WeaponStats =null):
 	# to its class node (*see Cooldown scene)
 	add_child(fireRateTimer)
 
-func shoot(dir:Vector2, pos: Vector2) -> void:
+func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 	
 	# Check already implemented in Player.gd
 	#if baseWeapon == null: return
@@ -50,7 +50,20 @@ func shoot(dir:Vector2, pos: Vector2) -> void:
 				pos)
 			#print(baseWeapon.projectileStats.shotHealth)
 			add_child(tempP)
-		
+			
+			if model_id == 0: #Apparently the green one is 0 and the blue one is 1
+				tempP.get_node("BlueIcon").visible = false
+				tempP.get_node("GreenIcon").visible = true
+				tempP.get_node("BulletForEnemy").visible = false
+			elif model_id == 1:
+				tempP.get_node("BlueIcon").visible = true
+				tempP.get_node("GreenIcon").visible = false
+				tempP.get_node("BulletForEnemy").visible = false
+			else:
+				tempP.get_node("BulletForEnemy").visible = true
+				tempP.get_node("BlueIcon").visible = false
+				tempP.get_node("GreenIcon").visible = false
+			
 		fireRateTimer.startTimer(baseWeapon.stats["fireRate"]/weaponMuls.stats["fireRate"])
 
 func setWeapon(w:WeaponStats):

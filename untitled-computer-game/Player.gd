@@ -190,7 +190,8 @@ func listenForShot() -> void:
 		var mousePos: Vector2 = get_global_mouse_position() - _character.global_position
 		_weapon.shoot(
 			mousePos, 
-			_character.global_position
+			_character.global_position,
+			inventory[selectedItem].stats["3DModel"]
 			)
 
 # Called when an item comes close to the character

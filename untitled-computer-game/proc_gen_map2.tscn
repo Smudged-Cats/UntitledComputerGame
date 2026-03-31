@@ -39,6 +39,22 @@ sources/0 = SubResource("TileSetAtlasSource_o6k6t")
 sources/1 = SubResource("TileSetAtlasSource_ui48y")
 sources/2 = SubResource("TileSetAtlasSource_nc4n3")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nm8jx"]
+texture = ExtResource("9_qy0jw")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.2, -6.3999996, -64, 0, 0, 32, 12.800003, 25.600002)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(1, 31)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.2, -6.3999996, -64, 0, 0, 32, 12.800003, 25.600002)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 31)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(51.200005, -6.3999996, -12.799999, 25.600002, 0, 32, 64, 0)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(1, 32)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(51.200005, -6.3999996, -12.799999, 25.600002, 0, 32, 64, 0)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dse5u"]
 texture = ExtResource("8_r3y0c")
 texture_region_size = Vector2i(128, 128)
@@ -51,29 +67,13 @@ texture_region_size = Vector2i(128, 128)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(1, 32)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nm8jx"]
-texture = ExtResource("9_qy0jw")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 32)
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, -64, 0, 0, 32, 64, 0)
-1:0/0 = 0
-1:0/0/texture_origin = Vector2i(1, 31)
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.2, -6.3999996, -64, 0, 0, 32, 12.800003, 25.600002)
-2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, 31)
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(51.200005, -6.3999996, -12.799999, 25.600002, 0, 32, 64, 0)
-3:0/0 = 0
-3:0/0/texture_origin = Vector2i(1, 32)
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(51.200005, -6.3999996, -12.799999, 25.600002, 0, 32, 64, 0)
-
 [sub_resource type="TileSet" id="TileSet_3sig6"]
 tile_shape = 1
 tile_size = Vector2i(128, 64)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_dse5u")
-sources/1 = SubResource("TileSetAtlasSource_nm8jx")
+sources/6 = SubResource("TileSetAtlasSource_nm8jx")
+sources/7 = SubResource("TileSetAtlasSource_dse5u")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2morg"]
 size = Vector2(81.28537, 82.33595)
@@ -100,6 +100,7 @@ tile_set = SubResource("TileSet_mtlp5")
 [node name="GateTiles" type="TileMapLayer" parent="Region1Tiles" unique_id=1241656711]
 z_index = 2
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAEABAABwAAAAAAAAAEABEABwABAAAAAAAJABAABwACAAAAAAAJAA8ABwADAAAAAAAJAAUABwAAAAAAAAADAAUABwACAAAAAAAEAAQABwADAAAAAAAKAAYABwABAAAAAAA=")
 tile_set = SubResource("TileSet_3sig6")
 
 [node name="USB" parent="." unique_id=1104612395 instance=ExtResource("12_3sig6")]
