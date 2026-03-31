@@ -26,6 +26,12 @@ func _ready() -> void:
 			spawnRoomLoot(room)
 			
 	
+	for item in Player.instance.inventory:
+		if item != null:
+			if item.stats.has("ammo"):
+				item.stats["ammo"] = 50
+			
+	
 func _process(float) -> void:
 	if Player.instance == null:
 		get_node("Background").global_position = SpectatorCamera.instance.global_position
