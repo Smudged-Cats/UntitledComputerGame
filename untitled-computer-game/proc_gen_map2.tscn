@@ -79,12 +79,14 @@ sources/7 = SubResource("TileSetAtlasSource_dse5u")
 size = Vector2(81.28537, 82.33595)
 
 [node name="Node2D" type="Node2D" unique_id=1977402749]
+y_sort_enabled = true
 script = ExtResource("1_w37t2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=957132427]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)
 
 [node name="Region1Tiles" type="Node2D" parent="." unique_id=880365376]
+y_sort_enabled = true
 script = ExtResource("2_la487")
 
 [node name="Tiles" type="TileMapLayer" parent="Region1Tiles" unique_id=1784708468]

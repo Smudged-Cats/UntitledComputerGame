@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1inlu57s70cl"
-path="res://.godot/imported/USBTiletop.png-fda425ae45b13eb90def69b0881dc2fc.ctex"
+path="res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/TileTops/USBTiletop.png"
-dest_files=["res://.godot/imported/USBTiletop.png-fda425ae45b13eb90def69b0881dc2fc.ctex"]
+source_file="res://art/tiles/TileTops/USBTileTop.png"
+dest_files=["res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"]
 
 [params]
 

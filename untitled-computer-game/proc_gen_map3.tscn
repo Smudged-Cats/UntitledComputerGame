@@ -45,15 +45,19 @@ texture = ExtResource("7_61noe")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(-6, 31)
+0:0/0/y_sort_origin = 6
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-38.4, -12.799999, -64, 0, 0, 38.4, 12.800003, 25.600002)
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(12, 37)
+1:0/0/y_sort_origin = 6
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-51.2, -6.3999996, -64, 0, 0, 32, 12.800003, 19.2)
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(-9, 36)
+2:0/0/y_sort_origin = 6
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12.799999, 19.2, 0, 32, 64, 0, 51.200005, -6.3999996)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(9, 30)
+3:0/0/y_sort_origin = 6
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 32, 64, 0, 38.4, -12.799999, -12.799999, 25.600002)
 0:1/0 = 0
 1:1/0 = 0
@@ -93,6 +97,7 @@ sources/6 = SubResource("TileSetAtlasSource_aj2g2")
 size = Vector2(81.28537, 82.33595)
 
 [node name="Node2D" type="Node2D" unique_id=1977402749]
+y_sort_enabled = true
 script = ExtResource("1_61noe")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=957132427]
