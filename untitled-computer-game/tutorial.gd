@@ -5,6 +5,8 @@ static var tutorialMessageScene = preload("res://tutorial_message.tscn")
 var click = false
 var currentMessage: TutorialMessage = null
 
+@export var tutorial_usb: DroppedItem = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Starting tutorial")
@@ -37,8 +39,9 @@ func _ready() -> void:
 	currentMessage = add_message("When holding a ranged weapon, use the [LMB] to shoot in the direction of your cursor", true)
 	await wait_until_message_is_null()
 	
-	currentMessage = add_message("On every map, can be found a pink USB stick, press [E] to pick it up", true)
-	await Player.instance.picked_up_item
+	currentMessage = add_message("On every map, can be found a pink USB stick, press [E] to pick it up")
+	await wait_for_signal_with_args(Player.instance.picked_up_item, tutorial_usb)
+	#await Player.instance.picked_up_item
 	
 	currentMessage = add_message("Holding [Shift] charges up your dash ability, upon release you gain a brief speed boost", true)
 	await wait_until_message_is_null()
@@ -50,9 +53,15 @@ func _ready() -> void:
 	await wait_until_message_is_null()
 
 # Wait until message is removed
-func wait_until_message_is_null():
+func wait_until_message_is_null() -> void:
 	while (currentMessage != null):
 		await get_tree().create_timer(0.25).timeout
+
+func wait_for_signal_with_args(sig: Signal, value = null) -> void:
+	while true:
+		var r = await sig
+		if not value or r == value:
+			return
 
 func add_message(newMsg: String, canSkip: bool = false) -> TutorialMessage:
 	

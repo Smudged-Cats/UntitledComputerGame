@@ -45,10 +45,9 @@ tile_map_data = PackedByteArray()
 tile_map_data = PackedByteArray()
 
 [node name="Player" parent="." unique_id=1093490169 groups=["characters"] instance=ExtResource("4_uqqtp")]
-z_index = 2
-y_sort_enabled = true
 
-[node name="Tutorial2" parent="Player" unique_id=241826499 instance=ExtResource("4_x877k")]
+[node name="Tutorial2" parent="Player" unique_id=241826499 node_paths=PackedStringArray("tutorial_usb") instance=ExtResource("4_x877k")]
+tutorial_usb = NodePath("../../USBStick")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1171605171]
 transform = Transform3D(1, 0, 0, 0, 0.36234048, 0.9320458, 0, -0.9320458, 0.36234048, 0, 4.1236696, 0)

@@ -4,7 +4,7 @@ class_name Player
 # Singleton class, because there can only be one player
 static var instance: Player
 
-signal picked_up_item()
+signal picked_up_item(item: DroppedItem)
 
 static var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 static var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
@@ -257,7 +257,7 @@ func pickup_item() -> void:
 		inventory.set(selectedItem, meleeStats)
 		selectWeapon(selectedItem)
 
-	emit_signal("picked_up_item")
+	emit_signal("picked_up_item", item)
 	
 	# remove the dropped item from the world
 	item.queue_free.call_deferred()
