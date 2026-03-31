@@ -5,6 +5,8 @@ static var tutorialMessageScene = preload("res://tutorial_message.tscn")
 var click = false
 var currentMessage: TutorialMessage = null
 
+# If you get an error here, its most likely because the tutorial node was deleted or moved.
+# You need to assign the variable through the inspector on the tutorial node.
 @export var tutorial_usb: DroppedItem = null
 
 # Called when the node enters the scene tree for the first time.
