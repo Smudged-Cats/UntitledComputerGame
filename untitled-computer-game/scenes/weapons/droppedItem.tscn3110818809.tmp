@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dhqwudte4ko5p"]
+
+[ext_resource type="Script" uid="uid://cofdvshpaigmc" path="res://scenes/weapons/droppedItem.gd" id="1_4d08c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55xjf"]
+radius = 27.018513
+
+[node name="Area2D" type="Area2D" unique_id=1104612395 groups=["items"]]
+z_index = 1
+collision_mask = 3
+script = ExtResource("1_4d08c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=971291295]
+shape = SubResource("CircleShape2D_55xjf")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1348570646]
+offset_left = -62.0
+offset_top = -77.0
+offset_right = 66.0
+offset_bottom = 51.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1076727559]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=706324519]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 4, 7)
+projection = 1
+size = 4.0
+
+[node name="ModelRoot" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=720951593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7677237, 4.7683716e-07)
+
+[node name="PickupPrompt" type="Label" parent="." unique_id=848067039]
+offset_left = -72.0
+offset_top = -61.0
+offset_right = 73.0
+offset_bottom = -38.0
+theme_override_font_sizes/font_size = 12
+text = "Press \"e\" to pickup"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

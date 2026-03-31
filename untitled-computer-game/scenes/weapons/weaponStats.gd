@@ -12,8 +12,10 @@ var stats: Dictionary = {
 }
 
 # 3D Model will be an int corresponding to the model / type of melee weapon.
-# - 0 = Electric Blaster
-# - 1 = Circuit Board Blaster
+# - 1 = Electric Blaster
+# - 0 = Circuit Board Blaster
+# - 2 = Red Blaster
+# - 3 = Basic Blaster
 
 
 var projectileStats: ProjectileStats

@@ -174,8 +174,24 @@ func setWeaponType(type: String):
 	if not is_node_ready():
 		await ready 
 	if type == "Melee":
+		if Player.instance.playerLevel == 0:
+			item.stats["3DModel"] = 2
+		if Player.instance.playerLevel == 1:
+			item.stats["3DModel"] = 2
+		if Player.instance.playerLevel == 2:
+			item.stats["3DModel"] = 1
+		if Player.instance.playerLevel == 3:
+			item.stats["3DModel"] = 3
 		setMeleeModel(item)
 	if type == "Weapon":
+		if Player.instance.playerLevel == 0:
+			item.stats["3DModel"] = 1
+		if Player.instance.playerLevel == 1:
+			item.stats["3DModel"] = 1
+		if Player.instance.playerLevel == 2:
+			item.stats["3DModel"] = 1
+		if Player.instance.playerLevel == 3:
+			item.stats["3DModel"] = 0
 		setRangedModel(item)
 	if type == "Modifier":
 		var newModel = modifier3DModel.instantiate()
