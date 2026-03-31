@@ -120,16 +120,20 @@ func selectWeapon(selectIndex:int) -> void:
 		match selectIndex:
 			0:
 				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow3").visible = true
-				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
-				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
 			1:
 				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow2").visible = true
-				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
-				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
 			2:
 				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = true
-				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str(currItem.stats)
-				$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
+		$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
+		if currItem.stats.has("damage") && currItem.stats["damage"] == 0:
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str("USB Stick:\nPlug into Objective Port")
+		elif currItem.stats.has("damage"):
+			var damage = currItem.stats["damage"]
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = "Damage: %.3f HP" % [damage]
+		elif currItem.stats.has("fireRate"):
+			var fire_rate = currItem.stats["fireRate"]
+			var proj_count = currItem.stats["projectileCount"]
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = "Firerate: %.1f RPM\nProj. Count: %d" % [60*(1/fire_rate), proj_count]
 		
 			
 			
@@ -182,7 +186,7 @@ func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
 	
 func listenForShot() -> void:
-	if Input.is_action_pressed("shoot") and _weapon.baseWeapon != null:
+	if Input.is_action_pressed("debug_spawn_hitbox") and _weapon.baseWeapon != null:
 		var mousePos: Vector2 = get_global_mouse_position() - _character.global_position
 		_weapon.shoot(
 			mousePos, 
