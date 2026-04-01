@@ -54,15 +54,23 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 			if model_id == 0: #Apparently the green one is 0 and the blue one is 1
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = true
+				tempP.get_node("RedIcon").visible = false
 				tempP.get_node("BulletForEnemy").visible = false
 			elif model_id == 1:
 				tempP.get_node("BlueIcon").visible = true
 				tempP.get_node("GreenIcon").visible = false
+				tempP.get_node("RedIcon").visible = false
+				tempP.get_node("BulletForEnemy").visible = false
+			elif model_id == 2:
+				tempP.get_node("BlueIcon").visible = false
+				tempP.get_node("GreenIcon").visible = false
+				tempP.get_node("RedIcon").visible = true
 				tempP.get_node("BulletForEnemy").visible = false
 			else:
 				tempP.get_node("BulletForEnemy").visible = true
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = false
+				tempP.get_node("RedIcon").visible = false
 			
 		fireRateTimer.startTimer(baseWeapon.stats["fireRate"]/weaponMuls.stats["fireRate"])
 

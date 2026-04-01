@@ -4,11 +4,11 @@
 
 [node name="WexFlamerthrower" unique_id=1229240680 instance=ExtResource("1_nkyq8")]
 
-[node name="BézierCurve" parent="." index="0" unique_id=422869346]
+[node name="BézierCurve" parent="." index="0" unique_id=134875210]
 transform = Transform3D(0, 6.6857433, 1.9925068e-07, 1.9925068e-07, 0, 6.6857433, 6.6857433, 1.9925068e-07, 0, 0.6571951, -0.010338038, -0.35809028)
 
-[node name="Nozzle" parent="." index="1" unique_id=710408618]
+[node name="Nozzle" parent="." index="1" unique_id=897180974]
 transform = Transform3D(4.532806, 0, 0, 0, 4.532806, -6.552637e-07, 0, 1.9813523e-07, 14.990685, 0.65963346, -0.00766322, 0.31567603)
 
-[node name="Tank" parent="." index="2" unique_id=1715989950]
+[node name="Tank" parent="." index="2" unique_id=565726894]
 transform = Transform3D(-1.6886833e-06, 2.955196e-06, -8.169916, -14.165702, 8.443416e-07, 7.304475e-07, 1.2665125e-06, 14.165702, 1.460895e-06, -0.36162043, 0.5826184, 0.16937785)
