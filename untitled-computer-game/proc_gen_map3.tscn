@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bw4ljf1r8dawo" path="res://art/tiles/WallTiles/Region3ClosedGates.png" id="7_61noe"]
 [ext_resource type="Texture2D" uid="uid://dx3ycp3p2bnot" path="res://art/tiles/WallTiles/Region3OpenGates.png" id="8_damtj"]
 [ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="9_it7e8"]
-[ext_resource type="Texture2D" uid="uid://dro1agq2q6jr2" path="res://art/Region1Background.png" id="10_eq3i3"]
+[ext_resource type="Texture2D" uid="uid://dqik4xryoupkq" path="res://art/Region3Background.png" id="10_61noe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6k6t"]
 texture = ExtResource("4_d1v37")
@@ -153,7 +153,7 @@ metadata/_edit_use_anchors_ = true
 z_index = -999
 position = Vector2(-247.99994, 251.99998)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("10_eq3i3")
+texture = ExtResource("10_61noe")
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
