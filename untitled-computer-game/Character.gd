@@ -168,8 +168,8 @@ func takeDamage(damage: int, sourcePosition: Vector2, enemySpeed) -> void:
 	health -= damage
 	
 	var damageDirection: Vector2 = (self.global_position - sourcePosition).normalized()
-	self.velocity.x = damageDirection.x * (650 + enemySpeed)
-	self.velocity.y = damageDirection.y * (650 + enemySpeed)
+	self.velocity.x += damageDirection.x * (650 + enemySpeed)
+	self.velocity.y += damageDirection.y * (650 + enemySpeed)
 	
 	var newNumberScene = _damageNumberScene.instantiate()
 	newNumberScene.damage = damage
