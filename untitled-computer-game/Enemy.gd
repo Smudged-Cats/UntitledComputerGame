@@ -53,7 +53,7 @@ func die() -> void:
 func chase_enemy(delta: float = 1) -> void:
 	
 	if is_instance_valid(currentTarget):
-		var difference = self.currentTarget.global_position - self.global_position
+		var difference = self.currentTarget.global_position - _character.global_position
 		var threatDirection = (difference).normalized()
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
 		if (difference.length() < 200):

@@ -112,7 +112,7 @@ func ranGun() -> WeaponStats:
 		weaponToGive = WeaponStats.new(
 			randf_range(0.8,1.3),
 			0.001,
-			ProjectileStats.new(randf_range(75,90),1000,3),
+			ProjectileStats.new(randf_range(75,90),1000),
 			randi_range(0,1)
 		)
 	elif (Player.instance.playerLevel == 2):
