@@ -106,28 +106,30 @@ func _on_body_exited(body: Node2D) -> void:
 		canPickup = false
 
 func ranGun() -> WeaponStats:
-	var ranWeapon = randi_range(1,3)
 	var weaponToGive: WeaponStats
-	if (ranWeapon == 1):
-		weaponToGive = WeaponStats.new(
-			randf_range(0.07,0.2),
-			0.02,
-			ProjectileStats.new(randf_range(8,20),700),
-			randi_range(0,1)
-		)
-	elif (ranWeapon == 2):
-		weaponToGive = WeaponStats.new(
-			randf_range(0.3,0.55),
-			randf_range(0.1,0.3),
-			ProjectileStats.new(6,700),
-			randi_range(0,1),
-			randi_range(5,8)
-		)
-	elif (ranWeapon == 3):
+	if (Player.instance.playerLevel <= 1):
+		# Electric Bolts
 		weaponToGive = WeaponStats.new(
 			randf_range(0.8,1.3),
 			0.001,
-			ProjectileStats.new(randi_range(65,90),1000,3),
+			ProjectileStats.new(randf_range(50,100),700,3),
+			randi_range(0,1)
+		)
+	elif (Player.instance.playerLevel == 2):
+		# FlameThrower
+		weaponToGive = WeaponStats.new(
+			randf_range(0.1,0.2),
+			randf_range(0.5,0.75),
+			ProjectileStats.new(6,700),
+			randi_range(0,1),
+			randi_range(5,10)
+		)
+	elif (Player.instance.playerLevel == 3):
+		# Circuit SMG
+		weaponToGive = WeaponStats.new(
+			randf_range(0.07,0.2),
+			0.02,
+			ProjectileStats.new(randi_range(20,50),1000),
 			randi_range(0,1)
 		)
 	return weaponToGive

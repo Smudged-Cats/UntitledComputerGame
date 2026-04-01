@@ -63,6 +63,8 @@ func chase_enemy(delta: float = 1) -> void:
 				_character.melee.attack()
 		if (difference.length() > 200 and difference.length() < 500):
 			_weapon.shoot(threatDirection,_character.global_position, -1)
+			_character.set_move_dir(threatDirectionToIso)
+			_character.look_in_direction(threatDirection, delta)
 		
 	else:
 		_character.set_move_dir(Vector2.ZERO)
