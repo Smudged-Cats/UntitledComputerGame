@@ -134,6 +134,48 @@ func ranGun() -> WeaponStats:
 		)
 	return weaponToGive
 
+#Method for easily getting a specific gun type
+func ranTypeOfGun(gunType:String) -> WeaponStats:
+	gunType = gunType.to_lower()
+	var gunDict: Dictionary = {
+		"smg": 
+			WeaponStats.new(
+			randf_range(0.07,0.2),
+			0.02,
+			ProjectileStats.new(randi_range(20,50),1000),
+			randi_range(0,1)
+			),
+		"flamethrower":
+			WeaponStats.new(
+			randf_range(0.01,0.02),#randf_range(0.1,0.2),
+			randf_range(0.45,0.6),#randf_range(0.5,0.75),
+			ProjectileStats.new(6,450),
+			randi_range(0,1),
+			1,#randi_range(5,10),
+			randi_range(800,1000)
+			),
+		"bolt":
+			WeaponStats.new(
+			randf_range(0.8,1.3),
+			0.001,
+			ProjectileStats.new(randf_range(50,100),700,3),
+			randi_range(0,1)
+			),
+		"shotgun":
+			WeaponStats.new(
+				randf_range(0.7,1.2),
+				randf_range(0.6,0.9),
+				ProjectileStats.new(randf_range(8,10),700),
+				0,
+				randi_range(6,8),
+				randi_range(50,100)
+			)
+	}
+	if (gunDict.has(gunType)):
+		return gunDict[gunType]
+	else:
+		return gunDict[gunDict.keys().pick_random()]
+
 func ranMelee() -> MeleeStats:
 	if (Player.instance.playerLevel <= 1):
 		return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
