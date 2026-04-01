@@ -47,6 +47,7 @@ static var electricSythe3DModel = preload("res://electric_sythe.tscn")
 static var circuitboardBlasterHammer3DModel = preload("res://green_hammer.tscn")
 
 static var electricBlaster3DModel = preload("res://electricity_blaster.tscn")
+static var flamethrower3DModel = preload("res://wex_flamerthrower.tscn")
 static var circuitboardBlaster3DModel = preload("res://cd_thommy_gun.tscn")
 
 
@@ -189,7 +190,7 @@ func setWeaponType(type: String):
 		if Player.instance.playerLevel == 1:
 			item.stats["3DModel"] = 1
 		if Player.instance.playerLevel == 2:
-			item.stats["3DModel"] = 1
+			item.stats["3DModel"] = 2
 		if Player.instance.playerLevel == 3:
 			item.stats["3DModel"] = 0
 		setRangedModel(item)
@@ -232,6 +233,10 @@ func setRangedModel(item):
 	if item.stats["3DModel"] == 1:
 		item.stats["Sprite"] = blueRanged1Sprite
 		var newModel = electricBlaster3DModel.instantiate()
+		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
+	if item.stats["3DModel"] == 2:
+		item.stats["Sprite"] = blueRanged1Sprite
+		var newModel = flamethrower3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 
 		
