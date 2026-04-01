@@ -112,30 +112,37 @@ func ranGun() -> WeaponStats:
 		weaponToGive = WeaponStats.new(
 			randf_range(0.8,1.3),
 			0.001,
-			ProjectileStats.new(randf_range(50,100),700,3),
+			ProjectileStats.new(randf_range(75,90),1000,3),
 			randi_range(0,1)
 		)
 	elif (Player.instance.playerLevel == 2):
 		# FlameThrower
 		weaponToGive = WeaponStats.new(
-			randf_range(0.1,0.2),
+			randf_range(0.05,0.1),
 			randf_range(0.5,0.75),
 			ProjectileStats.new(6,700),
 			randi_range(0,1),
-			randi_range(5,10)
+			randi_range(10,20)
 		)
 	elif (Player.instance.playerLevel == 3):
 		# Circuit SMG
 		weaponToGive = WeaponStats.new(
 			randf_range(0.07,0.2),
 			0.02,
-			ProjectileStats.new(randi_range(20,50),1000),
+			ProjectileStats.new(randi_range(20,50),700),
 			randi_range(0,1)
 		)
 	return weaponToGive
 
 func ranMelee() -> MeleeStats:
-	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), randi_range(0,3))
+	if (Player.instance.playerLevel <= 1):
+		return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
+	if (Player.instance.playerLevel == 2):
+		return MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2)
+	if (Player.instance.playerLevel == 3):
+		return MeleeStats.new(randf_range(75,100), randf_range(0.1, 0.5), 0)
+	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
+
 	
 func bombStats() -> MeleeStats:
 		return MeleeStats.new(0, 0, -1)

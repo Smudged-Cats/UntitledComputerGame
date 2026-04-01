@@ -50,7 +50,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	if _character.health > 0:
-		
 		if inventory[selectedItem] is WeaponStats:
 			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[selectedItem].stats["ammo"]) + "/50"
 			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = true
