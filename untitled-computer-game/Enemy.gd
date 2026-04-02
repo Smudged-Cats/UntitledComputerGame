@@ -9,6 +9,8 @@ var _character: Character
 var currentTarget: Character# = Player.instance._character
 var _weapon: WeaponController
 
+var t = 0
+
 func _ready() -> void:
 	var modelRoot = get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot")
 	if Player.instance.playerLevel <= 1:
@@ -48,8 +50,11 @@ func _physics_process(delta: float) -> void:
 	chase_enemy(delta)
 
 func _process(delta: float) -> void:
+	t+= delta
 	if Player.instance.playerLevel <= 1:
 		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FanEnemy").rotate_y(10*delta)
+	if Player.instance.playerLevel == 2:
+		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FireEnemy").global_position.z = sin(t)
 	var health = _character.health
 	$Character/HealthBar.value = health
 	if health <= 0:
