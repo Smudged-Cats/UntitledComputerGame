@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg4a3rtxchfxl"
+path="res://.godot/imported/Gun cocking.mp3-4b469092d765f369f6008de5a4461f76.mp3str"
+
+[deps]
+
+source_file="res://resources/sfx/Gun cocking.mp3"
+dest_files=["res://.godot/imported/Gun cocking.mp3-4b469092d765f369f6008de5a4461f76.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
