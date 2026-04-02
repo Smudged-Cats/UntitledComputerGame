@@ -94,6 +94,18 @@ position = Vector2(-247.99994, 251.99998)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("5_x877k")
 
+[node name="Area2D4" parent="." unique_id=1528132757 instance=ExtResource("5_il6hr")]
+position = Vector2(-1438, -315)
+itemType = "Modifier"
+
+[node name="Area2D3" parent="." unique_id=1409612742 instance=ExtResource("5_il6hr")]
+position = Vector2(-1295, -347)
+itemType = "Modifier"
+
+[node name="Area2D2" parent="." unique_id=1528534818 instance=ExtResource("5_il6hr")]
+position = Vector2(-1172, -396)
+itemType = "Modifier"
+
 [node name="Area2D" parent="." unique_id=1373875173 instance=ExtResource("5_il6hr")]
 position = Vector2(-1543, -366)
 itemType = "Modifier"

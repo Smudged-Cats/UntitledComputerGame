@@ -3,6 +3,7 @@ extends Area2D
 var killTimer: float
 var stats: ProjectileStats
 var dir: Vector2
+@onready var removeProjectile = false
 
 #The source variable is meant to prevent friendly fire
 # incidents by comparing the characterName of the entity it hits to the
@@ -31,13 +32,11 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 # projectiles sort of "stretch" and "compress depending on where the player is
 # moving relative to the projectile
 func _physics_process(delta: float) -> void:
-	killTimer -= delta
-	if (killTimer <= 0):
-		queue_free()
 	position += dir * stats.stats["speed"] * delta
 	#print(dir)
 
 func _on_body_entered(body: Node2D) -> void:
+	if (removeProjectile): return
 	#Prevent friendly fire
 	if(body is Character):
 		if (body.characterName != source and body.health > 0):
@@ -47,7 +46,9 @@ func _on_body_entered(body: Node2D) -> void:
 			# health
 			stats.stats["shotHealth"] -= 1
 			if (stats.stats["shotHealth"] <= 0):
-				queue_free()
+				#queue_free()
+				tryToRemoveProjectile()
+				#queue_free.call_deferred()
 			else:
 				position += 5*dir
 		else:
@@ -56,24 +57,10 @@ func _on_body_entered(body: Node2D) -> void:
 	#Despawn if hitting a wall
 	if (body is TileMapLayer):
 		#richocet(body)
-		queue_free()
+		#queue_free()
+		tryToRemoveProjectile()
+		#queue_free.call_deferred()
 
-# Function for richochet, which can be worked on later
-func richocet(body: Node2D):
-	if (body is StaticBody2D):
-		var p: Area2D = Area2D.new()
-		body.move_and_collide()
-		'''
-		#var newAngle: float = 2*dir.angle() + PI
-		#dir = Vector2(cos(newAngle),sin(newAngle))
-		#var getWallAngle:float = body.get_angle_to(self.global_position) + PI
-		#var getWallAngle:float = self.get_angle_to(body.position)
-		#print(getWallAngle, ", ", dir.angle())
-		#var n: Vector2 = Vector2(cos(getWallAngle),sin(getWallAngle))
-		var n: Vector2 = Vector2(cos(PI/4),sin(PI/4))
-		var dotProd = dir.x*n.x + dir.y*n.y
-		print("E")
-		dir = dir - 2*dotProd*n
-		
-		#dir.y = -sin(dir.angle())
-		'''
+func tryToRemoveProjectile():
+	removeProjectile = true
+	call_deferred("queue_free")

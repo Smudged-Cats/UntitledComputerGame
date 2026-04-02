@@ -20,7 +20,9 @@ var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
 var _camera: Camera2D
 var _hud: Hud
-var modList: Array[Modifier]
+var modList: Array[Modifier] = [null,null,null]
+var currMods = 0
+const MAX_MODS: int = 3
 
 #Adjust the the updatedSprites so that it works with the 3 null list
 var inventory = [null, null, null]
@@ -247,9 +249,14 @@ func pickup_item() -> void:
 		#_character.melee.baseMelee = null
 		print("Picked up weapon\n",_weapon.baseWeapon.stats,"\n",_weapon.baseWeapon.projectileStats.stats)
 	elif item.item is Modifier:
-		item.item.applyBoost(self)
-		modList.append(item.item)
-		print("Applied modifications\n",_weapon.weaponMuls.stats,"\n",_weapon.weaponMuls.projectileStats.stats)
+		if (currMods < MAX_MODS):
+			var emptyModSpace: int = modList.find(null)
+			item.item.applyBoost(self)
+			modList[emptyModSpace] = item.item
+			currMods += 1
+			print("Applied modifications\n",_weapon.weaponMuls.stats,"\n",_weapon.weaponMuls.projectileStats.stats)
+		else:
+			return
 		
 	elif item.itemType == "Bomb":
 		var meleeStats = item.item
@@ -309,19 +316,21 @@ func drop_item() -> void:
 	updateInventorySprites()
 	
 func dropMod() -> void:
-	if len(modList) == 0: return
-	
-	var modifier = modList.pop_back()
+	print(modList)
+	if currMods == 0 || modList[selectedItem] == null: return
+	print("gurted")
+	var modifier = modList[selectedItem]
+	modList[selectedItem] = null
 	modifier.removeBoost(self)
 	
 	var newDroppedItem = droppedItemScene.instantiate()
-	get_tree().get_root().get_node("Node2D").add_child(newDroppedItem)
+	get_parent().add_child(newDroppedItem)
+	
 	newDroppedItem.global_position = _character.global_position
 	newDroppedItem.itemType = "Modifier"
 	newDroppedItem.setWeaponType("Modifier")
-
 	newDroppedItem.item = modifier
-	
+	currMods -= 1
 	
 	
 func updateInventorySprites() -> void:
