@@ -12,6 +12,7 @@ var _weapon: WeaponController
 var t = 0
 
 func _ready() -> void:
+	print(get_node("Character").maxHealth)
 	var modelRoot = get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot")
 	if Player.instance.playerLevel <= 1:
 		modelRoot.get_node("RamEnemy").visible = false
@@ -21,10 +22,12 @@ func _ready() -> void:
 		modelRoot.get_node("RamEnemy").visible = false
 		modelRoot.get_node("FanEnemy").visible = false
 		modelRoot.get_node("FireEnemy").visible = true
+		get_node("Character").maxHealth = 200
 	if Player.instance.playerLevel == 3:
 		modelRoot.get_node("RamEnemy").visible = true
 		modelRoot.get_node("FanEnemy").visible = false
 		modelRoot.get_node("FireEnemy").visible = false
+		get_node("Character").maxHealth = 500
 
 	_character = get_node("Character")
 	_character.characterName = "Enemy"

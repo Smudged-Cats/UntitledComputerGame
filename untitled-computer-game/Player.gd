@@ -14,7 +14,7 @@ static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
 static var swordSprite = preload("res://art/weapon sprites/legendary.png")
 
-@onready var playerLevel = 2
+@onready var playerLevel = 0
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -128,7 +128,7 @@ func selectWeapon(selectIndex:int) -> void:
 			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str("USB Stick:\nPlug into Objective Port")
 		elif currItem.stats.has("damage"):
 			var damage = currItem.stats["damage"]
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = "Damage: %.3f HP" % [damage]
+			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = "Base Damage: %.3f HP" % [damage]
 		elif currItem.stats.has("fireRate"):
 			var fire_rate = currItem.stats["fireRate"]
 			var proj_count = currItem.stats["projectileCount"]
