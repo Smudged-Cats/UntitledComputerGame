@@ -104,6 +104,7 @@ func spawnEnemy(ranLoc: Vector2i) -> void:
 		await get_tree().create_timer(3).timeout
 		newEnemy.position = pixelPos
 		add_child.call_deferred(newEnemy)
+		newEnemy.setEnemyModel()
 		sprite.queue_free()
 
 func spawnRoomLoot(room: Room):

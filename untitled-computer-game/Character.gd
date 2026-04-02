@@ -60,7 +60,7 @@ var melee: MeleeController
 var weapon: WeaponController
 
 func _ready() -> void:
-	
+		
 	# Assign the character a new id
 	self.id = newCharacterId
 	newCharacterId += 1
