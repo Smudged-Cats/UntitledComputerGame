@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rftq4tts8bry"
-path="res://.godot/imported/white.png-1374c732bfc99a69e4fdcb496a3c9c65.ctex"
+uid="uid://birug10vdjln6"
+path="res://.godot/imported/rainbowBar.png-7337008476eeb5d58e12b3e4f8375f4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/weapon sprites/white.png"
-dest_files=["res://.godot/imported/white.png-1374c732bfc99a69e4fdcb496a3c9c65.ctex"]
+source_file="res://art/weapon sprites/rainbowBar.png"
+dest_files=["res://.godot/imported/rainbowBar.png-7337008476eeb5d58e12b3e4f8375f4d.ctex"]
 
 [params]
 

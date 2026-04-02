@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4n8h0ny5fs0x"
-path="res://.godot/imported/green.png-04ceaa446645dac4cd5c8478d0167778.ctex"
+uid="uid://dq12asq37texf"
+path="res://.godot/imported/blueBar.png-0d4c12807aefeb9574ee06c5f182c54a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/weapon sprites/green.png"
-dest_files=["res://.godot/imported/green.png-04ceaa446645dac4cd5c8478d0167778.ctex"]
+source_file="res://art/weapon sprites/blueBar.png"
+dest_files=["res://.godot/imported/blueBar.png-0d4c12807aefeb9574ee06c5f182c54a.ctex"]
 
 [params]
 

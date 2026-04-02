@@ -119,3 +119,11 @@ position = Vector2(166.00002, 60.99994)
 rotation = 0.28858864
 scale = Vector2(0.151, 0.139)
 texture = ExtResource("2_hqnrr")
+
+[node name="LevelLabel" type="Label" parent="." unique_id=515932195]
+offset_left = 1396.0
+offset_top = 43.0
+offset_right = 1519.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 45
+text = "Lvl: T"

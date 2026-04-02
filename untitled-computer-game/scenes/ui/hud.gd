@@ -20,6 +20,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#$PlayerStatus/AmmoCount.text = 
 	pass
+	match(Player.instance.playerLevel):
+		1: $LevelLabel.text = "Lvl: 1"
+		2: $LevelLabel.text = "Lvl: 2"
+		3: $LevelLabel.text = "Lvl: 3"
 
 
 func _on_character_health_changed(newHealth: int) -> void:

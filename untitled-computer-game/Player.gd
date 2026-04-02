@@ -10,11 +10,11 @@ static var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 static var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 static var pauseScreenScene = preload("res://scenes/ui/pause_screen.tscn")
 
-var redBar = preload("res://art/weapon sprites/red.png")
-var blueBar = preload("res://art/weapon sprites/blue.png")
-var greenBar = preload("res://art/weapon sprites/green.png")
-var rainbowBar = preload("res://art/weapon sprites/rainbow.png")
-var whiteBar = preload("res://art/weapon sprites/white.png")
+var redBar = preload("res://art/weapon sprites/redBar.png")
+var blueBar = preload("res://art/weapon sprites/blueBar.png")
+var greenBar = preload("res://art/weapon sprites/greenBar.png")
+var rainbowBar = preload("res://art/weapon sprites/rainbowBar.png")
+var whiteBar = preload("res://art/weapon sprites/whiteBar.png")
 
 static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
