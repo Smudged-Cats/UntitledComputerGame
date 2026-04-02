@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://c4mhvwl8ckysu" path="res://projectile.gd" id="1_s52oo"]
 [ext_resource type="Texture2D" uid="uid://ba4fo0f8pq418" path="res://art/weapon sprites/blue/BulletGif.png" id="2_s52oo"]
 [ext_resource type="Texture2D" uid="uid://d3cm3g3k51jb0" path="res://art/weapon sprites/green/GreenBulletGif.png" id="3_rtdpv"]
-[ext_resource type="Texture2D" uid="uid://cgolv1ghso7bl" path="res://art/PewPew.png" id="4_m1wvs"]
 [ext_resource type="Texture2D" uid="uid://cf63ngvs6hod7" path="res://art/weapon sprites/red/Fireballbullet.png" id="5_v55ij"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtdpv"]
@@ -165,9 +164,6 @@ frame_progress = 0.6938947
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=816339398]
 shape = SubResource("RectangleShape2D_m1wvs")
-
-[node name="BulletForEnemy" type="Sprite2D" parent="." unique_id=1262970606]
-texture = ExtResource("4_m1wvs")
 
 [node name="RedIcon" type="AnimatedSprite2D" parent="." unique_id=1449892617]
 sprite_frames = SubResource("SpriteFrames_dr38i")

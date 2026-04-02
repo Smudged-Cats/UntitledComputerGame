@@ -66,11 +66,6 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 				tempP.get_node("GreenIcon").visible = false
 				tempP.get_node("RedIcon").visible = true
 				tempP.get_node("BulletForEnemy").visible = false
-			else:
-				tempP.get_node("BulletForEnemy").visible = true
-				tempP.get_node("BlueIcon").visible = false
-				tempP.get_node("GreenIcon").visible = false
-				tempP.get_node("RedIcon").visible = false
 			
 		fireRateTimer.startTimer(baseWeapon.stats["fireRate"]/weaponMuls.stats["fireRate"])
 
