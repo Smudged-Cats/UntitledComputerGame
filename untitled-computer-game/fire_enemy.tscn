@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bvnw54wxsii6r"]
+
+[ext_resource type="PackedScene" uid="uid://c2nb7q2d07npf" path="res://art/3D Assets/FireEnemy.fbx" id="1_ayfa5"]
+
+[node name="FireEnemy" unique_id=1777364608 instance=ExtResource("1_ayfa5")]
+
+[node name="Cylinder_001" parent="." index="0" unique_id=1297381192]
+transform = Transform3D(3.6593235e-07, 2.6835855e-07, 6.139326, 1.0905634e-14, 6.139326, -2.6835855e-07, -6.139326, 3.2716902e-14, 3.6593235e-07, 0.049708962, 0.45963287, -0.17679703)
+
+[node name="Fire" parent="." index="1" unique_id=173266903]
+transform = Transform3D(2.2595232e-06, 1.1416618e-05, -1.7605717, -37.90851, 0, -1.5740738e-07, 0, 34.825283, 5.2469125e-07, -0.0054144263, 0.38299763, -0.054765463)
+
+[node name="Shield" parent="." index="2" unique_id=1660943947]
+transform = Transform3D(3.3263786, 0, 0, 0, -3.9653523e-07, 6.5815773, 0, -3.3263783, -7.845852e-07, -0.0015136749, 0.20910358, -0.032436997)

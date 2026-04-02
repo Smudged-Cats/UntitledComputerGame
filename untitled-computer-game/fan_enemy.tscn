@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bn4fyn0n6j704"]
+
+[ext_resource type="PackedScene" uid="uid://j0qjjepppeys" path="res://art/3D Assets/FanEnemy.fbx" id="1_af7gs"]
+
+[node name="FanEnemy" unique_id=873431452 instance=ExtResource("1_af7gs")]
+
+[node name="Cylinder" parent="." index="0" unique_id=1597912320]
+transform = Transform3D(5.4882765, 0, 0, 0, -6.5425354e-07, 5.412104, 0, -5.4882765, -6.451731e-07, 0.017346144, 0.35662627, 0.009719133)

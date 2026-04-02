@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://72sohcntk60i" path="res://resources/floor_tile_set3.tres" id="3_6ylpu"]
 [ext_resource type="Texture2D" uid="uid://dbp4j8e6m5tfw" path="res://art/tiles/TileTops/Region1TileTop1.png" id="4_d1v37"]
 [ext_resource type="Texture2D" uid="uid://ccdvvu5knlsnj" path="res://art/tiles/TileTops/Objective_Point.png" id="5_t6lie"]
-[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTileTop.png" id="6_xgp8n"]
+[ext_resource type="Texture2D" uid="uid://d1inlu57s70cl" path="res://art/tiles/TileTops/USBTiletop.png" id="6_xgp8n"]
 [ext_resource type="Texture2D" uid="uid://bw4ljf1r8dawo" path="res://art/tiles/WallTiles/Region3ClosedGates.png" id="7_61noe"]
 [ext_resource type="Texture2D" uid="uid://dx3ycp3p2bnot" path="res://art/tiles/WallTiles/Region3OpenGates.png" id="8_damtj"]
 [ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="9_it7e8"]

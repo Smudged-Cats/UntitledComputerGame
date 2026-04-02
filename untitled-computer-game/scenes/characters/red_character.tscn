@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bc5ctu3vl6o2m" path="res://scenes/characters/character.tscn" id="1_x1206"]
 [ext_resource type="PackedScene" uid="uid://4hkhphah4rub" path="res://ram_enemy.tscn" id="2_xe1ti"]
+[ext_resource type="PackedScene" uid="uid://bn4fyn0n6j704" path="res://fan_enemy.tscn" id="3_dmxbv"]
+[ext_resource type="PackedScene" uid="uid://bvnw54wxsii6r" path="res://fire_enemy.tscn" id="4_75m6a"]
 
 [node name="Character" unique_id=452893723 instance=ExtResource("1_x1206")]
 collision_layer = 4
@@ -9,3 +11,9 @@ collision_mask = 5
 
 [node name="RamEnemy" parent="SubViewportContainer/SubViewport/ModelRoot" parent_id_path=PackedInt32Array(863311457) index="0" unique_id=1292831314 instance=ExtResource("2_xe1ti")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+
+[node name="FanEnemy" parent="SubViewportContainer/SubViewport/ModelRoot" parent_id_path=PackedInt32Array(863311457) index="1" unique_id=873431452 instance=ExtResource("3_dmxbv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.057100058, 0)
+
+[node name="FireEnemy" parent="SubViewportContainer/SubViewport/ModelRoot" parent_id_path=PackedInt32Array(863311457) index="2" unique_id=1777364608 instance=ExtResource("4_75m6a")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)

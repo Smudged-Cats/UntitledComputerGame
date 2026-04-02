@@ -79,7 +79,6 @@ func _ready() -> void:
 	elif (itemType == "Melee"):
 		item = ranMelee()
 		setWeaponType("Melee")
-		
 	elif (itemType == "Modifier"):
 		item = ranMod()
 		setWeaponType("Modifier")

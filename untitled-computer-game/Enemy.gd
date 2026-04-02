@@ -9,7 +9,26 @@ var _character: Character
 var currentTarget: Character# = Player.instance._character
 var _weapon: WeaponController
 
+var t = 0
+
 func _ready() -> void:
+	print(get_node("Character").maxHealth)
+	var modelRoot = get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot")
+	if Player.instance.playerLevel <= 1:
+		modelRoot.get_node("RamEnemy").visible = false
+		modelRoot.get_node("FanEnemy").visible = true
+		modelRoot.get_node("FireEnemy").visible = false
+	if Player.instance.playerLevel == 2:
+		modelRoot.get_node("RamEnemy").visible = false
+		modelRoot.get_node("FanEnemy").visible = false
+		modelRoot.get_node("FireEnemy").visible = true
+		get_node("Character").maxHealth = 200
+	if Player.instance.playerLevel == 3:
+		modelRoot.get_node("RamEnemy").visible = true
+		modelRoot.get_node("FanEnemy").visible = false
+		modelRoot.get_node("FireEnemy").visible = false
+		get_node("Character").maxHealth = 500
+
 	_character = get_node("Character")
 	_character.characterName = "Enemy"
 	_character.melee.baseMelee = MeleeStats.new(50,0.3, -1)
@@ -34,6 +53,11 @@ func _physics_process(delta: float) -> void:
 	chase_enemy(delta)
 
 func _process(delta: float) -> void:
+	t+= delta
+	if Player.instance.playerLevel <= 1:
+		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FanEnemy").rotate_y(10*delta)
+	if Player.instance.playerLevel == 2:
+		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FireEnemy").global_position.z = sin(t)
 	var health = _character.health
 	$Character/HealthBar.value = health
 	if health <= 0:
@@ -74,3 +98,4 @@ func get_character() -> Character:
 
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
+	
