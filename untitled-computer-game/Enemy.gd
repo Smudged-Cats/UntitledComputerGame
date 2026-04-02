@@ -35,7 +35,10 @@ func _ready() -> void:
 	_weapon = _character.weapon
 	_weapon.holder = _character.characterName
 	
-	_weapon.setWeapon(DroppedItem.new().ranTypeOfGun("smg"))
+	if Player.instance.playerLevel == 2:
+		_weapon.setWeapon(DroppedItem.new().ranTypeOfGun("flamethrower2"))
+	else:
+		_weapon.setWeapon(DroppedItem.new().ranTypeOfGun("smg"))
 	_weapon.weaponMuls.projectileStats.stats["damage"] -= 0.6
 	_weapon.weaponMuls.projectileStats.stats["speed"] -= 0.3
 	_weapon.weaponMuls.stats["ammo"] += 50
