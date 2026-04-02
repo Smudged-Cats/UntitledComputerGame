@@ -16,6 +16,20 @@ var greenBar = preload("res://art/weapon sprites/greenBar.png")
 var rainbowBar = preload("res://art/weapon sprites/rainbowBar.png")
 var whiteBar = preload("res://art/weapon sprites/whiteBar.png")
 
+@onready var pickupSFX = preload("res://resources/sfx/Pick up.mp3")
+@onready var pickupdropSFXPlayer = $Camera2D/pickupdropSFX
+
+@onready var swordSelectSFX = preload("res://resources/sfx/Sword sheathing.mp3")
+@onready var gunSelectSFX = preload("res://resources/sfx/Gun cocking.mp3")
+@onready var selectSFXPlayer = $Camera2D/selectSFX
+
+@onready var dashSFX = preload("res://resources/sfx/Dash.mp3")
+@onready var moveSFX = preload("res://resources/sfx/Walking.mp3")
+@onready var movementSFXPlayer = $Camera2D/movementSFX
+
+
+
+
 static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
 static var swordSprite = preload("res://art/weapon sprites/legendary.png")
@@ -135,9 +149,15 @@ func selectWeapon(selectIndex:int) -> void:
 		if (currItem is WeaponStats):
 			_weapon.baseWeapon = currItem
 			_character.melee.baseMelee = null
+			selectSFXPlayer.stream = gunSelectSFX
+			selectSFXPlayer.pitch_scale = 1.1
+			selectSFXPlayer.play()
 		elif (currItem is MeleeStats):
 			_weapon.baseWeapon = null
 			_character.melee.baseMelee = currItem
+			selectSFXPlayer.stream = swordSelectSFX
+			selectSFXPlayer.pitch_scale = 1.25
+			selectSFXPlayer.play()
 	else:
 		_weapon.baseWeapon = null
 		_character.melee.baseMelee = null
@@ -207,6 +227,9 @@ func listForAbility() -> void:
 		if _character.dashWindup < 1:
 			_character.dashWindup += 0.05
 	if Input.is_action_just_released("lunge_attack"):
+		movementSFXPlayer.stream = dashSFX
+		movementSFXPlayer.pitch_scale = 0.8
+		movementSFXPlayer.play()
 		_character.dash()
 		_character.dashWindup = 0
 	
@@ -293,6 +316,9 @@ func pickup_item() -> void:
 	emit_signal("picked_up_item", item)
 	
 	# remove the dropped item from the world
+	pickupdropSFXPlayer.stream = pickupSFX
+	pickupdropSFXPlayer.pitch_scale = 1
+	pickupdropSFXPlayer.play()
 	item.queue_free.call_deferred()
 	updateInventorySprites()
 	
@@ -326,6 +352,9 @@ func drop_item() -> void:
 	newDroppedItem.item = droppedWeapon
 	
 	get_parent().add_child(newDroppedItem)
+	pickupdropSFXPlayer.stream = pickupSFX
+	pickupdropSFXPlayer.pitch_scale = 0.8
+	pickupdropSFXPlayer.play()
 	if droppedWeapon.stats.has("damage") && droppedWeapon.stats["damage"] == 0:
 		newDroppedItem.itemType = "Bomb"
 		newDroppedItem.setWeaponType("Bomb")
