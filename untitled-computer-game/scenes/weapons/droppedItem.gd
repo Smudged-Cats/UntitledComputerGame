@@ -203,6 +203,9 @@ func ranMod() -> Modifier:
 		null,
 		-1
 	)
+	#Remove visual components from the boost dictionary
+	weaponStats.stats.erase("3DModel")
+	weaponStats.stats.erase("Sprite")
 	
 	var projectileStats: ProjectileStats = ProjectileStats.new(
 		0,
@@ -214,6 +217,10 @@ func ranMod() -> Modifier:
 		0,
 		-1
 	)
+	#Remove visual components from the boost dictionary
+	meleeStats.stats.erase("3DModel")
+	meleeStats.stats.erase("Sprite")
+	
 	return Modifier.new(
 		genModDict(weaponStats.stats),
 		genModDict(projectileStats.stats),

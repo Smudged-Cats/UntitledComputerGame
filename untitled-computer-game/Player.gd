@@ -152,6 +152,8 @@ func selectWeapon(selectIndex:int) -> void:
 			2:
 				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = true
 		$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
+		updateStatView()
+		'''
 		if currItem.stats.has("damage") && currItem.stats["damage"] == 0:
 			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str("USB Stick:\nPlug into Objective Port")
 		elif currItem.stats.has("damage"):
@@ -161,7 +163,7 @@ func selectWeapon(selectIndex:int) -> void:
 			var fire_rate = currItem.stats["fireRate"]
 			var proj_count = currItem.stats["projectileCount"]
 			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = "Firerate: %.1f RPM\nProj. Count: %d" % [60*(1/fire_rate), proj_count]
-		
+		'''
 			
 			
 func face_to_mouse(delta: float = 1) -> void:
@@ -403,4 +405,19 @@ func activateBombItem() -> bool:
 					return true
 	return false
 				
-		
+				
+func updateStatView() -> void:
+	var boostLabel: Label = $Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats")
+	boostLabel.text = ""
+	if (_weapon.baseWeapon != null):
+		boostLabel.text = "Damage: %.2f\n# of projectiles: %d\nFirerate: %.1f\n\n" % [_weapon.getDamage(), _weapon.getProjectileCount(), 60*(1/_weapon.getFireRate())]
+	elif (_character.melee.baseMelee != null):
+		boostLabel.text = "Damage: %.2f\n\n" % [_character.melee.getDamage()]
+	
+	if (modList[selectedItem] != null):
+		boostLabel.text += "Mod Boost:\n" + modList[selectedItem].getBoosts()
+	'''
+	boostLabel.text += "Modifier Boosts:\n"
+	boostLabel.text += "Weapon Boosts:\n" + _weapon.getWeaponBoosts()
+	boostLabel.text += "Melee Boosts:\n" + _character.melee.getMeleeBoosts()
+	'''

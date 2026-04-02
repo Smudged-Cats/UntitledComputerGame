@@ -25,3 +25,15 @@ func attack() -> void:
 		
 		var totalTime:float = baseMelee.stats["attackCooldown"]/meleeMuls.stats["attackCooldown"]
 		attackCooldown.startTimer(totalTime)
+
+func getDamage() -> float:
+	return baseMelee.stats["damage"] * meleeMuls.stats["damage"]
+
+func getMeleeBoosts() -> String:
+	var text: String = ""
+	for k in meleeMuls.stats.keys():
+		var currBoost = meleeMuls.stats[k]
+		if (k != "Sprite" && k != "3DModel"):
+			if (currBoost != 1):
+				text += "%.1fx %s\n" % [meleeMuls.stats[k] - 1,k]
+	return text
