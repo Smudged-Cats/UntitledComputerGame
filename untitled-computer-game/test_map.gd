@@ -10,10 +10,13 @@ extends Node2D
 
 @onready var enemySpawnSprite = preload("res://art/AntiBugSymbol.png")
 
+@onready var tutorialMusic = preload("res://art/Music/doxycyclin-sci-fi-retro-style-music-172779.mp3")
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$TutorialMusic.play()
 	get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 	#for i in 300:
 		#var newEnemy = enemyTSCN.instantiate()

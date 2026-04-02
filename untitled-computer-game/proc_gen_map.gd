@@ -4,6 +4,11 @@ extends Node2D
 @onready var enemyTSCN = preload("res://scenes/controllers/enemy.tscn")
 @onready var droppedItem = preload("res://scenes/weapons/droppedItem.tscn")
 
+@onready var lvl1Music = preload("res://art/Music/roman_sol-smooth-menu-background-449731.mp3")
+@onready var lvl2Music = preload("res://art/Music/hitslab-dramatic-serious-intense-music-406394.mp3")
+@onready var lvl3Music = preload("res://art/Music/denis-pavlov-music-magical-technology-sci-fi-science-futuristic-game-music-300607.mp3")
+
+
 @onready
 var tileSet = $Region1Tiles
 
@@ -18,8 +23,10 @@ var tileSet = $Region1Tiles
 var onObjective = false
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
+	get_node("Level Music").play()
 	for room in tileSet.patternsGenerated:
 		if (room.isRoom):
 			spawnEnemiesInRoom(room)

@@ -4,7 +4,10 @@ extends CanvasLayer
 @onready var btnLoc = 0
 var tutorialCompleted = false
 
+@onready var menuMusic = get_node("MenuMusic")
+
 func _ready() -> void:
+	menuMusic.play()
 	if Player.instance and Player.instance.playerLevel == 1:
 		$StartButton.text = "Start"
 		Player.instance.visible = false 
@@ -24,8 +27,10 @@ func _init(tutorialCom: bool = false) -> void:
 func _on_start_button_pressed() -> void:
 	if Player.instance:
 		Player.instance.visible = true
+	var tween = create_tween()
+	tween.tween_property(menuMusic, "volume_db", -80.0, 2.0)
+	tween.tween_callback(menuMusic.stop)
 	if tutorialCompleted:
-		
 		if Player.instance.playerLevel == 1:
 			var gameScene = load("res://proc_gen_map.tscn")
 			var newGameScene = gameScene.instantiate()
@@ -60,6 +65,7 @@ func _on_quit_button_pressed() -> void:
 	
 	
 func _on_start_button_mouse_entered() -> void:
+
 	activate_buttons(0)
 	if btnLoc != 0:
 		inactivate_buttons(btnLoc)
