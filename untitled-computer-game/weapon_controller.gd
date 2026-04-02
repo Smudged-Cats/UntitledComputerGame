@@ -18,7 +18,7 @@ var baseProjectile = preload("res://scenes/weapons/Projectile.tscn")
 func _init(holder:String = "", b:WeaponStats =null):
 	self.holder = holder
 	baseWeapon = b
-	weaponMuls = WeaponStats.new(1,1,ProjectileStats.new(1,1,1),-1,1,1)
+	weaponMuls = WeaponStats.new(1,1,ProjectileStats.new(1,1,1,1),-1,1,1)
 	fireRateTimer = Cooldown.new(1.0)
 	
 	#For some reason, the Cooldown needs to be added as a child
@@ -68,3 +68,24 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 
 func setWeapon(w:WeaponStats):
 	baseWeapon = w
+
+func getDamage() -> float:
+	return baseWeapon.projectileStats.stats["damage"] * weaponMuls.projectileStats.stats["damage"]
+
+func getFireRate() -> float:
+	return baseWeapon.stats["fireRate"]/weaponMuls.stats["fireRate"]
+
+func getProjectileCount() -> int:
+	return baseWeapon.stats["projectileCount"] * int(weaponMuls.stats["projectileCount"])
+
+func getWeaponBoosts() -> String:
+	var text: String = ""
+	for k in weaponMuls.stats.keys():
+		if (k != "3DModel" && k != "Sprite"):
+			if (weaponMuls.stats[k] != 1):
+				text += "%.1fx %s\n" % [weaponMuls.stats[k] - 1,k]
+				
+	for k in weaponMuls.projectileStats.stats.keys():
+		if (weaponMuls.projectileStats.stats[k] != 1):
+			text += "%.1fx %s\n" % [weaponMuls.projectileStats.stats[k] - 1,k]
+	return text
