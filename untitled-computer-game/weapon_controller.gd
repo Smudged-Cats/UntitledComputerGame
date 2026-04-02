@@ -51,15 +51,15 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 			#print(baseWeapon.projectileStats.shotHealth)
 			add_child(tempP)
 			
-			if model_id == 0: #Apparently the green one is 0 and the blue one is 1
+			if model_id == 0: #Green
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = true
 				tempP.get_node("RedIcon").visible = false
-			elif model_id == 1:
+			elif model_id == 1:#Blue
 				tempP.get_node("BlueIcon").visible = true
 				tempP.get_node("GreenIcon").visible = false
 				tempP.get_node("RedIcon").visible = false
-			elif model_id == 2:
+			elif model_id == 2:#Red
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = false
 				tempP.get_node("RedIcon").visible = true

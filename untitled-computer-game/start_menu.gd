@@ -102,8 +102,7 @@ func _input(event: InputEvent) -> void:
 			_on_tutorial_button_pressed()
 		else:
 			_on_quit_button_pressed()
-			
-
+		
 func eh():
 	if btnLoc == 0:
 		_on_start_button_mouse_entered()

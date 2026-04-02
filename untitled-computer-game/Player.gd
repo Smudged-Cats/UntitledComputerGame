@@ -297,6 +297,7 @@ func pickup_item() -> void:
 	
 
 func drop_item() -> void:
+	var placeHolderPlayerLevel = playerLevel
 	
 	if _character.isWindingUpAttack: return
 
@@ -329,13 +330,31 @@ func drop_item() -> void:
 		newDroppedItem.setWeaponType("Bomb")
 		_character.melee.baseMelee = null
 	elif droppedWeapon.stats.has("damage"):
+		if playerLevel == 2:
+			if newDroppedItem.item.stats["3DModel"] == 2:
+				playerLevel = 1
+		if playerLevel == 3:
+			if newDroppedItem.item.stats["3DModel"] == 2:
+				playerLevel = 1
+			if newDroppedItem.item.stats["3DModel"] == 1:
+				playerLevel = 2
 		newDroppedItem.itemType = "Melee"
 		newDroppedItem.setWeaponType("Melee")
 		_character.melee.baseMelee = null
+		playerLevel = placeHolderPlayerLevel
 	elif droppedWeapon.stats.has("fireRate"):
+		if playerLevel == 2:
+			if newDroppedItem.item.stats["3DModel"] == 1:
+				playerLevel = 1
+		if playerLevel == 3:
+			if newDroppedItem.item.stats["3DModel"] == 1:
+				playerLevel = 1
+			if newDroppedItem.item.stats["3DModel"] == 2:
+				playerLevel = 2
 		newDroppedItem.itemType = "Weapon"
 		newDroppedItem.setWeaponType("Weapon")
 		_weapon.baseWeapon = null
+		playerLevel = placeHolderPlayerLevel
 
 	inventory.set(selectedItem, null)
 	get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("WeaponStats").visible = false
