@@ -34,9 +34,15 @@ subject = NodePath("../Character")
 [node name="pickupdropSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1074668235]
 
 [node name="movementSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=784225030]
-volume_db = 10.0
+volume_db = 2.0
 
 [node name="selectSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=415540411]
+
+[node name="attackSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1034537270]
+pitch_scale = 1.2
+
+[node name="attackSFX2" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1976778593]
+pitch_scale = 1.2
 
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_hlsme")]
 

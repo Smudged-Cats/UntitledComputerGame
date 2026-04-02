@@ -27,6 +27,11 @@ var whiteBar = preload("res://art/weapon sprites/whiteBar.png")
 @onready var moveSFX = preload("res://resources/sfx/Walking.mp3")
 @onready var movementSFXPlayer = $Camera2D/movementSFX
 
+@onready var swordAtkSFX = preload("res://resources/sfx/Sword contact.mp3")
+@onready var shootSFX = preload("res://resources/sfx/Pew shoot.mp3")
+@onready var attackSFXPlayer = $Camera2D/attackSFX
+@onready var attackSFXPlayer2 = $Camera2D/attackSFX2
+
 
 
 
@@ -229,7 +234,8 @@ func listForAbility() -> void:
 	if Input.is_action_just_released("lunge_attack"):
 		movementSFXPlayer.stream = dashSFX
 		movementSFXPlayer.pitch_scale = 0.8
-		movementSFXPlayer.play()
+		movementSFXPlayer.volume_db = 0.75
+		movementSFXPlayer.play(0.1)
 		_character.dash()
 		_character.dashWindup = 0
 	
@@ -244,6 +250,8 @@ func listenForShot() -> void:
 			_character.global_position,
 			inventory[selectedItem].stats["3DModel"]
 			)
+	
+	
 
 # Called when an item comes close to the character
 func add_item_to_nearby(area: Area2D) -> void:
