@@ -168,6 +168,14 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 				0,
 				randi_range(6,8),
 				randi_range(50,100)
+				),
+		"flamethrower2":
+			WeaponStats.new(
+			randf_range(0.05,0.1),
+			randf_range(0.5,0.75),
+			ProjectileStats.new(6,700),
+			randi_range(0,1),
+			randi_range(10,20)
 			)
 	}
 	if (gunDict.has(gunType)):

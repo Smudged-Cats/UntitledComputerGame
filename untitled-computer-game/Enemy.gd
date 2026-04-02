@@ -35,7 +35,7 @@ func _ready() -> void:
 	_weapon = _character.weapon
 	_weapon.holder = _character.characterName
 	
-	_weapon.setWeapon(DroppedItem.new().ranGun())
+	_weapon.setWeapon(DroppedItem.new().ranTypeOfGun("flamethrower2"))
 	_weapon.weaponMuls.projectileStats.stats["damage"] -= 0.6
 	_weapon.weaponMuls.projectileStats.stats["speed"] -= 0.3
 	_weapon.weaponMuls.stats["ammo"] += 50
@@ -92,8 +92,6 @@ func chase_enemy(delta: float = 1) -> void:
 		
 	else:
 		_character.set_move_dir(Vector2.ZERO)
-	
-
 
 func get_character() -> Character:
 	return _character
