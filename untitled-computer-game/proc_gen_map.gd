@@ -87,7 +87,7 @@ func _process(float) -> void:
 			for i in range(10):
 				var baseRoom = Room.new(Vector2i(7,-6), Vector2i(12,12), 1)
 				spawnEnemiesInRoom(baseRoom)
-				await get_tree().create_timer(randi_range(2,7)).timeout
+				await get_tree().create_timer(randi_range(5,10)).timeout
 			
 
 
