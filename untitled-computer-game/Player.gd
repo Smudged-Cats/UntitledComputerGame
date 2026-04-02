@@ -39,7 +39,6 @@ var selectedItem:int = 0
 var itemsInProximity = {}
 
 func _ready() -> void:
-	
 	Engine.time_scale = 1
 	if instance:
 		push_error("More than one player instance detected")
