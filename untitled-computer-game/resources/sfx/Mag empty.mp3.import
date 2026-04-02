@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjrja3arpnspw"
+path="res://.godot/imported/Mag empty.mp3-05c4473bd7a43398bc5bb666d9388b29.mp3str"
+
+[deps]
+
+source_file="res://resources/sfx/Mag empty.mp3"
+dest_files=["res://.godot/imported/Mag empty.mp3-05c4473bd7a43398bc5bb666d9388b29.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

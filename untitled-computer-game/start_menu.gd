@@ -14,6 +14,7 @@ func _ready() -> void:
 	
 	if Player.instance and Player.instance.playerLevel > 1:
 		$StartButton.text = "Next level"
+		Player.instance.visible = false
 	
 	_on_start_button_mouse_entered()
 	if !tutorialCompleted:
