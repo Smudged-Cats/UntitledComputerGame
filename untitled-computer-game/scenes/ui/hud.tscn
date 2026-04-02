@@ -82,6 +82,33 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Label" type="Label" parent="PlayerInventory" unique_id=987172770]
+layout_mode = 0
+offset_left = 36.81
+offset_top = 250.16
+offset_right = 48.810036
+offset_bottom = 340.15997
+theme_override_font_sizes/font_size = 20
+text = "1"
+
+[node name="Label2" type="Label" parent="PlayerInventory" unique_id=549362507]
+layout_mode = 0
+offset_left = 36.81
+offset_top = 338.535
+offset_right = 48.810036
+offset_bottom = 428.5349
+theme_override_font_sizes/font_size = 20
+text = "2"
+
+[node name="Label3" type="Label" parent="PlayerInventory" unique_id=1018326222]
+layout_mode = 0
+offset_left = 36.81
+offset_top = 429.5
+offset_right = 48.810036
+offset_bottom = 519.50024
+theme_override_font_sizes/font_size = 20
+text = "3"
+
 [node name="GridContainer" type="GridContainer" parent="PlayerInventory" unique_id=1459173770]
 layout_mode = 0
 offset_left = 32.0
@@ -119,6 +146,39 @@ position = Vector2(166.00002, 60.99994)
 rotation = 0.28858864
 scale = Vector2(0.151, 0.139)
 texture = ExtResource("2_hqnrr")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PlayerInventory" unique_id=2048143774]
+z_index = -1
+layout_mode = 0
+offset_left = 54.0
+offset_top = 252.0
+offset_right = 138.0
+offset_bottom = 331.0
+border_color = Color(0.856312, 0.0007244641, 0.88071764, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="PlayerInventory" unique_id=1636920007]
+z_index = -1
+layout_mode = 0
+offset_left = 54.0
+offset_top = 433.0
+offset_right = 138.0
+offset_bottom = 512.0
+border_color = Color(0.856312, 0.0007244641, 0.88071764, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="PlayerInventory" unique_id=2142224316]
+z_index = -1
+layout_mode = 0
+offset_left = 54.0
+offset_top = 341.0
+offset_right = 138.0
+offset_bottom = 420.0
+border_color = Color(0.856312, 0.0007244641, 0.88071764, 1)
+border_width = 5.0
+editor_only = false
 
 [node name="LevelLabel" type="Label" parent="." unique_id=515932195]
 offset_left = 1396.0

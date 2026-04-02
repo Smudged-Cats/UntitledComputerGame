@@ -7,6 +7,7 @@ var tutorialCompleted = false
 func _ready() -> void:
 	if Player.instance and Player.instance.playerLevel == 1:
 		$StartButton.text = "Start"
+		Player.instance.visible = false 
 	
 	if Player.instance and Player.instance.playerLevel > 1:
 		$StartButton.text = "Next level"
@@ -21,6 +22,8 @@ func _init(tutorialCom: bool = false) -> void:
 	tutorialCompleted = tutorialCom
 
 func _on_start_button_pressed() -> void:
+	if Player.instance:
+		Player.instance.visible = true
 	if tutorialCompleted:
 		
 		if Player.instance.playerLevel == 1:
