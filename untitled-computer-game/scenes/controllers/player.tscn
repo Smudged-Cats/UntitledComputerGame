@@ -9,7 +9,8 @@
 radius = 51.0
 
 [sub_resource type="Gradient" id="Gradient_dl504"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.536, 0.576, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bqoay"]
 gradient = SubResource("Gradient_dl504")

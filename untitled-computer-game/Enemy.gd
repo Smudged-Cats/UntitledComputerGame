@@ -80,13 +80,12 @@ func chase_enemy(delta: float = 1) -> void:
 		var difference = self.currentTarget.global_position - _character.global_position
 		var threatDirection = (difference).normalized()
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
-		if (difference.length() < 200):
-			_character.set_move_dir(threatDirectionToIso)
-			_character.look_in_direction(threatDirection, delta)
-			if difference.length() <= 5:
-				_character.melee.attack()
-		if (difference.length() > 200 and difference.length() < 500):
-			_weapon.shoot(threatDirection,_character.global_position, -1)
+		if difference.length() <= 5:
+			_character.melee.attack()
+		if (difference.length() > 200 and difference.length() < 750) and Player.instance.playerLevel > 1:
+			_weapon.shoot(threatDirection,_character.global_position, Player.instance.playerLevel)
+		
+		if (difference.length() < 750):
 			_character.set_move_dir(threatDirectionToIso)
 			_character.look_in_direction(threatDirection, delta)
 		

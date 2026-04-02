@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://db16o8vgsk732"]
 
-[ext_resource type="Script" uid="uid://dlqipx103pu0e" path="res://scenes/ui/pause_screen.gd" id="1_fvuwu"]
+[ext_resource type="Script" path="res://scenes/ui/pause_screen.gd" id="1_fvuwu"]
 [ext_resource type="FontFile" uid="uid://csebotlnryy4i" path="res://resources/Nautica-aYw9K.otf" id="2_xceqw"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1322925107]
@@ -51,7 +51,7 @@ offset_top = 11.0
 offset_right = 276.0
 offset_bottom = 57.0
 theme_override_font_sizes/font_size = 33
-text = "Restart Game"
+text = "Restart Level"
 horizontal_alignment = 1
 
 [node name="QuitButton" type="Button" parent="." unique_id=2143748413]

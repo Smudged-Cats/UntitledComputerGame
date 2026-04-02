@@ -5,6 +5,8 @@ extends CanvasLayer
 var tutorialCompleted = false
 
 func _ready() -> void:
+	if Player.instance and Player.instance.playerLevel == 1:
+		$StartButton.text = "Start"
 	
 	if Player.instance and Player.instance.playerLevel > 1:
 		$StartButton.text = "Next level"
@@ -22,7 +24,7 @@ func _on_start_button_pressed() -> void:
 	if tutorialCompleted:
 		
 		if Player.instance.playerLevel == 1:
-			var gameScene = load("res://proc_gen_map1.tscn")
+			var gameScene = load("res://proc_gen_map.tscn")
 			var newGameScene = gameScene.instantiate()
 			get_tree().root.add_child(newGameScene)
 			Player.instance.reparent(newGameScene)

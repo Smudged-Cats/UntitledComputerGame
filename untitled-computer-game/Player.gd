@@ -10,11 +10,17 @@ static var droppedItemScene = preload("res://scenes/weapons/droppedItem.tscn")
 static var deathScreenScene = preload("res://scenes/ui/death_screen.tscn")
 static var pauseScreenScene = preload("res://scenes/ui/pause_screen.tscn")
 
+var redBar = preload("res://art/weapon sprites/red.png")
+var blueBar = preload("res://art/weapon sprites/blue.png")
+var greenBar = preload("res://art/weapon sprites/green.png")
+var rainbowBar = preload("res://art/weapon sprites/rainbow.png")
+var whiteBar = preload("res://art/weapon sprites/white.png")
+
 static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
 static var swordSprite = preload("res://art/weapon sprites/legendary.png")
 
-@onready var playerLevel = 0
+@onready var playerLevel = 2
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -33,6 +39,7 @@ var selectedItem:int = 0
 var itemsInProximity = {}
 
 func _ready() -> void:
+	
 	Engine.time_scale = 1
 	if instance:
 		push_error("More than one player instance detected")
@@ -50,6 +57,18 @@ func _ready() -> void:
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
+	var meleeItem = inventory[selectedItem]
+	if meleeItem != null:
+		if meleeItem.stats["3DModel"] == 1:
+			$Character/MeleeBar.texture_progress = redBar
+		if meleeItem.stats["3DModel"] == 2:
+			$Character/MeleeBar.texture_progress = blueBar
+		if meleeItem.stats["3DModel"] == 3:
+			$Character/MeleeBar.texture_progress = greenBar #change this colour
+		if meleeItem.stats["3DModel"] == -1:
+			$Character/MeleeBar.texture_progress = whiteBar
+		if meleeItem.stats["3DModel"] == 0:
+			$Character/MeleeBar.texture_progress = rainbowBar
 	
 	if _character.health > 0:
 		if inventory[selectedItem] is WeaponStats:
@@ -69,10 +88,17 @@ func _physics_process(delta: float) -> void:
 		listen_for_drop_mod()
 		listenForNum()
 		listen_for_pause()
+		
+	else:
+		for item in inventory:
+			if item != null:
+				if item.stats["3DModel"] == -1:
+					drop_item()
 	_camera.update_camera_position(delta)
 	
 	if Input.is_action_just_pressed("kill me"):
 		_character.health = 0
+			
 	
 	_character.get_node("MeleeBar").value = _character.meleeWindup
 	

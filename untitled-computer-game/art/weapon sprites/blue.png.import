@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1inlu57s70cl"
-path="res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"
+uid="uid://ckw31mjcf56jh"
+path="res://.godot/imported/blue.png-dec74491c638f2443439fd92d17033fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tiles/TileTops/USBTileTop.png"
-dest_files=["res://.godot/imported/USBTileTop.png-886072216b5dc8a290c3aaecd4885901.ctex"]
+source_file="res://art/weapon sprites/blue.png"
+dest_files=["res://.godot/imported/blue.png-dec74491c638f2443439fd92d17033fa.ctex"]
 
 [params]
 
