@@ -76,12 +76,12 @@ func _process(float) -> void:
 				toggle_gate_state(false, [Vector2i(6, -1), Vector2i(6, -2)] as Array[Vector2i], false)
 				
 			changeUSBtile(Vector2(6, 11))
-			await get_tree().create_timer(randi_range(5,10)).timeout
+			await get_tree().create_timer(randi_range(4, 6)).timeout
 			for i in range(10):
 				var baseRoom = Room.new(Vector2i(7,-6), Vector2i(12,12), 1)
 				spawnEnemiesInRoom(baseRoom)
-				await get_tree().create_timer(randi_range(5,10)).timeout
-
+				await get_tree().create_timer(randi_range(2,7)).timeout
+			
 
 
 	
