@@ -22,7 +22,7 @@ static var usbSprite = preload("res://art/largerUSB.png")
 
 static var meleeLegendarySprite = preload("res://art/weapon sprites/legendary.png")
 
-# Blue area weapons sprites7
+# Blue area weapons sprites
 static var blueRanged1Sprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 static var blueRanged2Sprite = preload("res://art/weapon sprites/blue/blue_range2.png")
 static var blueMelee1Sprite = preload("res://art/weapon sprites/blue/blue_melee1.png")
@@ -30,9 +30,9 @@ static var blueMelee1Sprite = preload("res://art/weapon sprites/blue/blue_melee1
 
 # Red area weapons sprites
 static var redRanged1Sprite = preload("res://art/weapon sprites/red/red_range1.png")
-static var redRanged2Sprite = preload("res://art/weapon sprites/red/red_range2.png")
-static var redMelee1Sprite = preload("res://art/weapon sprites/red/red_melee1.png")
 #static var redMelee2Sprite = preload("")
+static var redMelee1Sprite = preload("res://art/weapon sprites/red/red_melee1.png")
+static var redRanged2Sprite = preload("res://art/weapon sprites/red/flamethrower.png")
 
 # Green area weapons sprites
 static var greenRanged1Sprite = preload("res://art/weapon sprites/green/green_range1.png")
@@ -293,7 +293,7 @@ func setRangedModel(item):
 		var newModel = electricBlaster3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if item.stats["3DModel"] == 2:
-		item.stats["Sprite"] = blueRanged1Sprite
+		item.stats["Sprite"] = redRanged2Sprite
 		var newModel = flamethrower3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 
