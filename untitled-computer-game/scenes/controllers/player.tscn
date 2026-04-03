@@ -59,5 +59,9 @@ step = 0.01
 fill_mode = 1
 texture_progress = SubResource("GradientTexture2D_bqoay")
 
+[connection signal="damaged" from="Character" to="Camera2D" method="_on_character_damaged"]
+[connection signal="health_changed" from="Character" to="Camera2D/HUD" method="_on_character_health_changed"]
+[connection signal="killed" from="Character" to="." method="show_death_screen"]
+[connection signal="stamina_changed" from="Character" to="Camera2D/HUD" method="_on_character_stamina_changed"]
 [connection signal="area_entered" from="Character/ItemDetector" to="." method="add_item_to_nearby"]
 [connection signal="area_exited" from="Character/ItemDetector" to="." method="remove_item_from_nearby"]
