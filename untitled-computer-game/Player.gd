@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	
 	if _character.health > 0:
 		if inventory[selectedItem] is WeaponStats:
-			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[selectedItem].stats["ammo"]) + "/50"
+			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").text = str(inventory[selectedItem].stats["ammo"]) + "/" + str(inventory[selectedItem].maxAmmo)
 			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = true
 		else:
 			$Camera2D/HUD.get_node("PlayerStatus/AmmoCount").visible = false
@@ -340,18 +340,6 @@ func drop_item() -> void:
 	if len(inventory) == 0 || inventory[selectedItem] == null: return
 
 	var droppedWeapon = inventory.get(selectedItem)
-	#var weaponStats = inventory.pop_back()
-	'''
-	if len(inventory) == 0:
-		_weapon.setWeapon(null)
-		_character.melee.baseMelee = null
-	elif inventory.back() is not MeleeStats:
-		_weapon.setWeapon(inventory.back())
-		_character.melee.baseMelee = null
-	else:
-		_weapon.setWeapon(null)
-		_character.melee.baseMelee = inventory.back()
-	'''
 	
 	# spawn the dropped item back into the world
 	var newDroppedItem = droppedItemScene.instantiate()
@@ -425,17 +413,6 @@ func updateInventorySprites() -> void:
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = inventory[inventoryCurrentSize - 1 - i].getSprite()
 		else:
 			$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot" + str(i + 1)).texture = null
-	'''
-	if inventoryCurrentSize == 2:
-		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
-	elif inventoryCurrentSize == 1:
-		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
-		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot2").texture = null
-	elif inventoryCurrentSize == 0:
-		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot3").texture = null
-		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot2").texture = null
-		$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Slot1").texture = null
-		'''
 
 
 func show_death_screen() -> void:
@@ -471,8 +448,3 @@ func updateStatView() -> void:
 	
 	if (modList[selectedItem] != null):
 		boostLabel.text += "Mod Boost:\n" + modList[selectedItem].getBoosts()
-	'''
-	boostLabel.text += "Modifier Boosts:\n"
-	boostLabel.text += "Weapon Boosts:\n" + _weapon.getWeaponBoosts()
-	boostLabel.text += "Melee Boosts:\n" + _character.melee.getMeleeBoosts()
-	'''

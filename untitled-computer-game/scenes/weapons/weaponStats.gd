@@ -10,14 +10,13 @@ var stats: Dictionary = {
 	"3DModel": 0,
 	"Sprite" : null
 }
+var maxAmmo: int
 
 # 3D Model will be an int corresponding to the model / type of melee weapon.
 # - 1 = Electric Blaster
 # - 0 = Circuit Board Blaster
 # - 2 = Red Blaster
 # - 3 = Basic Blaster
-
-
 var projectileStats: ProjectileStats
 
 func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, Model:int, projectileCount: int = 1, ammo: int = randi_range(15,50)):
@@ -25,7 +24,8 @@ func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, Model
 	stats["projectileCount"] = projectileCount
 	stats["spread"] = spread
 	#print(stats["fireRate"])
-	stats["ammo"] = float(ammo)
+	maxAmmo = ammo
+	stats["ammo"] = maxAmmo
 	stats["3DModel"] = Model
 	self.projectileStats = projectileStats
 
