@@ -41,9 +41,6 @@ volume_db = 2.0
 [node name="attackSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1034537270]
 pitch_scale = 1.2
 
-[node name="attackSFX2" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1976778593]
-pitch_scale = 1.2
-
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_hlsme")]
 
 [node name="ItemDetector" type="Area2D" parent="Character" unique_id=560677249]
