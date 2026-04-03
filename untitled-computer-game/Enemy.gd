@@ -89,7 +89,7 @@ func chase_enemy(delta: float = 1) -> void:
 			_weapon.shoot(threatDirection,_character.global_position)
 		
 		if (difference.length() < 750):
-			_character.set_move_dir(threatDirectionToIso)
+			#_character.set_move_dir(threatDirectionToIso)
 			_character.look_in_direction(threatDirection, delta)
 		
 	else:

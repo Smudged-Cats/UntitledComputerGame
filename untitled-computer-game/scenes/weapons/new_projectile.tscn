@@ -14,9 +14,8 @@ script/source = "extends Node2D
 var killTimer: float
 var stats: ProjectileStats
 var dir: Vector2
-
 @onready var hasHitEntity = false
-static var pCount = 0
+
 #The source variable is meant to prevent friendly fire
 # incidents by comparing the characterName of the entity it hits to the
 # source, which will also be the characterName string of who shot the weapon
@@ -25,7 +24,9 @@ var source: String
 #Add weaponMuls.projectileStats as a parameter
 func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStats, d:Vector2, pos:Vector2):
 	self.source = source
-	
+	$BlueIcon.visible = false
+	$GreenIcon.visible = false
+	$RedIcon.visible = false
 	#Creating a deep copy of the projectile stats so that the piercing
 	# health works for the projectiles
 	self.stats = ProjectileStats.new(
@@ -40,8 +41,6 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 	dir = d.normalized()
 	
 	global_position = pos
-	pCount += 1
-	print(pCount)
 	
 	if (stats.projectileSpriteNum == 0):
 		$BlueIcon.visible = true
@@ -64,13 +63,41 @@ func _physics_process(delta: float) -> void:
 	killTimer -= delta
 	if (killTimer <= 0):
 		tryToRemoveProjectile()
-	
 	moveAndCollide(global_position, dir*stats.stats[\"speed\"]*delta)
 	
-	print(pCount)
+	
+func moveAndCollide(startPos:Vector2, travelLen:Vector2):
+	#Using multiple rayCasts in order to make the bullet feel like
+	# it has a larger hitbox
+	var queryList:Array[PhysicsRayQueryParameters2D]
+	
+	#Thanks to https://docs.godotengine.org/en/stable/tutorials/physics/ray-casting.html
+	# for assisting with the implementation of raycast
+	var from = startPos
+	var to = from + travelLen	
+	
+	var castedRay1: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from - travelLen.rotated(PI/12))
+	var castedRay2: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
+	var castedRay3: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from + travelLen.rotated(PI/12))
+	queryList.append_array([castedRay1,castedRay2,castedRay3])
+	
+	var result = checkForCollisions(queryList)
+	if (result != null):
+		onRayHit(result,from,to)
+	else:
+		global_position = to
 	
 
-func _on_body_entered(body: Node2D) -> void:
+
+func checkForCollisions(queryList:Array[PhysicsRayQueryParameters2D]) -> Object:
+	var space = get_world_2d().direct_space_state
+	for ray in queryList:
+		var collider = space.intersect_ray(ray)
+		if (!collider.is_empty()):
+			return collider.collider
+	return null
+
+func onRayHit(body: Node2D, from:Vector2, to:Vector2) -> void:
 	#Prevent friendly fire
 	if(body is Character):
 		if (body.characterName != source and body.health > 0):
@@ -80,83 +107,22 @@ func _on_body_entered(body: Node2D) -> void:
 			# health
 			stats.stats[\"shotHealth\"] -= 1
 			if (stats.stats[\"shotHealth\"] <= 0):
-				#queue_free()
 				tryToRemoveProjectile()
-				#queue_free.call_deferred()
 			else:
 				pJump()
 		else:
-			pJump()
+			global_position = to
 	
 	#Despawn if hitting a wall
 	if (body is TileMapLayer):
-		#richocet(body)
-		#queue_free()
 		tryToRemoveProjectile()
-		#queue_free.call_deferred()
 
 func tryToRemoveProjectile():
-	pCount -= 1
-	print(pCount)
 	queue_free()
 
 func pJump() -> void:
 	#moveAndCollide(global_position + 5*dir, 10*dir, false)
-	global_position += 5*dir
-
-func moveAndCollide(startPos:Vector2, travelLen:Vector2):
-	#Try and see if there is a way to increase the thickness
-	# of the raycast, rather than having a list of 3 of them
-	var queryList:Array[PhysicsRayQueryParameters2D]
-	var from = startPos
-	var to = from + travelLen
-	'''
-	#Thanks to https://docs.godotengine.org/en/stable/tutorials/physics/ray-casting.html
-	# for assisting with the implementation of raycast
-	var space = get_world_2d().direct_space_state
-	var castedRay: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
-	var result = space.intersect_ray(castedRay)
-	if (!result.is_empty()):
-		_on_body_entered(result.collider)
-	else:
-		global_position = to
-	'''
-	
-	
-	var castedRay1: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from - travelLen.rotated(PI/12))
-	var castedRay2: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
-	var castedRay3: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from + travelLen.rotated(PI/12))
-	queryList.append_array([castedRay1,castedRay2,castedRay3])
-	
-	var result = checkForCollisions2(queryList)
-	if (result != null):
-		_on_body_entered(result)
-	else:
-		global_position = to
-	'''
-	#Check if any of the rays are hitting something
-	for rayItem in queryList:
-		var result = space.intersect_ray(rayItem)
-		if (!result.is_empty() && !hasHitEntity):
-			print(\"hit\")
-			_on_body_entered(result.collider)
-			hasHitEntity = true
-			break
-			
-	global_position = to
-	if (hasHitEntity):
-		pJump()
-		hasHitEntity = false
-	'''
-
-
-func checkForCollisions2(queryList:Array[PhysicsRayQueryParameters2D]) -> Object:
-	var space = get_world_2d().direct_space_state
-	for ray in queryList:
-		var collider = space.intersect_ray(ray)
-		if (!collider.is_empty()):
-			return collider.collider
-	return null
+	global_position += 45*dir
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtdpv"]
@@ -299,16 +265,19 @@ animations = [{
 script = SubResource("GDScript_q2h5e")
 
 [node name="BlueIcon" type="AnimatedSprite2D" parent="." unique_id=771364682]
+visible = false
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_sguj2")
 autoplay = "default"
 
 [node name="GreenIcon" type="AnimatedSprite2D" parent="." unique_id=884591896]
+visible = false
 position = Vector2(0, -1)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_wmjmu")
 autoplay = "default"
 
 [node name="RedIcon" type="AnimatedSprite2D" parent="." unique_id=1495953869]
+visible = false
 sprite_frames = SubResource("SpriteFrames_nhfym")
 autoplay = "default"
