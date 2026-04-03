@@ -36,7 +36,7 @@ func _ready() -> void:
 	for item in Player.instance.inventory:
 		if item != null:
 			if item.stats.has("ammo"):
-				item.stats["ammo"] = 50
+				item.stats["ammo"] = item.maxAmmo
 			
 	
 func _process(float) -> void:
