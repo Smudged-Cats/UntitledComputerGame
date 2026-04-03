@@ -71,13 +71,13 @@ func _process(float) -> void:
 				toggle_gate_state(false, [Vector2i(17, -1), Vector2i(17, -2)] as Array[Vector2i], false)
 				toggle_gate_state(false, [Vector2i(6, -1), Vector2i(6, -2)] as Array[Vector2i], false)
 			
-			if get_node("Player").playerLevel == 2:
+			if get_node("Player").playerLevel == 3:
 				toggle_gate_state(false, [Vector2i(4, 16), Vector2i(4, 17)] as Array[Vector2i], true)
 				toggle_gate_state(false, [Vector2i(9, 5), Vector2i(10, 6)] as Array[Vector2i], true)
 				toggle_gate_state(false, [Vector2i(9, 16), Vector2i(9, 15)] as Array[Vector2i], false)
 				toggle_gate_state(false, [Vector2i(3, 5), Vector2i(4, 4)] as Array[Vector2i], false)
 				
-			if get_node("Player").playerLevel == 3:
+			if get_node("Player").playerLevel == 2:
 				toggle_gate_state(false, [Vector2i(12, 4), Vector2i(13, 4)] as Array[Vector2i], true)
 				toggle_gate_state(false, [Vector2i(12, -7), Vector2i(13, -7)] as Array[Vector2i], true)
 				toggle_gate_state(false, [Vector2i(17, -1), Vector2i(17, -2)] as Array[Vector2i], false)

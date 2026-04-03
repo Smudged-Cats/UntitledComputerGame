@@ -18,12 +18,12 @@ func _ready() -> void:
 		modelRoot.get_node("RamEnemy").visible = false
 		modelRoot.get_node("FanEnemy").visible = true
 		modelRoot.get_node("FireEnemy").visible = false
-	if Player.instance.playerLevel == 2:
+	if Player.instance.playerLevel == 3:
 		modelRoot.get_node("RamEnemy").visible = false
 		modelRoot.get_node("FanEnemy").visible = false
 		modelRoot.get_node("FireEnemy").visible = true
 		get_node("Character").maxHealth = 200
-	if Player.instance.playerLevel == 3:
+	if Player.instance.playerLevel == 2:
 		modelRoot.get_node("RamEnemy").visible = true
 		modelRoot.get_node("FanEnemy").visible = false
 		modelRoot.get_node("FireEnemy").visible = false
@@ -35,7 +35,7 @@ func _ready() -> void:
 	_weapon = _character.weapon
 	_weapon.holder = _character.characterName
 	
-	if Player.instance.playerLevel == 2:
+	if Player.instance.playerLevel == 3:
 		_weapon.setWeapon(DroppedItem.new().ranTypeOfGun("flamethrower2"))
 	else:
 		_weapon.setWeapon(DroppedItem.new().ranTypeOfGun("smg"))
@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 	t+= delta
 	if Player.instance.playerLevel <= 1:
 		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FanEnemy").rotate_y(10*delta)
-	if Player.instance.playerLevel == 2:
+	if Player.instance.playerLevel == 3:
 		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FireEnemy").global_position.z = sin(t)
 	var health = _character.health
 	$Character/HealthBar.value = health

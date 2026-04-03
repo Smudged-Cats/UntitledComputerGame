@@ -153,14 +153,15 @@ script = ExtResource("1_s52oo")
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_few8n")
 autoplay = "default"
-frame_progress = 0.11073897
+frame_progress = 0.33835965
 
 [node name="GreenIcon" type="AnimatedSprite2D" parent="." unique_id=2070715329]
 position = Vector2(0, -1)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_gltn3")
 autoplay = "default"
-frame_progress = 0.6938947
+frame = 4
+frame_progress = 0.3082739
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=816339398]
 shape = SubResource("RectangleShape2D_m1wvs")
@@ -168,7 +169,8 @@ shape = SubResource("RectangleShape2D_m1wvs")
 [node name="RedIcon" type="AnimatedSprite2D" parent="." unique_id=1449892617]
 sprite_frames = SubResource("SpriteFrames_dr38i")
 autoplay = "default"
-frame_progress = 0.8271356
+frame = 2
+frame_progress = 0.7572531
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -356,26 +356,34 @@ func drop_item() -> void:
 		newDroppedItem.setWeaponType("Bomb")
 		_character.melee.baseMelee = null
 	elif droppedWeapon.stats.has("damage"):
+		# - 0 = RGB Sword
+		# - 1 = Fire Sword
+		# - 2 = Electric Sythe
+		# - 3 = Circuit Board Hammer
 		if playerLevel == 2:
 			if newDroppedItem.item.stats["3DModel"] == 2:
 				playerLevel = 1
 		if playerLevel == 3:
 			if newDroppedItem.item.stats["3DModel"] == 2:
 				playerLevel = 1
-			if newDroppedItem.item.stats["3DModel"] == 1:
+			if newDroppedItem.item.stats["3DModel"] == 3:
 				playerLevel = 2
 		newDroppedItem.itemType = "Melee"
 		newDroppedItem.setWeaponType("Melee")
 		_character.melee.baseMelee = null
 		playerLevel = placeHolderPlayerLevel
 	elif droppedWeapon.stats.has("fireRate"):
+		# - 1 = Electric Blaster
+		# - 0 = Circuit Board Blaster
+		# - 2 = Red Blaster
+		# - 3 = Basic Blaster
 		if playerLevel == 2:
 			if newDroppedItem.item.stats["3DModel"] == 1:
 				playerLevel = 1
 		if playerLevel == 3:
 			if newDroppedItem.item.stats["3DModel"] == 1:
 				playerLevel = 1
-			if newDroppedItem.item.stats["3DModel"] == 2:
+			if newDroppedItem.item.stats["3DModel"] == 3:
 				playerLevel = 2
 		newDroppedItem.itemType = "Weapon"
 		newDroppedItem.setWeaponType("Weapon")
