@@ -33,7 +33,7 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 	
 	#print(baseWeapon.fireRate.timeLeft())
 	if (fireRateTimer.timeLeft() == 0 and baseWeapon.stats["ammo"] > 0):
-		baseWeapon.stats["ammo"] -= 1/weaponMuls.stats["ammo"]
+		baseWeapon.stats["ammo"] -= 1
 		var spreadFactor: float = baseWeapon.stats["spread"] * weaponMuls.stats["spread"]
 		#print(spreadFactor)
 		var totalProjectiles:int = baseWeapon.stats["projectileCount"] * weaponMuls.stats["projectileCount"]
