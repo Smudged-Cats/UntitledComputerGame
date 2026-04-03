@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://db16o8vgsk732"]
 
-[ext_resource type="Script" path="res://scenes/ui/pause_screen.gd" id="1_fvuwu"]
+[ext_resource type="Script" uid="uid://dlqipx103pu0e" path="res://scenes/ui/pause_screen.gd" id="1_fvuwu"]
 [ext_resource type="FontFile" uid="uid://csebotlnryy4i" path="res://resources/Nautica-aYw9K.otf" id="2_xceqw"]
+[ext_resource type="AudioStream" uid="uid://4a3qrp0pn58f" path="res://resources/sfx/clik.mp3" id="3_xceqw"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1322925107]
 script = ExtResource("1_fvuwu")
@@ -87,6 +88,10 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "Return to menu"
 flat = true
+
+[node name="ClickSFX" type="AudioStreamPlayer2D" parent="." unique_id=1853228618]
+stream = ExtResource("3_xceqw")
+volume_db = 15.0
 
 [connection signal="mouse_entered" from="Pause/RestartButton" to="." method="_on_restart_button_mouse_entered"]
 [connection signal="mouse_exited" from="Pause/RestartButton" to="." method="_on_restart_button_mouse_exited"]

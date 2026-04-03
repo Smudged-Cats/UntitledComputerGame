@@ -119,7 +119,7 @@ max_distance = 10000.0
 
 [node name="Beeping" type="AudioStreamPlayer2D" parent="." unique_id=267670860]
 stream = SubResource("AudioStreamMP3_3lkvx")
-volume_db = 20.0
+volume_db = 10.0
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
