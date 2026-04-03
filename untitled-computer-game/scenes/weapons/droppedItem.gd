@@ -110,11 +110,11 @@ func ranGun() -> WeaponStats:
 		# Electric Bolts
 		weaponToGive = ranTypeOfGun("bolt")
 		
-	elif (Player.instance.playerLevel == 2):
+	elif (Player.instance.playerLevel == 3):
 		# FlameThrower
 		weaponToGive = ranTypeOfGun("flamethrower2")
 		
-	elif (Player.instance.playerLevel == 3):
+	elif (Player.instance.playerLevel == 2):
 		# Circuit SMG
 		weaponToGive = ranTypeOfGun("smg")
 		
@@ -178,9 +178,9 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 func ranMelee() -> MeleeStats:
 	if (Player.instance.playerLevel <= 1):
 		return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
-	if (Player.instance.playerLevel == 2):
-		return MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2)
 	if (Player.instance.playerLevel == 3):
+		return MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2)
+	if (Player.instance.playerLevel == 2):
 		return MeleeStats.new(randf_range(75,100), randf_range(0.1, 0.5), 0)
 	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
 
@@ -239,9 +239,9 @@ func setWeaponType(type: String):
 			item.stats["3DModel"] = 2
 		if Player.instance.playerLevel == 1:
 			item.stats["3DModel"] = 2
-		if Player.instance.playerLevel == 2:
-			item.stats["3DModel"] = 1
 		if Player.instance.playerLevel == 3:
+			item.stats["3DModel"] = 1
+		if Player.instance.playerLevel == 2:
 			item.stats["3DModel"] = 3
 		setMeleeModel(item)
 	if type == "Weapon":
@@ -249,9 +249,9 @@ func setWeaponType(type: String):
 			item.stats["3DModel"] = 1
 		if Player.instance.playerLevel == 1:
 			item.stats["3DModel"] = 1
-		if Player.instance.playerLevel == 2:
-			item.stats["3DModel"] = 2
 		if Player.instance.playerLevel == 3:
+			item.stats["3DModel"] = 2
+		if Player.instance.playerLevel == 2:
 			item.stats["3DModel"] = 0
 		setRangedModel(item)
 	if type == "Modifier":

@@ -70,6 +70,7 @@ func _process(delta: float) -> void:
 			tilemap_instance.changeUSBtile(Vector2(-4, 13))
 			tilemap_instance.toggle_gate_state(false, [Vector2i(-3, 9), Vector2i(-3, 8)] as Array[Vector2i], false)
 			tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)
+			$USBin.play()
 
 		
 			for i in range(5):

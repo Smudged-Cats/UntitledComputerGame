@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://j6dvfk60p23u" path="res://art/tiles/WallTiles/Region1GateOnSpriteSheet.png" id="7_q41uj"]
 [ext_resource type="Texture2D" uid="uid://cmqiijcjv2u11" path="res://art/tiles/WallTiles/Region1GateOffSpriteSheet.png" id="8_o6k6t"]
 [ext_resource type="PackedScene" uid="uid://dhqwudte4ko5p" path="res://scenes/weapons/droppedItem.tscn" id="11_2morg"]
+[ext_resource type="AudioStream" uid="uid://7xdbkmqxxjjw" path="res://resources/sfx/USB in.mp3" id="13_o6k6t"]
 [ext_resource type="Texture2D" uid="uid://dro1agq2q6jr2" path="res://art/Region1Background.png" id="13_q41uj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q41uj"]
@@ -231,6 +232,9 @@ max_distance = 10000.0
 [node name="Beeping" type="AudioStreamPlayer2D" parent="." unique_id=1495354873]
 stream = SubResource("AudioStreamMP3_q41uj")
 volume_db = 10.0
+
+[node name="USBin" type="AudioStreamPlayer2D" parent="." unique_id=1994953351]
+stream = ExtResource("13_o6k6t")
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]

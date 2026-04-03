@@ -383,7 +383,7 @@ func drop_item() -> void:
 		if playerLevel == 3:
 			if newDroppedItem.item.stats["3DModel"] == 1:
 				playerLevel = 1
-			if newDroppedItem.item.stats["3DModel"] == 3:
+			if newDroppedItem.item.stats["3DModel"] == 0:
 				playerLevel = 2
 		newDroppedItem.itemType = "Weapon"
 		newDroppedItem.setWeaponType("Weapon")
