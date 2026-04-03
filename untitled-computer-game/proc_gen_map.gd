@@ -51,7 +51,6 @@ func _process(float) -> void:
 		var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 		get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").text = str("SURVIVE: " + timeString)
 		if timeLeft < 1 and timeLeft > 0:
-			$Beeping.play()
 			get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 			get_node("Player").playerLevel += 1
 			var menuScene = load("res://start_menu.tscn")
@@ -64,6 +63,7 @@ func _process(float) -> void:
 		
 		
 	if onObjective and Input.is_action_just_pressed("interact"):
+		$Beeping.play()
 		if get_node("Player").activateBombItem():
 			if get_node("Player").playerLevel == 1:
 				toggle_gate_state(false, [Vector2i(12, 4), Vector2i(13, 4)] as Array[Vector2i], true)
