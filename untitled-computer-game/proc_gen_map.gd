@@ -51,6 +51,7 @@ func _process(float) -> void:
 		var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 		get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").text = str("SURVIVE: " + timeString)
 		if timeLeft < 1 and timeLeft > 0:
+			$Beeping.play()
 			get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 			get_node("Player").playerLevel += 1
 			var menuScene = load("res://start_menu.tscn")
