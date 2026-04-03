@@ -85,7 +85,7 @@ func chase_enemy(delta: float = 1) -> void:
 		var threatDirectionToIso = Vector2(threatDirection.x, clamp(threatDirection.y, -0.5, 0.5))
 		if difference.length() <= 5:
 			_character.melee.attack()
-		if (difference.length() > 200 and difference.length() < 750) and Player.instance.playerLevel > 1:
+		if (difference.length() > 300 and difference.length() < 750) and Player.instance.playerLevel > 1:
 			_weapon.shoot(threatDirection,_character.global_position)
 		
 		if (difference.length() < 750):
