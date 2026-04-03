@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var btns = [$StartButton, $TutorialButton, $QuitButton]
+@onready var btns = [$StartButton, $TutorialButton, $QuitButton, $CreditsButton]
 @onready var btnLoc = 0
 var tutorialCompleted = false
 
@@ -66,7 +66,6 @@ func _on_quit_button_pressed() -> void:
 	
 	
 func _on_start_button_mouse_entered() -> void:
-
 	activate_buttons(0)
 	if btnLoc != 0:
 		inactivate_buttons(btnLoc)
@@ -110,13 +109,28 @@ func _input(event: InputEvent) -> void:
 			_on_start_button_pressed()
 		elif btnLoc == 1:
 			_on_tutorial_button_pressed()
-		else:
+		elif btnLoc == 2:
 			_on_quit_button_pressed()
+		else:
+			_on_credits_button_pressed()
 		
 func eh():
 	if btnLoc == 0:
 		_on_start_button_mouse_entered()
 	elif btnLoc == 1:
 		_on_tutorial_button_mouse_entered()
-	else:
+	elif btnLoc == 2:
 		_on_quit_button_mouse_entered()
+	else:
+		_on_credits_button_mouse_entered()
+
+
+func _on_credits_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://credits_screen.tscn")
+	queue_free()
+
+func _on_credits_button_mouse_entered() -> void:
+	activate_buttons(3)
+	if btnLoc != 3:
+		inactivate_buttons(btnLoc)
+	btnLoc = 3
