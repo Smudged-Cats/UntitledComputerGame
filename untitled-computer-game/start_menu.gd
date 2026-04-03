@@ -17,6 +17,7 @@ func _ready() -> void:
 		Player.instance.visible = false
 	
 	_on_start_button_mouse_entered()
+	$ClickSFX.play()
 	if !tutorialCompleted:
 		$TutorialButton.disabled = true
 		$TutorialButton.visible = false
@@ -66,18 +67,21 @@ func _on_quit_button_pressed() -> void:
 	
 	
 func _on_start_button_mouse_entered() -> void:
+	$ClickSFX.play()
 	activate_buttons(0)
 	if btnLoc != 0:
 		inactivate_buttons(btnLoc)
 	btnLoc = 0
 
 func _on_tutorial_button_mouse_entered() -> void:
+	$ClickSFX.play()
 	activate_buttons(1)
 	if btnLoc != 1:
 		inactivate_buttons(btnLoc)
 	btnLoc = 1
 
 func _on_quit_button_mouse_entered() -> void:
+	$ClickSFX.play()
 	activate_buttons(2)
 	if btnLoc != 2:
 		inactivate_buttons(btnLoc)
@@ -130,6 +134,7 @@ func _on_credits_button_pressed() -> void:
 	queue_free()
 
 func _on_credits_button_mouse_entered() -> void:
+	$ClickSFX.play()
 	activate_buttons(3)
 	if btnLoc != 3:
 		inactivate_buttons(btnLoc)

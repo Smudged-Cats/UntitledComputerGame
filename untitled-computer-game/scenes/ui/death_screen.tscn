@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://biqg8t443upgb"]
 
 [ext_resource type="Script" uid="uid://bhhofh2yku7bj" path="res://scenes/ui/death_screen.gd" id="1_j0ehl"]
+[ext_resource type="AudioStream" uid="uid://4a3qrp0pn58f" path="res://resources/sfx/clik.mp3" id="2_njuei"]
 
 [sub_resource type="SystemFont" id="SystemFont_7hb72"]
 font_names = PackedStringArray("Arial Rounded MT")
@@ -117,6 +118,10 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "Return to menu"
 flat = true
+
+[node name="ClickSFX" type="AudioStreamPlayer2D" parent="." unique_id=1975643078]
+stream = ExtResource("2_njuei")
+volume_db = 15.0
 
 [connection signal="mouse_entered" from="DeathScreen/RestartButton" to="." method="_on_restart_button_mouse_entered"]
 [connection signal="mouse_exited" from="DeathScreen/RestartButton" to="." method="_on_restart_button_mouse_exited"]
