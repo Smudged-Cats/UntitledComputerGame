@@ -63,6 +63,7 @@ func _process(float) -> void:
 		
 		
 	if onObjective and Input.is_action_just_pressed("interact"):
+		$Beeping.play()
 		if get_node("Player").activateBombItem():
 			if get_node("Player").playerLevel == 1:
 				toggle_gate_state(false, [Vector2i(12, 4), Vector2i(13, 4)] as Array[Vector2i], true)
