@@ -55,7 +55,7 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 			Player.instance.attackSFXPlayer.stream = Player.instance.shootSFX
 			Player.instance.attackSFXPlayer.pitch_scale = 1.5
 			Player.instance.attackSFXPlayer.play(0.2)
-			'''
+			
 			if model_id == 0: #Green
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = true
@@ -68,7 +68,7 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = false
 				tempP.get_node("RedIcon").visible = true
-			'''
+			
 			
 		fireRateTimer.startTimer(baseWeapon.stats["fireRate"]/weaponMuls.stats["fireRate"])
 
