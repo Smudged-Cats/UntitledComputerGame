@@ -34,6 +34,13 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 		self.stats.stats[\"speed\"] = 2000
 	dir = d.normalized()
 	global_position = pos
+	
+	if (stats.projectileSpriteNum == 0):
+		$BlueIcon.visible = true
+	elif (stats.projectileSpriteNum == 1):
+		$GreenIcon.visible = true
+	elif(stats.projectileSpriteNum == 2):
+		$RedIcon.visible = true
 
 
 func _physics_process(delta: float) -> void:
@@ -228,16 +235,19 @@ animations = [{
 script = SubResource("GDScript_q2h5e")
 
 [node name="BlueIcon" type="AnimatedSprite2D" parent="." unique_id=771364682]
+visible = false
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_sguj2")
 autoplay = "default"
 
 [node name="GreenIcon" type="AnimatedSprite2D" parent="." unique_id=884591896]
+visible = false
 position = Vector2(0, -1)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_wmjmu")
 autoplay = "default"
 
 [node name="RedIcon" type="AnimatedSprite2D" parent="." unique_id=1495953869]
+visible = false
 sprite_frames = SubResource("SpriteFrames_nhfym")
 autoplay = "default"

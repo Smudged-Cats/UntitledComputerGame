@@ -111,7 +111,7 @@ func ranGun() -> WeaponStats:
 		weaponToGive = WeaponStats.new(
 			randf_range(0.8,1.3),
 			0.001,
-			ProjectileStats.new(randf_range(75,90),1000, 100),
+			ProjectileStats.new(randf_range(75,90),1000, 100,10,0),
 			randi_range(0,1)
 		)
 	elif (Player.instance.playerLevel == 2):
@@ -119,7 +119,7 @@ func ranGun() -> WeaponStats:
 		weaponToGive = WeaponStats.new(
 			randf_range(0.05,0.1),
 			randf_range(0.5,0.75),
-			ProjectileStats.new(6,700),
+			ProjectileStats.new(6,700,1,0,2),
 			randi_range(0,1),
 			randi_range(10,20)
 		)
@@ -128,7 +128,7 @@ func ranGun() -> WeaponStats:
 		weaponToGive = WeaponStats.new(
 			randf_range(0.07,0.2),
 			0.02,
-			ProjectileStats.new(randi_range(20,50),700),
+			ProjectileStats.new(randi_range(20,50),700,1,0,1),
 			randi_range(0,1)
 		)
 	return weaponToGive
@@ -141,14 +141,14 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 			WeaponStats.new(
 			randf_range(0.07,0.2),
 			0.02,
-			ProjectileStats.new(randi_range(20,50),1000),
+			ProjectileStats.new(randi_range(20,50),1000,1,0,1),
 			randi_range(0,1)
 			),
 		"flamethrower":
 			WeaponStats.new(
 			randf_range(0.01,0.02),#randf_range(0.1,0.2),
 			randf_range(0.45,0.6),#randf_range(0.5,0.75),
-			ProjectileStats.new(6,450),
+			ProjectileStats.new(6,450,1,0,2),
 			randi_range(0,1),
 			1,#randi_range(5,10),
 			randi_range(800,1000)
@@ -157,14 +157,14 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 			WeaponStats.new(
 			randf_range(0.8,1.3),
 			0.001,
-			ProjectileStats.new(randf_range(50,100),700,3),
+			ProjectileStats.new(randf_range(50,100),700,3,0,0),
 			randi_range(0,1)
 			),
 		"shotgun":
 			WeaponStats.new(
 				randf_range(0.7,1.2),
 				randf_range(0.6,0.9),
-				ProjectileStats.new(randf_range(8,10),700),
+				ProjectileStats.new(randf_range(8,10),700,1,0,1),
 				0,
 				randi_range(6,8),
 				randi_range(50,100)
@@ -173,7 +173,7 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 			WeaponStats.new(
 			randf_range(0.05,0.1),
 			randf_range(0.5,0.75),
-			ProjectileStats.new(6,700),
+			ProjectileStats.new(6,700,1,0,2),
 			randi_range(0,1),
 			randi_range(10,20)
 			)

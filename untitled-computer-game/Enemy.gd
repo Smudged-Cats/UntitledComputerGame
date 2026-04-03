@@ -86,10 +86,7 @@ func chase_enemy(delta: float = 1) -> void:
 		if difference.length() <= 5:
 			_character.melee.attack()
 		if (difference.length() > 200 and difference.length() < 750) and Player.instance.playerLevel > 1:
-			if Player.instance.playerLevel == 2:
-				_weapon.shoot(threatDirection,_character.global_position, 2)
-			if Player.instance.playerLevel == 3:
-				_weapon.shoot(threatDirection,_character.global_position, 0)
+			_weapon.shoot(threatDirection,_character.global_position)
 		
 		if (difference.length() < 750):
 			_character.set_move_dir(threatDirectionToIso)
