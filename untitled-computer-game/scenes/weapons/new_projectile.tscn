@@ -54,9 +54,6 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 		Player.instance.attackSFXPlayer.play()
 	elif(stats.projectileSpriteNum == 2):
 		$RedIcon.visible = true
-		Player.instance.attackSFXPlayer.stream = Player.instance.shootSFXFire
-		Player.instance.attackSFXPlayer.pitch_scale = 1
-		Player.instance.attackSFXPlayer.play()
 
 
 func _physics_process(delta: float) -> void:
