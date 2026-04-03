@@ -107,7 +107,8 @@ func onRayHit(body: Node2D, from:Vector2, to:Vector2) -> void:
 			if (stats.stats[\"shotHealth\"] <= 0):
 				tryToRemoveProjectile()
 			else:
-				pJump()
+				global_position = to + 45*dir
+				#pJump()
 		else:
 			global_position = to
 	
