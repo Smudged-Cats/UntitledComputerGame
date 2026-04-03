@@ -108,30 +108,16 @@ func ranGun() -> WeaponStats:
 	var weaponToGive: WeaponStats
 	if (Player.instance.playerLevel <= 1):
 		# Electric Bolts
-		weaponToGive = WeaponStats.new(
-			randf_range(0.8,1.3),
-			0.001,
-			ProjectileStats.new(randf_range(75,90),1000, 100,10,0),
-			randi_range(0,1)
-		)
+		weaponToGive = ranTypeOfGun("bolt")
+		
 	elif (Player.instance.playerLevel == 2):
 		# FlameThrower
-		weaponToGive = WeaponStats.new(
-			randf_range(0.05,0.1),
-			randf_range(0.5,0.75),
-			ProjectileStats.new(6,700,1,0,2),
-			randi_range(0,1),
-			randi_range(10,20),
-			300
-		)
+		weaponToGive = ranTypeOfGun("flamethrower2")
+		
 	elif (Player.instance.playerLevel == 3):
 		# Circuit SMG
-		weaponToGive = WeaponStats.new(
-			randf_range(0.07,0.2),
-			0.02,
-			ProjectileStats.new(randi_range(20,50),700,1,0,1),
-			randi_range(0,1)
-		)
+		weaponToGive = ranTypeOfGun("smg")
+		
 	return weaponToGive
 
 #Method for easily getting a specific gun type
@@ -143,7 +129,9 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 			randf_range(0.07,0.2),
 			0.02,
 			ProjectileStats.new(randi_range(20,50),1000,1,0,1),
-			randi_range(0,1)
+			randi_range(0,1),
+			1,
+			randi_range(25,31)
 			),
 		"flamethrower":
 			WeaponStats.new(
@@ -158,8 +146,10 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 			WeaponStats.new(
 			randf_range(0.8,1.3),
 			0.001,
-			ProjectileStats.new(randf_range(50,100),700,3,0,0),
-			randi_range(0,1)
+			ProjectileStats.new(randf_range(75,90),1000,3,0,0),
+			randi_range(0,1),
+			1,
+			randi_range(10,15)
 			),
 		"shotgun":
 			WeaponStats.new(
