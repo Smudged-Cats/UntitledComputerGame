@@ -128,9 +128,11 @@ func release_attack_windup() -> void:
 		attackAnim()
 		melee.meleeMuls.stats["damage"] -= meleeWindup
 		meleeWindup = 0
-	Player.instance.attackSFXPlayer2.stream = Player.instance.swordAtkSFX
-	Player.instance.attackSFXPlayer2.pitch_scale = 1.25
-	Player.instance.attackSFXPlayer2.play(0.1)
+
+	#Player.instance.attackSFXPlayer.stream = Player.instance.swordAtkSFX
+	#Player.instance.attackSFXPlayer.pitch_scale = 1.25
+	#Player.instance.attackSFXPlayer.play(0.1)
+	
 		
 #Added for the blue_character script to override and play animations
 func attackAnim() -> void:
