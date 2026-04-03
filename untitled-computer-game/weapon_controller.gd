@@ -50,6 +50,8 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 				pos)
 			#print(baseWeapon.projectileStats.shotHealth)
 			add_child(tempP)
+			
+			
 			Player.instance.attackSFXPlayer.stream = Player.instance.shootSFX
 			Player.instance.attackSFXPlayer.pitch_scale = 1.5
 			Player.instance.attackSFXPlayer.play(0.2)
