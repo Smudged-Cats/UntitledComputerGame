@@ -107,6 +107,9 @@ func onRayHit(body: Node2D, from:Vector2, to:Vector2) -> void:
 			if (stats.stats[\"shotHealth\"] <= 0):
 				tryToRemoveProjectile()
 			else:
+				#Maybe for the double hit, make it feel like a
+				# crit. So don't worry about completley fixing
+				# 
 				global_position = to + 45*dir
 				#pJump()
 		else:

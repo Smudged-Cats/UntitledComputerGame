@@ -121,8 +121,8 @@ func ranGun() -> WeaponStats:
 			randf_range(0.5,0.75),
 			ProjectileStats.new(6,700,1,0,2),
 			randi_range(0,1),
-			randi_range(100,200),
-			1000
+			randi_range(10,20),
+			300
 		)
 	elif (Player.instance.playerLevel == 3):
 		# Circuit SMG
@@ -152,7 +152,7 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 			ProjectileStats.new(6,450,1,0,2),
 			randi_range(0,1),
 			1,#randi_range(5,10),
-			randi_range(800,1000)
+			300
 			),
 		"bolt":
 			WeaponStats.new(
@@ -176,8 +176,8 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 			randf_range(0.5,0.75),
 			ProjectileStats.new(6,700,1,0,2),
 			randi_range(0,1),
-			randi_range(100,200),
-			1000
+			randi_range(10,20),
+			300
 			)
 	}
 	if (gunDict.has(gunType)):
