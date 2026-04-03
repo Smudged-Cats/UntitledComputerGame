@@ -52,22 +52,27 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 			add_child(tempP)
 			
 			
-			Player.instance.attackSFXPlayer.stream = Player.instance.shootSFX
-			Player.instance.attackSFXPlayer.pitch_scale = 1.5
-			Player.instance.attackSFXPlayer.play(0.2)
-			
 			if model_id == 0: #Green
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = true
 				tempP.get_node("RedIcon").visible = false
+				Player.instance.attackSFXPlayer.stream = Player.instance.shootSFXLazer
+				Player.instance.attackSFXPlayer.pitch_scale = 1
+				Player.instance.attackSFXPlayer.play()
 			elif model_id == 1:#Blue
 				tempP.get_node("BlueIcon").visible = true
 				tempP.get_node("GreenIcon").visible = false
 				tempP.get_node("RedIcon").visible = false
+				Player.instance.attackSFXPlayer.stream = Player.instance.shootSFXLazer
+				Player.instance.attackSFXPlayer.pitch_scale = 1
+				Player.instance.attackSFXPlayer.play()
 			elif model_id == 2:#Red
 				tempP.get_node("BlueIcon").visible = false
 				tempP.get_node("GreenIcon").visible = false
 				tempP.get_node("RedIcon").visible = true
+				Player.instance.attackSFXPlayer.stream = Player.instance.shootSFXFire
+				Player.instance.attackSFXPlayer.pitch_scale = 1
+				Player.instance.attackSFXPlayer.play()
 			
 			
 		fireRateTimer.startTimer(baseWeapon.stats["fireRate"]/weaponMuls.stats["fireRate"])
