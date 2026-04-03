@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 	t+= delta
 	if Player.instance.playerLevel <= 1:
 		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FanEnemy").rotate_y(10*delta)
-	if Player.instance.playerLevel == 2:
+	if Player.instance.playerLevel == 3:
 		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FireEnemy").global_position.y = sin(2*t)/2
 	var health = _character.health
 	$Character/HealthBar.value = health
