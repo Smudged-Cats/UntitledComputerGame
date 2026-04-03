@@ -22,13 +22,6 @@ gradient = SubResource("Gradient_hqnrr")
 width = 200
 height = 20
 
-[sub_resource type="Gradient" id="Gradient_bo48s"]
-offsets = PackedFloat32Array(0, 0.35496184, 0.6450382, 0.99236643)
-colors = PackedColorArray(0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0.9254902, 0, 0.9254902, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8qguk"]
-gradient = SubResource("Gradient_bo48s")
-
 [node name="CanvasLayer" type="CanvasLayer" unique_id=560369571]
 script = ExtResource("1_0mwgc")
 
@@ -48,6 +41,15 @@ value = 100.0
 texture_progress = SubResource("GradientTexture2D_hqnrr")
 tint_progress = Color(1, 0, 0, 1)
 
+[node name="ColorRect" type="ColorRect" parent="PlayerStatus/HealthBar" unique_id=1265758734]
+z_index = -1
+layout_mode = 0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 205.0
+offset_bottom = 25.0
+color = Color(0, 0, 0, 1)
+
 [node name="StaminaBar" type="TextureProgressBar" parent="PlayerStatus" unique_id=2059354218]
 layout_mode = 0
 offset_left = 47.0
@@ -56,6 +58,15 @@ offset_right = 247.0
 offset_bottom = 94.0
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_bo48s")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerStatus/StaminaBar" unique_id=1650950210]
+z_index = -1
+layout_mode = 0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 205.0
+offset_bottom = 25.0
+color = Color(0, 0, 0, 1)
 
 [node name="AmmoCount" type="Label" parent="PlayerStatus" unique_id=1411786204]
 layout_mode = 0
@@ -82,15 +93,6 @@ offset_top = 153.0
 offset_right = 1572.0
 offset_bottom = 299.0
 autowrap_mode = 3
-
-[node name="TextureRect" type="TextureRect" parent="PlayerStatus" unique_id=1933550014]
-z_index = -1
-layout_mode = 0
-offset_left = 17.0
-offset_top = 28.0
-offset_right = 273.0
-offset_bottom = 108.0
-texture = SubResource("GradientTexture1D_8qguk")
 
 [node name="PlayerInventory" type="Control" parent="." unique_id=1536865170]
 layout_mode = 3
