@@ -36,18 +36,21 @@ func _on_menu_button_pressed() -> void:
 
 # All of this stuff is code that allows you to navigate the buttons via keys or mouse
 func _on_restart_button_mouse_entered() -> void:
+	$ClickSFX.play()
 	activate_buttons(0)
 	if btnLoc != 0:
 		inactivate_buttons(btnLoc)
 	btnLoc = 0
 
 func _on_menu_button_mouse_entered() -> void:
+	$ClickSFX.play()
 	activate_buttons(1)
 	if btnLoc != 1:
 		inactivate_buttons(btnLoc)
 	btnLoc = 1
 	
 func _on_quit_button_mouse_entered() -> void:
+	$ClickSFX.play()
 	activate_buttons(2)
 	if btnLoc != 2:
 		inactivate_buttons(btnLoc)

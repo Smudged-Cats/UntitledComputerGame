@@ -12,6 +12,9 @@ extends Node2D
 
 @onready var tutorialMusic = preload("res://art/Music/doxycyclin-sci-fi-retro-style-music-172779.mp3")
 
+@onready var timeLeft = $ObjectivePoint/Timer.time_left
+
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +52,8 @@ func _process(delta: float) -> void:
 		var secondsLeft: int = fmod(timeLeft, 60.0)
 		var timeString: String = "%02d:%02d" % [minutesLeft, secondsLeft]
 		get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").text = str("SURVIVE: " + timeString)
+		if timeLeft < 10 and timeLeft > 9:
+			$Beeping.play()
 		if timeLeft < 1 and timeLeft > 0:
 			get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 			get_node("Player").playerLevel += 1
@@ -62,7 +67,6 @@ func _process(delta: float) -> void:
 
 	if onObjective and Input.is_action_just_pressed("interact"):
 		if get_node("Player").activateBombItem():
-			$Beeping.play()
 			tilemap_instance.changeUSBtile(Vector2(-4, 13))
 			tilemap_instance.toggle_gate_state(false, [Vector2i(-3, 9), Vector2i(-3, 8)] as Array[Vector2i], false)
 			tilemap_instance.toggle_gate_state(true, [Vector2i(1, 5), Vector2i(2, 5)] as Array[Vector2i], true)

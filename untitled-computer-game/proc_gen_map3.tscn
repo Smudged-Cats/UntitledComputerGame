@@ -165,11 +165,12 @@ texture = ExtResource("10_61noe")
 
 [node name="Level Music" type="AudioStreamPlayer2D" parent="." unique_id=484079291]
 stream = SubResource("AudioStreamMP3_61noe")
+volume_db = -5.0
 max_distance = 10000.0
 
 [node name="Beeping" type="AudioStreamPlayer2D" parent="." unique_id=1775903129]
 stream = SubResource("AudioStreamMP3_damtj")
-volume_db = 20.0
+volume_db = 10.0
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
 [connection signal="body_exited" from="ObjectivePoint" to="." method="_on_objective_point_body_exited"]
