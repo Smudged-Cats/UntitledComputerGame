@@ -9,11 +9,14 @@ script/source = "extends Node2D
 
 #There seems to be an issue with projectiles causing them to hit
 # the enemies multiple times
+#This is most likely due to the fact that the line gets redrawn within
+# the enemy, causing them to get hit twice
 var killTimer: float
 var stats: ProjectileStats
 var dir: Vector2
-@onready var hasHitEntity = false
 
+@onready var hasHitEntity = false
+static var pCount = 0
 #The source variable is meant to prevent friendly fire
 # incidents by comparing the characterName of the entity it hits to the
 # source, which will also be the characterName string of who shot the weapon
@@ -31,11 +34,14 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 		stats.stats[\"shotHealth\"] * statMuls.stats[\"shotHealth\"],
 		stats.stats[\"knockback\"] * statMuls.stats[\"knockback\"] - 650
 	)
-	killTimer = 1.0
+	killTimer = 5.0
 	if (self.stats.stats[\"speed\"] > 2000):
 		self.stats.stats[\"speed\"] = 2000
 	dir = d.normalized()
+	
 	global_position = pos
+	pCount += 1
+	print(pCount)
 	
 	if (stats.projectileSpriteNum == 0):
 		$BlueIcon.visible = true
@@ -55,8 +61,13 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 
 
 func _physics_process(delta: float) -> void:
+	killTimer -= delta
+	if (killTimer <= 0):
+		tryToRemoveProjectile()
+	
 	moveAndCollide(global_position, dir*stats.stats[\"speed\"]*delta)
 	
+	print(pCount)
 	
 
 func _on_body_entered(body: Node2D) -> void:
@@ -85,12 +96,17 @@ func _on_body_entered(body: Node2D) -> void:
 		#queue_free.call_deferred()
 
 func tryToRemoveProjectile():
+	pCount -= 1
+	print(pCount)
 	queue_free()
 
 func pJump() -> void:
+	#moveAndCollide(global_position + 5*dir, 10*dir, false)
 	global_position += 5*dir
 
 func moveAndCollide(startPos:Vector2, travelLen:Vector2):
+	#Try and see if there is a way to increase the thickness
+	# of the raycast, rather than having a list of 3 of them
 	var queryList:Array[PhysicsRayQueryParameters2D]
 	var from = startPos
 	var to = from + travelLen
@@ -106,12 +122,18 @@ func moveAndCollide(startPos:Vector2, travelLen:Vector2):
 		global_position = to
 	'''
 	
-	var space = get_world_2d().direct_space_state
+	
 	var castedRay1: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from - travelLen.rotated(PI/12))
 	var castedRay2: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
 	var castedRay3: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from + travelLen.rotated(PI/12))
 	queryList.append_array([castedRay1,castedRay2,castedRay3])
 	
+	var result = checkForCollisions2(queryList)
+	if (result != null):
+		_on_body_entered(result)
+	else:
+		global_position = to
+	'''
 	#Check if any of the rays are hitting something
 	for rayItem in queryList:
 		var result = space.intersect_ray(rayItem)
@@ -125,6 +147,16 @@ func moveAndCollide(startPos:Vector2, travelLen:Vector2):
 	if (hasHitEntity):
 		pJump()
 		hasHitEntity = false
+	'''
+
+
+func checkForCollisions2(queryList:Array[PhysicsRayQueryParameters2D]) -> Object:
+	var space = get_world_2d().direct_space_state
+	for ray in queryList:
+		var collider = space.intersect_ray(ray)
+		if (!collider.is_empty()):
+			return collider.collider
+	return null
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtdpv"]
@@ -267,19 +299,16 @@ animations = [{
 script = SubResource("GDScript_q2h5e")
 
 [node name="BlueIcon" type="AnimatedSprite2D" parent="." unique_id=771364682]
-visible = false
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_sguj2")
 autoplay = "default"
 
 [node name="GreenIcon" type="AnimatedSprite2D" parent="." unique_id=884591896]
-visible = false
 position = Vector2(0, -1)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_wmjmu")
 autoplay = "default"
 
 [node name="RedIcon" type="AnimatedSprite2D" parent="." unique_id=1495953869]
-visible = false
 sprite_frames = SubResource("SpriteFrames_nhfym")
 autoplay = "default"
