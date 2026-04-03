@@ -222,9 +222,12 @@ func ranMod() -> Modifier:
 func genModDict(itemStats:Dictionary) -> Dictionary:
 	var itemDict: Dictionary = {}
 	for stat in itemStats.keys():
-		itemDict[stat] = randi_range(-1,5);
-		if (itemDict[stat] <= 0):
-			itemDict[stat] = 0
+		itemDict[stat] = randf_range(-1,1);
+		if (stat == "projectileCount"):
+			itemDict[stat] = ceil(itemDict[stat])
+			
+		if (itemDict[stat] <= 0 && stat != "spread"):
+			itemDict.erase(stat)
 	return itemDict
 
 func setWeaponType(type: String):
