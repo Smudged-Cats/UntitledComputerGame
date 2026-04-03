@@ -7,10 +7,12 @@
 [sub_resource type="GDScript" id="GDScript_q2h5e"]
 script/source = "extends Node2D
 
+#There seems to be an issue with projectiles causing them to hit
+# the enemies multiple times
 var killTimer: float
 var stats: ProjectileStats
 var dir: Vector2
-@onready var removeProjectile = false
+@onready var hasHitEntity = false
 
 #The source variable is meant to prevent friendly fire
 # incidents by comparing the characterName of the entity it hits to the
@@ -53,21 +55,11 @@ func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStat
 
 
 func _physics_process(delta: float) -> void:
-	var from = global_position
-	var to = from + dir * stats.stats[\"speed\"] * delta
-	
-	var space = get_world_2d().direct_space_state
-	var castedRay: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
-	var result = space.intersect_ray(castedRay)
-	if (!result.is_empty()):
-		_on_body_entered(result.collider)
-	else:
-		global_position = to
+	moveAndCollide(global_position, dir*stats.stats[\"speed\"]*delta)
 	
 	
 
 func _on_body_entered(body: Node2D) -> void:
-	if (removeProjectile): return
 	#Prevent friendly fire
 	if(body is Character):
 		if (body.characterName != source and body.health > 0):
@@ -81,9 +73,9 @@ func _on_body_entered(body: Node2D) -> void:
 				tryToRemoveProjectile()
 				#queue_free.call_deferred()
 			else:
-				call_deferred(\"pJump\")
+				pJump()
 		else:
-			call_deferred(\"pJump\")
+			pJump()
 	
 	#Despawn if hitting a wall
 	if (body is TileMapLayer):
@@ -93,15 +85,46 @@ func _on_body_entered(body: Node2D) -> void:
 		#queue_free.call_deferred()
 
 func tryToRemoveProjectile():
-	if (removeProjectile): return
-	removeProjectile = true
-	#position = Vector2(100000,100000)
-	stats.stats[\"speed\"] = 0
-	#$CollisionShape2D.set_deferred(\"disabled\",true)
-	call_deferred(\"queue_free\")
+	queue_free()
 
 func pJump() -> void:
-	position += 5*dir
+	global_position += 5*dir
+
+func moveAndCollide(startPos:Vector2, travelLen:Vector2):
+	var queryList:Array[PhysicsRayQueryParameters2D]
+	var from = startPos
+	var to = from + travelLen
+	'''
+	#Thanks to https://docs.godotengine.org/en/stable/tutorials/physics/ray-casting.html
+	# for assisting with the implementation of raycast
+	var space = get_world_2d().direct_space_state
+	var castedRay: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
+	var result = space.intersect_ray(castedRay)
+	if (!result.is_empty()):
+		_on_body_entered(result.collider)
+	else:
+		global_position = to
+	'''
+	
+	var space = get_world_2d().direct_space_state
+	var castedRay1: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from - travelLen.rotated(PI/12))
+	var castedRay2: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
+	var castedRay3: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,from + travelLen.rotated(PI/12))
+	queryList.append_array([castedRay1,castedRay2,castedRay3])
+	
+	#Check if any of the rays are hitting something
+	for rayItem in queryList:
+		var result = space.intersect_ray(rayItem)
+		if (!result.is_empty() && !hasHitEntity):
+			print(\"hit\")
+			_on_body_entered(result.collider)
+			hasHitEntity = true
+			break
+			
+	global_position = to
+	if (hasHitEntity):
+		pJump()
+		hasHitEntity = false
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtdpv"]
