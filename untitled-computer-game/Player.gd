@@ -28,7 +28,7 @@ var whiteBar = preload("res://art/weapon sprites/whiteBar.png")
 @onready var movementSFXPlayer = $Camera2D/movementSFX
 
 @onready var swordAtkSFX = preload("res://resources/sfx/Sword contact.mp3")
-@onready var shootSFX = preload("res://resources/sfx/Pew shoot.mp3")
+@onready var shootSFX = preload("res://resources/sfx/floraphonic-fire-torch-whoosh-2-186586.mp3")
 @onready var attackSFXPlayer = $Camera2D/attackSFX
 
 
