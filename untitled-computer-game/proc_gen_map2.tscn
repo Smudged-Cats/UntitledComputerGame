@@ -143,6 +143,7 @@ texture = ExtResource("10_c0yje")
 
 [node name="Level Music" type="AudioStreamPlayer2D" parent="." unique_id=489204924]
 stream = SubResource("AudioStreamMP3_c0yje")
+volume_db = -18.6
 max_distance = 10000.0
 
 [connection signal="body_entered" from="ObjectivePoint" to="." method="_on_objective_point_body_entered"]
