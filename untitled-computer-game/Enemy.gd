@@ -43,7 +43,7 @@ func _ready() -> void:
 	_weapon.weaponMuls.projectileStats.stats["speed"] -= 0.3
 	_weapon.weaponMuls.stats["ammo"] += 50
 	
-	if (_weapon.baseWeapon.stats["fireRate"] >= 1):
+	if (_weapon.baseWeapon.stats["fireRate"] <= 1):
 		_weapon.weaponMuls.stats["fireRate"] -= 0.4
 	
 	z_index = 1
