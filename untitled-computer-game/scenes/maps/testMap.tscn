@@ -13,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x877k"]
 size = Vector2(81.28537, 82.33595)
 
-[node name="Node2D2" type="Node2D" unique_id=631044804]
+[node name="Node2D3" type="Node2D" unique_id=631044804]
 y_sort_enabled = true
 position = Vector2(1, 0)
 script = ExtResource("1_il6hr")
@@ -113,6 +113,18 @@ itemType = "Modifier"
 
 [node name="Enemy" parent="." unique_id=1307567229 instance=ExtResource("8_uqqtp")]
 position = Vector2(-1769, 94)
+
+[node name="Enemy4" parent="." unique_id=395601368 instance=ExtResource("8_uqqtp")]
+position = Vector2(-1960, -116)
+
+[node name="Enemy3" parent="." unique_id=1822258483 instance=ExtResource("8_uqqtp")]
+position = Vector2(-1884, -23)
+
+[node name="Enemy6" parent="." unique_id=444906118 instance=ExtResource("8_uqqtp")]
+position = Vector2(-1648, -42)
+
+[node name="Enemy5" parent="." unique_id=1850024111 instance=ExtResource("8_uqqtp")]
+position = Vector2(-1774, -101)
 
 [node name="Enemy2" parent="." unique_id=291519566 instance=ExtResource("8_uqqtp")]
 position = Vector2(-2130, -80)

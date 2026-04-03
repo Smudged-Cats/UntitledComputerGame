@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://qu35bxyv8aup"]
+
+[ext_resource type="Texture2D" uid="uid://cgolv1ghso7bl" path="res://art/PewPew.png" id="1_q2h5e"]
+
+[sub_resource type="GDScript" id="GDScript_q2h5e"]
+script/source = "extends Node2D
+
+var killTimer: float
+var stats: ProjectileStats
+var dir: Vector2
+@onready var removeProjectile = false
+
+#The source variable is meant to prevent friendly fire
+# incidents by comparing the characterName of the entity it hits to the
+# source, which will also be the characterName string of who shot the weapon
+var source: String
+
+#Add weaponMuls.projectileStats as a parameter
+func setProjectile(source:String, stats:ProjectileStats, statMuls:ProjectileStats, d:Vector2, pos:Vector2):
+	self.source = source
+	
+	#Creating a deep copy of the projectile stats so that the piercing
+	# health works for the projectiles
+	self.stats = ProjectileStats.new(
+		stats.stats[\"damage\"] * statMuls.stats[\"damage\"],
+		stats.stats[\"speed\"] * statMuls.stats[\"speed\"],
+		stats.stats[\"shotHealth\"] * statMuls.stats[\"shotHealth\"],
+		stats.stats[\"knockback\"] * statMuls.stats[\"knockback\"] - 650
+	)
+	killTimer = 1.0
+	if (self.stats.stats[\"speed\"] > 2000):
+		self.stats.stats[\"speed\"] = 2000
+	dir = d.normalized()
+	global_position = pos
+
+
+func _physics_process(delta: float) -> void:
+	var from = global_position
+	var to = from + dir * stats.stats[\"speed\"] * delta
+	
+	var space = get_world_2d().direct_space_state
+	var castedRay: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(from,to)
+	var result = space.intersect_ray(castedRay)
+	if (!result.is_empty()):
+		_on_body_entered(result.collider)
+	else:
+		global_position = to
+	
+	
+
+func _on_body_entered(body: Node2D) -> void:
+	if (removeProjectile): return
+	#Prevent friendly fire
+	if(body is Character):
+		if (body.characterName != source and body.health > 0):
+			body.takeDamage(stats.stats[\"damage\"], self.global_position, stats.stats[\"knockback\"])
+			
+			#Trying to simulate piercing shots by giving the shots
+			# health
+			stats.stats[\"shotHealth\"] -= 1
+			if (stats.stats[\"shotHealth\"] <= 0):
+				#queue_free()
+				tryToRemoveProjectile()
+				#queue_free.call_deferred()
+			else:
+				call_deferred(\"pJump\")
+		else:
+			call_deferred(\"pJump\")
+	
+	#Despawn if hitting a wall
+	if (body is TileMapLayer):
+		#richocet(body)
+		#queue_free()
+		tryToRemoveProjectile()
+		#queue_free.call_deferred()
+
+func tryToRemoveProjectile():
+	if (removeProjectile): return
+	removeProjectile = true
+	#position = Vector2(100000,100000)
+	stats.stats[\"speed\"] = 0
+	#$CollisionShape2D.set_deferred(\"disabled\",true)
+	call_deferred(\"queue_free\")
+
+func pJump() -> void:
+	position += 5*dir
+"
+
+[node name="NewProjectile" type="Node2D" unique_id=1387814487]
+script = SubResource("GDScript_q2h5e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=801266168]
+texture = ExtResource("1_q2h5e")
