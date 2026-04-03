@@ -86,8 +86,6 @@ func moveAndCollide(startPos:Vector2, travelLen:Vector2):
 		onRayHit(result,from,to)
 	else:
 		global_position = to
-	
-
 
 func checkForCollisions(queryList:Array[PhysicsRayQueryParameters2D]) -> Object:
 	var space = get_world_2d().direct_space_state
