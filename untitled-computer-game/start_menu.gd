@@ -1,13 +1,17 @@
 extends CanvasLayer
 
-@onready var btns = [$StartButton, $TutorialButton, $QuitButton, $CreditsButton]
+@onready var btns = [$StartButton, $TutorialButton, $QuitButton, $CreditsButton, $MuteSFX, $MuteMusic]
 @onready var btnLoc = 0
 var tutorialCompleted = false
 
 @onready var menuMusic = get_node("MenuMusic")
 
+@onready var muteSFX = false
+@onready var muteMusic = false
+
 func _ready() -> void:
-	menuMusic.play()
+	if !muteMusic:
+		menuMusic.play()
 	if Player.instance and Player.instance.playerLevel == 1:
 		$StartButton.text = "Start"
 		Player.instance.visible = false 
@@ -17,7 +21,8 @@ func _ready() -> void:
 		Player.instance.visible = false
 	
 	_on_start_button_mouse_entered()
-	$ClickSFX.play()
+	if !muteSFX:
+		$ClickSFX.play()
 	if !tutorialCompleted:
 		$TutorialButton.disabled = true
 		$TutorialButton.visible = false
@@ -67,21 +72,24 @@ func _on_quit_button_pressed() -> void:
 	
 	
 func _on_start_button_mouse_entered() -> void:
-	$ClickSFX.play()
+	if !muteSFX:
+		$ClickSFX.play()
 	activate_buttons(0)
 	if btnLoc != 0:
 		inactivate_buttons(btnLoc)
 	btnLoc = 0
 
 func _on_tutorial_button_mouse_entered() -> void:
-	$ClickSFX.play()
+	if !muteSFX:
+		$ClickSFX.play()
 	activate_buttons(1)
 	if btnLoc != 1:
 		inactivate_buttons(btnLoc)
 	btnLoc = 1
 
 func _on_quit_button_mouse_entered() -> void:
-	$ClickSFX.play()
+	if !muteSFX:
+		$ClickSFX.play()
 	activate_buttons(2)
 	if btnLoc != 2:
 		inactivate_buttons(btnLoc)
@@ -91,7 +99,10 @@ func _on_quit_button_mouse_entered() -> void:
 func activate_buttons(index: int) -> void:
 	btns[index].pivot_offset = btns[index].size / 2
 	btns[index].scale = Vector2(1.1, 1.1)
-	btns[index].modulate = Color(1.2, 0.0, 0.085, 1.0)
+	if index <= 2:
+		btns[index].modulate = Color(1.2, 0.0, 0.085, 1.0)
+	else:
+		btns[index].modulate = Color(1.2, 0.052, 1.2, 1.0)
 	
 func inactivate_buttons(prevIndex: int) -> void:
 	btns[prevIndex].scale = Vector2(1, 1)
@@ -113,20 +124,16 @@ func _input(event: InputEvent) -> void:
 			_on_start_button_pressed()
 		elif btnLoc == 1:
 			_on_tutorial_button_pressed()
-		elif btnLoc == 2:
-			_on_quit_button_pressed()
 		else:
-			_on_credits_button_pressed()
+			_on_quit_button_pressed()
 		
 func eh():
 	if btnLoc == 0:
 		_on_start_button_mouse_entered()
 	elif btnLoc == 1:
 		_on_tutorial_button_mouse_entered()
-	elif btnLoc == 2:
-		_on_quit_button_mouse_entered()
 	else:
-		_on_credits_button_mouse_entered()
+		_on_quit_button_mouse_entered()
 
 
 func _on_credits_button_pressed() -> void:
@@ -134,8 +141,50 @@ func _on_credits_button_pressed() -> void:
 	queue_free()
 
 func _on_credits_button_mouse_entered() -> void:
-	$ClickSFX.play()
+	if !muteSFX:
+		$ClickSFX.play()
 	activate_buttons(3)
-	if btnLoc != 3:
-		inactivate_buttons(btnLoc)
-	btnLoc = 3
+	
+func _on_credits_button_mouse_exited() -> void:
+	if !muteSFX:
+		$ClickSFX.play()
+	inactivate_buttons(3)
+
+
+func _on_mute_sfx_mouse_entered() -> void:
+	if !muteSFX:
+		$ClickSFX.play()
+	activate_buttons(4)
+	
+func _on_mute_sfx_mouse_exited() -> void:
+	if !muteSFX:
+		$ClickSFX.play()
+	inactivate_buttons(4)
+
+
+func _on_mute_music_mouse_entered() -> void:
+	if !muteSFX:
+		$ClickSFX.play()
+	activate_buttons(5)
+
+func _on_mute_music_mouse_exited() -> void:
+	if !muteSFX:
+		$ClickSFX.play()
+	inactivate_buttons(5)
+
+func _on_mute_sfx_pressed() -> void:
+	muteSFX = !muteSFX
+	if muteSFX:
+		$MuteSFX.text = "Unmute SFX"
+	else:
+		$MuteSFX.text = "Mute SFX"
+
+
+func _on_mute_music_pressed() -> void:
+	muteMusic = !muteMusic
+	if muteMusic:
+		$MenuMusic.volume_db = -80
+		$MuteMusic.text = "Unmute music"
+	else:
+		$MenuMusic.volume_db = -11.788
+		$MuteMusic.text = "Mute music"
