@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvx652gvvnu4q"]
 
-[ext_resource type="Script" path="res://VictoryScreen.gd" id="1_44yii"]
+[ext_resource type="Script" uid="uid://dcmrbnjdmee2o" path="res://VictoryScreen.gd" id="1_44yii"]
 [ext_resource type="AudioStream" uid="uid://4a3qrp0pn58f" path="res://resources/sfx/clik.mp3" id="2_earqp"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1322925107]

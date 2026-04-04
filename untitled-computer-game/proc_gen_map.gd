@@ -26,7 +26,7 @@ var onObjective = false
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
+func _ready() -> void:
 	get_node("Level Music").play()
 	for room in tileSet.patternsGenerated:
 		if (room.isRoom):
@@ -56,12 +56,22 @@ func _process(float) -> void:
 		if timeLeft < 1 and timeLeft > 0:
 			if Player.instance.playerLevel == 3:
 				get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
+				get_tree().paused = true
+				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+				await get_tree().create_timer(5.0, true).timeout
+				get_tree().paused = false
+				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false
 				var newMenuScene = endGameScreen.instantiate()
 				get_tree().root.add_child(newMenuScene)
 				queue_free()
 			else:
 				get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 				get_node("Player").playerLevel += 1
+				get_tree().paused = true
+				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+				await get_tree().create_timer(5.0, true).timeout
+				get_tree().paused = false
+				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false
 				var menuScene = load("res://start_menu.tscn")
 				var newMenuScene = menuScene.instantiate()
 				newMenuScene._init(true)

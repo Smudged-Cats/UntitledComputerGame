@@ -174,6 +174,39 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Glitch Effect" type="Label" parent="." unique_id=1947997449]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -770.0
+offset_top = 584.0
+offset_right = -273.0
+offset_bottom = 716.03
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_p8ydj")
+theme_override_font_sizes/font_size = 30
+text = "Glitch EFfect"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="GlitchEffectName" type="Label" parent="." unique_id=1617608031]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -782.0
+offset_top = 538.0
+offset_right = -285.0
+offset_bottom = 873.03
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_p8ydj")
+theme_override_font_sizes/font_size = 20
+text = "Shader code by 
+Yui Kinomoto @arlez80"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="ReturnButton" type="Button" parent="." unique_id=2142679423]
 anchors_preset = 8
 anchor_left = 0.5
@@ -197,8 +230,8 @@ flat = true
 stream = SubResource("AudioStreamMP3_vpdu5")
 volume_db = -11.788
 
-[connection signal="mouse_entered" from="ReturnButton" to="." method="_on_tutorial_button_mouse_entered"]
 [connection signal="mouse_entered" from="ReturnButton" to="." method="_on_return_button_mouse_entered"]
+[connection signal="mouse_entered" from="ReturnButton" to="." method="_on_tutorial_button_mouse_entered"]
 [connection signal="mouse_exited" from="ReturnButton" to="." method="_on_return_button_mouse_exited"]
-[connection signal="pressed" from="ReturnButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_tutorial_button_pressed"]

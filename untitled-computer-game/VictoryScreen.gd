@@ -22,9 +22,13 @@ func _ready() -> void:
 
 
 func _on_texture_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://start_menu.tscn")
+	var menuScene = load("res://start_menu.tscn")
+	var newMenuScene = menuScene.instantiate()
+	newMenuScene.tutorialCompleted = true 
+	get_tree().get_root().add_child(newMenuScene)
+	get_tree().current_scene = newMenuScene
 	self.queue_free()
-
+	
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
