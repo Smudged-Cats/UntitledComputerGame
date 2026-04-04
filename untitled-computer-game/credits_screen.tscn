@@ -197,8 +197,8 @@ flat = true
 stream = SubResource("AudioStreamMP3_vpdu5")
 volume_db = -11.788
 
-[connection signal="mouse_entered" from="ReturnButton" to="." method="_on_tutorial_button_mouse_entered"]
 [connection signal="mouse_entered" from="ReturnButton" to="." method="_on_return_button_mouse_entered"]
+[connection signal="mouse_entered" from="ReturnButton" to="." method="_on_tutorial_button_mouse_entered"]
 [connection signal="mouse_exited" from="ReturnButton" to="." method="_on_return_button_mouse_exited"]
-[connection signal="pressed" from="ReturnButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_tutorial_button_pressed"]

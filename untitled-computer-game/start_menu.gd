@@ -6,6 +6,8 @@ var tutorialCompleted = false
 
 @onready var menuMusic = get_node("MenuMusic")
 
+@onready var creditsScene = preload("res://credits_screen.tscn")
+
 func _ready() -> void:
 	menuMusic.play()
 	if Player.instance and Player.instance.playerLevel == 1:
@@ -130,8 +132,8 @@ func eh():
 
 
 func _on_credits_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://credits_screen.tscn")
-	queue_free()
+	var credits = creditsScene.instantiate()
+	add_child(credits)
 
 func _on_credits_button_mouse_entered() -> void:
 	$ClickSFX.play()
