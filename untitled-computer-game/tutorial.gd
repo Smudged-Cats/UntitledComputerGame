@@ -29,13 +29,16 @@ func _ready() -> void:
 	currentMessage = add_message("You can also drop a weapon whenever by pressing [Q]", true)
 	await wait_until_message_is_null()
 	
-	currentMessage = add_message("Modifiers (folders) apply permanent boosts to your stats and can be dropped by pressing [P] in the reverse order that you pick them up.", true)
+	currentMessage = add_message("Modifiers (folders) apply permanent boosts to your stats.", true)
+	await wait_until_message_is_null()
+	
+	currentMessage = add_message("You can cycle through your 3 selected modifers by pressing [F]. Pressing [P] will drop the currently selected modifier.", true)
 	await wait_until_message_is_null()
 	
 	currentMessage = add_message("When holding a melee weapon, hold left click to charge an attack", true)
 	await wait_until_message_is_null()
 	
-	currentMessage = add_message("Release to perform the attack. The longer you hold the attack, the stronger it will be", true)
+	currentMessage = add_message("Release to perform the attack. The longer you hold the attack, the stronger it will be. Killing enemies in melee will restore a small amount of health.", true)
 	await wait_until_message_is_null()
 	
 	currentMessage = add_message("When holding a ranged weapon, use the [LMB] to shoot in the direction of your cursor", true)
@@ -47,6 +50,7 @@ func _ready() -> void:
 	
 	currentMessage = add_message("Holding [Shift] charges up your dash ability, upon release you gain a brief speed boost", true)
 	await wait_until_message_is_null()
+	
 	
 	currentMessage = add_message("At the center of the floor is a USB port, press [E] with the USB stick to plug it in", true)
 	await wait_until_message_is_null()

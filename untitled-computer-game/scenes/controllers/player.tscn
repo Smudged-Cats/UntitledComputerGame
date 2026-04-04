@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://tptn3cx4kksl" path="res://scenes/characters/blue_character.tscn" id="2_hlsme"]
 [ext_resource type="PackedScene" uid="uid://bm7dmi8pto8pk" path="res://scenes/ui/hud.tscn" id="3_uoc7w"]
 [ext_resource type="AudioStream" uid="uid://qh6qbh3bi0ak" path="res://resources/sfx/USB pick up.mp3" id="4_xxdfd"]
-[ext_resource type="Shader" uid="uid://l1wc55jmrtit" path="res://scenes/maps/glitch.gdshader" id="5_a8rl6"]
+[ext_resource type="Shader" path="res://scenes/maps/glitch.gdshader" id="5_a8rl6"]
 [ext_resource type="FontFile" uid="uid://csebotlnryy4i" path="res://resources/Nautica-aYw9K.otf" id="6_ota6u"]
 [ext_resource type="Texture2D" uid="uid://cite5y81t2fty" path="res://art/BugLaughing.png" id="7_iavnn"]
 [ext_resource type="AudioStream" uid="uid://b028e4cbe4vvk" path="res://resources/sfx/BugLaughingSFX.mp3" id="7_ota6u"]
@@ -205,7 +205,7 @@ texture_progress = SubResource("GradientTexture2D_bqoay")
 
 [connection signal="damaged" from="Character" to="Camera2D" method="_on_character_damaged"]
 [connection signal="health_changed" from="Character" to="Camera2D/HUD" method="_on_character_health_changed"]
-[connection signal="killed" from="Character" to="." method="show_death_screen"]
+[connection signal="killed" from="Character" to="." method="_on_character_killed"]
 [connection signal="stamina_changed" from="Character" to="Camera2D/HUD" method="_on_character_stamina_changed"]
 [connection signal="area_entered" from="Character/ItemDetector" to="." method="add_item_to_nearby"]
 [connection signal="area_exited" from="Character/ItemDetector" to="." method="remove_item_from_nearby"]
