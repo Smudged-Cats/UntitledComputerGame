@@ -27,18 +27,19 @@ var onObjective = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	get_node("Level Music").play()
 	for room in tileSet.patternsGenerated:
 		if (room.isRoom):
 			spawnEnemiesInRoom(room)
 			spawnRoomLoot(room)
-			
+	
 	
 	for item in Player.instance.inventory:
 		if item != null:
 			if item.stats.has("ammo"):
 				item.stats["ammo"] = item.maxAmmo
-			
+	
 	
 func _process(float) -> void:
 	if Player.instance == null:

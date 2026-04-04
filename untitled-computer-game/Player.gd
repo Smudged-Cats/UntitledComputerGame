@@ -451,7 +451,15 @@ func show_death_screen() -> void:
 	var newDeathScreen = deathScreenScene.instantiate()
 	add_child(newDeathScreen)
 
+func drop_all_items() -> void:
+	print("DROPPING ALL ITEMS")
+	for i in range(MAX_ITEMS):
+		selectedItem = i;
+		drop_item()
+
 func _on_character_killed() -> void:
+	
+	drop_all_items()
 	show_death_screen()
 	
 func activateBombItem() -> bool:

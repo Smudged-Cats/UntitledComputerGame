@@ -56,6 +56,7 @@ func _physics_process(delta: float) -> void:
 	chase_enemy(delta)
 
 func _process(delta: float) -> void:
+	if Player.instance == null: return
 	t+= delta
 	if Player.instance.playerLevel <= 1:
 		get_node("Character").get_node("SubViewportContainer").get_node("SubViewport").get_node("ModelRoot").get_node("FanEnemy").rotate_y(10*delta)
