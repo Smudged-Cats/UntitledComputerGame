@@ -87,7 +87,8 @@ func chase_enemy(delta: float = 1) -> void:
 		if difference.length() <= 5:
 			_character.melee.attack()
 		if (difference.length() > 300 and difference.length() < 750) and Player.instance.playerLevel > 1:
-			_weapon.shoot(threatDirection,_character.global_position)
+			if (canShootPlayer(difference)):
+				_weapon.shoot(threatDirection,_character.global_position)
 		
 		if (difference.length() < 750):
 			_character.set_move_dir(threatDirectionToIso)
@@ -101,4 +102,20 @@ func get_character() -> Character:
 
 func registerHit() -> void:
 	self._character.velocity = Vector2.ZERO
+
+#This mehtod checks to see if there is a clear shot
+# between the enemy and the player
+func canShootPlayer(difference:Vector2) -> bool:
+	var from = _character.global_position
+	var to = from + difference
 	
+	var worldSpace = get_world_2d().direct_space_state
+	var result = worldSpace.intersect_ray(PhysicsRayQueryParameters2D.create(from,to))
+	
+	#If we're hitting something that isn't a fellow enemy
+	# don't shoot
+	if (!result.is_empty()):
+		var body = result.collider
+		if (body is not Character):
+			return false
+	return true

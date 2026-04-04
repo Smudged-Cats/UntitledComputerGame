@@ -39,7 +39,7 @@ static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
 
 static var swordSprite = preload("res://art/weapon sprites/legendary.png")
 
-@onready var playerLevel = 0
+@onready var playerLevel = 2
 
 var _character: Character
 var _weapon: WeaponController #This is here just for quick access to the WeaponController attributes
@@ -336,7 +336,12 @@ func pickup_item() -> void:
 			currMods += 1
 			print("Applied modifications\n",_weapon.weaponMuls.stats,"\n",_weapon.weaponMuls.projectileStats.stats)
 		else:
-			return
+			dropMod()
+			var emptyModSpace: int = modList.find(null)
+			item.item.applyBoost(self)
+			modList[emptyModSpace] = item.item
+			selectedMod = emptyModSpace
+			currMods += 1
 		
 	elif item.itemType == "Bomb":
 		var meleeStats = item.item
@@ -430,9 +435,8 @@ func dropMod() -> void:
 	get_parent().add_child(newDroppedItem)
 	
 	newDroppedItem.global_position = _character.global_position
-	newDroppedItem.itemType = "Modifier"
-	newDroppedItem.setWeaponType("Modifier")
 	newDroppedItem.item = modifier
+	newDroppedItem.setWeaponType("Modifier")
 	currMods -= 1
 	updateStatView()
 	
