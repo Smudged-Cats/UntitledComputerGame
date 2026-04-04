@@ -11,6 +11,16 @@ subpixel_positioning = 0
 font = SubResource("SystemFont_kwdf2")
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwdf2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwk3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8m8jr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dgss"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ftb32"]
+
 [node name="Label" type="Label" unique_id=2124662213]
 modulate = Color(0.98234254, 0.9823423, 0.9823424, 1)
 z_index = 30
@@ -61,3 +71,19 @@ offset_left = -4.0
 offset_top = -5.0
 offset_right = 408.0
 offset_bottom = 140.0
+
+[node name="Skip Button" type="Button" parent="." unique_id=288857916]
+layout_mode = 0
+offset_left = 301.0
+offset_top = -34.0
+offset_right = 409.0
+offset_bottom = -3.0
+theme_override_colors/font_color = Color(0.41368303, 0.4136831, 0.41368303, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kwdf2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lwk3s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8m8jr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1dgss")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ftb32")
+text = "[Skip Tutorial]"
+
+[connection signal="pressed" from="Skip Button" to="." method="_on_skip_button_pressed"]

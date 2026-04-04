@@ -76,3 +76,8 @@ func add_message(newMsg: String, canSkip: bool = false) -> TutorialMessage:
 	$Control.add_child(msgScene)
 	print(msgScene.message)
 	return msgScene
+
+func skip_tutorial() -> void:
+	if currentMessage:
+		currentMessage.queue_free()
+	queue_free()

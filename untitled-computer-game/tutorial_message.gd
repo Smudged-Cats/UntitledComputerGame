@@ -57,3 +57,7 @@ func on_message_set(newMsg) -> void:
 	
 	if canSkip:
 		flashing = true
+
+
+func _on_skip_button_pressed() -> void:
+	get_parent().get_parent().skip_tutorial()
