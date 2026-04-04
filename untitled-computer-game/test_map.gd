@@ -61,7 +61,9 @@ func _process(delta: float) -> void:
 			var newMenuScene = menuScene.instantiate()
 			newMenuScene._init(true)
 			get_tree().root.add_child(newMenuScene)
-			get_node("Player").get_node("Tutorial2").queue_free()
+			var tutorial = get_node_or_null("Player/Tutorial2")
+			if tutorial:
+				get_node("Player").get_node("Tutorial2").queue_free()
 			get_node("Player").reparent(newMenuScene)
 			queue_free()
 
