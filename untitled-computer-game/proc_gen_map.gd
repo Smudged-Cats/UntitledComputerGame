@@ -59,8 +59,11 @@ func _process(float) -> void:
 				get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 				get_tree().paused = true
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+				Player.instance.get_node("Camera2D").get_node("VictoryMusic").play()
 				Player.instance.get_node("Camera2D").get_node("BugLaughingSFX").play()
-				await get_tree().create_timer(5.0, true).timeout
+				await get_tree().create_timer(2.0, true).timeout
+				Player.instance.get_node("Camera2D").get_node("_HackCompleted_").play()
+				await get_tree().create_timer(3.0, true).timeout
 				get_tree().paused = false
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false
 				var newMenuScene = endGameScreen.instantiate()
@@ -71,8 +74,11 @@ func _process(float) -> void:
 				get_node("Player").playerLevel += 1
 				get_tree().paused = true
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+				Player.instance.get_node("Camera2D").get_node("VictoryMusic").play()
 				Player.instance.get_node("Camera2D").get_node("BugLaughingSFX").play()
-				await get_tree().create_timer(5.0, true).timeout
+				await get_tree().create_timer(2.0, true).timeout
+				Player.instance.get_node("Camera2D").get_node("_HackCompleted_").play()
+				await get_tree().create_timer(3.0, true).timeout
 				get_tree().paused = false
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false
 				var menuScene = load("res://start_menu.tscn")
@@ -137,7 +143,7 @@ func spawnEnemy(ranLoc: Vector2i) -> void:
 
 func spawnRoomLoot(room: Room):
 	var weaponTypes = ["Weapon", "Melee", "Modifier"]
-	var randomLootNumber = randi_range(1,5)
+	var randomLootNumber = randi_range(0,2)
 	for i in range(randomLootNumber):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) > 1):
