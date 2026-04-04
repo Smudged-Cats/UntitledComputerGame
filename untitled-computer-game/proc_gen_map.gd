@@ -59,6 +59,7 @@ func _process(float) -> void:
 				get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 				get_tree().paused = true
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+				Player.instance.get_node("Camera2D").get_node("BugLaughingSFX").play()
 				await get_tree().create_timer(5.0, true).timeout
 				get_tree().paused = false
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false
@@ -70,6 +71,7 @@ func _process(float) -> void:
 				get_node("Player").playerLevel += 1
 				get_tree().paused = true
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+				Player.instance.get_node("Camera2D").get_node("BugLaughingSFX").play()
 				await get_tree().create_timer(5.0, true).timeout
 				get_tree().paused = false
 				Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false

@@ -47,6 +47,7 @@ var _camera: Camera2D
 var _hud: Hud
 var modList: Array[Modifier] = [null,null,null]
 var currMods = 0
+var selectedMod = 0
 const MAX_MODS: int = 3
 
 #Adjust the the updatedSprites so that it works with the 3 null list
@@ -72,7 +73,7 @@ func _ready() -> void:
 	_character.characterName = "Player"
 	_weapon = _character.weapon
 	_weapon.holder = _character.characterName
-	
+	updateStatView()
 	print("Started player")
 
 func _physics_process(delta: float) -> void:
@@ -107,6 +108,7 @@ func _physics_process(delta: float) -> void:
 		listen_for_drop_mod()
 		listenForNum()
 		listenForScroll()
+		listenForModScroll()
 		listen_for_pause()
 		
 	else:
@@ -148,7 +150,13 @@ func listenForNum() -> void:
 	elif (Input.is_action_just_pressed("3")):
 		weaponSlot = 2
 		selectWeapon(weaponSlot)
-		
+
+func listenForModScroll() -> void:
+	if (Input.is_action_just_pressed("modScroll")):
+		selectedMod = (selectedMod + 1)%3
+		updateStatView()
+
+
 func listen_for_pause() -> void:
 	var pauseScene = pauseScreenScene.instantiate()
 	if Input.is_action_just_pressed("pause"):
@@ -200,18 +208,7 @@ func selectWeapon(selectIndex:int) -> void:
 			2:
 				$Camera2D/HUD.get_node("PlayerInventory").get_node("GridContainer").get_node("Arrow1").visible = true
 		$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").visible = true
-		updateStatView()
-		'''
-		if currItem.stats.has("damage") && currItem.stats["damage"] == 0:
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = str("USB Stick:\nPlug into Objective Port")
-		elif currItem.stats.has("damage"):
-			var damage = currItem.stats["damage"]
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = "Base Damage: %.3f HP" % [damage]
-		elif currItem.stats.has("fireRate"):
-			var fire_rate = currItem.stats["fireRate"]
-			var proj_count = currItem.stats["projectileCount"]
-			$Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats").text = "Firerate: %.1f RPM\nProj. Count: %d" % [60*(1/fire_rate), proj_count]
-		'''
+		updateWeaponStatText()
 			
 			
 func face_to_mouse(delta: float = 1) -> void:
@@ -335,6 +332,7 @@ func pickup_item() -> void:
 			var emptyModSpace: int = modList.find(null)
 			item.item.applyBoost(self)
 			modList[emptyModSpace] = item.item
+			selectedMod = emptyModSpace
 			currMods += 1
 			print("Applied modifications\n",_weapon.weaponMuls.stats,"\n",_weapon.weaponMuls.projectileStats.stats)
 		else:
@@ -353,6 +351,7 @@ func pickup_item() -> void:
 	pickupdropSFXPlayer.play()
 	item.queue_free.call_deferred()
 	updateInventorySprites()
+	updateStatView()
 	
 
 func drop_item() -> void:
@@ -417,13 +416,14 @@ func drop_item() -> void:
 	inventory.set(selectedItem, null)
 	get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("WeaponStats").visible = false
 	updateInventorySprites()
+	updateStatView()
 	
 func dropMod() -> void:
 	print(modList)
-	if currMods == 0 || modList[selectedItem] == null: return
+	if currMods == 0 || modList[selectedMod] == null: return
 	print("gurted")
-	var modifier = modList[selectedItem]
-	modList[selectedItem] = null
+	var modifier = modList[selectedMod]
+	modList[selectedMod] = null
 	modifier.removeBoost(self)
 	
 	var newDroppedItem = droppedItemScene.instantiate()
@@ -434,7 +434,7 @@ func dropMod() -> void:
 	newDroppedItem.setWeaponType("Modifier")
 	newDroppedItem.item = modifier
 	currMods -= 1
-	
+	updateStatView()
 	
 func updateInventorySprites() -> void:
 	var inventoryCurrentSize = inventory.size()
@@ -479,12 +479,21 @@ func activateBombItem() -> bool:
 				
 				
 func updateStatView() -> void:
+	updateWeaponStatText()
+	updateModText()
+
+func updateWeaponStatText() -> void:
 	var boostLabel: Label = $Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats")
 	boostLabel.text = ""
 	if (_weapon.baseWeapon != null):
 		boostLabel.text = "Damage: %.2f\n# of projectiles: %d\nFirerate: %.1f\n\n" % [_weapon.getDamage(), _weapon.getProjectileCount(), 60*(1/_weapon.getFireRate())]
 	elif (_character.melee.baseMelee != null):
 		boostLabel.text = "Damage: %.2f\n\n" % [_character.melee.getDamage()]
+
+func updateModText() -> void:
+	var modLabel = $Camera2D/HUD.get_node("PlayerStatus").get_node("ModStats")
 	
-	if (modList[selectedItem] != null):
-		boostLabel.text += "Mod Boost:\n" + modList[selectedItem].getBoosts()
+	modLabel.text = "Mod " + str(selectedMod + 1) + ":\n"
+	if (modList[selectedMod] != null):
+		modLabel.text += modList[selectedMod].getBoosts()
+	

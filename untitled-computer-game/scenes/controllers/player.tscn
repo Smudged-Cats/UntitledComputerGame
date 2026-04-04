@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://scenes/maps/glitch.gdshader" id="5_a8rl6"]
 [ext_resource type="FontFile" uid="uid://csebotlnryy4i" path="res://resources/Nautica-aYw9K.otf" id="6_ota6u"]
 [ext_resource type="Texture2D" uid="uid://cite5y81t2fty" path="res://art/BugLaughing.png" id="7_iavnn"]
+[ext_resource type="AudioStream" uid="uid://b028e4cbe4vvk" path="res://resources/sfx/BugLaughingSFX.mp3" id="7_ota6u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8rl6"]
 shader = ExtResource("5_a8rl6")
@@ -165,6 +166,10 @@ volume_db = 2.0
 
 [node name="attackSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1034537270]
 pitch_scale = 1.2
+
+[node name="BugLaughingSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1059974385]
+process_mode = 3
+stream = ExtResource("7_ota6u")
 
 [node name="USBpickupSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1727203617]
 stream = ExtResource("4_xxdfd")
