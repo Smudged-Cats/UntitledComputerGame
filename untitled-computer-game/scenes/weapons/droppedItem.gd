@@ -298,9 +298,3 @@ func setRangedModel(item):
 		item.stats["Sprite"] = redRanged2Sprite
 		var newModel = flamethrower3DModel.instantiate()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
-
-		
-		
-		
-		
-		
