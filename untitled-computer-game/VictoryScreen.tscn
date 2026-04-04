@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvx652gvvnu4q"]
 
-[ext_resource type="Script" uid="uid://dcmrbnjdmee2o" path="res://VictoryScreen.gd" id="1_44yii"]
+[ext_resource type="Script" path="res://VictoryScreen.gd" id="1_44yii"]
 [ext_resource type="AudioStream" uid="uid://4a3qrp0pn58f" path="res://resources/sfx/clik.mp3" id="2_earqp"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1322925107]
@@ -63,7 +63,12 @@ autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="RestartButton" type="TextureButton" parent="VictoryScreen" unique_id=513987543]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.275625
+anchor_top = 0.11444444
+anchor_right = -0.275625
+anchor_bottom = 0.11444444
 offset_left = 642.0
 offset_top = 449.0
 offset_right = 963.42505
@@ -73,10 +78,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="VictoryScreen/RestartButton" unique_id=294894953]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.3844596
-anchor_top = 1.6956521
-anchor_right = -1.3844596
-anchor_bottom = 1.6956521
+anchor_left = -0.0031111452
+anchor_top = -0.014492754
+anchor_right = -0.0031111452
+anchor_bottom = -0.014492754
 offset_left = 51.0
 offset_top = 11.0
 offset_right = 276.0
