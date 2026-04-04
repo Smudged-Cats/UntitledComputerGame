@@ -60,6 +60,7 @@ func _process(delta: float) -> void:
 				get_node("Player").get_node("Tutorial2").queue_free()
 			get_tree().paused = true
 			Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+			Player.instance.get_node("Camera2D").get_node("BugLaughingSFX").play()
 			await get_tree().create_timer(5.0, true).timeout
 			get_tree().paused = false
 			Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false
