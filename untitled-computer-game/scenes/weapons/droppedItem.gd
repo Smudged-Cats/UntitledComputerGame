@@ -178,9 +178,9 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 func ranMelee() -> MeleeStats:
 	if (Player.instance.playerLevel <= 1):
 		return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
-	if (Player.instance.playerLevel == 3):
-		return MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2)
 	if (Player.instance.playerLevel == 2):
+		return MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2)
+	if (Player.instance.playerLevel == 3):
 		return MeleeStats.new(randf_range(75,100), randf_range(0.1, 0.5), 0)
 	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
 
