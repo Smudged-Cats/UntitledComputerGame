@@ -6,23 +6,19 @@ var tutorialCompleted = false
 
 @onready var menuMusic = get_node("MenuMusic")
 
-@onready var muteSFX = false
-@onready var muteMusic = false
-
 func _ready() -> void:
-	if !muteMusic:
-		menuMusic.play()
+	menuMusic.play()
 	if Player.instance and Player.instance.playerLevel == 1:
 		$StartButton.text = "Start"
 		Player.instance.visible = false 
 	
 	if Player.instance and Player.instance.playerLevel > 1:
-		$StartButton.text = "Next level"
+		$StartButton.text = "Next Level"
 		Player.instance.visible = false
+		$Label.text = "Level " + str(Player.instance.playerLevel-1) + " Complete"
 	
 	_on_start_button_mouse_entered()
-	if !muteSFX:
-		$ClickSFX.play()
+	$ClickSFX.play()
 	if !tutorialCompleted:
 		$TutorialButton.disabled = true
 		$TutorialButton.visible = false
@@ -72,24 +68,21 @@ func _on_quit_button_pressed() -> void:
 	
 	
 func _on_start_button_mouse_entered() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
+	$ClickSFX.play()
 	activate_buttons(0)
 	if btnLoc != 0:
 		inactivate_buttons(btnLoc)
 	btnLoc = 0
 
 func _on_tutorial_button_mouse_entered() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
+	$ClickSFX.play()
 	activate_buttons(1)
 	if btnLoc != 1:
 		inactivate_buttons(btnLoc)
 	btnLoc = 1
 
 func _on_quit_button_mouse_entered() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
+	$ClickSFX.play()
 	activate_buttons(2)
 	if btnLoc != 2:
 		inactivate_buttons(btnLoc)
@@ -141,50 +134,9 @@ func _on_credits_button_pressed() -> void:
 	queue_free()
 
 func _on_credits_button_mouse_entered() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
+	$ClickSFX.play()
 	activate_buttons(3)
 	
 func _on_credits_button_mouse_exited() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
+	$ClickSFX.play()
 	inactivate_buttons(3)
-
-
-func _on_mute_sfx_mouse_entered() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
-	activate_buttons(4)
-	
-func _on_mute_sfx_mouse_exited() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
-	inactivate_buttons(4)
-
-
-func _on_mute_music_mouse_entered() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
-	activate_buttons(5)
-
-func _on_mute_music_mouse_exited() -> void:
-	if !muteSFX:
-		$ClickSFX.play()
-	inactivate_buttons(5)
-
-func _on_mute_sfx_pressed() -> void:
-	muteSFX = !muteSFX
-	if muteSFX:
-		$MuteSFX.text = "Unmute SFX"
-	else:
-		$MuteSFX.text = "Mute SFX"
-
-
-func _on_mute_music_pressed() -> void:
-	muteMusic = !muteMusic
-	if muteMusic:
-		$MenuMusic.volume_db = -80
-		$MuteMusic.text = "Unmute music"
-	else:
-		$MenuMusic.volume_db = -11.788
-		$MuteMusic.text = "Mute music"
