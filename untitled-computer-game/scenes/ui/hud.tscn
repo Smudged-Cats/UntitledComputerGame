@@ -94,11 +94,20 @@ offset_right = 1572.0
 offset_bottom = 299.0
 autowrap_mode = 3
 
+[node name="ModStats" type="Label" parent="PlayerStatus" unique_id=2031289057]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 604.0
+offset_right = 245.0
+offset_bottom = 793.0
+
 [node name="PlayerInventory" type="Control" parent="." unique_id=1536865170]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 11.0
+offset_top = 57.0
+offset_right = 51.0
+offset_bottom = 97.0
 
 [node name="Label" type="Label" parent="PlayerInventory" unique_id=987172770]
 layout_mode = 0
