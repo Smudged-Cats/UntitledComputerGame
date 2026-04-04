@@ -137,7 +137,7 @@ func spawnEnemy(ranLoc: Vector2i) -> void:
 
 func spawnRoomLoot(room: Room):
 	var weaponTypes = ["Weapon", "Melee", "Modifier"]
-	var randomLootNumber = randi_range(1,5)
+	var randomLootNumber = randi_range(0,2)
 	for i in range(randomLootNumber):
 		var randomLocation = Vector2i(randi_range(room.p.x, room.p.x + room.s.x), randi_range(room.p.y, room.p.y + room.s.y))
 		if ($Region1Tiles/Tiles.get_cell_source_id(randomLocation) > 1):

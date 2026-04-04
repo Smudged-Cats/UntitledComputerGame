@@ -24,7 +24,6 @@ func _ready() -> void:
 func _on_texture_button_pressed() -> void:
 	var menuScene = load("res://start_menu.tscn")
 	var newMenuScene = menuScene.instantiate()
-	newMenuScene.tutorialCompleted = true 
 	get_tree().get_root().add_child(newMenuScene)
 	get_tree().current_scene = newMenuScene
 	self.queue_free()
