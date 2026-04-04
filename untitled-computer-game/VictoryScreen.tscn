@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bvx652gvvnu4q"]
+
+[ext_resource type="Script" uid="uid://dcmrbnjdmee2o" path="res://VictoryScreen.gd" id="1_44yii"]
+[ext_resource type="AudioStream" uid="uid://4a3qrp0pn58f" path="res://resources/sfx/clik.mp3" id="2_earqp"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1322925107]
+script = ExtResource("1_44yii")
+
+[node name="VictoryScreen" type="Control" parent="." unique_id=716551139]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Tint" type="ColorRect" parent="VictoryScreen" unique_id=456480501]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+color = Color(0, 0.44705883, 0.7882353, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VictoryScreen" unique_id=2100519823]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175
+anchor_top = 0.07447778
+anchor_right = 0.175
+anchor_bottom = 0.13225555
+offset_left = -800.0
+offset_top = 28.97
+offset_right = 800.0
+offset_bottom = 207.97
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 160
+text = ":)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VictoryScreen/Label" unique_id=1646501564]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.978125
+anchor_top = 0.9048918
+anchor_right = 0.978125
+anchor_bottom = 1.0780519
+offset_left = -800.0
+offset_top = 28.97
+offset_right = 800.0
+offset_bottom = 207.97
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 31
+text = "Victory! Their PC has run into a problem. 
+Good work virus!
+
+100% Game Complete"
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="RestartButton" type="TextureButton" parent="VictoryScreen" unique_id=513987543]
+layout_mode = 0
+offset_left = 642.0
+offset_top = 449.0
+offset_right = 963.42505
+offset_bottom = 518.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VictoryScreen/RestartButton" unique_id=294894953]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.3844596
+anchor_top = 1.6956521
+anchor_right = -1.3844596
+anchor_bottom = 1.6956521
+offset_left = 51.0
+offset_top = 11.0
+offset_right = 276.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 33
+text = "Restart Game"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Button" parent="." unique_id=2143748413]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -548.0
+offset_top = 195.0
+offset_right = -473.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ClickSFX" type="AudioStreamPlayer2D" parent="." unique_id=1853228618]
+stream = ExtResource("2_earqp")
+volume_db = 15.0
+
+[connection signal="mouse_entered" from="VictoryScreen/RestartButton" to="." method="_on_restart_button_mouse_entered"]
+[connection signal="mouse_exited" from="VictoryScreen/RestartButton" to="." method="_on_restart_button_mouse_exited"]
+[connection signal="pressed" from="VictoryScreen/RestartButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

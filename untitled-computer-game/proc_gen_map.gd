@@ -8,8 +8,9 @@ extends Node2D
 @onready var lvl2Music = preload("res://art/Music/hitslab-dramatic-serious-intense-music-406394.mp3")
 @onready var lvl3Music = preload("res://art/Music/denis-pavlov-music-magical-technology-sci-fi-science-futuristic-game-music-300607.mp3")
 
+@onready var endGameScreen = preload("res://VictoryScreen.tscn")
 
-@onready
+@onready"res://VictoryScreen.tscn"
 var tileSet = $Region1Tiles
 
 @onready var tilemap_instance = $Region1Tiles
@@ -53,15 +54,20 @@ func _process(float) -> void:
 		if timeLeft < 10 and timeLeft > 9:
 			$Beeping.play()
 		if timeLeft < 1 and timeLeft > 0:
-			get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
-			get_node("Player").playerLevel += 1
-			var menuScene = load("res://start_menu.tscn")
-			var newMenuScene = menuScene.instantiate()
-			newMenuScene._init(true)
-			get_tree().root.add_child(newMenuScene)
-			get_node("Player").reparent(newMenuScene)
-			queue_free()
-		
+			if Player.instance.playerLevel == 3:
+				get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
+				var newMenuScene = endGameScreen.instantiate()
+				get_tree().root.add_child(newMenuScene)
+				queue_free()
+			else:
+				get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
+				get_node("Player").playerLevel += 1
+				var menuScene = load("res://start_menu.tscn")
+				var newMenuScene = menuScene.instantiate()
+				newMenuScene._init(true)
+				get_tree().root.add_child(newMenuScene)
+				get_node("Player").reparent(newMenuScene)
+				queue_free()		
 		
 		
 	if onObjective and Input.is_action_just_pressed("interact"):
