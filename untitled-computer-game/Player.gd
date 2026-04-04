@@ -58,6 +58,7 @@ var selectedItem:int = 0
 var itemsInProximity = {}
 
 func _ready() -> void:
+	$Camera2D/HUD/GlitchEffectCanvasLayer.visible = false
 	Engine.time_scale = 1
 	if instance:
 		push_error("More than one player instance detected")
@@ -180,9 +181,12 @@ func selectWeapon(selectIndex:int) -> void:
 		elif (currItem is MeleeStats):
 			_weapon.baseWeapon = null
 			_character.melee.baseMelee = currItem
-			selectSFXPlayer.stream = swordSelectSFX
-			selectSFXPlayer.pitch_scale = 1.25
-			selectSFXPlayer.play()
+			if currItem.stats["damage"] != 0:
+				selectSFXPlayer.stream = swordSelectSFX
+				selectSFXPlayer.pitch_scale = 1.25
+				selectSFXPlayer.play()
+			else:
+				$Camera2D/USBpickupSFX.play()
 	else:
 		_weapon.baseWeapon = null
 		_character.melee.baseMelee = null

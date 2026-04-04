@@ -4,6 +4,103 @@
 [ext_resource type="Script" uid="uid://i8dbxb8o0ykw" path="res://scenes/controllers/game_camera.gd" id="2_bqoay"]
 [ext_resource type="PackedScene" uid="uid://tptn3cx4kksl" path="res://scenes/characters/blue_character.tscn" id="2_hlsme"]
 [ext_resource type="PackedScene" uid="uid://bm7dmi8pto8pk" path="res://scenes/ui/hud.tscn" id="3_uoc7w"]
+[ext_resource type="AudioStream" uid="uid://qh6qbh3bi0ak" path="res://resources/sfx/USB pick up.mp3" id="4_xxdfd"]
+[ext_resource type="Shader" uid="uid://l1wc55jmrtit" path="res://scenes/maps/glitch.gdshader" id="5_a8rl6"]
+[ext_resource type="FontFile" uid="uid://csebotlnryy4i" path="res://resources/Nautica-aYw9K.otf" id="6_ota6u"]
+[ext_resource type="Texture2D" uid="uid://cite5y81t2fty" path="res://art/BugLaughing.png" id="7_iavnn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8rl6"]
+shader = ExtResource("5_a8rl6")
+shader_parameter/shake_power = 0.01
+shader_parameter/shake_rate = 0.8230000390925
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.158000007505
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b4m2"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(0, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc1du"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(25, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vic67"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(50, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u655i"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(75, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pagr8"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(100, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plvuk"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(125, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxs6y"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(150, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulq1m"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(175, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30nd1"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(200, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sapm"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(225, 0, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3ijt"]
+atlas = ExtResource("7_iavnn")
+region = Rect2(250, 0, 25, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ota6u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b4m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc1du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vic67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u655i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pagr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plvuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxs6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulq1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30nd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sapm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3ijt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uoc7w"]
 radius = 51.0
@@ -31,6 +128,34 @@ subject = NodePath("../Character")
 
 [node name="HUD" parent="Camera2D" unique_id=185743204 instance=ExtResource("3_uoc7w")]
 
+[node name="GlitchEffectCanvasLayer" type="CanvasLayer" parent="Camera2D/HUD" unique_id=2009316079]
+
+[node name="Glitch Effect" type="ColorRect" parent="Camera2D/HUD/GlitchEffectCanvasLayer" unique_id=520728470]
+material = SubResource("ShaderMaterial_a8rl6")
+offset_right = 1609.0
+offset_bottom = 890.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Camera2D/HUD/GlitchEffectCanvasLayer" unique_id=308540272]
+offset_left = 114.0
+offset_top = 247.0
+offset_right = 1529.0
+offset_bottom = 312.0
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ota6u")
+theme_override_font_sizes/font_size = 64
+text = "File successfully hacked"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Camera2D/HUD/GlitchEffectCanvasLayer" unique_id=1658938724]
+process_mode = 3
+position = Vector2(791, 557)
+scale = Vector2(17.677502, 17.525)
+sprite_frames = SubResource("SpriteFrames_ota6u")
+autoplay = "default"
+
 [node name="pickupdropSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1074668235]
 
 [node name="movementSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=784225030]
@@ -40,6 +165,9 @@ volume_db = 2.0
 
 [node name="attackSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1034537270]
 pitch_scale = 1.2
+
+[node name="USBpickupSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1727203617]
+stream = ExtResource("4_xxdfd")
 
 [node name="Character" parent="." unique_id=452893723 instance=ExtResource("2_hlsme")]
 

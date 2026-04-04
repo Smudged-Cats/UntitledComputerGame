@@ -23,7 +23,7 @@ func _ready() -> void:
 	currentMessage = add_message("Pick up a weapon by pressing [E] near it")
 	await Player.instance.picked_up_item
 	
-	currentMessage = add_message("You can switch between weapons in your inventory by using the number keys", true)
+	currentMessage = add_message("You can switch between weapons in your inventory by using the number keys or the scroll wheel", true)
 	await wait_until_message_is_null()
 
 	currentMessage = add_message("You can also drop a weapon whenever by pressing [Q]", true)

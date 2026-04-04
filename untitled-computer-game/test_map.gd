@@ -15,8 +15,6 @@ extends Node2D
 @onready var timeLeft = $ObjectivePoint/Timer.time_left
 
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$TutorialMusic.play()
@@ -57,13 +55,18 @@ func _process(delta: float) -> void:
 		if timeLeft < 1 and timeLeft > 0:
 			get_node("Player").get_node("Camera2D").get_node("HUD").get_node("PlayerStatus").get_node("SurvivePrompt").visible = false
 			get_node("Player").playerLevel += 1
+			var tutorial = get_node_or_null("Player/Tutorial2")
+			if tutorial:
+				get_node("Player").get_node("Tutorial2").queue_free()
+			get_tree().paused = true
+			Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = true
+			await get_tree().create_timer(5.0, true).timeout
+			get_tree().paused = false
+			Player.instance.get_node("Camera2D").get_node("HUD").get_node("GlitchEffectCanvasLayer").visible = false
 			var menuScene = load("res://start_menu.tscn")
 			var newMenuScene = menuScene.instantiate()
 			newMenuScene._init(true)
 			get_tree().root.add_child(newMenuScene)
-			var tutorial = get_node_or_null("Player/Tutorial2")
-			if tutorial:
-				get_node("Player").get_node("Tutorial2").queue_free()
 			get_node("Player").reparent(newMenuScene)
 			queue_free()
 
