@@ -32,7 +32,7 @@ var whiteBar = preload("res://art/weapon sprites/whiteBar.png")
 @onready var shootSFXLazer = preload("res://resources/sfx/lzr.mp3")
 @onready var attackSFXPlayer = $Camera2D/attackSFX
 
-
+@onready var weaponSlot = 0
 
 
 static var gunSprite = preload("res://art/weapon sprites/blue/blue_range1.png")
@@ -105,6 +105,7 @@ func _physics_process(delta: float) -> void:
 		listen_for_drop_item()
 		listen_for_drop_mod()
 		listenForNum()
+		listenForScroll()
 		listen_for_pause()
 		
 	else:
@@ -119,15 +120,34 @@ func _physics_process(delta: float) -> void:
 			
 	
 	_character.get_node("MeleeBar").value = _character.meleeWindup
+
+func listenForScroll() -> void:
+	if (Input.is_action_just_pressed("scroll up")):
+		if weaponSlot > 0:
+			weaponSlot -= 1
+		else:
+			weaponSlot = 2
+		selectWeapon(weaponSlot)
+	
+	if (Input.is_action_just_pressed("scroll down")):
+		if weaponSlot < 2:
+			weaponSlot += 1
+		else:
+			weaponSlot = 0
+		selectWeapon(weaponSlot)
+		
 	
 func listenForNum() -> void:
 	if (Input.is_action_just_pressed("1")):
-		selectWeapon(0)
+		weaponSlot = 0
+		selectWeapon(weaponSlot)
 	elif (Input.is_action_just_pressed("2")):
-		selectWeapon(1)
+		weaponSlot = 1
+		selectWeapon(weaponSlot)
 	elif (Input.is_action_just_pressed("3")):
-		selectWeapon(2)
-	
+		weaponSlot = 2
+		selectWeapon(weaponSlot)
+		
 func listen_for_pause() -> void:
 	var pauseScene = pauseScreenScene.instantiate()
 	if Input.is_action_just_pressed("pause"):
