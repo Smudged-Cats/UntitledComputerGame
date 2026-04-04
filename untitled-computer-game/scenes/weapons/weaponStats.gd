@@ -33,13 +33,15 @@ func _init(fireRate: float, spread:float, projectileStats:ProjectileStats, Model
 func getSprite() -> CompressedTexture2D:
 	return stats["Sprite"]
 
-func getWeaponStats() -> String:
+func getWeaponText() -> String:
 	var weaponText: String = ""
 	weaponText += "damage: %d\n" % [int(projectileStats.stats["damage"])]
 	for key in stats.keys():
 		if (key != "3DModel" && key != "Sprite"):
 			if (key == "fireRate"):
-				weaponText += "%s: %.2f\n" % [key,stats[key]]
+				weaponText += "%s: %.2f RPM\n" % [key,60*(1/stats[key])]
+			elif (key == "ammo"):
+				weaponText += "%s: %d/%d\n" % [key,int(stats[key]),maxAmmo]
 			else:
 				weaponText += "%s: %d\n" % [key,int(stats[key])]
 	return weaponText

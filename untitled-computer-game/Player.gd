@@ -486,9 +486,11 @@ func updateWeaponStatText() -> void:
 	var boostLabel: Label = $Camera2D/HUD.get_node("PlayerStatus").get_node("WeaponStats")
 	boostLabel.text = ""
 	if (_weapon.baseWeapon != null):
-		boostLabel.text = "Damage: %.2f\n# of projectiles: %d\nFirerate: %.1f\n\n" % [_weapon.getDamage(), _weapon.getProjectileCount(), 60*(1/_weapon.getFireRate())]
+		boostLabel.text = "Damage: %.2f\n# of projectiles: %d\nFirerate: %.1f\n\n" % [_weapon.baseWeapon.projectileStats.stats["damage"], 
+		_weapon.baseWeapon.stats["projectileCount"], 
+		60*(1/_weapon.baseWeapon.stats["fireRate"])]
 	elif (_character.melee.baseMelee != null):
-		boostLabel.text = "Damage: %.2f\n\n" % [_character.melee.getDamage()]
+		boostLabel.text = "Damage: %.2f\n\n" % [_character.melee.baseMelee.stats["damage"]]
 
 func updateModText() -> void:
 	var modLabel = $Camera2D/HUD.get_node("PlayerStatus").get_node("ModStats")

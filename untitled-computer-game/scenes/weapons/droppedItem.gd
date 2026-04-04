@@ -125,7 +125,7 @@ func ranGun() -> WeaponStats:
 		# Circuit SMG
 		weaponToGive = ranTypeOfGun("smg")
 	
-	itemText = weaponToGive.getWeaponStats()
+	itemText = weaponToGive.getWeaponText()
 	return weaponToGive
 
 #Method for easily getting a specific gun type
@@ -227,6 +227,7 @@ func ranMod() -> Modifier:
 	)
 	#Remove visual components from the boost dictionary
 	weaponStats.stats.erase("3DModel")
+	weaponStats.stats.erase("ammo")
 	weaponStats.stats.erase("Sprite")
 	
 	var projectileStats: ProjectileStats = ProjectileStats.new(
@@ -275,6 +276,7 @@ func setWeaponType(type: String):
 			item.stats["3DModel"] = 1
 		if Player.instance.playerLevel == 2:
 			item.stats["3DModel"] = 3
+		itemText = item.getMeleeText()
 		setMeleeModel(item)
 	if type == "Weapon":
 		if Player.instance.playerLevel == 0:
@@ -285,9 +287,11 @@ func setWeaponType(type: String):
 			item.stats["3DModel"] = 2
 		if Player.instance.playerLevel == 2:
 			item.stats["3DModel"] = 0
+		itemText = item.getWeaponText()
 		setRangedModel(item)
 	if type == "Modifier":
 		var newModel = modifier3DModel.instantiate()
+		itemText = item.getBoosts()
 		$SubViewportContainer/SubViewport/ModelRoot.add_child(newModel)
 	if type == "Bomb":
 		item.stats["Sprite"] = usbSprite
