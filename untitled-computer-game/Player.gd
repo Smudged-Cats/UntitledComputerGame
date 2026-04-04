@@ -420,9 +420,9 @@ func drop_item() -> void:
 	
 func dropMod() -> void:
 	print(modList)
-	if currMods == 0 || modList[selectedItem] == null: return
+	if currMods == 0 || modList[selectedMod] == null: return
 	print("gurted")
-	var modifier = modList[selectedItem]
+	var modifier = modList[selectedMod]
 	modList[selectedMod] = null
 	modifier.removeBoost(self)
 	

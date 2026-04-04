@@ -42,5 +42,11 @@ theme_override_font_sizes/font_size = 12
 text = "Press \"e\" to pickup"
 horizontal_alignment = 1
 
+[node name="DroppedItemInfo" type="Label" parent="." unique_id=2097511138]
+offset_left = 47.0
+offset_top = -22.0
+offset_right = 216.0
+offset_bottom = 134.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
