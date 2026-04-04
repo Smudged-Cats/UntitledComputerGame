@@ -9,6 +9,8 @@
 [ext_resource type="FontFile" uid="uid://csebotlnryy4i" path="res://resources/Nautica-aYw9K.otf" id="6_ota6u"]
 [ext_resource type="Texture2D" uid="uid://cite5y81t2fty" path="res://art/BugLaughing.png" id="7_iavnn"]
 [ext_resource type="AudioStream" uid="uid://b028e4cbe4vvk" path="res://resources/sfx/BugLaughingSFX.mp3" id="7_ota6u"]
+[ext_resource type="AudioStream" uid="uid://bo2c66b33qo35" path="res://resources/sfx/VictoryMusic.mp3" id="8_y7cds"]
+[ext_resource type="AudioStream" uid="uid://ghfnb3bbq3ev" path="res://resources/sfx/HackCompleted.mp3" id="9_p6366"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8rl6"]
 shader = ExtResource("5_a8rl6")
@@ -170,6 +172,15 @@ pitch_scale = 1.2
 [node name="BugLaughingSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1059974385]
 process_mode = 3
 stream = ExtResource("7_ota6u")
+
+[node name="VictoryMusic" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1680329463]
+process_mode = 3
+stream = ExtResource("8_y7cds")
+
+[node name="_HackCompleted_" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=2118170935]
+process_mode = 3
+stream = ExtResource("9_p6366")
+volume_db = 10.0
 
 [node name="USBpickupSFX" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1727203617]
 stream = ExtResource("4_xxdfd")
