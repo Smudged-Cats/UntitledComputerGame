@@ -18,6 +18,9 @@ var pickedUp = false
 @onready 
 var canPickup = false
 
+@onready
+var itemText: String = ""
+
 static var usbSprite = preload("res://art/largerUSB.png")
 
 static var meleeLegendarySprite = preload("res://art/weapon sprites/legendary.png")
@@ -64,6 +67,7 @@ var item
 
 func _ready() -> void:
 	get_node("PickupPrompt").visible = false
+	get_node("DroppedItemInfo").visible = false
 	self.id = newDroppedID
 	newDroppedID += 1
 	$SubViewportContainer/SubViewport/Camera3D.global_position.x += self.id * 10
@@ -95,6 +99,8 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Character):
+		get_node("DroppedItemInfo").text = itemText
+		get_node("DroppedItemInfo").visible = true
 		get_node("PickupPrompt").visible = true
 		canPickup = true
 
@@ -102,6 +108,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if (body is Character):
 		get_node("PickupPrompt").visible = false
+		get_node("DroppedItemInfo").visible = false
 		canPickup = false
 
 func ranGun() -> WeaponStats:
@@ -117,7 +124,8 @@ func ranGun() -> WeaponStats:
 	elif (Player.instance.playerLevel == 2):
 		# Circuit SMG
 		weaponToGive = ranTypeOfGun("smg")
-		
+	
+	itemText = weaponToGive.getWeaponStats()
 	return weaponToGive
 
 #Method for easily getting a specific gun type
@@ -176,19 +184,41 @@ func ranTypeOfGun(gunType:String) -> WeaponStats:
 		return gunDict[gunDict.keys().pick_random()]
 
 func ranMelee() -> MeleeStats:
+	var meleeWeaponToGive: MeleeStats
 	if (Player.instance.playerLevel <= 1):
-		return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
-	if (Player.instance.playerLevel == 2):
-		return MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2)
-	if (Player.instance.playerLevel == 3):
-		return MeleeStats.new(randf_range(75,100), randf_range(0.1, 0.5), 0)
-	return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
+		meleeWeaponToGive = ranTypeOfMelee("melee1")
+		#return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
+	elif (Player.instance.playerLevel == 2):
+		meleeWeaponToGive = ranTypeOfMelee("melee2")
+		#return MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2)
+	elif (Player.instance.playerLevel == 3):
+		meleeWeaponToGive = ranTypeOfMelee("melee3")
+		#return MeleeStats.new(randf_range(75,100), randf_range(0.1, 0.5), 0)
+	else:
+		meleeWeaponToGive = ranTypeOfMelee("melee4")
+		#return MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
+	itemText = meleeWeaponToGive.getMeleeText()
+	return meleeWeaponToGive
+
+func ranTypeOfMelee(meleeName:String) -> MeleeStats:
+	meleeName = meleeName.to_lower()
+	var meleeDict: Dictionary = {
+		"melee1": MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1),
+		"melee2": MeleeStats.new(randf_range(50,75), randf_range(0.1, 0.5), 2),
+		"melee3": MeleeStats.new(randf_range(75,100), randf_range(0.1, 0.5), 0),
+		"melee4": MeleeStats.new(randf_range(25,50), randf_range(0.1, 0.5), 1)
+	}
+	if (meleeDict.has(meleeName)):
+		return meleeDict[meleeName]
+	else:
+		return meleeDict[meleeDict.keys().pick_random()]
 
 	
 func bombStats() -> MeleeStats:
 		return MeleeStats.new(0, 0, -1)
 
 func ranMod() -> Modifier:
+	var modToGive:Modifier
 	var weaponStats: WeaponStats = WeaponStats.new(
 		0,
 		0,
@@ -213,11 +243,13 @@ func ranMod() -> Modifier:
 	meleeStats.stats.erase("3DModel")
 	meleeStats.stats.erase("Sprite")
 	
-	return Modifier.new(
+	modToGive = Modifier.new(
 		genModDict(weaponStats.stats),
 		genModDict(projectileStats.stats),
 		genModDict(meleeStats.stats)
-	)	
+	)
+	itemText = modToGive.getBoosts()
+	return modToGive
 
 func genModDict(itemStats:Dictionary) -> Dictionary:
 	var itemDict: Dictionary = {}

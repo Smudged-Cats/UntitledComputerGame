@@ -25,3 +25,13 @@ func _init( damage:float, attackCooldown: float, Model:int):
 #Get the sprite
 func getSprite() -> CompressedTexture2D:
 	return stats["Sprite"]
+
+func getMeleeText() -> String:
+	var meleeText: String = ""
+	for key in stats.keys():
+		if (key != "3DModel" && key != "Sprite"):
+			if(key == "attackCooldown"):
+				meleeText += "%s: %.2fs\n" %[key, stats[key]]
+			else:
+				meleeText += "%s: %d\n" %[key, int(stats[key])]
+	return meleeText
