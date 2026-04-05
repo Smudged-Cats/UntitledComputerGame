@@ -17,6 +17,9 @@ func _ready() -> void:
 	currentMessage = add_message("Welcome to Malware Mission!", true)
 	await wait_until_message_is_null()
 	
+	currentMessage = add_message("You can press [ESC] to pause the game at any time, press [ESC] again to resume your current level", true)
+	await wait_until_message_is_null()
+	
 	currentMessage = add_message("Move around using the W A S D, or arrow keys.", true)
 	await wait_until_message_is_null()
 	
