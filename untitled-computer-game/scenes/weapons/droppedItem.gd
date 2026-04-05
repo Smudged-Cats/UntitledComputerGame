@@ -256,7 +256,7 @@ func genModDict(itemStats:Dictionary) -> Dictionary:
 	var itemDict: Dictionary = {}
 	for stat in itemStats.keys():
 		itemDict[stat] = randf_range(-1,1);
-		if (stat == "projectileCount"):
+		if (stat == "projectileCount" || stat == "shotHealth"):
 			itemDict[stat] = ceil(itemDict[stat])
 			
 		if (itemDict[stat] <= 0 && stat != "spread"):

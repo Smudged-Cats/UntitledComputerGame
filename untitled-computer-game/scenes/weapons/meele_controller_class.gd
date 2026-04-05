@@ -37,3 +37,15 @@ func getMeleeBoosts() -> String:
 			if (currBoost != 1):
 				text += "%.1fx %s\n" % [meleeMuls.stats[k] - 1,k]
 	return text
+
+func totalMeleeStatsText() -> String:
+	var text: String = ""
+	text += "Damage: %d" % [baseMelee.stats["damage"]]
+	if (meleeMuls.stats["damage"] != 1.0):
+		text += " x%.1f"%[meleeMuls.stats["damage"]]
+	
+	text += "\nAttack Cooldown: %.2fs" % [baseMelee.stats["attackCooldown"]]
+	if (meleeMuls.stats["attackCooldown"] != 1.0):
+		text += " x%.2f"%[1/meleeMuls.stats["damage"]]
+	
+	return text

@@ -40,7 +40,11 @@ func shoot(dir:Vector2, pos: Vector2, model_id: int = -1) -> void:
 		#print(baseWeapon.stats["projectileCount"] * weaponMuls.stats["projectileCount"])
 		for i in range(totalProjectiles):
 			var tempP = baseProjectile.instantiate()
-			var newAngle: float = dir.angle() + randf_range(-spreadFactor,spreadFactor)
+			var newAngle: float = dir.angle()
+			
+			if (weaponMuls.stats["spread"] > 0):
+				newAngle += randf_range(-spreadFactor,spreadFactor)
+				
 			var newDir: Vector2 = Vector2(cos(newAngle),sin(newAngle))
 			tempP.setProjectile(
 				holder,
@@ -76,3 +80,24 @@ func getWeaponBoosts() -> String:
 		if (weaponMuls.projectileStats.stats[k] != 1):
 			text += "%.1fx %s\n" % [weaponMuls.projectileStats.stats[k] - 1,k]
 	return text
+
+func totalWeaponStatsText() -> String:
+	var text: String = ""
+	text += "Damage: %d" %[baseWeapon.projectileStats.stats["damage"]]
+	if (weaponMuls.projectileStats.stats["damage"] != 1.0):
+		text += " x%.1f" % [weaponMuls.projectileStats.stats["damage"]]
+	
+	text += "\nFirerate: %.1f RPM" %[60*(1/baseWeapon.stats["fireRate"])]
+	if (weaponMuls.stats["fireRate"] != 1.0):
+		text += " x%.1f" % [weaponMuls.stats["fireRate"]]
+	
+	text += "\n# of Projectiles: %d" %[baseWeapon.stats["projectileCount"]]
+	if (weaponMuls.stats["projectileCount"] != 1.0):
+		text += " x%d" % [weaponMuls.stats["projectileCount"]]
+	
+	text += "\nSpread: %.2f" % [baseWeapon.stats["spread"]]
+	if (weaponMuls.stats["spread"] != 1.0):
+		text += " x%.1f" % [weaponMuls.stats["spread"]]
+	
+	return text
+	
