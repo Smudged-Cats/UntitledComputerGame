@@ -50,7 +50,9 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_menu_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://start_menu.tscn")
+	var executable_path = OS.get_executable_path()
+	OS.create_process(executable_path, [])
+	get_tree().quit()
 
 
 # All of this stuff is code that allows you to navigate the buttons via keys or mouse
